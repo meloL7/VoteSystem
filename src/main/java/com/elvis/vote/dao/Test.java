@@ -8,4 +8,5 @@ public interface Test {
     @Select("select * from user")
     User test();
 
+
 }
