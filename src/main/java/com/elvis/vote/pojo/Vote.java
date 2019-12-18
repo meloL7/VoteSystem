@@ -4,18 +4,27 @@ import java.sql.DatabaseMetaData;
 import java.sql.Date;
 
 public class Vote {
+    private int id;
     private String title;
     private String introduction;
     private int type;//1.问卷 2.选择
-    private int openVoterId;
-    private int openVoterIdentify;
+    private int open_voter; //投票人id
+    private int open_voter_identify; //投票人身份
     private Date open_time; //开始请求审核时间
     private Date begin_time;//审核通过时间
     private Date end_time;//结束时间（审核不通过时间为结束时间，正常投票2天自动结束）
-    private int allVoterNum; //投票人总数
-    private int range;//投票人范围（1老师，2学生，3老师和学生）
-//    private int status;//
-    private int selectId; //选择的ID
+    private int all_voter_num; //投票人总数
+    private String range;//投票人范围（1老师，2学生，3老师和学生）
+    private int status;//1.通过审核 2.未通过审核 3.等待审核 4.已结束
+    private String nopass_result; //不通过的理由
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -41,20 +50,20 @@ public class Vote {
         this.type = type;
     }
 
-    public int getOpenVoterId() {
-        return openVoterId;
+    public int getOpen_voter() {
+        return open_voter;
     }
 
-    public void setOpenVoterId(int openVoterId) {
-        this.openVoterId = openVoterId;
+    public void setOpen_voter(int open_voter) {
+        this.open_voter = open_voter;
     }
 
-    public int getOpenVoterIdentify() {
-        return openVoterIdentify;
+    public int getOpen_voter_identify() {
+        return open_voter_identify;
     }
 
-    public void setOpenVoterIdentify(int openVoterIdentify) {
-        this.openVoterIdentify = openVoterIdentify;
+    public void setOpen_voter_identify(int open_voter_identify) {
+        this.open_voter_identify = open_voter_identify;
     }
 
     public Date getOpen_time() {
@@ -81,27 +90,54 @@ public class Vote {
         this.end_time = end_time;
     }
 
-    public int getAllVoterNum() {
-        return allVoterNum;
+    public int getAll_voter_num() {
+        return all_voter_num;
     }
 
-    public void setAllVoterNum(int allVoterNum) {
-        this.allVoterNum = allVoterNum;
+    public void setAll_voter_num(int all_voter_num) {
+        this.all_voter_num = all_voter_num;
     }
 
-    public int getRange() {
+    public String getRange() {
         return range;
     }
 
-    public void setRange(int range) {
+    public void setRange(String range) {
         this.range = range;
     }
 
-    public int getSelectId() {
-        return selectId;
+    public int getStatus() {
+        return status;
     }
 
-    public void setSelectId(int childId) {
-        this.selectId = selectId;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getNopass_result() {
+        return nopass_result;
+    }
+
+    public void setNopass_result(String nopass_result) {
+        this.nopass_result = nopass_result;
+    }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", type=" + type +
+                ", open_voter=" + open_voter +
+                ", open_voter_identify=" + open_voter_identify +
+                ", open_time=" + open_time +
+                ", begin_time=" + begin_time +
+                ", end_time=" + end_time +
+                ", all_voter_num=" + all_voter_num +
+                ", range='" + range + '\'' +
+                ", status=" + status +
+                ", nopass_result='" + nopass_result + '\'' +
+                '}';
     }
 }

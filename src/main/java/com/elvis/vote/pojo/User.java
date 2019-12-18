@@ -3,6 +3,7 @@ package com.elvis.vote.pojo;
 public class User {
     private int sno;
     private String pwd;
+    private String email;
     private String sname;
     private int sex; //1.男  2.女
     private int age;
@@ -11,7 +12,6 @@ public class User {
     private String grade;
     private String classes;
     private int identify; //1.教师 2.学生
-    private int powerid; //权限的ID
 
 
     public int getSno() {
@@ -28,6 +28,14 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSname() {
@@ -94,11 +102,20 @@ public class User {
         this.identify = identify;
     }
 
-    public int getPowerid() {
-        return powerid;
-    }
-
-    public void setPowerid(int powerid) {
-        this.powerid = powerid;
+    @Override
+    public String toString() {
+        return "User{" +
+                "sno=" + sno +
+                ", pwd='" + pwd + '\'' +
+                ", email='" + email + '\'' +
+                ", sname='" + sname + '\'' +
+                ", sex=" + sex +
+                ", age=" + age +
+                ", colleage='" + colleage + '\'' +
+                ", major='" + major + '\'' +
+                ", grade='" + grade + '\'' +
+                ", classes='" + classes + '\'' +
+                ", identify=" + identify +
+                '}';
     }
 }

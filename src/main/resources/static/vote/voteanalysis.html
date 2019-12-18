@@ -153,14 +153,7 @@
 			$topoutlabel.eq(outlabel).css("display", "");
 			var $topinnerlabel = $topoutlabel.eq(outlabel).find("span");
 			var $topinnera = $topoutlabel.eq(outlabel).find("a");
-			// for (var i = 0; i < $topinnerlabel.length; i++) {
-			//     if ($topinnerlabel.eq(i).text() == innerlabel) {
-			//         $topinnera.eq(i).addClass("clicked");
-			//     }
-			//     else if (vstat == 1) {
-			//         $topinnera.eq(i).hide();
-			//     }
-			// }
+
 			for (var i = 0; i < $leftoutli.length; i++) {
 				if ($leftoutli.eq(i).text() == innerlabel) {
 					$leftoutli.eq(i).addClass("current");
@@ -1038,8 +1031,6 @@
 							function addtolog() {
 								var rimg = document.createElement("img");
 								var logstore = "activitystat";
-								rimg.src = "//sojump.cn-hangzhou.log.aliyuncs.com/logstores/" + logstore +
-										"/track.gif?APIVersion=0.6.0&type=ksst&jointimes=" + currentJoinTimes + "&activity=" + activityId;
 							}
 						</script>
 

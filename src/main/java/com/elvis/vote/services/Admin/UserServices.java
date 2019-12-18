@@ -27,6 +27,11 @@ public interface UserServices {
 
 
     //权限管理
+    public void searchColleage();
+    public void searchMajor(String colleagename);
+    public void searchGrade(String colleagename,String majorname);
+    public void searchClasses(String colleagename,String majorname,String gradename);
+
 
 
 

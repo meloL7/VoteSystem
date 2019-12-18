@@ -1,49 +1,58 @@
 package com.elvis.vote.pojo;
 
 public class power {
-    private int userId;
-    private int colleageId;
-    private int majorId;
-    private int gradeId;
-    private int classesId;
+    private int id;
+    private int user_id;
+    private int colleage_id;
+    private int major_id;
+    private int grade_id;
+    private int classes_id;
 
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getColleageId() {
-        return colleageId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setColleageId(int colleageId) {
-        this.colleageId = colleageId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getMajorId() {
-        return majorId;
+    public int getColleage_id() {
+        return colleage_id;
     }
 
-    public void setMajorId(int majorId) {
-        this.majorId = majorId;
+    public void setColleage_id(int colleage_id) {
+        this.colleage_id = colleage_id;
     }
 
-    public int getGradeId() {
-        return gradeId;
+    public int getMajor_id() {
+        return major_id;
     }
 
-    public void setGradeId(int gradeId) {
-        this.gradeId = gradeId;
+    public void setMajor_id(int major_id) {
+        this.major_id = major_id;
     }
 
-    public int getClassesId() {
-        return classesId;
+    public int getGrade_id() {
+        return grade_id;
     }
 
-    public void setClassesId(int classesId) {
-        this.classesId = classesId;
+    public void setGrade_id(int grade_id) {
+        this.grade_id = grade_id;
+    }
+
+    public int getClasses_id() {
+        return classes_id;
+    }
+
+    public void setClasses_id(int classes_id) {
+        this.classes_id = classes_id;
     }
 }
