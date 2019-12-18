@@ -15,8 +15,8 @@ public interface UserDao {
 
     //权限
     List<colleage> searchColleages();
-    List<major> searchMajors(String colleage);
-    List<grade> searchGrades(String colleage, String major);
-    List<classes> searchClasses(String colleage, String major, String grade);
+    List<major> searchMajors(String colleageName);
+    List<grade> searchGrades(String colleageName, String majorName);
+    List<classes> searchClasses(String colleageName, String majorName, String gradeName);
 
 }

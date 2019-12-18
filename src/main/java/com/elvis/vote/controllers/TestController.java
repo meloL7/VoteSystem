@@ -20,6 +20,5 @@ public class TestController {
 
     @RequestMapping("test.do")
     public void test(){
-        services.searchColleage();
-    }
+        services.searchMajor("体育学院");    }
 }

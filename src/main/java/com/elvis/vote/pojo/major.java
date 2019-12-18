@@ -1,26 +1,26 @@
 package com.elvis.vote.pojo;
 
 public class major {
-    private int majorId;
+    private int major_id;
 
-    private String majorName;
+    private String major_name;
 
     private int colleage_id;
 
-    public int getMajorId() {
-        return majorId;
+    public int getMajor_id() {
+        return major_id;
     }
 
-    public void setMajorId(int majorId) {
-        this.majorId = majorId;
+    public void setMajor_id(int major_id) {
+        this.major_id = major_id;
     }
 
-    public String getMajorName() {
-        return majorName;
+    public String getMajor_name() {
+        return major_name;
     }
 
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
+    public void setMajor_name(String major_name) {
+        this.major_name = major_name;
     }
 
     public int getColleage_id() {
@@ -34,8 +34,8 @@ public class major {
     @Override
     public String toString() {
         return "major{" +
-                "majorId=" + majorId +
-                ", majorName='" + majorName + '\'' +
+                "major_id=" + major_id +
+                ", major_name='" + major_name + '\'' +
                 ", colleage_id=" + colleage_id +
                 '}';
     }

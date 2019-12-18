@@ -7,5 +7,15 @@
         from colleage
     </select>
 
+    <select id="searchMajors" resultType="com.elvis.vote.pojo.major">
+        select major_id,major_name
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        where colleage_name=#{colleageName}
+
+
+
+    </select>
 
 </mapper>
