@@ -1,0 +1,838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head id="ctl02_Head1">
+		<title>
+			统计&分析
+		</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+		<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+		<meta id="ctl02_keywords" name="keywords" content="问卷星" />
+		<link href="./css/wjxUI.css?v=10" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="./css/default.css?v=5" />
+		<link rel="Stylesheet" type="text/css" href="./css/wjxdesign360.css?v=18" />
+
+
+		<link rel="stylesheet" type="text/css" href="./css/demo.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+
+		<link rel="stylesheet" href="./css/icheck-bootstrap.css">
+		<style>
+			.selSendTypeBox {
+            position: absolute;
+            top: 20px;
+            left: 480px;
+            display: flex;
+            align-items: center;
+            color: #333333;
+            font-size: 14px;
+        }
+
+        .selectpick-div {
+            background: #fff;
+        }
+    </style>
+
+		<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+		<script src="./js/layer.js?v=11"></script>
+		<script src="./js/modernizr.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var _$ = jQuery.noConflict();
+		</script>
+		<script src="./js/selectpick.js?v=4" type="text/javascript"></script>
+
+	</head>
+	<body class="fp-viewing">
+		<div class="main-container">
+			<div class="nav-bar aside size30x30" id="leftlabel">
+				<div class="ui-sidebar">
+					<a href="my1.html" class="return-wrapper">
+						<em class="icon return-icon"></em>
+						<div class="tips">
+							<div class="caret-top"></div>
+							返回我的问卷
+						</div>
+					</a>
+
+
+
+					<a class="nav-items clicked" href="watchvotedetail.html">
+						<div class="items-box">
+							<i class="icon resultsData-icon"></i>
+						</div>
+						<br />
+						<span class="items-name ">投票详情</span>
+						<em class="caret-left"></em>
+					</a>
+
+
+				</div>
+
+			</div>
+			<div class="inside-wrapper">
+				<div class="inside-head clearfix" style="">
+					<div class="activity-box pull-left">
+						<span id="ctl02_spanActivity" style="display: none"><select id='ddlActivitynew' style=''>
+								<option value='51819682' selected='selected'>zuixihuan(ID:51819682)</option>
+							</select></span>
+
+					</div>
+
+
+					<div class="nav-show clearfix" id="toplabel">
+
+
+
+						<div id="ctl02_divCommonNavBar" class="nav-box clearfix" style="display: none">
+							<a class="nav-items pull-left" href="/report/51819682.aspx">
+								<label class="icon Answer2-icon"></label>
+								<br />
+								<span>统计&分析</span>
+							</a>
+
+						</div>
+						<div class="nav-box">
+							<a class="nav-items pull-left " href="/newwjx/design/sendqstart.aspx?activityid=51819682">
+								<label class="icon defauleWx-icon"></label>
+								<br />
+								<span>默认方式</span>
+							</a>
+							<a id="ctl02_hrefLink" class="nav-items pull-left">
+								<label class=" icon linkCode-icon"></label>
+								<br />
+								<span>链接与二维码</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+
+				<script type="text/javascript">
+					_$(".ui-sidebottom li").hover(function() {
+						_$(this).find("div.service-box").eq(0).css("display", "block");
+					}, function() {
+						_$(this).find("div.service-box").eq(0).css("display", "none");
+					})
+					var outlabel = 2;
+					var innerlabel = "统计&分析";
+					var vstat = 0;
+					var $topoutlabel = _$("#toplabel div.nav-box")
+					var $leftoutlabel = _$("#leftlabel a.nav-items")
+					var $leftoutul = _$("#leftlabel dd.sub-item")
+					//var $leftoutul=_$("#leftlabel dd")
+					var $leftoutli = _$("#leftlabel dd.sub-item").eq(outlabel).find("a");
+
+					_$(".selSendType option:contains('" + innerlabel + "')").attr("selected", "selected");
+
+					for (var i = 0; i < $topoutlabel.length; i++) {
+						$topoutlabel.eq(i).css("display", "none");
+					}
+					$topoutlabel.eq(outlabel).css("display", "");
+					var $topinnerlabel = $topoutlabel.eq(outlabel).find("span");
+					var $topinnera = $topoutlabel.eq(outlabel).find("a");
+					// for (var i = 0; i < $topinnerlabel.length; i++) {
+					//     if ($topinnerlabel.eq(i).text() == innerlabel) {
+					//         $topinnera.eq(i).addClass("clicked");
+					//     }
+					//     else if (vstat == 1) {
+					//         $topinnera.eq(i).hide();
+					//     }
+					// }
+					for (var i = 0; i < $leftoutli.length; i++) {
+						if ($leftoutli.eq(i).text() == innerlabel) {
+							$leftoutli.eq(i).addClass("current");
+						}
+					}
+					if (outlabel == 3) {
+						outlabel = 1;
+					}
+
+					// $leftoutlabel.eq(outlabel).addClass("clicked");
+					$leftoutul.eq(outlabel).css("display", "block");
+					$overall_report = _$(".overall__report"),
+						$overall_report_pageDec = $overall_report.find(".overall__report-pageDec");
+					if (ISIE(8) || ISIE(7) || ISIE(6)) {
+						$overall_report_pageDec.children(".items:nth-child(5n + 1)").css({
+							"margin-left": 0
+						});
+					}
+					/*** 内部 选择问卷的select美化按钮 在1024,1366,1600分辨率下的宽度*/
+					var activity_box,
+						wind_width_obj,
+						window_width;
+					_$("body").scrollTop(10);
+					if (_$("body").scrollTop() > 0) {
+						window_width = _$(window).width() + 17; //获得屏幕分辨率
+					} else {
+						window_width = _$(window).width();
+					}
+					_$("body").scrollTop(0);
+					// console.log(window_width)
+					if (ISIE(7)) {
+						activity_box = 140;
+					} else {
+						if (window_width >= 1600) {
+							activity_box = 300;
+						} else if (window_width < 1600 && window_width >= 1349) {
+							activity_box = 200;
+						} else {
+							activity_box = 140;
+						}
+
+					}
+					wind_width_obj = {
+						container: ".activity-box",
+						width: activity_box,
+						height: 30,
+						disabled: false,
+						flags: true,
+						freeWidth: true,
+						MaxfreeWidth: 600
+					};
+
+					_$("#ddlActivitynew").selectpick(wind_width_obj);
+					var reportId = '';
+					_$("#ddlActivitynew").change(function() {
+						var activity = _$(this).val();
+						if (activity) {
+							var loc = window.location.href.toLowerCase();
+							loc = loc.replace(/activity=(\d+)/gi, "activity=" + activity + "");
+							loc = loc.replace(/activityid=(\d+)/gi, "activityid=" + activity + "");
+							loc = loc.replace(/\/(\d+)\.aspx/gi, "\/" + activity + "\.aspx");
+							loc = loc.replace(/\/(\d+),/gi, "\/" + activity + ",");
+
+							if (reportId) {
+								loc = loc.replace(/reportid=(\d+)/g, "");
+								loc = loc.replace(/,(\d+)/g, "");
+							}
+							if (loc.indexOf("viewregnew.aspx") > -1 || loc.indexOf("viewregnew2.aspx") > -1)
+								loc = "/report/" + activity + ".aspx";
+							if (loc.indexOf("setcepingreport.aspx") > -1)
+								loc = "/wjx/activitystat/setcepingreport.aspx?activity=" + activity;
+							window.location = loc;
+						}
+					})
+					var divEmailSms = document.getElementById("ctl02_divEmailSms");
+					if (divEmailSms) {
+						var lis = _$("#ctl02_divEmailSms li");
+						lis.bind("click", function() {
+							var val = _$(this).attr("value");
+							var msg = "邮件发送功能只对企业版用户提供，您是免费版用户，请升级到企业版！";
+							var loc = "/register/upgradevip.aspx?upgradeReason=27";
+							if (val == "2") {
+								msg = "短信发送功能只对企业版用户提供，您是免费版用户，请升级到企业版！";
+								loc = "/register/upgradevip.aspx?upgradeReason=28";
+							}
+							layer.alert(msg, {
+								btn: '知道了',
+								title: '提示'
+							}, function() {
+								location.href = loc;
+							})
+						})
+					}
+
+					function processQywx() {
+						var canShare = 1;
+						if (!canShare) {
+							alertLink("提示：只有尊享版用户才能对外回收答卷，请升级！",
+								"https://www.sobot.com/chat/pc/index.html?sysNum=02aa1bd26e3b499aa36f147f5d84f78e&moduleType=4&groupId=167fc0cc2f56459bbde0477511c9a20d&uname=qq%242f2289494da3f1785e06fa6a2085ba4b&remark=%e5%85%8d%e8%b4%b9%e7%89%88&tel=13507304227&params=%7b%22UserName%22%3a%22qq%242f2289494da3f1785e06fa6a2085ba4b%22%7d",
+								"联系客服");
+							return;
+						}
+						var cc = confirmnew("此问卷设置了只允许钉钉用户参与，是否取消该限制？", function() {
+							var url = 0 ? "/mobile/qywx/qywxlimit.ashx?activity=51819682" :
+								"/mobile/dingding/dingdinglimit.ashx?activity=51819682";
+							_$.get(url, function() {
+								window.location.href = "/newwjx/design/sendqstart.aspx?activity=51819682";
+							});
+						});
+					}
+				</script>
+				<div class="inside-main">
+
+					<div class="inside-box">
+						<div class="box-items">
+
+							<div style="clear: both"></div>
+							<div class="step__evaluate article" style="text-align: left">
+								<style>
+									.SET-Guide {
+										width: 740px !important;
+									}
+
+									.SET-Expansion h2 {
+										font-size: 12px;
+									}
+								</style>
+
+								<link rel="stylesheet" href="./css/single-item-count.css?v=4" type="text/css" />
+								<style>
+									.markScatter {
+            position: relative;
+            margin-top: 40px;
+            height: 445px;
+            background: #F7FAFB;
+            border: 1px solid #E3E4E6;
+            border-radius: 8px;
+        }
+        .count {
+            padding-top:5px;
+        }
+        .headTitle {
+            overflow: hidden;
+        }
+
+            .headTitle > div {
+                width: 50%;
+                float: left;
+                background: #E1E5E6;
+                height: 40px;
+                line-height: 40px;
+                color: #222222;
+                font-size: 14px;
+                text-align: center;
+            }
+
+        .peoNum {
+            position: relative;
+        }
+
+            .peoNum::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                width: 1px;
+                height: 24px;
+                top: 8px;
+                background: #C9C9C9;
+            }
+
+        #markSet {
+            position: absolute;
+            top: 60px;
+            right: 22px;
+            text-decoration: underline;
+        }
+
+        .two-stage-title .left {
+            float: none;
+        }
+        .wjxui-btn-rightsideGroup{
+            position:fixed;
+            top:160px;
+            left:50%;
+            margin-left:478px;
+        }
+    </style>
+								<script type="text/javascript">
+									var FusionChartSave = 1;
+									var needPay = 0;
+								</script>
+
+
+
+
+
+								<div>
+
+									<div>
+										<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE1NDIyODg1NzRkZHrmmBNBuTg7uclb76aPRgPdYEwZ" />
+									</div>
+
+									<div>
+
+										<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="0D1A2279" />
+									</div>
+									<div class="sic_wrap">
+										<div id="ctl02_ContentPlaceHolder1_ViewReport1_divData" style="display: none;">Hello Venus§SONAMOO§A
+											Pink§少女时代§4TEN</div>
+										<div id="ctl02_ContentPlaceHolder1_ViewReport1_divDataQuery" style="display: none;">Hello Venus§SONAMOO§A
+											Pink§少女时代§4TEN</div>
+										<div style="">
+											<div class="count_analyse_tab">
+												<style>
+													.count_analyse_tab ul li {
+                width: 25%;
+            }
+            @font-face {
+              font-family: 'comIcon';  /* project id 1070120 */
+              src: url('//at.alicdn.com/t/font_1070120_a2xge69ljq.eot');
+              src: url('//at.alicdn.com/t/font_1070120_a2xge69ljq.eot?#iefix') format('embedded-opentype'),
+              url('//at.alicdn.com/t/font_1070120_a2xge69ljq.woff2') format('woff2'),
+              url('//at.alicdn.com/t/font_1070120_a2xge69ljq.woff') format('woff'),
+              url('//at.alicdn.com/t/font_1070120_a2xge69ljq.ttf') format('truetype'),
+              url('//at.alicdn.com/t/font_1070120_a2xge69ljq.svg#iconfont') format('svg');
+            }
+            .comIcon {
+                font-family: "comIcon" !important;
+                font-size: 16px;
+                font-style: normal;
+                -webkit-font-smoothing: antialiased;
+                -webkit-text-stroke-width: 0.2px;
+                -moz-osx-font-smoothing: grayscale;
+                font-weight: 400  !important;
+                text-decoration:none;
+            }
+            .tip-frame {
+                font-size: 12px;
+                color: #595959;
+                line-height: 30px;
+                padding: 0 8px;
+                background-color: #FFF7EB;
+            }
+            .tip-icon {
+                font-size: 17px;
+                color: #FF9500;
+                margin-right: 5px;
+            }
+            .vip-link {
+                color:#FF6A00;
+                text-decoration: underline;
+            }
+            #vip-report {
+                color:#262626 !important;
+                text-decoration: underline;
+            }
+            .close-icon {
+                font-size: 13px;
+                color: #BFBFBF;
+                cursor: pointer;
+            }
+        </style>
+
+
+												<div id="divFenLei" style="display: none;padding:30px 40px 0 40px" class='cpbg'>
+													<div class="playSet" style='border-bottom: 0;padding-bottom:0'>
+
+														<div class='condition-box' style="display:none;" id="divshaixuan">
+															<div class='arrow'><i></i></div>
+															<div class='htit'>
+																<i></i><span>选择条件</span>
+															</div>
+															<div class='set-condition-cont limit2'>
+																<div class='cond-list'>
+																	<div class='item'>
+																		<select id='ddlFirst' style='width:613px;'>
+
+																			<optgroup label='问卷题目'></optgroup>
+																			<option value='10000'>1.选择你最喜欢的音乐MV，点击查看详情可以浏览MV</option>
+																			<optgroup label="填写记录">
+																				<option value="省份">省份(根据IP自动获取)</option>
+																				<option value="城市">城市(根据IP自动获取)</option>
+																				<option value="来源">来源</option>
+
+																			</optgroup>
+
+																		</select>
+																	</div>
+																</div>
+																<div class='add-condition' id="btnAdd">
+																	<span class='icon icon-add'></span>
+																	<span>增加条件</span>
+																</div>
+															</div>
+															<div class='sel-tag'>
+																<div class='htit'>
+																	<i></i><span>选择分类</span>
+																</div>
+																<div class='taglist clearfix' id="divChoice">
+																</div>
+															</div>
+
+														</div>
+
+													</div>
+												</div>
+												<div id="divJiaoCha" style="display: none;padding:30px 40px 0 40px" class="jcfxnew">
+													<div class='playSet' style="border-bottom:0px;padding-bottom:0">
+														<div class='head clearfix'>
+															<div class='htit hasChart pull-left'>
+																<i class='icon icon-cross'></i><span>交叉分析 ( <a class='a-aline-gray' href='/help/help.aspx?helpid=109&h=1'
+																	 target="_blank">数据计算说明</a> )</span>
+															</div>
+
+														</div>
+														<div class='condition-box'>
+															<!-- 箭头-->
+															<div class='arrow'><i></i></div>
+															<!--交叉分析内容-->
+															<div class='cont'>
+																<div class='my-check clearfix'>
+																	<div class='check-text-box'>
+																		<span class='my-check-text' href=''> <span id="ctl02_ContentPlaceHolder1_ViewReport1_spanQuerytext">
+																				我的交叉分析</span><i class='icon'></i></span>
+
+																		<ul id="ctl02_ContentPlaceHolder1_ViewReport1_ddlJiaoCha"></ul>
+																	</div>
+																</div>
+																<div class='check-condition set-condition-cont'>
+																	<div class='clearfix jcfx-condition'>
+																		<div class='var-X pull-left'>
+																			<p><strong>自变量 X</strong><span>（一般为样本属性，例如性别，年龄等。限2题）</span></p>
+																			<div class='cond-list'>
+																				<div class='item'>
+																					<select id='ddlListX'>
+																						<option value='0'>添加自变量</option>
+																						<optgroup label='问卷题目'></optgroup>
+																						<option value='10000'>1.选择你最喜欢的音乐MV，点击查看详情可以浏览MV</option>
+																						<optgroup label="填写记录">
+																							<option value="-1">省份(根据IP自动获取)</option>
+																							<option value="-2">城市(根据IP自动获取)</option>
+																							<option value="-3">来源</option>
+																							<option value="-4">填写日期(按星期)</option>
+																							<option value="-5">填写日期(按月)</option>
+
+																						</optgroup>
+																					</select>
+																					<span class='icon'></span>
+																				</div>
+
+																			</div>
+																			<div class='add-condition' id="btnAddX" onclick="add">
+																				<i class='icon icon-add-condition'></i>增加条件
+																			</div>
+																		</div>
+																		<a class='var-toggle' href="javascript:void(0);" id="hrefSwapXY" onclick="swapXY();">
+																			<i class='icon icon-toggle' style="margin-top:5px;"></i>
+																		</a>
+																		<div class='var-Y pull-right'>
+																			<p><strong>因变量 Y</strong><span>（您要分析的目标题目，限10题）</span></p>
+																			<div class='cond-list'>
+																				<div class='item'>
+																					<select id='ddlListY'>
+																						<option value='0'>添加因变量</option>
+																						<option value='10000'>1.选择你最喜欢的音乐MV，点击查看详情可以浏览MV</option>
+																					</select>
+																					<span class='icon'></span>
+																				</div>
+																			</div>
+																			<div class='add-condition' id="btnAddY" onclick="add">
+																				<i class='icon icon-add-condition'></i>增加条件
+																			</div>
+																		</div>
+																		<div id="divTipY" style="color:Red; display:none; margin-top:5px; font-size:12px;">请选择因变量</div>
+																	</div>
+																	<div id="ctl02_ContentPlaceHolder1_ViewReport1_spanSource" class="data-from">
+																		<div class='clearfix'> <strong class='pull-left'>数据源</strong> <a class='help pull-left' href='/help/help.aspx?helpid=112'
+																			 target='_blank'><i class='icon icon-wh'></i></a></div><a href='javascript:void(0);' class='a-inline pull-left'
+																		 style='margin-top:12px;margin-bottom:20px' onclick='addSource();'>新建数据源</a>
+																	</div>
+																	<div class='control-condition clearfix' style='width: 688px;'>
+																		<input type="button" value="交叉分析" onclick="btnAnalyzeClick();" class="query-btn" />
+																		<span id="ctl02_ContentPlaceHolder1_ViewReport1_tdSaveJiaoCha">
+																			<a href="javascript:void(0);" id="ctl02_ContentPlaceHolder1_ViewReport1_btnSaveJiaoCha" class="save-btn"
+																			 onclick="needUpgrad();">保存</a>
+																			<p id="ctl02_ContentPlaceHolder1_ViewReport1_spanSaveJiaoCha" class="result-text col_red"></p>
+																			<a class='clear-condition' href='javascript:void(0);' id="btnDelJiaoCha">删除筛选</a>
+																		</span>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+														<div id="divMsg" style="color: Red; margin-top:5px;"></div>
+													</div>
+												</div>
+												<div id="divQuery" style="display:none;padding:30px 40px 0 40px" class='zdycx'>
+													<script type="text/javascript" src="./js/calendar.js"></script>
+													<div class="playSet" style="border-bottom:0px;padding-bottom:0">
+														<div class='head clearfix'>
+															<div class='htit hasChart pull-left'>
+																<i class='icon icon-self'></i><span>自定义查询</span>
+															</div>
+														</div>
+														<div class='condition-box'>
+															<!-- 箭头-->
+															<div class='arrow'><i></i></div>
+															<!--我的筛选-->
+															<div class='cont'>
+																<div class='my-check clearfix'>
+																	<div class='check-text-box'>
+																		<span class='my-check-text' href=''><span id="ctl02_ContentPlaceHolder1_ViewReport1_spanQuerytext1">我的筛选</span><i
+																			 class='icon'></i></span>
+																		<ul id="ctl02_ContentPlaceHolder1_ViewReport1_ddlSaveQueryul">
+																		</ul>
+																	</div>
+																	<input type="hidden" name="ctl02$ContentPlaceHolder1$ViewReport1$ddlSaveQuery" id="ctl02_ContentPlaceHolder1_ViewReport1_ddlSaveQuery" />
+																</div>
+																<div class="check-condition">
+																	<div class="condition-list">
+
+																		<div class="condition-item clearfix">
+																			<div class="condition-cont">
+																				<span>
+																					<select id='ddlQuery' style='width:320px;'>
+																						<optgroup label='问卷题目'></optgroup>
+																						<option value='10000'>1.选择你最喜欢的音乐MV，点击查看详情可以浏览MV</option>
+																						<optgroup label="填写记录">
+																							<option value="省份">省份(根据IP自动获取)</option>
+																							<option value="城市">城市(根据IP自动获取)</option>
+																							<option value="来源">来源</option>
+																							<option value="来源详情">来源详情(如链接地址，邮件地址，密码等)</option>
+																							<option value="提交答卷日期">提交答卷日期</option>
+																							<option value="填写所用时间">填写所用时间</option>
+																							<option value="IP地址">IP地址</option>
+																							<option value="填写序号">填写序号</option>
+																							<option value='分数'>得分</option>
+																							<option value='常用备注'>常用备注</option>
+																						</optgroup>
+																					</select></span>
+																				<span><a class="del-condition" href="javascript:void(0)" id="btnDelQ" onclick="add"><i class="icon icon-del-condition"
+																						 style="margin-left:5px;"></i></a></span>
+																			</div>
+																			<div style="display: none;">
+																				<select id="ddlProvince" style="width: 270px;"></select>
+																			</div>
+																			<div style="display: none">
+																				<select id="ddlSource" style="width: 270px;"></select>
+																			</div>
+																			<div style="display: none">
+																				<select id="ddlCity" style="width: 270px;">
+																				</select>
+																			</div>
+																			<div style="display: none">
+																				<select id="ddlStar" style="width: 270px;">
+																					<option value="1">加星标</option>
+																					<option value="0">未加星</option>
+																				</select>
+																			</div>
+																			<div style="display: none">
+																				<select id="ddlActivityCommonNote" style="width: 270px;">
+
+																				</select>
+																			</div>
+																			<div style="display: none;">
+																				<span id="spanInclude">包含</span>
+																				<span id="spanEntry">
+																					<select style="width: 110px">
+																						<option value="0">等于</option>
+																						<option value="1">大于</option>
+																						<option value="2">小于</option>
+																						<option value="3">位于之间</option>
+																					</select>
+																					<input type="text" style='width: 124px;padding-left:4px; height: 28px; border: solid 1px #a9a8a8;margin-top: 1px;vertical-align:top\0;' /><label>
+																						到 <input type="text" style='width:84px;padding-left:4px; height: 26px; border: solid 1px #a9a8a8;vertical-align:top\0;' /></label>
+																				</span>
+																				<span id="spanQuestion">
+																					<select style="width: 110px">
+																						<option value="0">等于</option>
+																						<option value="1">不等于</option>
+																						<option value="2">包含</option>
+																						<option value="3">不包含</option>
+																					</select>
+																					<input type="text" style='width: 124px;padding-left:4px; height: 28px; border: solid 1px #a9a8a8; margin-top: 1px;vertical-align:top\0;' />
+																				</span>
+																			</div>
+																		</div>
+
+																	</div>
+																	<div class="add-condition" id="btnAddQuery" onclick="add" alt="添加">
+																		<i class="icon icon-add-condition"></i>增加条件
+																	</div>
+																	<div class="control-condition clearfix">
+																		<input type="button" value="查询" onclick="btnQueryClick();" class="query-btn"" />
+            <span id="
+																		 ctl02_ContentPlaceHolder1_ViewReport1_tdSaveQuery"><a href="javascript:void(0);" id="ctl02_ContentPlaceHolder1_ViewReport1_btnSaveQuery"
+																		 class="save-btn" onclick="needUpgrad();">保存</a></span>
+
+
+																		<a class="clear-condition" id="btnDelQuery" href="javascript:void(0)" style="margin-left:30px;">删除筛选</a>
+
+																	</div>
+																</div>
+
+																<div id="divQueryMsg" style="color: Red; margin-top: 5px;">
+																</div>
+															</div>
+															<div style="clear:both;"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div style="display:none;">
+											<div style="margin-left:40px; font-size: 14px;">
+												<b>统计结果：</b><span id="ctl02_ContentPlaceHolder1_ViewReport1_lblRName"></span>
+											</div>
+										</div>
+
+
+
+
+
+										<script type="text/javascript">
+											//不能替换
+											function btnQueryClick() {
+												var conds = getQueryCond();
+												var loc = "/report/" + activityId + ".aspx?qc=" + conds[0] + "&ec=" + conds[1] + hideU;
+
+												window.location = loc;
+
+											}
+											var divshaixuan = document.getElementById("divshaixuan")
+
+											function changeTabnew(obj) {
+												divshaixuan.style.display = divshaixuan.style.display == "none" ? "" : "none";
+												if (obj.parentNode)
+													obj.parentNode.className = divshaixuan.style.display == "" ? "htit hasChart pull-left contShow" :
+													"htit hasChart pull-left";
+											}
+										</script>
+
+										<div class="count_analyse_container" style="position: relative;">
+											<div id="divFilter" class="mrbg">
+												<div class="playSet">
+													<div class="head clearfix">
+														<div class="htit pull-left">
+															<i></i>
+															<span style="text-decoration: underline; cursor: pointer;">问卷详情</span>
+														</div>
+
+													</div>
+
+												</div>
+											</div>
+											<div style="position: absolute; bottom: -40px; right: 40px;" class="a-inline">
+
+
+											</div>
+										</div>
+										<input type="hidden" name="ctl02$ContentPlaceHolder1$hfSvg" id="ctl02_ContentPlaceHolder1_hfSvg" />
+
+										<div id="divSumData" class="the-end" style="width: 766px; margin: 0 auto">
+											<div style="clear: both;"></div>
+
+
+
+											<div id="ctl02_ContentPlaceHolder1_divStatData">
+												<div class='title-item'>
+													<div class='title'>
+														<h1>标题</h1>
+
+													</div>
+													<div class="title">
+														<h2>this is introduction</h2>
+													</div>
+													<div class='count unit'>
+														<div class="jumbotron well">
+															<h3>你最喜欢的明星</h3>
+															<br>
+															<div class="radio icheck-peterriver">
+																<input type="radio" id="peterriver1" name="peterriver" />
+																<label for="peterriver1">peterriver 1</label>
+															</div>
+															<div class="radio icheck-peterriver">
+																<input type="radio" checked id="peterriver2" name="peterriver" />
+																<label for="peterriver2">peterriver 2</label>
+															</div>
+															<div class="radio icheck-peterriver">
+																<input type="radio" checked id="peterriver3" name="peterriver" />
+																<label for="peterriver3">peterriver 3</label>
+															</div>
+															<div class="radio icheck-peterriver">
+																<input type="radio" checked id="peterriver4" name="peterriver" />
+																<label for="peterriver4">peterriver 4</label>
+															</div>
+															<br>
+															<div>
+																您的选择是：A
+															</div>
+														</div>
+													</div>
+
+													<div style="padding: 10px 0 10px;">
+
+													</div>
+													<div style="clear: both;">
+													</div>
+													<div style="padding-bottom: 30px;">
+
+
+														<div class="divclear"></div>
+													</div>
+													<div class="divclear"></div>
+												</div>
+											</div>
+
+											<div style="clear: both">
+											</div>
+											<div style="height: 20px;"></div>
+											<div class='go' id='divGo'>
+												<a title='返回顶部' class='top' href='javascript:void(0);' onclick='gotop();'><i class='icon'></i></a>
+												<a title='返回底部' class='bottom' href='javascript:void(0);' onclick='gobottom();'><i class='icon'></i></a>
+											</div>
+											</form>
+										</div>
+
+
+
+
+
+
+										<!-- 问卷分析 -->
+										<!-- 进来时检查是否具有查看权限 ，拥有就打开display; -->
+										<div style="display:none;">
+
+
+
+
+											<script type="text/javascript">
+												var activityId = "51819682";
+												var reportId = '';
+												var sourceid = '';
+												var quesId = '';
+												var currentJoinTimes = 3;
+												var firstId = "divChart1";
+
+												function gotop() {
+													window.scroll(0, 0);
+												}
+
+												function gobottom() {
+													window.scroll(0, 99999);
+												}
+												var isPub = 1;
+												var divDataIds = "divChart1";
+												var hfSvg = document.getElementById("ctl02_ContentPlaceHolder1_hfSvg");
+												var wjxStatus = 0;
+												var NeedLazyLoad = 0;
+												var kaoshijianda = 0;
+												var maxImageCount = 100;
+												if (kaoshijianda) {
+													addtolog();
+												}
+
+												function addtolog() {
+													var rimg = document.createElement("img");
+													var logstore = "activitystat";
+													rimg.src = "//sojump.cn-hangzhou.log.aliyuncs.com/logstores/" + logstore +
+														"/track.gif?APIVersion=0.6.0&type=ksst&jointimes=" + currentJoinTimes + "&activity=" + activityId;
+												}
+											</script>
+
+											<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+
+
+											<script>
+												$(function() {
+													if (window.showScoreChart)
+														window.showScoreChart();
+												});
+											</script>
+
+
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+	</body>
+</html>

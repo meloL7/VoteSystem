@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>主页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+		<meta content="MyraStudio" name="author" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!-- App favicon -->
+		<!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+
+		<!-- App css -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
+		<link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+		<!-- Dropify css -->
+		<link href="../plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
+
+
+	</head>
+
+	<body>
+
+		<!-- Begin page -->
+		<div id="layout-wrapper">
+			<header id="page-topbar">
+				<div class="navbar-header">
+					<!-- LOGO -->
+					<div class="navbar-brand-box d-flex align-items-left">
+						<a href="index.html" class="logo">
+							<span>
+								<img src="assets/images/logo-light.png" alt="" height="18">
+							</span>
+							<i>
+								<img src="assets/images/logo-small.png" alt="" height="24">
+							</i>
+						</a>
+						<button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light" id="vertical-menu-btn">
+							<i class="fa fa-fw fa-bars"></i>
+						</button>
+					</div>
+					<div class="dropdown d-inline-block ml-2">
+						<button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown" data-toggle="dropdown"
+						 aria-haspopup="true" aria-expanded="false">
+							<span class="d-none d-sm-inline-block ml-1">Admin</span>
+						</button>
+					</div>
+				</div>
+		</div>
+		</header>
+
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="vertical-menu">
+
+			<div data-simplebar class="h-100">
+
+				<!--- Sidemenu -->
+				<div id="sidebar-menu">
+					<!-- Left Menu Start -->
+					<ul class="metismenu list-unstyled" id="side-menu">
+						<li class="menu-title">菜单</li>
+						<li>
+							<a href="index.html" class="waves-effect">
+								<i class="mdi mdi-view-dashboard"></i>
+								<span>首页</span></a>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class=" mdi mdi-account-multiple-outline"></i>
+								<span>用户管理</span></a>
+
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="teacher.html">教师管理</a></li>
+								<li><a href="student.html">学生管理</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class="mdi mdi-clipboard-text-play"></i>投票管理</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="naire_manage.html">问卷管理</a></li>
+								<li><a href="vote_manage.html">选择管理</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class="mdi mdi-book-open-page-variant"></i>投票详情管理</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="naire_detail.html">问卷详情</a></li>
+								<li><a href="vote_detail.html">选择详情</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal" data-target="#exampleModal">
+								<i class="mdi mdi-equalizer"></i>
+								<span>分析</span></a>
+
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class="mdi mdi-wrench"></i>系统</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="pages-invoice.html">退出</a></li>
+
+							</ul>
+						</li>
+
+					</ul>
+				</div>
+				<!-- Sidebar -->
+			</div>
+		</div>
+		<!-- Left Sidebar End -->
+
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+
+						</div>
+					</div>
+					<!-- end page title -->
+
+
+
+
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card">
+								<div class="card-body">
+
+									<h4 class="card-title">问卷详情管理</h4>
+									<p class="card-subtitle mb-4 font-size-13">问卷详情列表</p>
+									<div class="input-group input-daterange">
+										<!-- <input id="begindate" name="pickdate" style="width: 240px" type="text"
+                                        placeholder="申请日期(起)" data-date-format="yyyy-mm-dd" class="form-control" />
+										
+                                    <div class="input-group-addon">~</div>
+									
+                                    <input id="enddate" name="pickdate" type="text" style="width: 240px"
+                                        placeholder="申请日期(止)" data-date-format="yyyy-mm-dd" class="form-control" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp; -->
+
+
+										<select class="form-control form-control-sm" style="flex: 0.1 0 auto;">
+											<option>投票人</option>
+											<option>身份</option>
+											<option>性别</option>
+											<option>问卷标题</option>
+										</select>
+										<!-- <div class="form-group">
+											<label>Threshold value</label>
+											<input type="text" maxlength="25" name="thresholdconfig" class="form-control" id="thresholdconfig">
+										</div> -->
+
+
+
+										<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
+										 maxlength="16" />
+
+										<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
+									</div>
+									<br><br>
+									<div class="table-responsive">
+										<table class="table table-centered table-striped table-nowrap">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>投票人</th>
+													<th>投票人身份</th>
+													<th>投票人性别</th>
+													<th>问卷标题</th>
+													<th>问卷提交的选项</th>
+													<th>提交时间</th>
+													<th>操作</th>
+
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>张帅军</td>
+													<td>学生</td>
+													<td>男</td>
+													<td>你最喜欢的明星</td>
+													<td>A B C D E A B C E D</td>
+													<td>2019/12/11</td>
+													<!-- <td>
+													    <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="赋予|封禁" name="switch" checked  lay-skin="switch">
+													</td>
+												    <td>
+												        <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="正常|封禁" name="switch" checked  lay-skin="switch">
+												    </td>-->
+													<td>
+														<a href="nairedetail.html">查看详情</a>
+													</td>
+												</tr>
+
+												<tr>
+													<td colspan="6" align="center">
+														<ul class="pagination pagination-rounded">
+															<li class="paginate_button page-item previous disabled" id="complex-header-datatable_previous">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="0" tabindex="0" class="page-link">
+																	<i class="mdi mdi-chevron-left"></i>
+																</a>
+															</li>
+															<li class="paginate_button page-item active">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+															</li>
+															<li class="paginate_button page-item ">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+															</li>
+															<li class="paginate_button page-item ">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+															</li>
+															<li class="paginate_button page-item ">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a>
+															</li>
+															<li class="paginate_button page-item ">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a>
+															</li>
+															<li class="paginate_button page-item ">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a>
+															</li>
+															<li class="paginate_button page-item next" id="complex-header-datatable_next">
+																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="7" tabindex="0" class="page-link"><i
+																	 class="mdi mdi-chevron-right"></i></a>
+															</li>
+														</ul>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+								</div> <!-- end card-body-->
+							</div> <!-- end card-->
+						</div> <!-- end col -->
+
+					</div>
+					<!-- end row-->
+
+				</div> <!-- container-fluid -->
+			</div>
+			<!-- End Page-content -->
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;"
+			 aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">提 示</h5>
+							<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							分析需要到投票管理中查看!
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- end main content-->
+		</div>
+		<!-- END layout-wrapper -->
+
+		<!-- Overlay-->
+		<div class="menu-overlay"></div>
+
+
+		<!-- jQuery  -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/js/metismenu.min.js"></script>
+		<script src="assets/js/waves.js"></script>
+		<script src="assets/js/simplebar.min.js"></script>
+
+		<!-- Morris Js-->
+		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+		<script src="../plugins/dropify/dropify.min.js"></script>
+		<script src="../plugins/ckeditor/ckeditor.js"></script>
+		<!-- Morris Custom Js-->
+		<script src="assets/pages/dashboard-demo.js"></script>
+
+		<!-- App js -->
+		<script src="assets/js/theme.js"></script>
+		<script src="assets/pages/fileuploads-demo.js"></script>
+		<script>
+			$('.input-group input[name="pickdate"]').each(function() {
+				$(this).datepicker({
+					language: 'zh-CN', //语言
+					autoclose: true, //选择后自动关闭
+					clearBtn: true, //清除按钮
+					format: "yyyy-mm-dd", //日期格式
+					orientation: 'bottom'
+				});
+			});
+		</script>
+
+		<script>
+			// 替换 <textarea id="editor1">为CKEditor实例
+			// 使用默认配置
+			var editorConfig = {
+				customConfig: './samples/editConfig.js'
+			};
+
+			CKEDITOR.replace('editor1', editorConfig);
+
+			// document.getElementById("tijiao").onclick = function () {
+			//     var data = CKEDITOR.instances.editor1.getData();
+			//     console.log(data)
+
+			// }
+
+			// document.getElementById("chongzhi").onclick = function () {
+			//     CKEDITOR.instances.editor1.setData('<p>This is the editor data.</p>');
+			// }
+		</script>
+	</body>
+
+</html>
