@@ -2,22 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.elvis.vote.dao.Admin.UserDao">
-    <!--所有学院-->
-    <select id="searchColleages" resultType="com.elvis.vote.pojo.Colleage">
-        select colleage_id,colleage_name
-        from colleage
-    </select>
-
-    <!--所有专业-->
-    <select id="searchMajors" resultType="com.elvis.vote.pojo.Major">
-        select major_id,major_name
-        from colleage
-        LEFT JOIN major
-        on colleage.colleage_id = major.colleage_id
-        where colleage_name=#{colleageName}
-    </select>
-
-
     <sql id="selectPrefix">
         id,sno,pwd,email,sname,identify,sex,age,colleage,major,grade,classes,remark,del_flag
     </sql>
@@ -43,6 +27,80 @@
     </select>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    权限-->
+    <select id="searchColleages" resultType="com.elvis.vote.pojo.colleage">
+        select colleage_id,colleage_name
+        from colleage
+    </select>
+
+    <select id="searchMajors" resultType="com.elvis.vote.pojo.major">
+        select major_id,major_name
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        where colleage_name=#{colleageName}
+    </select>
+
+    <select id="searchGrades" resultType="com.elvis.vote.pojo.grade">
+        select grade_id,grade_name
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        LEFT JOIN grade
+        on major.major_id = grade.major_id
+        where colleage_name=#{colleageName} and major_name=#{colleageName}
+    </select>
+
+    <select id="searchClasses" resultType="com.elvis.vote.pojo.classes">
+        select classes_id,classes_name
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        LEFT JOIN grade
+        on major.major_id = grade.major_id
+        LEFT JOIN	classes
+        on grade.grade_id = classes.grade_id
+        where colleage_name=#{colleageName}
+        and major_name=#{majorName}
+         and grade_name=#{gradeName}
+    </select>
 
 
 </mapper>
