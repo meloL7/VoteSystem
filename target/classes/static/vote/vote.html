@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Bootstrap</title>
+		<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/bootstrapValidator.min.css" rel="stylesheet">
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/build.css">
+
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+
+					<div class="jumbotron well">
+						<form action="login.html" id="form1">
+
+							<div class="form-group">
+								<p style="color: black;">标题 (内容不能为空!)</p>
+								<input type="text" class="form-control" maxlength="16" placeholder="请输入标题" id="bigtitle" />
+							</div>
+							<div class="form-group">
+								<p style="color: black;">投票简介 (内容不能为空！)</p>
+								<textarea cols="4" rows="4" class="form-control" placeholder="请输入投票简介" id="introduction"></textarea>
+							</div>
+
+
+							<div class="jumbotron well form-group" id="toupiao">
+
+
+
+
+							</div>
+
+
+
+					</div>
+					<button type="button" class="btn btn-lg btn-primary btn-block" id="addvote">增加问题(题目总数为0/10)</button>
+					<button type="button" class="btn btn-lg btn-primary btn-block" id="sub" onclick="okSumbit()">完成编辑</button>
+					<button type="button" class="btn btn-lg btn-info btn-block" onclick="goTop()">回到顶部</button>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<!-- <div id="temp" style="display: block;"></div> -->
+
+
+
+
+
+		<script>
+			var index = 1;
+			window.sessionStorage.tempid = 1;
+			var count = 0;
+			var count1 = 1;
+			var choosecount = 0;
+			var num = 0;
+
+
+			var form = document.getElementById("form1");
+			var addvote = document.getElementById("addvote");
+			var father = document.getElementById("toupiao");
+			var bigxuanze = document.getElementById("votekuai");
+
+			var temp = document.getElementById("temp");
+			// var tt = 
+
+
+
+
+
+
+
+
+			addvote.onclick = function() {
+				var timuSize = 0;
+				for (const key of father.childNodes) {
+					if (key.className != undefined) {
+						console.log(typeof(key.className))
+						if (key.className.indexOf("timu")) {
+							timuSize++;
+						}
+					}
+				}
+				if (timuSize < 10) {
+					var n = document.createElement("div")
+
+					n.id = "temp" + index++;
+					n.style.display = "block";
+					n.className = "form-group jumbotron well timu";
+					n.name = "div_timu";
+					var tt =
+						`<h3 >题目</h3><h4 style="color:#CD4F39;">(题目最多为10个,最少为1个,内容不能为空!)</h4>
+						<input type="text" name="smalltitle" class="form-control" maxlength="16">
+						<br>
+						<h5>操作</h5>
+								  <a class="btn btn-primary" onclick="delvote(${n.id})">删除投票</a>
+							&nbsp;<a class=" btn btn-primary" id="addchoosebtn" onclick="addchoose(the${count + 1}choose)">添加选择</a>
+									
+									<div class="radio radio-info radio-inline">
+										<input type="radio" id="inlineRadio${num}" value="option1" name="radioInline${num}" checked="">
+										<label for="inlineRadio${num}"> 单选 </label>
+									</div>
+									<div class="radio radio-inline">
+										<input type="radio" id="inlineRadio${num + 1}" value="option2" name="radioInline${num}">
+										<label for="inlineRadio${num + 1}"> 多选 </label>
+									</div>
+									
+									
+									
+									
+									
+									 
+									
+									
+									
+									
+										<h3>选择</h3><h4 style="color:#CD4F39">(选项最多为10个,最少为2个,内容不能为空!)</h4>
+										<div class="input-group" id="the${count + 1}choose">
+										
+										
+										</div>`
+					n.innerHTML = tt;
+					father.appendChild(n);
+					count++;
+					num = num + 2;
+					addvote.innerHTML = `增加问题(题目总数为 :${timuSize+1}/10)`;
+					window.scrollTo(0, document.documentElement.clientHeight);
+
+				} else {
+
+				}
+			}
+
+			function delvote(id) {
+
+				var timuSize = 0;
+				for (const key of father.childNodes) {
+					if (key.className != undefined) {
+						if (key.className.indexOf("timu")) {
+							timuSize++;
+						}
+					}
+				}
+				console.log(timuSize)
+				for (var c of father.childNodes) {
+
+					if (c == id) {
+						father.removeChild(id);
+						// count--;
+						addvote.innerHTML = `增加问题(题目总数为 :${timuSize-1}/10)`;
+						break;
+					}
+
+				}
+			}
+
+
+			function addchoose(id) {
+				var chooseSize = 0;
+				for (const key of id.childNodes) {
+					if (key.className != undefined) {
+						console.log(typeof(key.className))
+						if (key.className.indexOf("xuanzhe")) {
+							chooseSize++;
+						}
+					}
+				}
+
+				if (chooseSize < 10) {
+
+
+
+
+					// var realid = `"${id.id}"`;
+					var i = count1++;
+					console.log(id)
+					var n = document.createElement("div")
+					var d = id.id;
+					n.style.display = "block";
+					n.id = `the${i}choose1`
+					n.className = "form-group";
+					n.innerHTML =
+						`<input class="form-control" name="question${choosecount + 1}">
+							<a class="btn input-group-addon" id="" onclick="deletechoose(${d},the${i}choose1)">删除选择</a>`
+
+
+
+					id.appendChild(n);
+					choosecount++;
+
+				} else {
+
+				}
+
+			}
+
+			function deletechoose(k, t) {
+
+				var chooseSize = 0;
+				for (const key of k.childNodes) {
+					if (key.className != undefined) {
+						console.log(typeof(key.className))
+						if (key.className.indexOf("xuanzhe")) {
+							chooseSize++;
+						}
+					}
+				}
+				if (chooseSize > 2) {
+					k.removeChild(t)
+				} else {
+					alert("不能删除了哦")
+				}
+
+
+
+				// console.log(k)
+				// k.removeChild(t)
+				// console.log(k)
+				// console.log(t)
+				// // document.getElementById(k).removeChild(t);
+				// // console.log(id)
+				// // console.log(t)
+				// // id.removeChild(t)
+				// for(var v of k.childNodes){
+				// 	// k.remon
+				// 	console.log(v)
+				// 	if(v == t){
+				// 		break;
+				// 	}
+				// }
+				choosecount--;
+
+			}
+			// 题目格式
+			// {
+			// 	naireName:"",
+			// 	naireInfo:"",
+			// 	data:[
+			// 		{qName:"",
+			// 		 data:["",""]
+			// 		}
+			// 	]
+			// }
+
+
+			function okSumbit() {
+
+
+				var bigtitle = document.getElementById("bigtitle");
+				var introduction = document.getElementById("introduction");
+				3
+
+
+
+				var bigtitleflag = false;
+				var introductionflag = false;
+				var titleflag = false;
+				var titleNum = false;
+				var chooseflag = true;
+
+
+				if (bigtitle.value != "") {
+					bigtitleflag = true;
+
+				}
+				if (introduction.value != "") {
+					introductionflag = true;
+
+				}
+
+				var title = $("#toupiao>div>input[name='smalltitle']");
+
+
+
+				for (var i = 0; i < title.length; i++) {
+					if (title[i].value == "") {
+						titleflag = false;
+					} else {
+						titleflag = true;
+					}
+
+				}
+
+
+
+				var titlediv = $("#toupiao > div");
+				for (var i = 0; i < titlediv.length; i++) {
+					var titleitem = $("#toupiao > div:eq(" + i + ") input:gt(2)");
+
+					if (titleitem.length < 2) {
+						chooseflag = false;
+					} else {
+						for (var i = 0; i < titleitem.length; i++) {
+							// console.log(titleitem[i].value);
+							if (titleitem[i].value == "") {
+								chooseflag = false;
+							}
+
+						}
+					}
+
+
+
+				}
+
+
+				if (bigtitleflag && introductionflag && titleflag && chooseflag) {
+					alert("等待管理员验证,将以邮件形式发送结果");
+					form.submit();
+				} else {
+					alert("投票信息设置存在不合法的地方，请返回修改")
+				}
+
+
+			}
+
+
+
+			function goTop() {
+				$('html, body').animate({
+					scrollTop: 0
+				}, 'slow');
+			}
+
+			function goBottom() {
+				window.scrollTo(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
+				$(document).scrollTop($(document).height());
+			}
+		</script>
+
+
+
+
+	</body>
+
+</html>

@@ -1,0 +1,41 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 200MB
+  datasource:
+    name: souerce
+    url: jdbc:mysql://112.74.184.92:3306/db_votesystem?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: zsj0611
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  jmx:
+    enabled: false
+
+mybatis:
+  mapper-locations: classpath:mapping/*xml
+  typeAliasesPackage: com.elvis.vote
+
+#logging:
+#  level:
+#    com.magician.book.dao: debug
+

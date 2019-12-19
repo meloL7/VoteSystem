@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="Author" contect="http://www.webqin.net">
+		<title>忘记密码</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link type="text/css" href="../css/css.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery-1.8.3-min.js"></script>
+
+	</head>
+
+	<body>
+
+		<div class="content">
+			<div class="web-width">
+				<div class="for-liucheng">
+					<div class="liulist for-cur"></div>
+					<div class="liulist for-cur"></div>
+					<div class="liulist"></div>
+					<div class="liulist"></div>
+					<div class="liutextbox">
+						<div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+						<div class="liutext for-cur"><em>2</em><br /><strong>验证身份</strong></div>
+						<div class="liutext"><em>3</em><br /><strong>设置新密码</strong></div>
+						<div class="liutext"><em>4</em><br /><strong>完成</strong></div>
+					</div>
+				</div>
+				<!--for-liucheng/-->
+				<form action="forgetPwd3.html" method="get" class="forget-pwd" id="form">
+
+					<dl>
+						<dt>用户名：</dt>
+						<dd><input type="text" placeholder="自动获取" /></dd>
+						<div class="clears"></div>
+					</dl>
+
+					<dl class="sel-yzyx">
+						<dt>已验证邮箱：</dt>
+						<dd><input type="text" value="自动获取" readonly /></dd>
+						<div class="clears"></div>
+					</dl>
+					<dl>
+						<dt>邮箱校验码：</dt>
+						<dd><input type="text" disabled="disabled" id="code" maxlength="6" />
+							<a id="xbtn" onclick="checkcodes()" style="border: 1px solid WhiteSmoke; background:WhiteSmoke;">获取邮箱验证码</a>
+						</dd>
+						<div class="clears"></div>
+					</dl>
+					<span style="position:relative;left:112px;bottom:10px; color: red;
+	   display: none;" id="remInfo">邮箱验证码错误!</span>
+					<div class="subtijiao"><input type="button" value="提交" id="sub" /></div>
+				</form>
+				<!--forget-pwd/-->
+			</div>
+			<!--web-width/-->
+		</div>
+		<!--content/-->
+
+
+
+		<script>
+			var info = document.getElementById("remInfo");
+			var code = document.getElementById("code");
+			var btn = document.getElementById("xbtn");
+			var form = document.getElementById("form");
+			var MySub = document.getElementById("sub");
+			var flag = false;
+
+
+			function checkcodes() {
+				console.log(1)
+				btn.innerHTML = "已发送	"
+				code.removeAttribute("disabled");
+			}
+
+			sub.onclick = function() {
+
+				//AJAX判断邮箱验证码是否正确
+				flag = true;
+				if (flag) {
+					form.submit();
+				} else {
+
+					info.style.display = 'block';
+				}
+			}
+		</script>
+	</body>
+</html>
