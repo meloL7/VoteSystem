@@ -1,9 +1,7 @@
 package com.elvis.vote.services.Admin.impls;
 
-import com.elvis.vote.dao.Admin.UserDao;
-import com.elvis.vote.pojo.Colleage;
-import com.elvis.vote.pojo.Major;
-import com.elvis.vote.pojo.User;
+import com.elvis.vote.dao.Admin.AdminDao;
+import com.elvis.vote.pojo.*;
 import com.elvis.vote.services.Admin.UserServices;
 import com.elvis.vote.utils.APIResult;
 import com.github.pagehelper.PageHelper;
@@ -16,8 +14,8 @@ import java.util.List;
 @Service
 public class UserServicesimpl implements UserServices {
 
-    @Resource(type = UserDao.class)
-    UserDao userDao;
+    @Resource(type = AdminDao.class)
+    AdminDao userDao;
 
     @Override
     public void loadByIdentify(int identify) {
@@ -45,31 +43,33 @@ public class UserServicesimpl implements UserServices {
         return new APIResult("success",true,200,teacherlist);
     }
 
+
+
+
+
+
+
+
+
+
     //权限
     @Override
     public void searchColleage() {
         List<Colleage> colleages = userDao.searchColleages();
-        System.out.println(colleages.size());
-        for (Colleage c:colleages) {
-            System.out.println(c);
-        }
     }
-
     @Override
     public void searchMajor(String colleagename) {
         List<Major> majors = userDao.searchMajors(colleagename);
-        for (Major m:majors) {
-            System.out.println(m);
-        }
     }
 
     @Override
     public void searchGrade(String colleagename, String majorname) {
-
+        List<Grade> grades = userDao.searchGrades(colleagename, majorname);
     }
-
     @Override
     public void searchClasses(String colleagename, String majorname, String gradename) {
-
+        List<Classes> classes = userDao.searchClasses(colleagename, majorname, gradename);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.elvis.vote.controllers;
+package com.elvis.vote.controllers.Admin;
 
 import com.elvis.vote.services.Admin.UserServices;
 import com.elvis.vote.utils.APIResult;

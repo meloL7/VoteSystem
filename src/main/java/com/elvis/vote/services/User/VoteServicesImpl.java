@@ -2,15 +2,15 @@ package com.elvis.vote.services.User;
 
 import com.elvis.vote.dao.VoteDao;
 import com.elvis.vote.pojo.Vote;
+import com.elvis.vote.services.User.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
 import com.github.pagehelper.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 @Service
-public class VoteServicesImpl implements VoteServices {
+public class VoteServicesImpl implements AdminVoteServices {
 
     @Resource(type = VoteDao.class)
     VoteDao voteDao;

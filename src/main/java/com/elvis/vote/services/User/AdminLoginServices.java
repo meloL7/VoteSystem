@@ -2,7 +2,7 @@ package com.elvis.vote.services.User;
 
 
 
-public interface LoginServices {
+public interface AdminLoginServices {
 
 
 

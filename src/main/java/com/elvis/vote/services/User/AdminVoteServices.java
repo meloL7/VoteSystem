@@ -3,7 +3,7 @@ package com.elvis.vote.services.User;
 
 import com.elvis.vote.utils.APIResult;
 
-public interface VoteServices {
+public interface AdminVoteServices {
 
     /**
      * 查询所有vote信息，
