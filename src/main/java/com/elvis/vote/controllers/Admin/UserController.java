@@ -16,7 +16,7 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping("admin/loaduser.do")
-    public APIResult teacherList(Integer identify,@RequestParam(value = "indexpage",defaultValue = "1") Integer indexpage){
+    public APIResult teacherList(String identify,@RequestParam(value = "indexpage",defaultValue = "1") Integer indexpage){
         APIResult teacherList = userServices.loadTeacherList(identify,indexpage);
         return teacherList;
     }

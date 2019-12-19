@@ -14,7 +14,7 @@ public class User {
     private String classes;
     private String remark;
     private String del_flag;
-    private String identify; //1.教师 2.学生
+    private String identify; //教师 学生
 
     public User() {
     }

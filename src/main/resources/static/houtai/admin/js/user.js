@@ -3,7 +3,7 @@ $(function loadTeacherList() {
     $.post(
       "http://localhost:8080/elvis/admin/loaduser.do",
         {
-            identify:1
+            identify:'教师',
         },
         function (data) {
             console.log(data);
@@ -36,7 +36,7 @@ $(function loadStudentList() {
     $.post(
         "http://localhost:8080/elvis/admin/loaduser.do",
         {
-            identify:2
+            identify:'学生',
         },
         function (data) {
             console.log(data)

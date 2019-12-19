@@ -33,9 +33,9 @@ public class UserServicesimpl implements UserServices {
     }
 
     @Override
-    public APIResult loadTeacherList(Integer identify,Integer indexpage) {
+    public APIResult loadTeacherList(String identify,Integer indexpage) {
         PageHelper.startPage(indexpage,5);
-        //1为老师
+        //1为老师，2为学生
         List<User> users = adminDao.selectAllUsers(identify);
 
         PageInfo teacherlist = new PageInfo(users);

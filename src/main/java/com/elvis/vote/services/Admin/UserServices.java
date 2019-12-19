@@ -30,7 +30,7 @@ public interface UserServices {
      * @param
      * @return
      */
-    APIResult loadTeacherList(Integer identify,Integer indexpage);
+    APIResult loadTeacherList(String identify,Integer indexpage);
 
 
     //权限管理
