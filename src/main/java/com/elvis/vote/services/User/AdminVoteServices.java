@@ -8,11 +8,12 @@ public interface AdminVoteServices {
     /**
      * 查询所有vote信息，
      * type 为1，则查询所有的问卷信息，为2，则查询所有投票信息
-     *
+     *  voter_status 1 发布 2参与  3待参与
      * @param type
      * @return
      */
-    public APIResult queryAllVote(int type);
+    public APIResult queryAllVote(int type, int voter_status, int indexpage, int indexsize);
+
     /**
      * 进入投票页面需要的数据
      * @param id

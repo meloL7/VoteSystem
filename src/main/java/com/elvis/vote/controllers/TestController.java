@@ -11,13 +11,13 @@ import javax.annotation.Resource;
 @ResponseBody
 public class TestController {
 
-
-    @Resource(type = com.elvis.vote.services.Admin.impls.UserServicesimpl.class)
-    UserServicesimpl services ;
-
-    @RequestMapping("test.do")
-
-    public void test(){
-        services.searchMajor("体育学院");    }
+//
+//    @Resource(type = com.elvis.vote.services.Admin.impls.UserServicesimpl.class)
+//    UserServicesimpl services ;
+//
+//    @RequestMapping("test.do")
+//
+//    public void test(){
+//        services.searchMajor("体育学院");    }
 
 }

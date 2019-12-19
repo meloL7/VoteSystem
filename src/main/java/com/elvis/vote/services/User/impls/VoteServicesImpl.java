@@ -1,13 +1,15 @@
-package com.elvis.vote.services.User;
+package com.elvis.vote.services.User.impls;
 
-import com.elvis.vote.dao.VoteDao;
+import com.elvis.vote.dao.User.VoteDao;
 import com.elvis.vote.pojo.Vote;
 import com.elvis.vote.services.User.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
+import com.elvis.vote.utils.Pager;
 import com.github.pagehelper.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class VoteServicesImpl implements AdminVoteServices {
@@ -17,12 +19,16 @@ public class VoteServicesImpl implements AdminVoteServices {
 
 
     @Override
-    public APIResult queryAllVote(int type) {
+    public APIResult queryAllVote(int type, int voter_status, int indexpage, int indexsize) {
 
-        Page<Vote> votes = voteDao.selectAllVote(type);
+        List<Vote> votes = voteDao.selectAllVote(type, voter_status, indexpage, indexsize);
+        Integer num = voteDao.selectAllNumber(type, voter_status);
+        Pager pager = new Pager(num, indexpage, 10);
+        pager.setData(votes);
+
         APIResult result = null;
         if (votes != null) {
-            result = new APIResult("成功！", true, 200, votes);
+            result = new APIResult("成功！", true, 200, pager);
         } else {
             result = new APIResult("错误！", false, 500);
         }

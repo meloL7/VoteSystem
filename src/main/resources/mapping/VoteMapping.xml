@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.elvis.vote.dao.VoteDao">
 
     <select id="selectAllVote" resultType="com.elvis.vote.pojo.Vote">
-        select * from vote where type = #{type}
+        select *
+        from vote
+        where type = #{type} and voter_status = #{voter_status} limit #{indexpages},#{pagesize}
     </select>
+
+    <select id="selectAllNumber" resultType="java.lang.Integer">
+        select count(1)
+        from vote
+        where type = #{type} and voter_status = #{voter_status}
+    </select>
+
+    <select id="selectVoteBySearch" resultType="com.elvis.vote.pojo.Vote">
+        select *
+        from vote
+        where type = #{type} and voter_status = #{voter_status}
+        <if test="title != null">
+            and title like concat('%',#{title},'%') limit #{indexpages},#{pagesize}
+        </if>
+        <if test="voterName != null">
+            and open_voter_name like concat('%',#{voterName},'%') limit #{indexpages},#{pagesize}
+        </if>
+    </select>
+
+    <!--    <select id="selectVoteByTitle" resultType="com.elvis.vote.pojo.Vote">-->
+    <!--        select *-->
+    <!--        from vote-->
+    <!--        where type = #{type} and voter_status = #{voter_status} and title like concat('%',#{content},'%') limit #{indexpages},#{pagesize}-->
+    <!--    </select>-->
 
 
 </mapper>

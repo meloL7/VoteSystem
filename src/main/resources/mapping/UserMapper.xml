@@ -65,12 +65,12 @@
 
 
 <!--    权限-->
-    <select id="searchColleages" resultType="com.elvis.vote.pojo.colleage">
+    <select id="searchColleages" resultType="com.elvis.vote.pojo.Colleage">
         select colleage_id,colleage_name
         from colleage
     </select>
 
-    <select id="searchMajors" resultType="com.elvis.vote.pojo.major">
+    <select id="searchMajors" resultType="com.elvis.vote.pojo.Major">
         select major_id,major_name
         from colleage
         LEFT JOIN major
@@ -78,7 +78,7 @@
         where colleage_name=#{colleageName}
     </select>
 
-    <select id="searchGrades" resultType="com.elvis.vote.pojo.grade">
+    <select id="searchGrades" resultType="com.elvis.vote.pojo.Grade">
         select grade_id,grade_name
         from colleage
         LEFT JOIN major
@@ -88,7 +88,7 @@
         where colleage_name=#{colleageName} and major_name=#{colleageName}
     </select>
 
-    <select id="searchClasses" resultType="com.elvis.vote.pojo.classes">
+    <select id="searchClasses" resultType="com.elvis.vote.pojo.Classes">
         select classes_id,classes_name
         from colleage
         LEFT JOIN major

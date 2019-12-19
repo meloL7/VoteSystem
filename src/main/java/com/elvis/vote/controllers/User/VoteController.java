@@ -1,4 +1,4 @@
-package com.elvis.vote.controllers;
+package com.elvis.vote.controllers.User;
 
 import com.elvis.vote.services.User.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
@@ -16,10 +16,10 @@ public class VoteController {
     AdminVoteServices voteServices;
 
     @RequestMapping("vote/vote.do")
-    public APIResult test(int type) {
+    public APIResult test(int type, int voter_status, int indexpage) {
 
         System.out.println("type = " + type);
-        APIResult test = voteServices.queryAllVote(type);
+        APIResult test = voteServices.queryAllVote(type, voter_status, indexpage, 10);
 
         return test;
     }
