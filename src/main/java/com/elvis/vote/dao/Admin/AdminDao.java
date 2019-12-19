@@ -8,7 +8,12 @@ import java.util.List;
  * 后台用户dao层
  */
 public interface AdminDao {
-    List<User> selectAllUsers(Integer identify);
+    /**
+     * 查询后台教师，学生
+     * @param identify
+     * @return
+     */
+    List<User> selectAllUsers(String identify);
 
 
 

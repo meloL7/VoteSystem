@@ -6,7 +6,7 @@
         id,sno,pwd,email,sname,identify,sex,age,colleage,major,grade,classes,remark,del_flag
     </sql>
 
-    <select id="selectAllUsers" parameterType="java.lang.Integer" resultType="com.elvis.vote.pojo.User">
+    <select id="selectAllUsers" parameterType="java.lang.String" resultType="com.elvis.vote.pojo.User">
         select
         <include refid="selectPrefix"></include>
         from user where identify = #{identify}
@@ -23,8 +23,11 @@
         <if test="sname != null || sname != ''">
             and sname like concat('%',#(sname),'%')
         </if>
-        <if test="">
-
+        <if test="colleage != null || colleage!=''">
+            and colleage like concat('%',#(colleage),'%')
+        </if>
+        <if test="major!=null || major!=''">
+            and major like concat('%',#{major},'%')
         </if>
     </select>
 

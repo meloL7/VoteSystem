@@ -1,5 +1,6 @@
 package com.elvis.vote.controllers;
 
+import com.elvis.vote.services.Admin.impls.AdminVoterDetailServicesimpl;
 import com.elvis.vote.services.Admin.impls.UserServicesimpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,17 @@ public class TestController {
 //
 //    @Resource(type = com.elvis.vote.services.Admin.impls.UserServicesimpl.class)
 //    UserServicesimpl services ;
-//
-//    @RequestMapping("test.do")
-//
-//    public void test(){
-//        services.searchMajor("体育学院");    }
+
+    @Resource(type = com.elvis.vote.services.Admin.impls.AdminVoterDetailServicesimpl.class)
+    AdminVoterDetailServicesimpl services ;
+
+    @RequestMapping("test.do")
+
+    public void test(){
+        services.test();
+
+           }
+
+
 
 }
