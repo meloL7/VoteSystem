@@ -20,8 +20,10 @@
         <if test="sno != null || sno != ''">
             and sno = #{sno}
         </if>
-        <if test="sname != null">
+        <if test="sname != null || sname != ''">
             and sname like concat('%',#(sname),'%')
+        </if>
+        <if test="">
 
         </if>
     </select>
