@@ -9,6 +9,7 @@ public class Vote {
     private String introduction;
     private int type;//1.问卷 2.选择
     private int open_voter; //投票人id
+    private String open_voter_name;
     private int open_voter_identify; //投票人身份
     private Date open_time; //开始请求审核时间
     private Date begin_time;//审核通过时间
@@ -131,6 +132,14 @@ public class Vote {
         this.voter_status = voter_status;
     }
 
+    public String getOpen_voter_name() {
+        return open_voter_name;
+    }
+
+    public void setOpen_voter_name(String open_voter_name) {
+        this.open_voter_name = open_voter_name;
+    }
+
     @Override
     public String toString() {
         return "Vote{" +
@@ -139,6 +148,7 @@ public class Vote {
                 ", introduction='" + introduction + '\'' +
                 ", type=" + type +
                 ", open_voter=" + open_voter +
+                ", open_voter_name='" + open_voter_name + '\'' +
                 ", open_voter_identify=" + open_voter_identify +
                 ", open_time=" + open_time +
                 ", begin_time=" + begin_time +
