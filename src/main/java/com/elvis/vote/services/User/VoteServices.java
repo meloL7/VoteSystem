@@ -1,7 +1,18 @@
 package com.elvis.vote.services.User;
 
 
+import com.elvis.vote.utils.APIResult;
+
 public interface VoteServices {
+
+    /**
+     * 查询所有vote信息，
+     * type 为1，则查询所有的问卷信息，为2，则查询所有投票信息
+     *
+     * @param type
+     * @return
+     */
+    public APIResult queryAllVote(int type);
     /**
      * 进入投票页面需要的数据
      * @param id

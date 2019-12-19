@@ -18,7 +18,16 @@ public class TestController {
     @Resource(type = com.elvis.vote.services.Admin.impl.UserServicesimpl.class)
     UserServicesimpl services ;
 
-    @RequestMapping("test.do")
-    public void test(){
-        services.searchMajor("体育学院");    }
+//    @RequestMapping("test.do")
+//<<<<<<< Updated upstream
+//    public void test(){
+//        services.searchMajor("体育学院");    }
+//=======
+//    public User test(){
+//        User test = services.test();
+//        return test;
+//    }
+//
+//
+//>>>>>>> Stashed changes
 }
