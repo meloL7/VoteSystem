@@ -6,7 +6,7 @@ public class User {
     private String pwd;
     private String email;
     private String sname;
-    private Integer sex; //1.男  2.女
+    private String sex;
     private Integer age;
     private String colleage;
     private String major;
@@ -14,7 +14,7 @@ public class User {
     private String classes;
     private String remark;
     private String del_flag;
-    private Integer identify; //1.教师 2.学生
+    private String identify; //1.教师 2.学生
 
     public User() {
     }
@@ -59,11 +59,11 @@ public class User {
         this.sname = sname;
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -123,11 +123,11 @@ public class User {
         this.del_flag = del_flag;
     }
 
-    public Integer getIdentify() {
+    public String getIdentify() {
         return identify;
     }
 
-    public void setIdentify(Integer identify) {
+    public void setIdentify(String identify) {
         this.identify = identify;
     }
 
