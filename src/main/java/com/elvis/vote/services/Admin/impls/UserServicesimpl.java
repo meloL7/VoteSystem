@@ -15,7 +15,7 @@ import java.util.List;
 public class UserServicesimpl implements UserServices {
 
     @Resource(type = AdminDao.class)
-    AdminDao userDao;
+    AdminDao adminDao;
 
     @Override
     public void loadByIdentify(int identify) {
@@ -36,7 +36,7 @@ public class UserServicesimpl implements UserServices {
     public APIResult loadTeacherList(Integer identify,Integer indexpage) {
         PageHelper.startPage(indexpage,5);
         //1为老师
-        List<User> users = userDao.selectAllUsers(identify);
+        List<User> users = adminDao.selectAllUsers(identify);
 
         PageInfo teacherlist = new PageInfo(users);
         System.out.println("teacherlist = " + teacherlist);
@@ -52,23 +52,25 @@ public class UserServicesimpl implements UserServices {
 
 
 
+
+
     //权限
     @Override
     public void searchColleage() {
-        List<Colleage> colleages = userDao.searchColleages();
+        List<Colleage> colleages = adminDao.searchColleages();
     }
     @Override
     public void searchMajor(String colleagename) {
-        List<Major> majors = userDao.searchMajors(colleagename);
+        List<Major> majors = adminDao.searchMajors(colleagename);
     }
 
     @Override
     public void searchGrade(String colleagename, String majorname) {
-        List<Grade> grades = userDao.searchGrades(colleagename, majorname);
+        List<Grade> grades = adminDao.searchGrades(colleagename, majorname);
     }
     @Override
     public void searchClasses(String colleagename, String majorname, String gradename) {
-        List<Classes> classes = userDao.searchClasses(colleagename, majorname, gradename);
+        List<Classes> classes = adminDao.searchClasses(colleagename, majorname, gradename);
     }
 
 
