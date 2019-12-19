@@ -164,12 +164,12 @@
 
 
 								<select class="form-control form-control-sm" id="student_select" style="flex: 0.1 0 auto;">
-									<option value="sno">学生工号</option>
-									<option value="sname">学生姓名</option>
-									<option value="colleage">学生院系</option>
-									<option value="major">学生专业</option>
-									<option value="grade">学生年级</option>
-									<option value="classes">学生班级</option>
+									<option value="0">学生工号</option>
+									<option value="1">学生姓名</option>
+									<option value="2">学生院系</option>
+									<option value="3">学生专业</option>
+									<option value="4">学生年级</option>
+									<option value="5">学生班级</option>
 								</select>
 								<!-- <div class="form-group">
                                     <label>Threshold value</label>
@@ -442,6 +442,12 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function () {
+		loadStudentList();
+	});
+</script>
 
 <!-- jQuery  -->
 <script src="assets/js/jquery.min.js"></script>

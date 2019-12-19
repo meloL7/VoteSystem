@@ -13,63 +13,32 @@
     </select>
 
 
-    <select id="searchTeacher" resultType="com.elvis.vote.pojo.User">
+    <select id="selectUserByValue" resultType="com.elvis.vote.pojo.User">
         select
         <include refid="selectPrefix"></include>
-        from user where identify = 1
-        <if test="sno != null || sno != ''">
+        from user where identify = #{identify}
+        <if test="sno != null">
             and sno = #{sno}
         </if>
-        <if test="sname != null || sname != ''">
-            and sname like concat('%',#(sname),'%')
+        <if test="sname != null">
+            and sname like concat('%',#{sname},'%')
         </if>
-        <if test="colleage != null || colleage!=''">
-            and colleage like concat('%',#(colleage),'%')
+        <if test="colleage != null">
+            and colleage like concat('%',#{colleage},'%')
         </if>
-        <if test="major!=null || major!=''">
+        <if test="major != null">
             and major like concat('%',#{major},'%')
+        </if>
+        <if test="grade != null">
+            and grade like concat('%',#{grade},'%')
+        </if>
+        <if test="classes != null">
+            and classes like concat('%',#{classes},'%')
         </if>
     </select>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--    权限-->
+    <!--    权限-->
     <select id="searchColleages" resultType="com.elvis.vote.pojo.Colleage">
         select colleage_id,colleage_name
         from colleage

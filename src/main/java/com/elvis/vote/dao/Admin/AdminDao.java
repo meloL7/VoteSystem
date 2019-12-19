@@ -9,15 +9,21 @@ import java.util.List;
  */
 public interface AdminDao {
     /**
-     * 查询后台教师，学生
+     * 后台教师，学生列表
      * @param identify
      * @return
      */
     List<User> selectAllUsers(String identify);
 
-
-
-
+    /**
+     *
+     * @param sno
+     * @param sname
+     * @param colleage
+     * @param major
+     * @return
+     */
+    List<User> selectUserByValue(Integer sno,String sname,String colleage,String major,String grade,String classes,String identify);
 
 
 

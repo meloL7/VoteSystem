@@ -6,6 +6,7 @@ import com.elvis.vote.services.Admin.UserServices;
 import com.elvis.vote.utils.APIResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,25 +34,56 @@ public class UserServicesimpl implements UserServices {
     }
 
     @Override
-    public APIResult loadTeacherList(String identify,Integer indexpage) {
-        PageHelper.startPage(indexpage,5);
+    public APIResult loadUserList(String identify, Integer indexpage) {
+        PageHelper.startPage(indexpage, 5);
         //1为老师，2为学生
         List<User> users = adminDao.selectAllUsers(identify);
 
         PageInfo teacherlist = new PageInfo(users);
         System.out.println("teacherlist = " + teacherlist);
-        return new APIResult("success",true,200,teacherlist);
+        return new APIResult("success", true, 200, teacherlist);
     }
 
+    @Override
+    public APIResult searchUserList(Integer key, String value, String identify, Integer indexpage) {
+        /**
+         * 按学号查/按工号查
+         */
+        if (key != null && key == 0) {
+            List<User> listbysno = adminDao.selectUserByValue(Integer.valueOf(value), null, null, null, null, null, identify);
+            System.out.println("按sno查出 ： " + listbysno);
+            return new APIResult("success", true, 200, listbysno);
+        } else if (key != null && key == 1) {
+            List<User> listbyname = adminDao.selectUserByValue(null, value, null, null, null, null, identify);
+            System.out.println("按name查出 ： " + listbyname);
+            return new APIResult("success", true, 200, listbyname);
 
+        } else if (key != null && key == 2) {
+            List<User> listbycolleage = adminDao.selectUserByValue(null, null, value, null, null, null, identify);
+            System.out.println("按colleage查出 ： " + listbycolleage);
+            return new APIResult("success", true, 200, listbycolleage);
 
+        } else if (key != null && key == 3) {
+            List<User> listbymajor = adminDao.selectUserByValue(null, null, null, value, null, null, identify);
+            System.out.println("按major查出 ： " + listbymajor);
+            return new APIResult("success", true, 200, listbymajor);
 
+        } else if (key != null && key == 4) {
+            List<User> listbygrade = adminDao.selectUserByValue(null, null, null, null, value, null, identify);
+            System.out.println("按grade查出 ： " + listbygrade);
+            return new APIResult("success", true, 200, listbygrade);
 
+        } else if (key != null && key == 5) {
+            List<User> listbyclasses = adminDao.selectUserByValue(null, null, null, null, null, value, identify);
+            System.out.println("按classes查出 ： " + listbyclasses);
+            return new APIResult("success", true, 200, listbyclasses);
+        } else {
+            List<User> listall = adminDao.selectUserByValue(null, null, null, null, null, null, identify);
+            System.out.println("查出所有 ： " + listall);
+            return new APIResult("success", true, 200, listall);
+        }
 
-
-
-
-
+    }
 
 
     //权限
@@ -59,6 +91,7 @@ public class UserServicesimpl implements UserServices {
     public void searchColleage() {
         List<Colleage> colleages = adminDao.searchColleages();
     }
+
     @Override
     public void searchMajor(String colleagename) {
         List<Major> majors = adminDao.searchMajors(colleagename);
@@ -68,6 +101,7 @@ public class UserServicesimpl implements UserServices {
     public void searchGrade(String colleagename, String majorname) {
         List<Grade> grades = adminDao.searchGrades(colleagename, majorname);
     }
+
     @Override
     public void searchClasses(String colleagename, String majorname, String gradename) {
         List<Classes> classes = adminDao.searchClasses(colleagename, majorname, gradename);
