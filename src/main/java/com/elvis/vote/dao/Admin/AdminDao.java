@@ -4,6 +4,9 @@ import com.elvis.vote.pojo.*;
 
 import java.util.List;
 
+/**
+ * 后台用户dao层
+ */
 public interface AdminDao {
     List<User> selectAllUsers(Integer identify);
 

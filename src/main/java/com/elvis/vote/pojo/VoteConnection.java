@@ -2,7 +2,7 @@ package com.elvis.vote.pojo;
 
 import java.util.Date;
 
-public class voteConnection {
+public class VoteConnection {
     private int voter_id;
     private int vote_id;
     private int Status; //1.发布 2.待参与 3.参与
