@@ -16,9 +16,12 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
 
     public void test(){
         List<VoteContent> voteContents = advdDao.searchVoteContentList();
-        for (VoteContent v:voteContents
-             ) {
-            System.out.println(v);
+        for (VoteContent v:voteContents){
+//                v.getVoter_id();
+//                v.getVote_id();
+
+            System.out.println(v.getVote_time());
+
         }
     }
 

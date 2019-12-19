@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.elvis.vote.dao.Admin.AdminVoteDao">
+    <select id="searchInfo" resultType="com.elvis.vote.pojo.Vote">
+       select * from vote where type=#{type} and vote_status=#{vote_status}
+    </select>
+
+</mapper>

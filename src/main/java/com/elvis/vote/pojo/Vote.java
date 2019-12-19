@@ -15,7 +15,7 @@ public class Vote {
     private Date begin_time;//审核通过时间
     private Date end_time;//结束时间（审核不通过时间为结束时间，正常投票2天自动结束）
     private int all_voter_num; //投票人总数
-    private String range;//投票人范围（1老师，2学生，3老师和学生
+    private String range;//投票人范围（1老师，2学生，3老师和学生)
     private String nopass_result; //不通过的理由
     private int vote_status;//1.通过审核 2.未通过审核 3.等待审核 4.已结束
     private int voter_status; //1 发布 2参与  3待参与
