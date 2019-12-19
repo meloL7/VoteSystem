@@ -1,24 +1,37 @@
 package com.elvis.vote.pojo;
 
 public class User {
-    private int sno;
+    private Integer id;
+    private Integer sno;
     private String pwd;
     private String email;
     private String sname;
-    private int sex; //1.男  2.女
-    private int age;
+    private Integer sex; //1.男  2.女
+    private Integer age;
     private String colleage;
     private String major;
     private String grade;
     private String classes;
-    private int identify; //1.教师 2.学生
+    private String remark;
+    private String del_flag;
+    private Integer identify; //1.教师 2.学生
 
+    public User() {
+    }
 
-    public int getSno() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getSno() {
         return sno;
     }
 
-    public void setSno(int sno) {
+    public void setSno(Integer sno) {
         this.sno = sno;
     }
 
@@ -46,19 +59,19 @@ public class User {
         this.sname = sname;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -94,18 +107,35 @@ public class User {
         this.classes = classes;
     }
 
-    public int getIdentify() {
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getDel_flag() {
+        return del_flag;
+    }
+
+    public void setDel_flag(String del_flag) {
+        this.del_flag = del_flag;
+    }
+
+    public Integer getIdentify() {
         return identify;
     }
 
-    public void setIdentify(int identify) {
+    public void setIdentify(Integer identify) {
         this.identify = identify;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "sno=" + sno +
+                "id=" + id +
+                ", sno=" + sno +
                 ", pwd='" + pwd + '\'' +
                 ", email='" + email + '\'' +
                 ", sname='" + sname + '\'' +
@@ -115,6 +145,8 @@ public class User {
                 ", major='" + major + '\'' +
                 ", grade='" + grade + '\'' +
                 ", classes='" + classes + '\'' +
+                ", remark='" + remark + '\'' +
+                ", del_flag='" + del_flag + '\'' +
                 ", identify=" + identify +
                 '}';
     }

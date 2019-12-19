@@ -1,6 +1,6 @@
 package com.elvis.vote.pojo;
 
-public class major {
+public class Major {
     private int major_id;
 
     private String major_name;

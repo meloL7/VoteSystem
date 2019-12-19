@@ -1,6 +1,6 @@
 package com.elvis.vote.pojo;
 
-public class classes {
+public class Classes {
     private int classes_id;
     private String classes_name;
     private int grade_id;

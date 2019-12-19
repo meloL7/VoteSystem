@@ -1,6 +1,6 @@
 package com.elvis.vote.pojo;
 
-public class colleage {
+public class Colleage {
     private int colleage_id;
     private String colleage_name;
 

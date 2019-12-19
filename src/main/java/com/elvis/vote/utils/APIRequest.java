@@ -1,6 +1,8 @@
 package com.elvis.vote.utils;
 
-public class APIRequest implements java.io.Serializable {
+import java.io.Serializable;
+
+public class APIRequest implements Serializable {
 
 
     public APIRequest() {

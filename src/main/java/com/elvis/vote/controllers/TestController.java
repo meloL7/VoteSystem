@@ -1,11 +1,7 @@
 package com.elvis.vote.controllers;
 
-import com.elvis.vote.pojo.User;
-import com.elvis.vote.services.Admin.UserServices;
-import com.elvis.vote.services.Admin.impl.UserServicesimpl;
-import com.elvis.vote.services.TestServices;
+import com.elvis.vote.services.Admin.impls.UserServicesimpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -15,7 +11,7 @@ import javax.annotation.Resource;
 public class TestController {
 
 
-    @Resource(type = com.elvis.vote.services.Admin.impl.UserServicesimpl.class)
+    @Resource(type = com.elvis.vote.services.Admin.impls.UserServicesimpl.class)
     UserServicesimpl services ;
 
 //    @RequestMapping("test.do")

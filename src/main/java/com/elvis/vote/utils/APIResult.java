@@ -16,7 +16,7 @@ public class APIResult implements java.io.Serializable {
 
     }
 
-    public APIResult( boolean result, int code) {
+    public APIResult(boolean result, int code) {
        this(null,result,code);
     }
 

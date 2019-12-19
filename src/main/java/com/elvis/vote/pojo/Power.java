@@ -1,6 +1,6 @@
 package com.elvis.vote.pojo;
 
-public class power {
+public class Power {
     private int id;
     private int user_id;
     private int colleage_id;

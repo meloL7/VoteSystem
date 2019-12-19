@@ -1,5 +1,8 @@
 package com.elvis.vote.services.Admin;
 
+import com.elvis.vote.pojo.User;
+import com.elvis.vote.utils.APIResult;
+
 public interface UserServices {
 
     /**
@@ -22,8 +25,12 @@ public interface UserServices {
     public void stuChangeEmail(Long id, String newEmail);
 
 
-
-
+    /**
+     * 所有教师列表
+     * @param
+     * @return
+     */
+    APIResult loadTeacherList(Integer identify,Integer indexpage);
 
 
     //权限管理
