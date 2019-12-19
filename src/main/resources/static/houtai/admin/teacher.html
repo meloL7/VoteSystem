@@ -281,19 +281,17 @@
 
 
 
-			<!--			 modals -->
-			<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-			 aria-hidden="true" style="display: none;">
+			<!-- modal权限 -->
+			<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+				 aria-hidden="true" style="display: none;" id="modal1">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title h4" id="myLargeModalLabel">Large modal</h5>
+							<h5 class="modal-title h4" id="myLargeModalLabel">权 限 管 理</h5>
 							<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
 						</div>
-
-
 						<div class="modal-body" style="width: 200px;">
 
 							<!-- <div class="row">
@@ -306,89 +304,93 @@
 
 
 								</div> -->
-							<div class="form-group ">
-								<label>Multiple Select</label>
 
-								<select class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
+							<div id="colleage">
+								<label>院系</label>
+
+								<select class="form-control select2-multiple" onchange="colchange()"
+										data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
 									<optgroup label="Alaskan/Hawaiian Time Zone">
 										<option value="AK">Alaska</option>
 										<option value="HI">Hawaii</option>
 									</optgroup>
-									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="2">1</option>
-										<option value="21">12</option>
-									</optgroup>
+
 
 								</select>
 
-							</div>
-							<div class="form-group ">
-								<label>Multiple Select</label>
 
-								<select class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
+							</div>
+
+							<div id="major">
+								<label>专业</label>
+
+								<select class="form-control select2-multiple" onchange="majchange()" id="major"
+										data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
 									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="AK">Alaska</option>
-										<option value="HI">Hawaii</option>
+										<option value="AK">1111</option>
+										<option value="HI">2222</option>
 									</optgroup>
-									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="2">1</option>
-										<option value="21">12</option>
-									</optgroup>
+
 
 								</select>
-
 							</div>
-							<div class="form-group ">
-								<label>Multiple Select</label>
 
-								<select class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
+							<div id="grade">
+								<label>年级</label>
+
+								<select class="form-control select2-multiple" onchange="grachange()"  id="grade"
+										data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
 									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="AK">Alaska</option>
-										<option value="HI">Hawaii</option>
+										<option value="AK">3333</option>
+										<option value="HI">4444</option>
 									</optgroup>
-									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="2">1</option>
-										<option value="21">12</option>
-									</optgroup>
+
 
 								</select>
-
 							</div>
-							<div class="form-group ">
-								<label>Multiple Select</label>
 
-								<select class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
+							<div id="classes">
+								<label>班级</label>
+
+								<select class="form-control select2-multiple" onchange="clachange()"  id="classes"
+										data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
+									<option value="AK">5555</option>
+									<option value="HI">6666</option>
+								</select>
+							</div>
+
+							<div id="range">
+								<label>可投票人群范围</label>
+
+								<select class="form-control select2-multiple" onchange="ranchange()"  id="range"
+										data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
 									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="AK">Alaska</option>
-										<option value="HI">Hawaii</option>
+										<option value="AK">教师</option>
+										<option value="HI">学生</option>
 									</optgroup>
-									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="2">1</option>
-										<option value="21">12</option>
-									</optgroup>
+
 
 								</select>
-
 							</div>
-							<div class="form-group ">
-								<label>Multiple Select</label>
 
-								<select class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="AK">Alaska</option>
-										<option value="HI">Hawaii</option>
-									</optgroup>
-									<optgroup label="Alaskan/Hawaiian Time Zone">
-										<option value="2">1</option>
-										<option value="21">12</option>
-									</optgroup>
 
-								</select>
 
-							</div>
+
 
 
 						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+
+
+
+							<!-- 这里需要上传到数据库 -->
+							<button id="powerchange" type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+
+						</div>
+
+
 
 					</div>
 				</div>

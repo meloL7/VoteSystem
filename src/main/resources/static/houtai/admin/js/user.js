@@ -18,7 +18,7 @@ $(function loadTeacherList() {
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-xl\">权限管理</button>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
                     "\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -56,14 +56,14 @@ $(function loadStudentList() {
                     "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-xl\">赋予</button>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
                     "\n" +
                     "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                     "\n" +
                     "\n" +
                     "\t\t\t\t\t\t\t\t\t\t<td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a href=\"#\" onclick=\"resetpwd()\">重置密码</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
                     "\n" +
                     "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                     "\t\t\t\t\t\t\t\t\t</tr>\n";
