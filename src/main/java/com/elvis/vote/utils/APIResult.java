@@ -67,4 +67,14 @@ public class APIResult implements java.io.Serializable {
     public void setData(Object data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "APIResult{" +
+                "message='" + message + '\'' +
+                ", result=" + result +
+                ", code=" + code +
+                ", data=" + data +
+                '}';
+    }
 }

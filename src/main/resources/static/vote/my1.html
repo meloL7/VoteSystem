@@ -397,4 +397,30 @@ function __doPostBack(eventTarget, eventArgument) {
 
 		<script src="./js/modernizr.js" type="text/javascript"></script>
 
+
+		<script type="text/javascript">
+
+			//页面加载时加载
+			$(document).ready(function () {
+
+				f(1);
+
+			});
+
+			//查询所有代参与的问卷信息
+			function f(t) {
+				$.post(
+						"vote.do",
+						{type: t},
+						function (date) {
+							if (date != null) {
+								console.log(date);
+							}
+						}
+				);
+			}
+
+
+		</script>
+
 	</body>
