@@ -20,4 +20,8 @@ public class TestController {
     public void test(){
         services.searchMajor("体育学院");    }
 
+
+
+
+   
 }
