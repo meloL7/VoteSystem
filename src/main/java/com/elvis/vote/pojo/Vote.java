@@ -14,6 +14,7 @@ public class Vote {
     private Date open_time; //开始请求审核时间
     private Date begin_time;//审核通过时间
     private Date end_time;//结束时间（审核不通过时间为结束时间，正常投票2天自动结束）
+    private int all_select_num; //题目总数
     private int all_voter_num; //投票人总数
     private String range;//投票人范围（1老师，2学生，3老师和学生)
     private String nopass_result; //不通过的理由
@@ -92,6 +93,14 @@ public class Vote {
         this.end_time = end_time;
     }
 
+    public int getAll_select_num() {
+        return all_select_num;
+    }
+
+    public void setAll_select_num(int all_select_num) {
+        this.all_select_num = all_select_num;
+    }
+
     public int getAll_voter_num() {
         return all_voter_num;
     }
@@ -153,6 +162,7 @@ public class Vote {
                 ", open_time=" + open_time +
                 ", begin_time=" + begin_time +
                 ", end_time=" + end_time +
+                ", all_select_num=" + all_select_num +
                 ", all_voter_num=" + all_voter_num +
                 ", range='" + range + '\'' +
                 ", nopass_result='" + nopass_result + '\'' +
