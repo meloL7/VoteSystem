@@ -13,4 +13,5 @@ public interface VoteDao {
 
     public List<Vote> selectVoteBySearch(int type, int voter_status, String title, String voterName, int indexpages, int pagesize);
 
+    public Integer selectVoteBySearchNumber(int type, int voter_status, String title, String voterName);
 }

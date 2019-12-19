@@ -23,6 +23,7 @@ public class VoteServicesImpl implements AdminVoteServices {
 
         List<Vote> votes = voteDao.selectAllVote(type, voter_status, indexpage, indexsize);
         Integer num = voteDao.selectAllNumber(type, voter_status);
+        System.out.println("数据条数："+num);
         Pager pager = new Pager(num, indexpage, 10);
         pager.setData(votes);
 
@@ -31,6 +32,40 @@ public class VoteServicesImpl implements AdminVoteServices {
             result = new APIResult("成功！", true, 200, pager);
         } else {
             result = new APIResult("错误！", false, 500);
+        }
+        System.out.println(pager);
+        return result;
+    }
+
+    @Override
+    public APIResult queryVoteBySearch(Integer type, Integer voter_status, Integer title, String content, Integer indexpage) {
+
+        Pager pager = null;
+
+        APIResult result = null;
+
+        //按主题查询
+        if(title == 0){
+            Integer number = voteDao.selectVoteBySearchNumber(type, voter_status, content, null);
+            pager = new Pager(number,indexpage,10);
+            List<Vote> votes = voteDao.selectVoteBySearch(type, voter_status, content, null, indexpage, 10);
+            pager.setData(votes);
+            if(votes != null){
+                result = new APIResult("",true,200,pager);
+            }else {
+                result = new APIResult("",false,500);
+            }
+
+        }else if(title == 1){
+            Integer number = voteDao.selectVoteBySearchNumber(type, voter_status, null, content);
+            pager = new Pager(number,indexpage,10);
+            List<Vote> votes = voteDao.selectVoteBySearch(type, voter_status, null, content, indexpage, 10);
+            pager.setData(votes);
+            if(votes != null){
+                result = new APIResult("",true,200,pager);
+            }else {
+                result = new APIResult("",false,500);
+            }
         }
         return result;
     }

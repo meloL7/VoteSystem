@@ -186,7 +186,7 @@ function __doPostBack(eventTarget, eventArgument) {
 										<div class="create-add">
 											<h2 class="mySurvey fl">问卷列表</h2>
 
-											<form action="searchDefault.html" method="post" id="form1">
+											<form action="" method="post" id="form1">
 
 
 
@@ -194,14 +194,14 @@ function __doPostBack(eventTarget, eventArgument) {
 
 
 												<div id="" class="create-search fr" style="">
-													<select class="selectpick-div" style="height: 35px;weight:100px">
-														<option>问卷标题</option>
-														<option>问卷发起人</option>
+													<select id="selectpick-div" class="selectpick-div" style="height: 35px;weight:100px">
+														<option value="0">问卷标题</option>
+														<option value="1">问卷发起人</option>
 
 													</select>
 													<input name="searchbox" type="text" id="serachbox" class="serarchbox" />
 
-													<i class="search-icon index_iconfont" onclick="seac();">&#xe668;</i>
+													<i class="search-icon index_iconfont" onclick="selectByName();">&#xe668;</i>
 												</div>
 											</form>
 										</div>
@@ -228,58 +228,12 @@ function __doPostBack(eventTarget, eventArgument) {
 
 
 
-									<!--遍历-->
-									<div id="ctl01_ContentPlaceHolder1_qls" class="survey-list">
-										<dl class='survey-items' style='z-index:100;position:relative'>
-											<dt class='item-top'>
-												<div class='pull-left'>
-													<a href='/wjx/design/previewmobile.aspx?activity=51795833&s=1' target='_blank' class='pull-left item-tit'
-													 title='的撒旦'>的撒旦</a></div>
-												<div class='pull-right'>
-													<div class='pull-left item-id'>ID:51795833</div>
+									<div id="voteList">
+										<!--遍历-->
 
-													<div class='pull-left item-sheet'>
-
-														发起人:<a href='javascript:void(0);' class='runing-num'>XXX</a>
-
-
-													</div>
-													<div class='pull-left item-data'>
-														发起时间: 12/06/20:23
-
-													</div>
-												</div>
-											</dt>
-											<dd class='item-bot'>
-												<div class='process-box pull-left'>
-													<dl class='process-1 pull-left'>
-														<dd class='spinner-list'>
-														</dd>
-													</dl>
-													<dl class='process-2 pull-left'>
-														<dd class='spinner-list'>
-
-													</dl>
-												</div>
-												<div class='operation-box pull-right'>
-													<a href='joinVote.html' class='pull-left release-items' title='此问卷状态是草稿，点击发布问卷'>
-														<i class='index_iconfont'>&#xe651;</i><span class='vam'>投票</span></a>
-
-
-
-
-
-
-												</div>
-											</dd>
-										</dl>
-
-
-
-
-
+										<!--结束-->
 									</div>
-									<!--结束-->
+
 
 
 									<div id="ctl01_ContentPlaceHolder1_lmlpage" class="wjxui-page clearfix" style="padding-bottom: 70px;">
@@ -396,6 +350,7 @@ function __doPostBack(eventTarget, eventArgument) {
 		</script>
 
 		<script src="./js/modernizr.js" type="text/javascript"></script>
+		<script src="./js/vote.js" type="text/javascript"></script>
 
 
 		<script type="text/javascript">
@@ -406,20 +361,6 @@ function __doPostBack(eventTarget, eventArgument) {
 				f(1);
 
 			});
-
-			//查询所有代参与的问卷信息
-			function f(t) {
-				$.post(
-						"vote.do",
-						{type: t},
-						function (date) {
-							if (date != null) {
-								console.log(date);
-							}
-						}
-				);
-			}
-
 
 		</script>
 
