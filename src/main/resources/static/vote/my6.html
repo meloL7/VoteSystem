@@ -49,7 +49,7 @@
 								<img style="width:28px;height:28px;display:block" src="./image/head.png" alt="" />
 							</dt>
 							<dd class="spinner-list">
-								<a href="javascript:void(0)" class="user-name "><span id="ctl01_lblUserName" style="">13507304227</span><i
+								<a href="javascript:void(0)" class="user-name "><span id="ctl01_lblUserName" style="">1</span><i
 									 class="index_iconfont fs14">&#xe656;</i></a>
 								<ul style="width:140px;right:0;left:auto;margin-top:-2px;">
 
@@ -192,14 +192,14 @@
 
 											<form action="searchDefault.html" method="post" id="form1">
 												<div id="" class="create-search fr" style="">
-													<select class="selectpick-div" style="height: 35px;weight:100px">
-														<option>投票标题</option>
-														<option>投票人数</option>
+													<select id="selectpick-div" class="selectpick-div" style="height: 35px;weight:100px">
+														<option value="0">投票标题</option>
+														<option value="1">投票人数</option>
 
 													</select>
 													<input name="searchbox" type="text" id="serachbox" class="serarchbox" />
 
-													<i class="search-icon index_iconfont" onclick="seac();">&#xe668;</i>
+													<i class="search-icon index_iconfont" onclick="selectByNamemy3(2);">&#xe668;</i>
 												</div>
 											</form>
 										</div>
@@ -224,61 +224,13 @@
 									</div>
 
 
+									<div id="voteList">
+										<!--遍历-->
 
-
-									<div id="ctl01_ContentPlaceHolder1_qls" class="survey-list">
-										<dl class='survey-items' style='z-index:100;position:relative'>
-											<dt class='item-top'>
-												<div class='pull-left'>
-													<a href='/wjx/design/previewmobile.aspx?activity=51795833&s=1' target='_blank' class='pull-left item-tit'
-													 title='的撒旦'>的撒旦</a></div>
-												<div class='pull-right'>
-													<div class='pull-left item-id'>ID:51795833</div>
-
-
-
-													<div class='pull-left item-data'>
-														发起时间: 12/06/20:23
-
-													</div>
-													<div class='pull-left item-sheet'>
-
-														&nbsp;&nbsp;参与人数:<a href='javascript:void(0);' class='runing-num'>10</a>
-
-
-													</div>
-
-												</div>
-											</dt>
-											<dd class='item-bot'>
-												<div class='process-box pull-left'>
-													<dl class='process-1 pull-left'>
-														<dd class='spinner-list'>
-														</dd>
-													</dl>
-													<dl class='process-2 pull-left'>
-														<dd class='spinner-list'>
-
-													</dl>
-												</div>
-												<div class='operation-box pull-right'>
-													<a href='voteanalysis.html' class='pull-left release-items' title='此问卷状态是草稿，点击发布问卷'>
-														<i class='index_iconfont'>&#xe651;</i><span class='vam'>查看分析</span></a>
-
-
-
-
-
-
-												</div>
-											</dd>
-										</dl>
-
-
-
-
-
+										<!--结束-->
 									</div>
+
+
 
 
 									<div id="ctl01_ContentPlaceHolder1_lmlpage" class="wjxui-page clearfix" style="padding-bottom: 70px;">
@@ -395,5 +347,15 @@
 		</script>
 
 		<script src="./js/modernizr.js" type="text/javascript"></script>
+
+		<script src="./js/vote.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+			//页面加载时加载
+			$(document).ready(function () {
+
+				fmy3(2);
+			});
+		</script>
 
 	</body>

@@ -7,36 +7,51 @@
     <select id="selectAllVote" resultType="com.elvis.vote.pojo.Vote">
         select *
         from vote
-        where type = #{type} and voter_status = #{voter_status} limit #{indexpages},#{pagesize}
+        where id in (
+            select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
+        ) and type = #{type} limit #{indexpages},#{pagesize}
     </select>
 
     <select id="selectAllNumber" resultType="java.lang.Integer">
         select count(1)
         from vote
-        where type = #{type} and voter_status = #{voter_status}
+        where id in (
+            select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
+        ) and type = #{type}
     </select>
 
     <select id="selectVoteBySearchNumber" resultType="java.lang.Integer">
         select count(1)
         from vote
-        where type = #{type} and voter_status = #{voter_status}
+        where id in (
+        select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
+        ) and type = #{type}
         <if test="title != null">
             and title like concat('%',#{title},'%')
         </if>
         <if test="voterName != null">
             and open_voter_name like concat('%',#{voterName},'%')
         </if>
+        <if test="totle != null">
+            and all_voter_num = #{totle}
+        </if>
     </select>
 
     <select id="selectVoteBySearch" resultType="com.elvis.vote.pojo.Vote">
+
         select *
         from vote
-        where type = #{type} and voter_status = #{voter_status}
+        where id in (
+        select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
+        ) and type = #{type}
         <if test="title != null">
             and title like concat('%',#{title},'%') limit #{indexpages},#{pagesize}
         </if>
         <if test="voterName != null">
             and open_voter_name like concat('%',#{voterName},'%') limit #{indexpages},#{pagesize}
+        </if>
+        <if test="totle != null">
+            and all_voter_num = #{totle}
         </if>
     </select>
 

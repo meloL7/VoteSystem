@@ -1,7 +1,9 @@
 package com.elvis.vote.pojo;
 
 import java.sql.DatabaseMetaData;
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Vote {
     private int id;
@@ -83,24 +85,34 @@ public class Vote {
         this.open_voter_identify = open_voter_identify;
     }
 
-    public Date getOpen_time() {
-        return open_time;
+    public String getOpen_time() {
+        Date openTime = new Timestamp(open_time.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(openTime);
+        return date;
+
     }
 
     public void setOpen_time(Date open_time) {
         this.open_time = open_time;
     }
 
-    public Date getBegin_time() {
-        return begin_time;
+    public String getBegin_time() {
+        Date begintime = new Timestamp(begin_time.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(begintime);
+        return date;
     }
 
     public void setBegin_time(Date begin_time) {
         this.begin_time = begin_time;
     }
 
-    public Date getEnd_time() {
-        return end_time;
+    public String getEnd_time() {
+        Date endTime = new Timestamp(end_time.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(endTime);
+        return date;
     }
 
     public void setEnd_time(Date end_time) {
