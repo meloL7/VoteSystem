@@ -18,7 +18,6 @@ public class AdminVoteServicesimpl implements VoteServices {
     }
 
 
-
     @Override
     public void Search(String condition, String content, int type) {
 
