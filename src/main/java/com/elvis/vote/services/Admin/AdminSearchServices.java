@@ -1,6 +1,6 @@
 package com.elvis.vote.services.Admin;
 
-public interface SearchServices {
+public interface AdminSearchServices {
 
     /**
      * 通过条件判断来调用哪个方法

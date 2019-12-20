@@ -2,7 +2,7 @@ package com.elvis.vote.services.Admin.impls;
 
 import com.elvis.vote.dao.Admin.AdminDao;
 import com.elvis.vote.pojo.*;
-import com.elvis.vote.services.Admin.UserServices;
+import com.elvis.vote.services.Admin.AdminUserServices;
 import com.elvis.vote.utils.APIResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserServicesimpl implements UserServices {
+public class AdminUserServicesimpl implements AdminUserServices {
 
     @Resource(type = AdminDao.class)
     AdminDao adminDao;

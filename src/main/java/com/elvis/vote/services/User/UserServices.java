@@ -1,6 +1,6 @@
 package com.elvis.vote.services.User;
 
-public interface AdminServices {
+public interface UserServices {
 
     /**
      * 加载用户信息

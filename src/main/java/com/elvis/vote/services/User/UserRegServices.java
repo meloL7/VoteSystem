@@ -1,6 +1,6 @@
 package com.elvis.vote.services.User;
 
-public interface AdminRegServices {
+public interface UserRegServices {
 
     /**
      * 检查学校的学生库是否存在该学号

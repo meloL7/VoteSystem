@@ -1,6 +1,6 @@
 package com.elvis.vote.controllers.Admin;
 
-import com.elvis.vote.services.Admin.UserServices;
+import com.elvis.vote.services.Admin.AdminUserServices;
 import com.elvis.vote.utils.APIResult;
 import io.swagger.models.auth.In;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,8 @@ import javax.annotation.Resource;
 @ResponseBody
 public class UserController {
 
-    @Resource(type = UserServices.class)
-    private UserServices userServices;
+    @Resource(type = AdminUserServices.class)
+    private AdminUserServices userServices;
 
     @CrossOrigin(origins = "*")
     @RequestMapping("admin/loaduser.do")
