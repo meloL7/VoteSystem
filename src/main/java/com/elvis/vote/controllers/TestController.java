@@ -23,7 +23,7 @@ public class TestController {
     @RequestMapping("test.do")
 
     public void test() throws Exception {
-        services.Search("发起人员","顶峰2",1,2);
+//        services.Search("发起人员","顶峰2",1,2);
 
            }
 

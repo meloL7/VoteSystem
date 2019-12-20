@@ -17,7 +17,7 @@ public class AdminVoteController {
 
     @RequestMapping("admin/loadVote.do")
     public APIResult loadInfo(int type,int vote_status,int indexPage){
-        System.out.println(type+vote_status+indexPage);
+//        System.out.println(type+vote_status+indexPage);
 
         APIResult apiResult = services.loadInfo(type, vote_status, indexPage, 10);
         return apiResult;

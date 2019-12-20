@@ -25,8 +25,8 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
         List<Vote> votes = dao.searchInfo(type, vote_status);
         int countrows = dao.searchInfoAllNum(type, vote_status);
 
-        System.out.println("countRows"+countrows);
-        System.out.println(votes.get(0));
+//        System.out.println("countRows"+countrows);
+//        System.out.println(votes.get(0));
         Pager pager = new Pager(countrows,indexPage,10);
         pager.setData(votes);
 
