@@ -18,7 +18,7 @@
         <include refid="selectPrefix"></include>
         from user where identify = #{identify}
         <if test="sno != null">
-            and sno = #{sno}
+            and sno like concat(#{sno},'%')
         </if>
         <if test="sname != null">
             and sname like concat('%',#{sname},'%')
@@ -36,6 +36,20 @@
             and classes like concat('%',#{classes},'%')
         </if>
     </select>
+
+
+    <update id="updateEmail" parameterType="com.elvis.vote.pojo.User">
+        update user
+        <set>
+            <if test="email!=null">
+                email = #{email}
+            </if>
+            <if test="pwd!=null">
+                pwd = #{pwd}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 
 
     <!--    权限-->
