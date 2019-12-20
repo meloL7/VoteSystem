@@ -1,7 +1,7 @@
 // 加载所有教师
 function loadTeacherList() {
     $.post(
-      "http://localhost:8080/elvis/admin/loaduser.do",
+      "/elvis/admin/loaduser.do",
         {
             identify:'教师',
         },
