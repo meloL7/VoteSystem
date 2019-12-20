@@ -266,7 +266,7 @@ function fmy2(t) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</dl>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t<div class='operation-box pull-right'>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<a href='watchvotedetail.html?voteid='"+data.data.data[i].id+" class='pull-left release-items' title='此问卷状态是草稿，点击发布问卷'>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<a href='watchvotedetail.html?voteid="+data.data.data[i].id+"' class='pull-left release-items' title='此问卷状态是草稿，点击发布问卷'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class='index_iconfont'>&#xe651;</i><span class='vam'>查看详情</span></a>\n" +
                             "\n" +
                             "\n" +
