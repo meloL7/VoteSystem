@@ -50,8 +50,9 @@
 								<img style="width:28px;height:28px;display:block" src="./image/head.png" alt="" />
 							</dt>
 							<dd class="spinner-list">
-								<a href="javascript:void(0)" class="user-name "><span id="ctl01_lblUserName" style="">13507304227</span><i
-									 class="index_iconfont fs14">&#xe656;</i></a>
+								<a href="javascript:void(0)" class="user-name ">
+									<span id="ctl01_lblUserName" style="">1</span>
+									<i class="index_iconfont fs14">&#xe656;</i></a>
 								<ul style="width:140px;right:0;left:auto;margin-top:-2px;">
 
 
@@ -201,7 +202,7 @@ function __doPostBack(eventTarget, eventArgument) {
 													</select>
 													<input name="searchbox" type="text" id="serachbox" class="serarchbox" />
 
-													<i class="search-icon index_iconfont" onclick="selectByName();">&#xe668;</i>
+													<i class="search-icon index_iconfont" onclick="selectByNamemy1(1);">&#xe668;</i>
 												</div>
 											</form>
 										</div>
@@ -237,23 +238,25 @@ function __doPostBack(eventTarget, eventArgument) {
 
 
 									<div id="ctl01_ContentPlaceHolder1_lmlpage" class="wjxui-page clearfix" style="padding-bottom: 70px;">
-										<span id="ctl01_ContentPlaceHolder1_choosepagecout" class="fl">&nbsp;&nbsp; 每页
-											<select name="ctl01$ContentPlaceHolder1$ddlPageCount" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl01$ContentPlaceHolder1$ddlPageCount\&#39;,\&#39;\&#39;)&#39;, 0)"
-											 id="ctl01_ContentPlaceHolder1_ddlPageCount" class="wjxui-select wjxui-select-sm">
-												<option selected="selected" value="4">4</option>
-												<option value="8">8</option>
-												<option value="10">10</option>
-												<option value="15">15</option>
+<!--										<span id="ctl01_ContentPlaceHolder1_choosepagecout" class="fl">&nbsp;&nbsp; 每页-->
+<!--											<select name="ctl01$ContentPlaceHolder1$ddlPageCount" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl01$ContentPlaceHolder1$ddlPageCount\&#39;,\&#39;\&#39;)&#39;, 0)"-->
+<!--											 id="ctl01_ContentPlaceHolder1_ddlPageCount" class="wjxui-select wjxui-select-sm">-->
+<!--												<option selected="selected" value="4">4</option>-->
+<!--												<option value="8">8</option>-->
+<!--												<option value="10">10</option>-->
+<!--												<option value="15">15</option>-->
 
-											</select>
-											条</span>
-										<div id="ctl01_ContentPlaceHolder1_pagehttml" class="page-list pager-linkpage changePage fr"><a href="javascript:void(0);"
-											 alt="0" class="pageBtn disabled page-first "><i class="iconfont">&#xe65a;</i></a><a href="javascript:void(0);"
-											 alt="0" class="pageBtn page-up disabled "><i class="iconfont">&#xe65b;</i></a><span id="curPage">1/2</span><a
-											 href="javascript:void(0);" alt="2" class="pageBtn page-down"><i class="iconfont">&#xe659;</i></a><a href="javascript:void(0);"
-											 alt="2" class="pageBtn page-last"><i class="iconfont">&#xe658;</i></a>&nbsp;到第&nbsp;<input type='text'
-											 style='height:24px;line-height:24px;border:1px solid #d9d9d9;width:42px;padding-left:5px;' />&nbsp;页&nbsp;<input
-											 type='button' class='wjxui-btn wjxui-btn-primary wjxui-btn-sm' value='确定' /></div>
+<!--											</select>-->
+<!--											条</span>-->
+										<div id="ctl01_ContentPlaceHolder1_pagehttml" class="page-list pager-linkpage changePage fr">
+											<a href="javascript:void(0);"alt="0" class="pageBtn disabled page-first "><i class="iconfont">&#xe65a;</i></a>
+											<a href="javascript:void(0);"alt="0" class="pageBtn page-up disabled "><i class="iconfont">&#xe65b;</i></a>
+											<span id="curPage">1/2</span>
+											<a href="javascript:void(0);" alt="2" class="pageBtn page-down"><i class="iconfont">&#xe659;</i></a>
+											<a href="javascript:void(0);" alt="2" class="pageBtn page-last"><i class="iconfont">&#xe658;</i></a>&nbsp;到第&nbsp;
+											<input type='text'style='height:24px;line-height:24px;border:1px solid #d9d9d9;width:42px;padding-left:5px;' />&nbsp;页&nbsp;
+											<input type='button' class='wjxui-btn wjxui-btn-primary wjxui-btn-sm' value='确定' />
+										</div>
 									</div>
 
 
@@ -358,7 +361,7 @@ function __doPostBack(eventTarget, eventArgument) {
 			//页面加载时加载
 			$(document).ready(function () {
 
-				f(1);
+				fmy1(1);
 
 			});
 

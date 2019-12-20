@@ -2,14 +2,15 @@ package com.elvis.vote.services.Admin.impls;
 
 import com.elvis.vote.dao.Admin.AdminVoteDao;
 import com.elvis.vote.pojo.Vote;
-import com.elvis.vote.services.Admin.VoteServices;
+import com.elvis.vote.services.Admin.AdminVoteServices;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class AdminVoteServicesimpl implements VoteServices {
+public class AdminVoteServicesimpl implements AdminVoteServices {
     @Resource(type = AdminVoteDao.class)
     AdminVoteDao dao;
     @Override
