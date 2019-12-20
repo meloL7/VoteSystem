@@ -10,24 +10,23 @@ import javax.annotation.Resource;
 
 @Controller
 @ResponseBody
-public class UserController {
+public class AdminUserController {
 
     @Resource(type = AdminUserServices.class)
     private AdminUserServices userServices;
 
     @CrossOrigin(origins = "*")
     @RequestMapping("admin/loaduser.do")
-    public APIResult userList(String identify,@RequestParam(value = "indexpage",defaultValue = "1") Integer indexpage){
+    public APIResult userList(String identify,Integer indexpage){
         APIResult list = userServices.loadUserList(identify,indexpage);
         return list;
     }
 
 
     @RequestMapping("admin/searchuser.do")
-    public APIResult searchUser(Integer key,String value,String identify,@RequestParam(value = "indexpage",defaultValue = "1") Integer indexpage){
+    public APIResult searchUser(Integer key,String value,String identify,Integer indexpage){
         APIResult list = userServices.searchUserList(key, value, identify, indexpage);
         return list;
     }
-
 
 }

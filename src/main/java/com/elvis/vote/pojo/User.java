@@ -2,7 +2,7 @@ package com.elvis.vote.pojo;
 
 public class User {
     private Integer id;
-    private Integer sno;
+    private String sno;
     private String pwd;
     private String email;
     private String sname;
@@ -27,11 +27,11 @@ public class User {
         this.id = id;
     }
 
-    public Integer getSno() {
+    public String getSno() {
         return sno;
     }
 
-    public void setSno(Integer sno) {
+    public void setSno(String sno) {
         this.sno = sno;
     }
 
