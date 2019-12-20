@@ -188,7 +188,7 @@
                                        class="form-control"
                                        maxlength="16"/>
 
-                                <a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm" href="javascript:void(0)" onclick="searchTeacher();return false;"><i
+                                <a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm" href="javascript:void(0)" onclick="searchTeacher(1);return false;"><i
                                         class="feather-search"></i>查询</a>
                             </div>
                             <br><br>
@@ -212,8 +212,50 @@
 
                                     </tbody>
                                 </table>
-                                <table class="table table-centered" id="page_table">
-
+                                <table class="table table-centered" id="page_t_table">
+                                    <tr>
+                                        <td colspan="6" align="center">
+                                            <ul class="pagination pagination-rounded">
+                                                <li class="paginate_button page-item previous disabled"
+                                                    id="complex-header-datatable_previous">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="0"
+                                                       tabindex="0" class="page-link">
+                                                        <i class="mdi mdi-chevron-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="paginate_button page-item active">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="1"
+                                                       tabindex="0" class="page-link">1</a>
+                                                </li>
+                                                <li class="paginate_button page-item ">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="2"
+                                                       tabindex="0" class="page-link">2</a>
+                                                </li>
+                                                <li class="paginate_button page-item ">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="3"
+                                                       tabindex="0" class="page-link">3</a>
+                                                </li>
+                                                <li class="paginate_button page-item ">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="4"
+                                                       tabindex="0" class="page-link">4</a>
+                                                </li>
+                                                <li class="paginate_button page-item ">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="5"
+                                                       tabindex="0" class="page-link">5</a>
+                                                </li>
+                                                <li class="paginate_button page-item ">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="6"
+                                                       tabindex="0" class="page-link">6</a>
+                                                </li>
+                                                <li class="paginate_button page-item next"
+                                                    id="complex-header-datatable_next">
+                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="7"
+                                                       tabindex="0" class="page-link"><i
+                                                            class="mdi mdi-chevron-right"></i></a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
 
@@ -454,20 +496,37 @@
 <script src="js/user.js" type="text/javascript"></script>
 
 <script>
+
+
+
+    // loadTPageData(1);
     $(document).ready(function () {
-        loadTPageData(1);
-
-        $(".page-link").click(function () {
-            var indexpage = $(this).html();
-            alert(indexpage);
-           loadTPageData(indexpage);
-        });
-
+        loadTeacherData(1);
     });
 
+    $('.page-item').click(function () {
+        $(".paginate_button").children(".page-link").removeClass("active");
+        console.log("yyyy")
+        $(this).addClass("active");
+    });
 
+    // $(document).on('click','.paginate_button page-item',function () {
+    //     // $(this).data('')
+    //     console.log("...");
+    //     $(".pagination pagination-rounded").children(".paginate_button").removeClass("active");
+    //     $(this).addClass("active");
+    // })
+
+    
 </script>
-
+<!--<script type="text/javascript">-->
+<!--    var ul = $('#paginate').innerText;-->
+<!--    console.log("&#45;&#45;"+ul);-->
+<!--    -->
+<!--    $('.page-link').click(function () {-->
+<!--        -->
+<!--    });-->
+<!--</script>-->
 </body>
 
 </html>
