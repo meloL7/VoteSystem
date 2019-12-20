@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 @Controller
 @ResponseBody
-public class UserController {
+public class AdminUserController {
 
     @Resource(type = AdminUserServices.class)
     private AdminUserServices userServices;

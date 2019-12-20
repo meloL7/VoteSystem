@@ -1,5 +1,5 @@
 // 加载所有教师
-$(function loadTeacherList() {
+function loadTeacherList() {
     $.post(
       "http://localhost:8080/elvis/admin/loaduser.do",
         {
@@ -7,75 +7,184 @@ $(function loadTeacherList() {
         },
         function (data) {
             console.log(data);
-            var tr_list = $('#teacher_list');
-            for (var i = 0; i < data.data.list.length; i++) {
-                var td_list = "<tr><td>"+data.data.list[i].id+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sno+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].colleage+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].major+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sname+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].age+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
-                    "\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
-                    "\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
-                    "</tr>";
-                tr_list.append(td_list);
+            if (data.code == 200) {
+                var tr_list = $('#teacher_list');
+                for (var i = 0; i < data.data.list.length; i++) {
+                    var td_list = "<tr><td>"+data.data.list[i].id+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sno+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].colleage+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].major+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sname+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].age+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
+                        "</tr>";
+                    tr_list.append(td_list);
+                }
+            }else {
+                alert(data.message+"-->出现"+data.code+"错误");
             }
         }
     );
-});
+};
 //加载所有学生
-$(function loadStudentList() {
+function loadStudentList() {
     $.post(
         "http://localhost:8080/elvis/admin/loaduser.do",
         {
             identify:'学生',
         },
         function (data) {
-            console.log(data)
-            var s_list = $("#student_list");
-            var json = data.data.list;
-            for (var i = 0; i < json.length; i++) {
-                var tr_list="<tr>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].id+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sno+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].colleage+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].major+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].grade+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].class+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sname+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].age+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
-                    "\n" +
-                    "\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                    "\n" +
-                    "\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
-                    "\n" +
-                    "\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t</tr>\n";
-                s_list.append(tr_list);
+            console.log(data);
+            if (data.code = 200) {
+                var s_list = $("#student_list");
+                var json = data.data.list;
+                for (var i = 0; i < json.length; i++) {
+                    var tr_list="<tr>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].id+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sno+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].colleage+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].major+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].grade+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].class+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sname+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].age+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                        "\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t</tr>\n";
+                    s_list.append(tr_list);
+                }
+            }else {
+                alert(data.message+"-->出现"+data.code+"错误");
             }
         }
     );
-});
+};
 
+/**
+ * 按条件查询学生
+ */
+function searchStudent() {
+    var key = $("#student_select").val();
+    var value = $("#custname").val();
+    console.log("属性---值"+key+"---"+value)
+    $.post(
+        "http://localhost:8080/elvis/admin/searchuser.do",
+        {
+            key:key,
+            value:value,
+            identify:'学生',
+        },
+        function (data) {
+            console.log(data);
+            if (data.code == 200) {
+                var s_list = $("#student_list");
+                s_list.empty();
+                var json = data.data.list;
+                for (var i = 0; i < json.length; i++) {
+                    var tr_list="<tr>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].id+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sno+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].colleage+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].major+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].grade+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].class+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sname+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].age+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                        "\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t</tr>\n";
+                    s_list.append(tr_list);
+                }
+            }else {
+                alert(data.message+"-->出现"+data.code+"错误！请检查您输入的数值是否和选项匹配！");
+            }
 
+        }
+    );
+};
 
+/**
+ * 按条件查询教师
+ */
+function searchTeacher() {
+    var key = $("#teacher_select").val();
+    var value = $("#custname").val();
+    console.log("属性---值"+key+"---"+value)
+    if (isNaN(value) && key == 0) {
+        alert("输入数值!")
+    }
+    $.post(
+        "http://localhost:8080/elvis/admin/searchuser.do",
+        {
+            key:key,
+            value:value,
+            identify:'教师',
+        },
+        function (data) {
+            console.log(data);
+            if (data.code == 200) {
+                var tr_list = $('#teacher_list');
+                tr_list.empty();
+                for (var i = 0; i < data.data.list.length; i++) {
+                    var td_list = "<tr><td>"+data.data.list[i].id+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sno+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].colleage+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].major+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sname+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].age+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
+                        "\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
+                        "</tr>";
+                    tr_list.append(td_list);
+                }
+            }else {
+                alert(data.message+"-->出现"+data.code+"错误！请检查您输入的数值是否和选项匹配！");
+            }
 
+        }
+    );
+};
 
 
 

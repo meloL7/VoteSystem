@@ -35,6 +35,8 @@ public interface AdminDao {
 
 
 
+
+
     //权限
     List<Colleage> searchColleages();
     List<Major> searchMajors(String colleageName);

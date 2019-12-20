@@ -181,7 +181,7 @@
 								<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
 									   maxlength="16" />
 
-								<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
+								<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm" href="javascript:void(0)" onclick="searchStudent();return false;"><i class="feather-search"></i>查询</a>
 							</div>
 							<br><br>
 							<div class="table-responsive">
@@ -363,12 +363,6 @@
 
 						</select>
 					</div>
-
-
-
-
-
-
 				</div>
 
 				<div class="modal-footer">
@@ -453,18 +447,13 @@
 	</div>
 </div>
 
-<script>
-	$(document).ready(function () {
-		loadStudentList();
-	});
-</script>
-
 <!-- jQuery  -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/metismenu.min.js"></script>
 <script src="assets/js/waves.js"></script>
 <script src="assets/js/simplebar.min.js"></script>
+
 
 <!-- Plugins js -->
 <script src="../plugins/autonumeric/autoNumeric-min.js"></script>
@@ -485,6 +474,13 @@
 
 <!-- Other js-->
 <script src="js/user.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(function () {
+		loadStudentList();
+	});
+</script>
+
 
 </body>
 
