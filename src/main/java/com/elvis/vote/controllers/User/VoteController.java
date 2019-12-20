@@ -1,8 +1,7 @@
 package com.elvis.vote.controllers.User;
 
-import com.elvis.vote.services.User.AdminVoteServices;
+import com.elvis.vote.services.User.VoteServices;
 import com.elvis.vote.utils.APIResult;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,8 +12,8 @@ import javax.annotation.Resource;
 @ResponseBody
 public class VoteController {
 
-    @Resource(type = AdminVoteServices.class)
-    AdminVoteServices voteServices;
+    @Resource(type = VoteServices.class)
+    VoteServices voteServices;
 
     @RequestMapping("vote/vote.do")
     public APIResult test(Integer type, Integer voter_status, Integer indexpage) {

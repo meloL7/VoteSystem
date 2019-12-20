@@ -2,7 +2,7 @@ package com.elvis.vote.services.User;
 
 
 
-public interface AdminAppealServices {
+public interface UserAppealServices {
     /**
      * 通过身份和学号/工号获取该对象，如果返回对象为空，则为不存在
      * @param identify

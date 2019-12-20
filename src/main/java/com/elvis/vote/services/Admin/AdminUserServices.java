@@ -4,7 +4,7 @@ import com.elvis.vote.pojo.User;
 import com.elvis.vote.utils.APIResult;
 import io.swagger.models.auth.In;
 
-public interface UserServices {
+public interface AdminUserServices {
 
     /**
      * 通过身份加载信息

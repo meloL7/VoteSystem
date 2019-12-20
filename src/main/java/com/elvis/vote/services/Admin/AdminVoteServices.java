@@ -1,6 +1,6 @@
 package com.elvis.vote.services.Admin;
 
-public interface VoteServices {
+public interface AdminVoteServices {
 
     /**
      * 加载全部信息

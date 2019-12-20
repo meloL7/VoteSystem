@@ -1,6 +1,6 @@
 package com.elvis.vote.services.Admin;
 
-public interface LoginServices {
+public interface AdminLoginServices {
     /**
      * 管理员登录
      * @param ad_name
