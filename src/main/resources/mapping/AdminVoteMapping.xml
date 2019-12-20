@@ -12,4 +12,27 @@
        select count(1) from vote where type=#{type} and vote_status=#{vote_status}
     </select>
 
+    <select id="SearchBy" resultType="com.elvis.vote.pojo.Vote">
+        select  *
+        from vote where type=#{type} and vote_status=#{vote_status}
+        <if test="open_voter_name != null">
+            and open_voter_name like concat('%',#{open_voter_name},'%')
+        </if>
+        <if test="open_voter_colleage != null">
+            and open_voter_colleage like concat('%',#{open_voter_colleage},'%')
+        </if>
+        <if test="open_voter_identify != null">
+            and open_voter_identify like concat('%',#{open_voter_identify},'%')
+        </if>
+        <if test="nopass_result != null">
+            and nopass_result like concat('%',#{nopass_result},'%')
+        </if>
+        <if test="all_select_num != null">
+            and all_select_num = #{all_select_num}
+        </if>
+        <if test="all_voter_num != null">
+            and all_voter_num  = #{all_voter_num}
+        </if>
+    </select>
+
 </mapper>

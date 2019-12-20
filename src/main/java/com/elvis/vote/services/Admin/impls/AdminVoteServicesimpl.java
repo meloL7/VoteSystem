@@ -17,6 +17,8 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
     AdminVoteDao dao;
 
 
+
+
     @Override
     public APIResult loadInfo(int type, int vote_status, int indexPage, int pageSize) {
         List<Vote> votes = dao.searchInfo(type, vote_status);
