@@ -46,69 +46,54 @@ public class AdminUserServicesimpl implements AdminUserServices {
 
     @Override
     public APIResult searchUserList(Integer key, String value, String identify, Integer indexpage) {
-
         try {
             if (key != null && key == 0) {
                 /**
                  * 按学号查/按工号查
                  */
-                PageHelper.startPage(indexpage, 1);
-                List<User> list = adminDao.selectUserByValue(Integer.valueOf(value), null, null, null, null, null, identify);
-                PageInfo listbysno = new PageInfo(list);
+                List<User> listbysno = adminDao.selectUserByValue(value, null, null, null, null, null, identify);
                 System.out.println("按sno查出 ： " + listbysno);
                 return new APIResult("success", true, 200, listbysno);
             } else if (key != null && key == 1) {
                 /**
                  * 按姓名查询
                  */
-                PageHelper.startPage(indexpage, 2);
-                List<User> list = adminDao.selectUserByValue(null, value, null, null, null, null, identify);
-                PageInfo listbyname = new PageInfo(list);
+                List<User> listbyname = adminDao.selectUserByValue(null, value, null, null, null, null, identify);
                 System.out.println("按name查出 ： " + listbyname);
                 return new APIResult("success", true, 200, listbyname);
             } else if (key != null && key == 2) {
                 /**
                  * 按学院查询
                  */
-                PageHelper.startPage(indexpage, 2);
-                List<User> list = adminDao.selectUserByValue(null, null, value, null, null, null, identify);
-                PageInfo listbycolleage = new PageInfo(list);
+                List<User> listbycolleage = adminDao.selectUserByValue(null, null, value, null, null, null, identify);
                 System.out.println("按colleage查出 ： " + listbycolleage);
                 return new APIResult("success", true, 200, listbycolleage);
             } else if (key != null && key == 3) {
                 /**
                  * 按专业查询
                  */
-                PageHelper.startPage(indexpage, 2);
-                List<User> list = adminDao.selectUserByValue(null, null, null, value, null, null, identify);
-                PageInfo listbymajor = new PageInfo(list);
+                List<User> listbymajor = adminDao.selectUserByValue(null, null, null, value, null, null, identify);
                 System.out.println("按major查出 ： " + listbymajor);
                 return new APIResult("success", true, 200, listbymajor);
             } else if (key != null && key == 4) {
                 /**
                  * 按年级查询
                  */
-                PageHelper.startPage(indexpage, 2);
-                List<User> list = adminDao.selectUserByValue(null, null, null, null, value, null, identify);
-                PageInfo listbygrade = new PageInfo(list);
+                List<User> listbygrade = adminDao.selectUserByValue(null, null, null, null, value, null, identify);
                 System.out.println("按grade查出 ： " + listbygrade);
                 return new APIResult("success", true, 200, listbygrade);
             } else if (key != null && key == 5) {
                 /**
                  * 按班级查询
                  */
-                PageHelper.startPage(indexpage, 2);
-                List<User> list = adminDao.selectUserByValue(null, null, null, null, null, value, identify);
-                PageInfo listbyclasses = new PageInfo(list);
+                List<User> listbyclasses = adminDao.selectUserByValue(null, null, null, null, null, value, identify);
                 System.out.println("按classes查出 ： " + listbyclasses);
                 return new APIResult("success", true, 200, listbyclasses);
             } else {
                 /**
                  * 查询所有
                  */
-                PageHelper.startPage(indexpage, 1);
-                List<User> list = adminDao.selectUserByValue(null, null, null, null, null, null, identify);
-                PageInfo listall = new PageInfo(list);
+                List<User> listall = adminDao.selectUserByValue(null, null, null, null, null, null, identify);
                 System.out.println("查出所有 ： " + listall);
                 return new APIResult("success", true, 200, listall);
             }

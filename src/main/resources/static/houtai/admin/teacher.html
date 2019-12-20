@@ -209,52 +209,11 @@
                                     </tr>
                                     </thead>
                                     <tbody id="teacher_list">
-                                    <tr>
-                                        <td colspan="6" align="center">
-                                            <ul class="pagination pagination-rounded">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="complex-header-datatable_previous">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="0"
-                                                       tabindex="0" class="page-link">
-                                                        <i class="mdi mdi-chevron-left"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item active">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="1"
-                                                       tabindex="0" class="page-link">1</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="2"
-                                                       tabindex="0" class="page-link">2</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="3"
-                                                       tabindex="0" class="page-link">3</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="4"
-                                                       tabindex="0" class="page-link">4</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="5"
-                                                       tabindex="0" class="page-link">5</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="6"
-                                                       tabindex="0" class="page-link">6</a>
-                                                </li>
-                                                <li class="paginate_button page-item next"
-                                                    id="complex-header-datatable_next">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="7"
-                                                       tabindex="0" class="page-link"><i
-                                                            class="mdi mdi-chevron-right"></i></a>
-                                                </li>
-                                            </ul>
 
-
-                                        </td>
-                                    </tr>
                                     </tbody>
+                                </table>
+                                <table class="table table-centered" id="page_table">
+
                                 </table>
                             </div>
 
@@ -496,8 +455,17 @@
 
 <script>
     $(document).ready(function () {
-        loadTeacherList();
+        loadTPageData(1);
+
+        $(".page-link").click(function () {
+            var indexpage = $(this).html();
+            alert(indexpage);
+           loadTPageData(indexpage);
+        });
+
     });
+
+
 </script>
 
 </body>

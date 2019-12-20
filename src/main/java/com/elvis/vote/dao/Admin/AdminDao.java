@@ -23,7 +23,7 @@ public interface AdminDao {
      * @param major
      * @return
      */
-    List<User> selectUserByValue(Integer sno,String sname,String colleage,String major,String grade,String classes,String identify);
+    List<User> selectUserByValue(String sno,String sname,String colleage,String major,String grade,String classes,String identify);
 
 
 
