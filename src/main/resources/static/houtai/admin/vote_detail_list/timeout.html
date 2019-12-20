@@ -190,24 +190,10 @@
 
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>张率军</td>
-													<td>信息学院</td>
-													<td>老师</td>
-													<td>最喜欢的统计调查</td>
-													<td>100</td>
-													<td>2019/12/11</td>
-													<td>2019/12/12</td>
-													<td>2019/12/12</td>
-													<td>
-														<a href="../detail.html">查看选择详情</a>
-														&nbsp;|&nbsp;
-														<a href="../anaysis.html">查看选择分析</a>
-													</td>
-												</tr>
+											<tbody id="voteContent">
 
+											</tbody>
+											<table class="table table-centered">
 												<tr>
 													<td colspan="6" align="center">
 														<ul class="pagination pagination-rounded">
@@ -236,12 +222,12 @@
 															</li>
 															<li class="paginate_button page-item next" id="complex-header-datatable_next">
 																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="7" tabindex="0" class="page-link"><i
-																	 class="mdi mdi-chevron-right"></i></a>
+																		class="mdi mdi-chevron-right"></i></a>
 															</li>
 														</ul>
 													</td>
 												</tr>
-											</tbody>
+											</table>
 										</table>
 										<a href="../vote_manage.html" type="button" class="btn  btn-lg waves-effect waves-light">返回上一级</a>
 									</div>
@@ -307,7 +293,13 @@
 		<script src="../assets/js/theme.js"></script>
 
 		<script src="../assets/pages/fileuploads-demo.js"></script>
-
+		<script src="../js/vote1.js"></script>
+		<script>
+			//页面加载时加载
+			$(document).ready(function () {
+				timeout(2,4);
+			});
+		</script>
 	</body>
 
 </html>

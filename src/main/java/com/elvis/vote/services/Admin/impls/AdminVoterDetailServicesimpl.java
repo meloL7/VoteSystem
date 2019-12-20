@@ -14,6 +14,8 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
     AdminVoteDetailDao advdDao;
 
 
+
+
     public void test(){
         List<VoteContent> voteContents = advdDao.searchVoteContentList();
         for (VoteContent v:voteContents){
