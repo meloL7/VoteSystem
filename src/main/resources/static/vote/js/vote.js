@@ -1,18 +1,21 @@
 //查询所有待参与的问卷信息(my1)
-function fmy1(t) {
+function fmy1(voter_id,type,voter_status,indexpage) {
 
-    var voter_id = document.getElementById("ctl01_lblUserName").innerText;
+    var id = document.getElementById("ctl01_lblUserName").innerText;
 
 
-    console.log(voter_id);
+    console.log(id);
+    if(voter_id == null){
+        voter_id = id;
+    }
 
     $.post(
-        "vote.do",
+        "/elvis/user/vote.do",
         {
             voter_id:voter_id,
-            type: t,
-            voter_status: 3,
-            indexpage: 0,
+            type: type,
+            voter_status: voter_status,
+            indexpage: indexpage,
         },
         function (data) {
             console.log(data);
@@ -25,13 +28,17 @@ function fmy1(t) {
 
                         console.log("data.data.data[i].id = " + data.data.data[i].id)
 
-                        console.log(data.data.data[0].open_voter_name)
+                        console.log(data.data.data[0].open_voter_name);
+
+                        // <a href='joinVote.html>跳转需要保存参数：用户id:voter_id,类别:type,状态:voter_status,
+                        // 当前页:indexpages
+
                         var vote_list = "<div id=\"ctl01_ContentPlaceHolder1_qls\" class=\"survey-list\">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<dl class='survey-items' style='z-index:100;position:relative'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t<dt class='item-top'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t<div class='pull-left'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<a href='/wjx/design/previewmobile.aspx?activity=51795833&s=1' target='_blank' class='pull-left item-tit'\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t title='的撒旦'>" + data.data.data[i].title + "</a></div>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t title='"+data.data.data[i].title+"'>" + data.data.data[i].title + "</a></div>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t<div class='pull-right'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class='pull-left item-id'>ID:" + data.data.data[i].id + "</div>\n" +
                             "\n" +
@@ -59,7 +66,7 @@ function fmy1(t) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</dl>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t<div class='operation-box pull-right'>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<a href='joinVote.html?id='" + data.data.data[0].id + " class='pull-left release-items' title='此问卷状态是草稿，点击发布问卷'>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<a href='joinVote.html?id=" + data.data.data[i].id + "&voter_id="+voter_id+"&type="+type+"&voter_status="+voter_status+"&indexpage="+indexpage+"' class='pull-left release-items' title='此问卷状态是草稿，点击发布问卷'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class='index_iconfont'>&#xe651;</i><span class='vam'>投票</span></a>\n" +
                             "\n" +
                             "\n" +
@@ -78,6 +85,7 @@ function fmy1(t) {
                             "\t\t\t\t\t\t\t\t\t</div>";
 
                         list_item.append(vote_list);
+
                         // list_item.innerHTML = vote_list;
                     }
 
@@ -97,6 +105,8 @@ function fmy1(t) {
 //根据条件查询,待参与问卷信息(my1)
 function selectByNamemy1(t) {
 
+    // <a href='joinVote.html>跳转需要保存参数：用户id:voter_id,类别:type,状态:voter_status
+     // 搜索条件：title、name
     var voter_id = document.getElementById("ctl01_lblUserName").innerText;
     console.log(voter_id);
     var title = document.getElementById("selectpick-div").value;
@@ -106,7 +116,7 @@ function selectByNamemy1(t) {
 
 
     $.post(
-        "voteBySearch.do",
+        "/elvis/user/voteBySearch.do",
         {
             voter_id:voter_id,
             type: t,
@@ -198,20 +208,23 @@ function selectByNamemy1(t) {
 
 
 //查询所有参与问卷信息（my2）
-function fmy2(t) {
+function fmy2(voter_id,type,voter_status,indexpage) {
 
-    var voter_id = document.getElementById("ctl01_lblUserName").innerText;
+    var id = document.getElementById("ctl01_lblUserName").innerText;
 
+    if(voter_id == null){
+        voter_id = id;
+    }
 
     console.log(voter_id);
 
     $.post(
-        "vote.do",
+        "/elvis/user/vote.do",
         {
             voter_id:voter_id,
-            type: t,
-            voter_status: 2,
-            indexpage: 0,
+            type: type,
+            voter_status: voter_status,
+            indexpage: indexpage,
         },
         function (data) {
             console.log(data);
@@ -312,7 +325,7 @@ function selectByNamemy2(t) {
     console.log(title + "-----" + name);
 
     $.post(
-        "voteBySearch.do",
+        "/elvis/user/voteBySearch.do",
         {
             voter_id: voter_id,
             type: t,
@@ -409,18 +422,22 @@ function selectByNamemy2(t) {
 }
 
 //查询所有发布的问卷信息（my3）
-function fmy3(t) {
+function fmy3(voter_id,type,voter_status,indexpage) {
 
-    var voter_id = document.getElementById("ctl01_lblUserName").innerText;
+    var id = document.getElementById("ctl01_lblUserName").innerText;
 
+
+    if(voter_id == null){
+        voter_id = id;
+    }
 
     $.post(
-        "vote.do",
+        "/elvis/user/vote.do",
         {
             voter_id:voter_id,
-            type: t,
-            voter_status: 1,
-            indexpage: 0,
+            type: type,
+            voter_status: voter_status,
+            indexpage: indexpage,
         },
         function (data) {
             console.log(data);
@@ -515,7 +532,7 @@ function selectByNamemy3(t) {
     console.log(title + "-----" + name);
 
     $.post(
-        "voteBySearch.do",
+        "/elvis/user/voteBySearch.do",
         {
             voter_id: voter_id,
             type: t,

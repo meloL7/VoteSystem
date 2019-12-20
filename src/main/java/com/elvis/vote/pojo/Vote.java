@@ -12,7 +12,7 @@ public class Vote {
     private int type;//1.问卷 2.选择
     private int open_voter; //投票人id
     private String open_voter_name;
-    private String open_voter_colleage;
+    private String open_voter_colleage; //院
     private int open_voter_identify; //投票人身份 1老师 2学生
     private Date open_time; //开始请求审核时间
     private Date begin_time;//审核通过时间

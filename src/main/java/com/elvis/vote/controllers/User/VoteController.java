@@ -16,7 +16,7 @@ public class VoteController {
     @Resource(type = VoteServices.class)
     VoteServices voteServices;
 
-    @RequestMapping("vote/vote.do")
+    @RequestMapping("user/vote.do")
     public APIResult test(Integer voter_id, Integer type, Integer voter_status, Integer indexpage) {
         System.out.println("voter_status = " + voter_status);
         System.out.println("type = " + type);
@@ -26,7 +26,7 @@ public class VoteController {
         return test;
     }
 
-    @RequestMapping("vote/voteBySearch.do")
+    @RequestMapping("user/voteBySearch.do")
     public APIResult voteBySearch(Integer voter_id,Integer type,Integer voter_status,Integer title,String content,Integer indexpage){
         APIResult result = voteServices.queryVoteBySearch(voter_id,type, voter_status, title, content, indexpage);
         return result;
