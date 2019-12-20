@@ -5,6 +5,11 @@
 <mapper namespace="com.elvis.vote.dao.Admin.AdminVoteDao">
     <select id="searchInfo" resultType="com.elvis.vote.pojo.Vote">
        select * from vote where type=#{type} and vote_status=#{vote_status}
+       order by id
+    </select>
+
+    <select id="searchInfoAllNum" resultType="java.lang.Integer">
+       select count(1) from vote where type=#{type} and vote_status=#{vote_status}
     </select>
 
 </mapper>

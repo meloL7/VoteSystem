@@ -10,7 +10,8 @@ public class Vote {
     private int type;//1.问卷 2.选择
     private int open_voter; //投票人id
     private String open_voter_name;
-    private int open_voter_identify; //投票人身份
+    private String open_voter_colleage;
+    private int open_voter_identify; //投票人身份 1老师 2学生
     private Date open_time; //开始请求审核时间
     private Date begin_time;//审核通过时间
     private Date end_time;//结束时间（审核不通过时间为结束时间，正常投票2天自动结束）
@@ -61,8 +62,21 @@ public class Vote {
         this.open_voter = open_voter;
     }
 
-    public int getOpen_voter_identify() {
-        return open_voter_identify;
+    public String getOpen_voter_colleage() {
+        return open_voter_colleage;
+    }
+
+    public void setOpen_voter_colleage(String open_voter_colleage) {
+        this.open_voter_colleage = open_voter_colleage;
+    }
+
+    public String getOpen_voter_identify() {
+        //投票人身份 1老师 2学生
+        if(open_voter_identify == 1){
+            return "教师";
+        }else
+            return "学生";
+
     }
 
     public void setOpen_voter_identify(int open_voter_identify) {
@@ -158,6 +172,7 @@ public class Vote {
                 ", type=" + type +
                 ", open_voter=" + open_voter +
                 ", open_voter_name='" + open_voter_name + '\'' +
+                ", open_voter_colleage='" + open_voter_colleage + '\'' +
                 ", open_voter_identify=" + open_voter_identify +
                 ", open_time=" + open_time +
                 ", begin_time=" + begin_time +

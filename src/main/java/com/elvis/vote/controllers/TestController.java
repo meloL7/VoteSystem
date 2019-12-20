@@ -23,7 +23,7 @@ public class TestController {
     @RequestMapping("test.do")
 
     public void test(){
-        services.loadInfo(1,2);
+
 
            }
 

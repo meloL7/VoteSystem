@@ -1,13 +1,16 @@
 package com.elvis.vote.services.Admin;
 
+import com.elvis.vote.utils.APIResult;
+
 public interface AdminVoteServices {
 
     /**
      * 加载全部信息
      * @param type
      * @param vote_status
+     * @return
      */
-    public void loadInfo(int type, int vote_status);
+    public APIResult loadInfo(int type, int vote_status,int indexPage,int pageSize);
 
     /**
      * 根据条件调用方法

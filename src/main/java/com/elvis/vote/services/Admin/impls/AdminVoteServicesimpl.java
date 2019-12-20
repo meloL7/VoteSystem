@@ -2,21 +2,39 @@ package com.elvis.vote.services.Admin.impls;
 
 import com.elvis.vote.dao.Admin.AdminVoteDao;
 import com.elvis.vote.pojo.Vote;
-import com.elvis.vote.services.Admin.VoteServices;
+import com.elvis.vote.services.Admin.AdminVoteServices;
+import com.elvis.vote.utils.APIResult;
+import com.elvis.vote.utils.Pager;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class AdminVoteServicesimpl implements VoteServices {
+public class AdminVoteServicesimpl implements AdminVoteServices {
     @Resource(type = AdminVoteDao.class)
     AdminVoteDao dao;
-    @Override
-    public void loadInfo(int type, int vote_status) {
-        List<Vote> votes = dao.searchInfo(type, vote_status);
-    }
 
+
+    @Override
+    public APIResult loadInfo(int type, int vote_status, int indexPage, int pageSize) {
+        List<Vote> votes = dao.searchInfo(type, vote_status);
+        int countrows = dao.searchInfoAllNum(type, vote_status);
+
+        System.out.println("countRows"+countrows);
+        System.out.println(votes.get(0));
+        Pager pager = new Pager(countrows,indexPage,10);
+        pager.setData(votes);
+
+        APIResult result = null;
+        if (votes != null) {
+            result = new APIResult("成功！", true, 200, pager);
+        } else {
+            result = new APIResult("错误！", false, 500);
+        }
+       return result;
+    }
 
     @Override
     public void Search(String condition, String content, int type) {
