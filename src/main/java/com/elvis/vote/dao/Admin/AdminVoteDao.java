@@ -11,11 +11,11 @@ public interface AdminVoteDao {
     int searchInfoAllNum(int type,int vote_status);
     //查询
     public List<Vote> SearchBy(String open_voter_name,String open_voter_colleage,
-                         String open_voter_identify,String title,
-                         String nopass_result,  int all_select_num,
-                         int all_voter_num,int type,int vote_status);
+                               Integer open_voter_identify,String title,
+                               String nopass_result,  Integer all_select_num,
+                               Integer all_voter_num,Integer type,Integer vote_status);
     public int SearchCount(String open_voter_name,String open_voter_colleage,
-                               String open_voter_identify,String title,
-                               String nopass_result,  int all_select_num,
-                               int all_voter_num,int type,int vote_status);
+                           Integer open_voter_identify,String title,
+                           String nopass_result,  Integer all_select_num,
+                           Integer all_voter_num,Integer type,Integer vote_status);
 }

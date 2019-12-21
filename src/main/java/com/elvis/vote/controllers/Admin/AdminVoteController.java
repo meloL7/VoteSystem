@@ -22,7 +22,26 @@ public class AdminVoteController {
         APIResult apiResult = services.loadInfo(type, vote_status, indexPage, 10);
         return apiResult;
     }
+    @RequestMapping("admin/loadSearch.do")
+    public APIResult loadSearchInfo(String condition,String content,Integer type,Integer vote_status,Integer indexPage) {
+//        System.out.println(type+vote_status+indexPage);
 
+        System.out.println("--"+condition);
+        System.out.println("--"+content);
+
+
+        APIResult result = null;
+        try {
+            result = services.Search(condition, content, type, vote_status, indexPage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+
+
+
+    }
 
 
 

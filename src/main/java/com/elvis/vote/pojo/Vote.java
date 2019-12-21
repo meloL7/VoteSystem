@@ -76,8 +76,14 @@ public class Vote {
         //投票人身份 1老师 2学生
         if(open_voter_identify == 1){
             return "教师";
-        }else
+        }else if(open_voter_identify == 2){
             return "学生";
+        }else {
+            return null;
+        }
+
+
+
 
     }
 
