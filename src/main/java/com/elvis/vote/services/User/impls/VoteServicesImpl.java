@@ -18,13 +18,13 @@ public class VoteServicesImpl implements VoteServices {
 
 
     @Override
-    public APIResult queryAllVote(int voter_id,int type, int voter_status, int indexpage, int indexsize) {
+    public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage, int indexsize) {
         List<Vote> votes = null;
         Integer num = 0;
         APIResult result = null;
         try{
-            votes = voteDao.selectAllVote(voter_id,type, voter_status, indexpage, indexsize);
-            num = voteDao.selectAllNumber(voter_id,type, voter_status);
+            votes = voteDao.selectAllVote(voter_id,type, voter_status,vote_status, indexpage, indexsize);
+            num = voteDao.selectAllNumber(voter_id,type, voter_status,vote_status);
             System.out.println("数据条数："+num);
             Pager pager = new Pager(num, indexpage, 10);
             pager.setData(votes);
@@ -42,7 +42,7 @@ public class VoteServicesImpl implements VoteServices {
     }
 
     @Override
-    public APIResult queryVoteBySearch(Integer voter_id,Integer type, Integer voter_status, Integer title, String content, Integer indexpage) {
+    public APIResult queryVoteBySearch(Integer voter_id,Integer type, Integer voter_status,int vote_status, Integer title, String content, Integer indexpage) {
 
         Pager pager = null;
         APIResult result = null;
@@ -56,9 +56,9 @@ public class VoteServicesImpl implements VoteServices {
                 try{
                     //标题查
                     if(title == 0){
-                        Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status, content, null,null);
+                        Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
                         pager = new Pager(number,indexpage,10);
-                        List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status, content, null,null, indexpage, 10);
+                        List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null,null, indexpage, 10);
                         pager.setData(votes);
 
                         if(votes.size() > 0){
@@ -69,10 +69,10 @@ public class VoteServicesImpl implements VoteServices {
 
                     }else if(title == 1){ //人数查
                         Integer totle = Integer.valueOf(content);
-                        Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status, null, null,totle);
+                        Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, null, null,totle);
                         pager = new Pager(number,indexpage,10);
 
-                        List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status, null, null,totle, indexpage, 10);
+                        List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, null,totle, indexpage, 10);
 
                         pager.setData(votes);
                         if(votes.size() > 0){
@@ -86,9 +86,9 @@ public class VoteServicesImpl implements VoteServices {
                 }
             }else {
                 if(title == 0){
-                    Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status, content, null,null);
+                    Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
                     pager = new Pager(number,indexpage,10);
-                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status, content, null, null,indexpage, 10);
+                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null, null,indexpage, 10);
                     pager.setData(votes);
 
                     if(votes.size() > 0){
@@ -98,9 +98,9 @@ public class VoteServicesImpl implements VoteServices {
                     }
 
                 }else if(title == 1){ //按发起人查
-                    Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status, null, content,null);
+                    Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, null, content,null);
                     pager = new Pager(number,indexpage,10);
-                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status, null, content,null, indexpage, 10);
+                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, content,null, indexpage, 10);
 
                     pager.setData(votes);
                     if(votes.size() > 0){

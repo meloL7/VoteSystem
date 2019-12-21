@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface VoteDao {
 
-    public List<Vote> selectAllVote(int voter_id,int type, int voter_status, int indexpages, int pagesize);
+    public List<Vote> selectAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpages, int pagesize);
 
-    public Integer selectAllNumber(int voter_id,int type, int voter_status);
+    public Integer selectAllNumber(int voter_id,int type, int voter_status,int vote_status);
 
-    public List<Vote> selectVoteBySearch(int voter_id,int type, int voter_status, String title, String voterName,Integer totle, int indexpages, int pagesize);
+    public List<Vote> selectVoteBySearch(int voter_id,int type, int voter_status,int vote_status, String title, String voterName,Integer totle, int indexpages, int pagesize);
 
-    public Integer selectVoteBySearchNumber(int voter_id,int type, int voter_status, String title, String voterName,Integer totle);
+    public Integer selectVoteBySearchNumber(int voter_id,int type, int voter_status,int vote_status, String title, String voterName,Integer totle);
+
 }

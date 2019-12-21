@@ -202,7 +202,7 @@ function __doPostBack(eventTarget, eventArgument) {
 													</select>
 													<input name="searchbox" type="text" id="serachbox" class="serarchbox" />
 
-													<i class="search-icon index_iconfont" onclick="selectByNamemy1(2);">&#xe668;</i>
+													<i class="search-icon index_iconfont" onclick="selectByNamemy1(null,2,3,0,null,null);">&#xe668;</i>
 												</div>
 											</form>
 										</div>
@@ -355,7 +355,12 @@ function __doPostBack(eventTarget, eventArgument) {
 			//页面加载时加载
 			$(document).ready(function () {
 
-				fmy1(2);
+				if(window.location.href.indexOf("?") > 0){
+					backDetail();
+				}else {
+					fmy1(null,2,3,0);
+				}
+
 			});
 		</script>
 	</body>
