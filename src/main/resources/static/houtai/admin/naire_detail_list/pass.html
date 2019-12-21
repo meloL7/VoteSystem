@@ -297,7 +297,12 @@
 		<script>
 			//页面加载时加载
 			$(document).ready(function () {
-				pass(1,1);
+
+				if(window.location.href.indexOf("?") > 0){
+					psearch(1,4)
+				}else {
+					wait(1,4);
+				}
 			});
 		</script>
 	</body>

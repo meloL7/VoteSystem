@@ -292,11 +292,20 @@
 
 		<script src="../assets/pages/fileuploads-demo.js"></script>
 		<script src="../js/vote1.js"></script>
-		<script>
+		<script type="text/javascript">
+
 			//页面加载时加载
 			$(document).ready(function () {
-				wait(2,3);
+
+				if(window.location.href.indexOf("?") > 0){
+					backDetail();
+				}else {
+					wait(2,3);
+				}
+
+
 			});
+
 		</script>
 	</body>
 

@@ -302,7 +302,12 @@
 		<script>
 			//页面加载时加载
 			$(document).ready(function () {
-				timeout(1,4);
+
+				if(window.location.href.indexOf("?") > 0){
+					tsearch(1,4)
+				}else {
+					wait(1,4);
+				}
 			});
 		</script>
 	</body>

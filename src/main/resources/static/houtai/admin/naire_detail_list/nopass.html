@@ -300,7 +300,12 @@
 		<script>
 			//页面加载时加载
 			$(document).ready(function () {
-				nopass(1,2);
+
+				if(window.location.href.indexOf("?") > 0){
+					npsearch(1,4)
+				}else {
+					wait(1,4);
+				}
 			});
 		</script>
 	</body>
