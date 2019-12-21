@@ -16,22 +16,11 @@ public interface AdminVoteServices {
      * 根据条件调用方法
      * @param condition
      * @param content
+     * @return
      */
-    public void Search(String condition, String content, int type);
+    public APIResult Search(String condition, String content, int type, int vote_status) throws Exception;
 
-    public void searchByOpenVoterName(String open_voter_name);
 
-    public void searchByColleage(String colleage_name);
-
-    public void searchByOpenVoterIdentify(int open_voter_identify);
-
-    public void searchByVoteTitle(String title);
-
-    public void searchByAllSelectNum(int all_select_num);
-
-    public void searchByAllVoterNum(int all_voter_num);
-
-    public void searchByNopassResult(String nopass_result);
 
 
     /**
