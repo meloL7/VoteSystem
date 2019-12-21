@@ -65,12 +65,13 @@
 	</script>
 	<script src="./js/selectpick.js?v=4" type="text/javascript"></script>
 	<script src="./js/echarts.min.js"></script>
+	<script type="text/javascript" src="./js/joinVote.js"></script>
 </head>
 <body class="fp-viewing">
 <div class="main-container">
 	<div class="nav-bar aside size30x30" id="leftlabel">
 		<div class="ui-sidebar">
-			<a href="my1.html" class="return-wrapper">
+			<a id="return-wrapper" class="return-wrapper">
 				<em class="icon return-icon"></em>
 				<div class="tips">
 					<div class="caret-top"></div>
@@ -1055,6 +1056,12 @@
 
 
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		init();
+	});
+</script>
 
 </body>
 </html>

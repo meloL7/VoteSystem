@@ -22,7 +22,7 @@ public class Vote {
     private String range;//投票人范围（1老师，2学生，3老师和学生)
     private String nopass_result; //不通过的理由
     private int vote_status;//1.通过审核 2.未通过审核 3.等待审核 4.已结束
-    private int voter_status; //1 发布 2参与  3待参与
+    private int voter_status; //1 发布 2参与  3待参与  4
 
     public int getId() {
         return id;

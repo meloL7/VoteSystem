@@ -9,7 +9,7 @@
         from vote
         where id in (
             select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type} limit #{indexpages},#{pagesize}
+        ) and type = #{type} and vote_status = #{vote_status} limit #{indexpages},#{pagesize}
     </select>
 
     <select id="selectAllNumber" resultType="java.lang.Integer">
@@ -17,7 +17,7 @@
         from vote
         where id in (
             select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type}
+        ) and type = #{type} and vote_status = #{vote_status}
     </select>
 
     <select id="selectVoteBySearchNumber" resultType="java.lang.Integer">
@@ -25,7 +25,7 @@
         from vote
         where id in (
         select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type}
+        ) and type = #{type} and vote_status = #{vote_status}
         <if test="title != null">
             and title like concat('%',#{title},'%')
         </if>
@@ -43,7 +43,7 @@
         from vote
         where id in (
         select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type}
+        ) and type = #{type} and vote_status = #{vote_status}
         <if test="title != null">
             and title like concat('%',#{title},'%') limit #{indexpages},#{pagesize}
         </if>
