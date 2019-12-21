@@ -26,6 +26,6 @@ function init() {
 
 
     if(type.equals("1")){
-
+        $("#return-wrapper").attr();
     }
 }
