@@ -2,6 +2,7 @@ package com.elvis.vote.services.User;
 
 
 import com.elvis.vote.utils.APIResult;
+import io.swagger.models.auth.In;
 
 public interface VoteServices {
 
@@ -16,6 +17,8 @@ public interface VoteServices {
     public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage, int indexsize);
 
     public APIResult queryVoteBySearch(Integer voter_id,Integer type,Integer voter_status,int vote_status,Integer title,String content,Integer indexpage);
+
+    public APIResult queryVoteDetail(Integer voter_id, Integer vote_id);
 
     /**
      * 进入投票页面需要的数据
