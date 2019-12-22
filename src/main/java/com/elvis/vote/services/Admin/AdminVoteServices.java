@@ -18,7 +18,7 @@ public interface AdminVoteServices {
      * @param content
      * @return
      */
-    public APIResult Search(String condition, String content, int type, int vote_status) throws Exception;
+    public APIResult Search(String condition, String content, Integer type, Integer vote_status,Integer indexPage) throws Exception;
 
 
 

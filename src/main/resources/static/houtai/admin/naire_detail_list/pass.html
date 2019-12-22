@@ -169,7 +169,7 @@
 										<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
 										 maxlength="16" />
 
-										<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
+										<a onclick="psearch(1,1)" style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
 									</div>
 									<br><br>
 									<div class="table-responsive">
@@ -297,7 +297,12 @@
 		<script>
 			//页面加载时加载
 			$(document).ready(function () {
-				pass(1,1);
+
+				if(window.location.href.indexOf("?") > 0){
+					psearch(1,4)
+				}else {
+					wait(1,4);
+				}
 			});
 		</script>
 	</body>

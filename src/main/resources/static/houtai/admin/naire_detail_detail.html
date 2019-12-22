@@ -225,46 +225,16 @@
 
 <!-- Morris Js-->
 <script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<!--<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>-->
 <script src="../plugins/dropify/dropify.min.js"></script>
-<script src="../plugins/ckeditor/ckeditor.js"></script>
+<!--<script src="../plugins/ckeditor/ckeditor.js"></script>-->
 <!-- Morris Custom Js-->
 <script src="assets/pages/dashboard-demo.js"></script>
 
 <!-- App js -->
 <script src="assets/js/theme.js"></script>
 <script src="assets/pages/fileuploads-demo.js"></script>
-<script>
-    $('.input-group input[name="pickdate"]').each(function() {
-        $(this).datepicker({
-            language: 'zh-CN', //语言
-            autoclose: true, //选择后自动关闭
-            clearBtn: true, //清除按钮
-            format: "yyyy-mm-dd", //日期格式
-            orientation: 'bottom'
-        });
-    });
-</script>
 
-<script>
-    // 替换 <textarea id="editor1">为CKEditor实例
-    // 使用默认配置
-    var editorConfig = {
-        customConfig: './samples/editConfig.js'
-    };
-
-    CKEDITOR.replace('editor1', editorConfig);
-
-    // document.getElementById("tijiao").onclick = function () {
-    //     var data = CKEDITOR.instances.editor1.getData();
-    //     console.log(data)
-
-    // }
-
-    // document.getElementById("chongzhi").onclick = function () {
-    //     CKEDITOR.instances.editor1.setData('<p>This is the editor data.</p>');
-    // }
-</script>
 </body>
 
 </html>

@@ -18,19 +18,22 @@
         <if test="open_voter_name != null">
             and open_voter_name like concat('%',#{open_voter_name},'%')
         </if>
+        <if test="title != null">
+            and title like concat('%',#{title},'%')
+        </if>
         <if test="open_voter_colleage != null">
             and open_voter_colleage like concat('%',#{open_voter_colleage},'%')
         </if>
         <if test="open_voter_identify != null">
-            and open_voter_identify like concat('%',#{open_voter_identify},'%')
+            and open_voter_identify = #{open_voter_identify}
         </if>
         <if test="nopass_result != null">
             and nopass_result like concat('%',#{nopass_result},'%')
         </if>
-        <if test="all_select_num != (-1)">
+        <if test="all_select_num != null">
             and all_select_num = #{all_select_num}
         </if>
-        <if test="all_voter_num != (-1)">
+        <if test="all_voter_num != null">
             and all_voter_num  = #{all_voter_num}
         </if>
     </select>
@@ -41,19 +44,22 @@
         <if test="open_voter_name != null">
             and open_voter_name like concat('%',#{open_voter_name},'%')
         </if>
+        <if test="title != null">
+            and title like concat('%',#{title},'%')
+        </if>
         <if test="open_voter_colleage != null">
             and open_voter_colleage like concat('%',#{open_voter_colleage},'%')
         </if>
         <if test="open_voter_identify != null">
-            and open_voter_identify like concat('%',#{open_voter_identify},'%')
+            and open_voter_identify = #{open_voter_identify}
         </if>
         <if test="nopass_result != null">
             and nopass_result like concat('%',#{nopass_result},'%')
         </if>
-        <if test="all_select_num != (-1)">
+        <if test="all_select_num != null">
             and all_select_num = #{all_select_num}
         </if>
-        <if test="all_voter_num != (-1)">
+        <if test="all_voter_num != null">
             and all_voter_num  = #{all_voter_num}
         </if>
     </select>
