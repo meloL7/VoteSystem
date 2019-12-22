@@ -154,7 +154,9 @@
 						<div class="col-lg-4">
 							<div class="card card-body text-center">
 								<h4 class="card-title">第一题</h4>
+								<h5 class="card-text">题目类型:单选</h5>
 								<p class="card-text">你最喜欢的歌手.</p>
+
 								<div class="checkbox checkbox-info">
 									<div>
 
@@ -192,6 +194,7 @@
 						<div class="col-lg-4">
 							<div class="card card-body text-center">
 								<h4 class="card-title">第一题</h4>
+								<h5 class="card-text">题目类型:单选</h5>
 								<p class="card-text">你最喜欢的歌手.</p>
 
 								<div class="checkbox checkbox-info">
@@ -233,6 +236,7 @@
 						<div class="col-lg-4">
 							<div class="card card-body text-center">
 								<h4 class="card-title">第一题</h4>
+								<h5 class="card-text">题目类型:单选</h5>
 								<p class="card-text">你最喜欢的歌手.</p>
 								<div class="checkbox checkbox-info">
 									<div>
@@ -279,7 +283,9 @@
 
 
 
-					<div id="returnlast" style="display: inline-block;"><a href="naire_detail_list/wait.html" type="button" class="btn  btn-lg waves-effect waves-light">返回上一级</a></div>
+					<div onclick="returnPre()" style="display: inline-block;">
+                        <a id="my" type="button" class="btn  btn-lg waves-effect waves-light">返回上一级</a>
+                    </div>
 
 
 
@@ -372,9 +378,9 @@
 
 		<!-- Morris Js-->
 		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<!--		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>-->
 		<script src="../plugins/dropify/dropify.min.js"></script>
-		<script src="../plugins/ckeditor/ckeditor.js"></script>
+<!--		<script src="../plugins/ckeditor/ckeditor.js"></script>-->
 		<!-- Morris Custom Js-->
 		<script src="assets/pages/dashboard-demo.js"></script>
 
@@ -382,6 +388,20 @@
 		<script src="assets/js/theme.js"></script>
 
 		<script src="assets/pages/fileuploads-demo.js"></script>
+        <script src="js/detail.js"></script>
+		<script type="text/javascript">
+
+			//页面加载时加载
+			$(document).ready(function () {
+                // if(window.location.href.indexOf("?") > 0){
+                //
+                // }
+
+            });
+
+
+		</script>
+
 
 	</body>
 

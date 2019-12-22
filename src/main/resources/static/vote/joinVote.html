@@ -17,6 +17,11 @@
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 
 		<link rel="stylesheet" href="./css/icheck-bootstrap.css">
+
+		<script type="text/javascript" src="./js/joinVote.js"></script>
+
+
+
 		<style>
 			.selSendTypeBox {
             position: absolute;
@@ -46,13 +51,21 @@
 		<div class="main-container">
 			<div class="nav-bar aside size30x30" id="leftlabel">
 				<div class="ui-sidebar">
-					<a href="my1.html" class="return-wrapper">
-						<em class="icon return-icon"></em>
-						<div class="tips">
-							<div class="caret-top"></div>
-							返回我的问卷
-						</div>
-					</a>
+					<div id="back_html">
+						<a id="return-wrapper" class="return-wrapper">
+							<em class="icon return-icon"></em>
+							<div class="tips">
+								<div class="caret-top"></div>
+								返回我的问卷
+							</div>
+						</a>
+					</div>
+
+					<script type="text/javascript">
+
+
+					</script>
+
 
 
 
@@ -832,6 +845,15 @@
 
 
 					</div>
+				</div>
+			</div>
+		</div>
 
+		<script type="text/javascript">
+			$(document).ready(function () {
+				console.log("进入。。。。");
+				init();
+			});
+		</script>
 	</body>
 </html>

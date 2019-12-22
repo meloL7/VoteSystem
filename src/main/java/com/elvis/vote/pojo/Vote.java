@@ -12,7 +12,7 @@ public class Vote {
     private int type;//1.问卷 2.选择
     private int open_voter; //投票人id
     private String open_voter_name;
-    private String open_voter_colleage;
+    private String open_voter_colleage; //院
     private int open_voter_identify; //投票人身份 1老师 2学生
     private Date open_time; //开始请求审核时间
     private Date begin_time;//审核通过时间
@@ -22,7 +22,7 @@ public class Vote {
     private String range;//投票人范围（1老师，2学生，3老师和学生)
     private String nopass_result; //不通过的理由
     private int vote_status;//1.通过审核 2.未通过审核 3.等待审核 4.已结束
-    private int voter_status; //1 发布 2参与  3待参与
+    private int voter_status; //1 发布 2参与  3待参与  4
 
     public int getId() {
         return id;
@@ -76,8 +76,14 @@ public class Vote {
         //投票人身份 1老师 2学生
         if(open_voter_identify == 1){
             return "教师";
-        }else
+        }else if(open_voter_identify == 2){
             return "学生";
+        }else {
+            return null;
+        }
+
+
+
 
     }
 

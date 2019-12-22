@@ -16,19 +16,19 @@ public class VoteController {
     @Resource(type = VoteServices.class)
     VoteServices voteServices;
 
-    @RequestMapping("vote/vote.do")
-    public APIResult test(Integer voter_id, Integer type, Integer voter_status, Integer indexpage) {
+    @RequestMapping("user/vote.do")
+    public APIResult test(Integer voter_id, Integer type, Integer voter_status,Integer vote_status, Integer indexpage) {
         System.out.println("voter_status = " + voter_status);
         System.out.println("type = " + type);
         System.out.println(voter_id);
-        APIResult test = voteServices.queryAllVote(voter_id,type, voter_status, indexpage, 10);
+        APIResult test = voteServices.queryAllVote(voter_id,type, voter_status,vote_status, indexpage, 10);
         System.out.println(test);
         return test;
     }
 
-    @RequestMapping("vote/voteBySearch.do")
-    public APIResult voteBySearch(Integer voter_id,Integer type,Integer voter_status,Integer title,String content,Integer indexpage){
-        APIResult result = voteServices.queryVoteBySearch(voter_id,type, voter_status, title, content, indexpage);
+    @RequestMapping("user/voteBySearch.do")
+    public APIResult voteBySearch(Integer voter_id,Integer type,Integer voter_status,Integer vote_status,Integer title,String content,Integer indexpage){
+        APIResult result = voteServices.queryVoteBySearch(voter_id,type, voter_status,vote_status, title, content, indexpage);
         return result;
     }
 

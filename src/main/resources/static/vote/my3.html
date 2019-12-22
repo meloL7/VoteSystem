@@ -126,9 +126,9 @@
 								<ul class="surveyNav">
 
 
-									<li id="111">
-										<a href="my1.html" id='' class='folderbtn starQuestionnaires '>
-											<i class='index_iconfont'>&#xe650;</i><span>待参与的问卷</span></a>
+									<li>
+										<a href="my1.html" class="folderbtn starQuestionnaires">
+											<i class="index_iconfont">&#xe64e;</i><span>待参与的问卷</span></a>
 									</li>
 
 
@@ -136,18 +136,18 @@
 										<a href="my2.html" class="folderbtn starQuestionnaires">
 											<i class="index_iconfont">&#xe64e;</i><span>参与的问卷</span></a>
 									</li>
-
-
-									<li id="">
-										<a href="my3.html" class='folderbtn allsurvey folderItem cur '>
-											<i class='index_iconfont'>&#xe650;</i><span>发布的问卷</span></a>
+									<li id="111">
+										<a href="my3.html" id='' class='folderbtn allsurvey folderItem cur '>
+											<i class='index_iconfont'>&#xe64e;</i><span>发布的问卷</span></a>
 									</li>
-
-									<li>
-										<a href="my4.html" class="folderbtn starQuestionnaires">
-											<i class="index_iconfont">&#xe64e;</i><span>待参与的投票</span></a>
+									<li id="111">
+										<a href="my0.html" id='' class='folderbtn starQuestionnaires '>
+											<i class='index_iconfont'>&#xe64e;</i><span>发布失败的问卷</span></a>
 									</li>
-
+									<li id="111">
+										<a href="my4.html" id='' class='folderbtn starQuestionnaires '>
+											<i class='index_iconfont'>&#xe650;</i><span>待参与的投票</span></a>
+									</li>
 									<li id="111">
 										<a href="my5.html" id='' class='folderbtn starQuestionnaires '>
 											<i class='index_iconfont'>&#xe650;</i><span>参与的投票</span></a>
@@ -155,6 +155,10 @@
 									<li id="111">
 										<a href="my6.html" id='' class='folderbtn starQuestionnaires '>
 											<i class='index_iconfont'>&#xe650;</i><span>发布的投票</span></a>
+									</li>
+									<li id="111">
+										<a href="my7.html" id='' class='folderbtn starQuestionnaires '>
+											<i class='index_iconfont'>&#xe650;</i><span>发布失败的投票</span></a>
 									</li>
 
 
@@ -203,7 +207,7 @@
 
 													<input name="searchbox" type="text" id="serachbox" class="serarchbox" />
 
-													<i class="search-icon index_iconfont" onclick="selectByNamemy3(1);">&#xe668;</i>
+													<i class="search-icon index_iconfont" onclick="selectByNamemy3(null,1,1,0,null,null);">&#xe668;</i>
 												</div>
 											</form>
 										</div>
@@ -358,8 +362,12 @@
 
 			//页面加载时加载
 			$(document).ready(function () {
+				if(window.location.href.indexOf("?") > 0){
+					backDetail();
+				}else {
+					fmy3(null,1,1,0);
+				}
 
-				fmy3(1);
 			});
 		</script>
 
