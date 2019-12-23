@@ -18,19 +18,29 @@ public class AdminUserServicesimpl implements AdminUserServices {
     @Resource(type = AdminDao.class)
     AdminDao adminDao;
 
+
+    /**
+     * 修改邮箱
+     * @param id
+     * @param newEmail
+     * @return
+     */
     @Override
-    public void loadByIdentify(int identify) {
+    public APIResult stuChangeEmail(Integer id, String newEmail) {
+        int isflag = adminDao.isEmailExist(newEmail);
+        if (isflag <= 0) {
+            int i = adminDao.updateEmail(id, newEmail);
+            if (i > 0) {
+                /*发送邮件给用户表示修改邮箱成功*/
 
-    }
-
-    @Override
-    public void ResetPwd(Long id) {
-
-    }
-
-    @Override
-    public void stuChangeEmail(Long id, String newEmail) {
-
+                System.out.println("修改邮箱成功");
+                return new APIResult("修改成功！",true,200);
+            }else {
+                return new APIResult("修改失败！", false, 500);
+            }
+        }else{
+            return new APIResult("该邮箱已经存在，不能再注册了！",false,500);
+        }
     }
 
     @Override
@@ -118,8 +128,10 @@ public class AdminUserServicesimpl implements AdminUserServices {
         return result;
     }
 
+
+
     @Override
-    public APIResult searchMajor(String []colleagenames) {
+    public APIResult searchMajor(String[] colleagenames) {
         List<MyPower>biglist = new ArrayList();
         for (String colleagename:colleagenames
              ) {
