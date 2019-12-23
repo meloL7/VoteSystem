@@ -10,6 +10,7 @@ import com.elvis.vote.utils.Pager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -137,23 +138,28 @@ public class VoteServicesImpl implements VoteServices {
 
             //保存一个题目的所有选项
             Map<String,List> optionMap = new HashMap<>();
+            ArrayList<List> optionArray = new ArrayList<>();
 
             //保存一个题目的用户所选的选项
             Map<String,List> answer = new HashMap<>();
+            ArrayList<List> answerArray = new ArrayList<>();
 
             //根据题目查询出所有的选项
             for (int i = 0; i < selects.size(); i++) {
 
                 List<Option> options = voteDao.selectAllOption(selects.get(i).getSelect_id());
-                optionMap.put("option"+i,options);
+//                optionMap.put("option"+i,options);
+                optionArray.add(i,options);
 
                 //得到该题目的用户所选的选项
                 List<Option> ans = voteDao.selectAllOptionByselectid(voter_id, vote_id, selects.get(i).getSelect_id());
-                answer.put("answer"+i,ans);
+//                answer.put("answer"+i,ans);
+                answerArray.add(i,ans);
+
 
             }
-            data.put("allOption",optionMap);
-            data.put("option",answer);
+            data.put("allOption",optionArray);
+            data.put("option",answerArray);
 
             result.setData(data);
         }else {
