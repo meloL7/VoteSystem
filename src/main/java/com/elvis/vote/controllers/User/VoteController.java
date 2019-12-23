@@ -32,6 +32,13 @@ public class VoteController {
         return result;
     }
 
+    @RequestMapping("user/voteDetail.do")
+    public APIResult voteDetail(Integer voter_id,Integer vote_id){
+        APIResult result = voteServices.queryVoteDetail(voter_id, vote_id);
+        System.out.println(result);
+        return result;
+    }
+
 
 
 }
