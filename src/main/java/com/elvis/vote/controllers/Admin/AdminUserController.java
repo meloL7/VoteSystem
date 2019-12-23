@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @Controller
 @ResponseBody
@@ -29,4 +30,18 @@ public class AdminUserController {
         return list;
     }
 
+
+
+    //权限
+    @RequestMapping("admin/loadcolleage")
+    public APIResult searchColleage(){
+        APIResult result = userServices.searchColleage();
+        return result;
+    }
+    @RequestMapping("admin/loadmajor")
+    public APIResult searchMajor(String[] colleagecontent){
+
+        APIResult result = userServices.searchMajor(colleagecontent);
+        return result;
+    }
 }

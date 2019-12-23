@@ -6,10 +6,10 @@ import com.elvis.vote.services.Admin.AdminUserServices;
 import com.elvis.vote.utils.APIResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -105,23 +105,69 @@ public class AdminUserServicesimpl implements AdminUserServices {
 
     //权限
     @Override
-    public void searchColleage() {
+    public APIResult searchColleage() {
+
         List<Colleage> colleages = adminDao.searchColleages();
+        System.out.println(colleages);
+        APIResult result = null;
+        if(colleages!=null){
+            result = new APIResult("成功！", true, 200, colleages);
+        }else {
+            result = new APIResult("查询失败！", false, 500);
+        }
+        return result;
     }
 
     @Override
-    public void searchMajor(String colleagename) {
-        List<Major> majors = adminDao.searchMajors(colleagename);
+    public APIResult searchMajor(String []colleagenames) {
+        List<MyPower>biglist = new ArrayList();
+        for (String colleagename:colleagenames
+             ) {
+            Integer last = colleagename.lastIndexOf(">");
+            String parentName = colleagename;
+
+            String real =colleagename.substring(last+1,colleagename.length());
+//            System.out.println(parentName);
+//            System.out.println(real);
+            List<Major> majors = adminDao.searchMajors(real);
+
+            MyPower power = new MyPower();
+            power.setParentName(parentName);
+            power.setData(majors);
+            biglist.add(power);
+        }
+//
+        APIResult result = null;
+        if(biglist!=null){
+            result = new APIResult("成功！", true, 200, biglist);
+        }else {
+            result = new APIResult("查询失败！", false, 500);
+        }
+        return result;
     }
 
     @Override
-    public void searchGrade(String colleagename, String majorname) {
+    public APIResult searchGrade(String colleagename, String majorname) {
         List<Grade> grades = adminDao.searchGrades(colleagename, majorname);
+        APIResult result = null;
+        if(grades!=null){
+            result = new APIResult("成功！", true, 200, grades);
+        }else {
+            result = new APIResult("查询失败！", false, 500);
+        }
+        return result;
     }
 
     @Override
-    public void searchClasses(String colleagename, String majorname, String gradename) {
+    public APIResult searchClasses(String colleagename, String majorname, String gradename) {
         List<Classes> classes = adminDao.searchClasses(colleagename, majorname, gradename);
+        APIResult result = null;
+        if(classes!=null){
+            result = new APIResult("成功！", true, 200, classes);
+        }else {
+            result = new APIResult("查询失败！", false, 500);
+        }
+        return result;
     }
 
 

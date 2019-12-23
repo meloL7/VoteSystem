@@ -25,6 +25,12 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		 crossorigin="anonymous"></script>
 
+		<style>
+			.bootstrap-select{
+				min-width: 1080px;
+
+			}
+		</style>
 
 
 	</head>
@@ -35,9 +41,9 @@
 
 					<div class="row clearfix">
 						<div class="col-md-12 column">
-							<div class="jumbotron">
+							<div class="jumbotron" style="background-color: white">
 								<h1 align="center">
-									创 建 问 卷
+									问 卷 权 限 设 置
 								</h1>
 							</div>
 						</div>
@@ -65,7 +71,7 @@
 							</select>
 						</div>
 						<br><br><br>
-						<div class="col-md-4 column">
+						<div class="col-md-12 column">
 							专业 :
 							<select class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索" data-actions-box="true"
 							 style="width:1000px;">
@@ -79,7 +85,7 @@
 							</select>
 						</div>
 						<br><br><br>
-						<div class="col-md-4 column">
+						<div class="col-md-12 column">
 							年级 :
 							<select class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索" data-actions-box="true"
 							 style="width:1000px;">
@@ -93,7 +99,7 @@
 							</select>
 						</div>
 						<br><br><br>
-						<div class="col-md-4 column">
+						<div class="col-md-12 column">
 							班级：
 							<select class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索" data-actions-box="true"
 							 style="width:1000px;">
@@ -109,7 +115,7 @@
 						<br><br><br>
 						<div class="col-md-12 column">
 							范围 :
-							<select class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索" data-actions-box="true"
+							<select class="selectpicker" multiple data-actions-box="true"
 							 style="width:1000px;">
 								　<optgroup label="范围">
 									<option>廖俊杰</option>
@@ -120,19 +126,29 @@
 								　
 							</select>
 						</div>
+						<br><br><br>
+						<div class="col-md-12 column">
+							持续时间 :
+							<select class="selectpicker" data-actions-box="true"
+									style="width:1000px;">
+								　<optgroup label="持续时间">
+								<option>一天</option>
+								<option>两天</option>
+								<option>三天</option>
+							</optgroup>
+								　
+							</select>
+						</div>
 					</div>
 
 					<br><br>
 
 
 					<div class="content">
-						<h1 align="center">标题</h1>
-						<br>
-						<input class="form-control" type="text" maxlength="16" />
-						<br><br>
-						<a class="btn btn-info col-lg-12 ">创建</a>
+
+						<a href="vote.html" class="btn btn-info col-lg-12 ">创建选择</a>
 						<br><br><br>
-						<a class="btn btn-info col-lg-12">取消创建</a>
+						<a href="create.html" class="btn btn-info col-lg-12">返回上一级</a>
 					</div>
 				</div>
 			</div>

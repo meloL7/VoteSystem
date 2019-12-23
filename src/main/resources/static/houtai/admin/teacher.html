@@ -2,34 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>主页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
-    <meta content="MyraStudio" name="author"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="MyraStudio" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+
+
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- Plugins css -->
-    <link href="../plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css"/>
-    <link href="../plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
-    <link href="../plugins/select2/select2.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 
 
     <!-- App css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
-    <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
 
     <style>
-        .select2-selection {
-            min-width: 400px;
-            width: 100%;
+        .bootstrap-select{
+            min-width: 1080px;
+
         }
     </style>
 
@@ -254,107 +260,126 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title h4" id="myLargeModalLabel">权 限 管 理</h5>
-                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
-                            aria-label="Close">
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body" style="width: 200px;">
 
-                    <!-- <div class="row">
-                            <h1 align="center">标题</h1>
-                            <br>
-                            <input class="form-control" type="text" maxlength="16" />
+                    <div class="container">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
 
 
-                            <a class="btn btn-info col-lg-3 ">创建</a>
 
 
-                        </div> -->
-
-                    <div id="colleage">
-                        <label>院系</label>
-
-                        <select class="form-control select2-multiple" onchange="colchange()"
-                                data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                            </optgroup>
 
 
-                        </select>
 
 
+
+                                <div class="row clearfix">
+                                    <div class="col-md-12 column" id="t1">
+                                        学院 :
+                                        <select id="colleageselc" class="selectpicker" multiple data-live-search="true"
+                                                data-live-search-placeholder="搜索" data-actions-box="true"
+                                                onchange="colchange()"
+                                        >
+
+                                        </select>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t2">
+                                        专业 :
+                                        <select id="majorselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="majchange()">
+                                            <!-- 　<optgroup label="专业">
+                                                <option>廖俊杰</option>
+                                                <option>option2</option>
+                                                <option>option3</option>
+                                                <option>option4</option>
+                                            </optgroup> -->
+                                            　
+                                        </select>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t3">
+                                        年级 :
+                                        <select id="gradeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="grachange()">
+                                            　 <optgroup label="1年级">
+                                            <option>廖俊杰</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </optgroup>
+                                            <optgroup label="2年级">
+                                                <option>廖俊杰</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </optgroup>
+                                            　
+                                        </select>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t4">
+                                        班级：
+                                        <select id="classesselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="clachange()">
+                                            　<optgroup label="班级">
+                                            <option>廖俊杰</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                        </optgroup>
+
+                                            　
+                                        </select>
+
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t5">
+                                        范围 :
+                                        <select id="rangeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="ranchange()">
+                                            　<optgroup label="范围">
+                                            <option>廖俊杰</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                        </optgroup>
+                                            　
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="major">
-                        <label>专业</label>
-
-                        <select class="form-control select2-multiple" onchange="majchange()" id="major"
-                                data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">1111</option>
-                                <option value="HI">2222</option>
-                            </optgroup>
 
 
-                        </select>
-                    </div>
 
-                    <div id="grade">
-                        <label>年级</label>
-
-                        <select class="form-control select2-multiple" onchange="grachange()" id="grade"
-                                data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">3333</option>
-                                <option value="HI">4444</option>
-                            </optgroup>
-
-
-                        </select>
-                    </div>
-
-                    <div id="classes">
-                        <label>班级</label>
-
-                        <select class="form-control select2-multiple" onchange="clachange()" id="classes"
-                                data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-                            <option value="AK">5555</option>
-                            <option value="HI">6666</option>
-                        </select>
-                    </div>
-
-                    <div id="range">
-                        <label>可投票人群范围</label>
-
-                        <select class="form-control select2-multiple" onchange="ranchange()" id="range"
-                                data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">教师</option>
-                                <option value="HI">学生</option>
-                            </optgroup>
-
-
-                        </select>
-                    </div>
 
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">
-                        Close
-                    </button>
+                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+
 
 
                     <!-- 这里需要上传到数据库 -->
-                    <button id="powerchange" type="button" class="btn btn-primary waves-effect waves-light">Save
-                        changes
-                    </button>
+                    <button id="powerchange" type="button" onclick="printInfo()" class="btn btn-primary waves-effect waves-light">Save
+                        changes</button>
 
                 </div>
+
 
 
             </div>
@@ -439,13 +464,15 @@
 <script src="../plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
 <script src="../plugins/moment/moment.js"></script>
 <script src="../plugins/daterangepicker/daterangepicker.js"></script>
-<script src="../plugins/select2/select2.min.js"></script>
+<!--<script src="../plugins/select2/select2.min.js"></script>-->
 <script src="../plugins/switchery/switchery.min.js"></script>
 <script src="../plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
 <script src="../plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
 
 <!-- Custom Js -->
-<script src="assets/pages/advanced-plugins-demo.js"></script>
+<!--<script src="assets/pages/advanced-plugins-demo.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
 
 <!-- App js -->
 <script src="assets/js/theme.js"></script>
@@ -469,5 +496,117 @@
 </script>
 
 </body>
+<script>
+    var colleage = "";
+    var major = "";
+    var grade = "";
+    var classes = "";
+    var range = "";
+
+
+
+    function colchange() {
+        // console.log($("#t1"));
+        var colleagecontent = myDate("#t1");
+        loadMajor(colleagecontent)
+        $('#majorselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#majorselc").selectpicker('refresh'); //刷新
+
+        $('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#gradeselc").selectpicker('refresh'); //刷新
+
+        $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#classesselc").selectpicker('refresh'); //刷新
+
+        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#rangeselc").selectpicker('refresh'); //刷新
+    }
+
+    function majchange() {
+        loadMajor();
+        major = myDate("#t2");
+        $('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#gradeselc").selectpicker('refresh'); //刷新
+
+        $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#classesselc").selectpicker('refresh'); //刷新
+
+        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#rangeselc").selectpicker('refresh'); //刷新
+    }
+
+    function grachange() {
+        grade = myDate("#t3");
+        console.log(grade)
+        // uploadClass(grade)
+
+
+        $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#classesselc").selectpicker('refresh'); //刷新
+
+        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#rangeselc").selectpicker('refresh'); //刷新
+    }
+
+    function clachange() {
+        classes = myDate("#t4");
+        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#rangeselc").selectpicker('refresh'); //刷新
+    }
+
+    function ranchange() {
+        range = myDate("#t5");
+    }
+
+
+    function myDate(t) {
+        var val = "",
+            staffs = [];
+        // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+
+        //循环的取出插件选择的元素(通过是否添加了selected类名判断)
+        for (var i = 0; i < $("li.selected").length; i++) {
+            var kk = $(t).find("li.selected").eq(i)
+            // for(var  j in kk){
+            // 	var value = j+"-----"+kk[j]
+            // 	console.log(value)
+            // }
+            var g = kk.attr("class")
+            g = `li.${g.substr(0,g.length-8)}`
+            // console.log(g)
+            var op = $(t).find(g).eq(0).find(".text").text()
+            val = $(t).find("li.selected").eq(i).find(".text").text();
+
+            if (val != '') {
+                val = op+">"+val
+                staffs.	push(val);
+            }
+            console.log(staffs)
+        }
+
+        return staffs;
+
+    }
+
+
+
+
+
+
+    // //刷新年级
+    // //刷新班级
+    // function uploadClass(grad){
+    //     var str = `<optgroup label="班级">
+	// 			<option>廖俊杰</option>
+	// 			<option>4</option>
+	// 			<option>5</option>
+	// 		    <option>6</option>
+	// 		</optgroup>`
+    //     for (var i = 0; i < grad.length; i++) {
+    //
+    //     }
+    // }
+
+</script>
 
 </html>

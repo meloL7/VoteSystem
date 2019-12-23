@@ -43,5 +43,11 @@ public interface AdminDao {
     List<Grade> searchGrades(String colleageName, String majorName);
     List<Classes> searchClasses(String colleageName, String majorName, String gradeName);
 
+    //大小
+    Integer searchColleagesNum();
+    Integer searchMajorsNum(String colleageName);
+    Integer searchGradesNum(String colleageName, String majorName);
+    Integer searchClassesNum(String colleageName, String majorName, String gradeName);
+
 
 }
