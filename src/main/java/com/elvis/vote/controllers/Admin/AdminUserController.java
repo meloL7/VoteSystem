@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @Controller
 @ResponseBody
@@ -28,5 +29,23 @@ public class AdminUserController {
         APIResult list = userServices.searchUserList(key, value, identify, indexpage);
         return list;
     }
+    @RequestMapping("admin/changeEmail.do")
+    public APIResult changeEmail(Integer id,String newEmail){
+        APIResult result = userServices.stuChangeEmail(id, newEmail);
+        return result;
+    }
 
+
+    //权限
+    @RequestMapping("admin/loadcolleage")
+    public APIResult searchColleage(){
+        APIResult result = userServices.searchColleage();
+        return result;
+    }
+    @RequestMapping("admin/loadmajor")
+    public APIResult searchMajor(String[] colleagecontent){
+
+        APIResult result = userServices.searchMajor(colleagecontent);
+        return result;
+    }
 }

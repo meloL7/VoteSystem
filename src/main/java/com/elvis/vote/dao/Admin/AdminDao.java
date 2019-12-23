@@ -1,5 +1,4 @@
 package com.elvis.vote.dao.Admin;
-
 import com.elvis.vote.pojo.*;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface AdminDao {
     List<User> selectAllUsers(String identify);
 
     /**
-     *
+     * 按条件来查找教师学生列表
      * @param sno
      * @param sname
      * @param colleage
@@ -26,14 +25,20 @@ public interface AdminDao {
     List<User> selectUserByValue(String sno,String sname,String colleage,String major,String grade,String classes,String identify);
 
 
+    /**
+     * 通过用户的ID来修改邮箱
+     * @param id
+     * @param email
+     * @return
+     */
+    int updateEmail(Integer id,String email);
 
-
-
-
-
-
-
-
+    /**
+     * 查看用户是否已经存在于数据库中了
+     * @param email
+     * @return
+     */
+    int isEmailExist(String email);
 
 
 

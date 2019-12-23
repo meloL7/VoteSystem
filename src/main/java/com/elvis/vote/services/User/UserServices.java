@@ -1,26 +1,33 @@
 package com.elvis.vote.services.User;
 
+import com.elvis.vote.utils.APIResult;
+
 public interface UserServices {
+
+    APIResult login(String sno, String pwd);
+
 
     /**
      * 加载用户信息
-     * @param xno
+     * @param sno
      * @return
      */
-    public Object loadUserInfo(String xno);
+    public APIResult loadUserInfo(String sno);
 
     /**
      * 查询原密码是否正确
-     * @param id
+     * @param sno
      * @param oldpwd
      * @return
      */
-    public boolean checkOldPwd(Long id, String oldpwd);
+    public boolean checkOldPwd(String sno, String oldpwd);
+
     /**
-     * 更新用户信息
+     * 更改用户密码
      * @param newPwd
      */
-    public Boolean updateUserInfo(Long id, String newPwd);
+    public Boolean updatePwd(String sno, String newPwd);
+
 
 
     /**
@@ -35,6 +42,7 @@ public interface UserServices {
     public void searchByOpenVoter(String name);
 
     public void searchByAllVoters(int num);
+
 
 
 //    /**
