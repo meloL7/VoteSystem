@@ -27,7 +27,15 @@ function init() {
     var voter_status = value[3];
     var indexpage = value[4];
 
-    voteDetail(voter_id,vote_id);
+
+    if(flag == 1){
+        //未通过
+        voteDetail(voter_id,vote_id,type,false);
+    }else {
+        voteDetail(voter_id,vote_id,type,true);
+    }
+
+
 
     if(flag == 0){
         if(value.length > 5){
@@ -97,7 +105,7 @@ function init() {
 
         }
     }else {
-        if(value.length > 5){
+        if(value.length > 6){
             var title = value[5];
             var c = value[6];
             var content = decodeURI(c);
@@ -128,7 +136,7 @@ function init() {
 
 
 //
-function voteDetail(voter_id,vote_id) {
+function voteDetail(voter_id,vote_id,type,isFlag) {
     $.post(
         "/elvis/user/voteDetail.do",
         {
@@ -138,7 +146,47 @@ function voteDetail(voter_id,vote_id) {
         function (data) {
             console.log(data);
 
-            var list_content = $("#ctl02_ContentPlaceHolder1_divStatData");
+            var h = $("#divFilter");
+
+
+            if(type == 1){
+
+                con = "<div class=\"playSet\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"head clearfix\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"htit pull-left\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span style=\"text-decoration: underline; cursor: pointer;\">问卷详情</span>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+
+            }else {
+                con ="<div class=\"playSet\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"head clearfix\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"htit pull-left\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span style=\"text-decoration: underline; cursor: pointer;\">投票详情</span>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
+                    "\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+
+                console.log(con)
+
+            }
+            h.append(con);
+
+            //审核不通过原因
+            var beacuse = $("#beacuse");
+            console.log(h);
+            var con;
+            if(!isFlag){
+                var cuse = "<span>不通过原因："+data.data.vote.nopass_result+"</span>";
+            }
+            beacuse.append(cuse);
 
             var content = $(".title-item");
 
@@ -154,10 +202,8 @@ function voteDetail(voter_id,vote_id) {
 
             content.append(title);
 
+            //遍历所有的题目
             for (var index = 0; index < data.data.select.length; index++) {
-                //拼接哪个问题下的所有选项
-                var optionIndex = "option"+index;
-                console.log(optionIndex);
 
                 var head = "<div class='count unit'>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n" +
@@ -169,103 +215,98 @@ function voteDetail(voter_id,vote_id) {
 
                 //判断是单选还是多选
                 if(data.data.select[index].select_type == 2){
-                    //遍历所有的选项
-                    for(var i = 0;i < data.data.allOption.option0.length;i++){
-                        var options = "<div class=\"checkbox icheck-peterriver\">\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" checked id=\"ck1\">\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck1\">"+data.data.allOption.option0[i].option_content+"</label>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
-                        content.append(options);
+                    //遍历该题目所有的选项
+                    for(var k = index;k < index + 1;k++){
+                        //遍历所有的选项
+                        for (var j = 0; j < data.data.allOption[k].length; j++) {
+                            var options = "<div class=\"checkbox icheck-peterriver\" id='"+data.data.allOption[k][j].option_id+"'>\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\"   class='radio_detail' >\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck1\">"+data.data.allOption[k][j].option_content+"</label>\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+                            content.append(options);
+                        }
+
                     }
                 }else {
-                    for (var i = 0; i < data.data.allOption.option0.length; i++) {
-                        options = "<div class=\"radio icheck-peterriver\">\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" id=\"peterriver1\" name=\"peterriver\" />\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"peterriver1\">"+data.data.allOption.option0[i].option_content+"</label>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+                    for (var q = index;q < index + 1;q++){
 
-                        content.append(options);
+                        for (var i = 0; i < data.data.allOption[q].length; i++) {
+
+                            options = "<div class=\"radio icheck-peterriver\" id='"+data.data.allOption[q][i].option_id+"' >\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" class='radio_detail' id='peterriver"+data.data.allOption[q][i].option_id+"'  name='peterriver"+data.data.allOption[q][i].option_id+"' />\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for='peterriver"+data.data.allOption[q][i].option_id+"' >"+data.data.allOption[q][i].option_content+"</label>\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+
+                            content.append(options);
+                        }
                     }
+
                 }
                 content.append("</div>");
                 content.append("</div>");
                 content.append("</div>");
+
+                voteAnswer(index,data);
+
+
             }
-
-
-
-
-
-
-            
-            // var content = "<div class='title-item'>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class='title'>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1>"+data.data.vote.title+"</h1>\n" +
-            //     "\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"title\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h2>"+data.data.vote.introduction+"</h2>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class='count unit'>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"jumbotron well\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>"+data.data.select[index].select_title+"</h3>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"radio icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" id=\"peterriver1\" name=\"peterriver\" />\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"peterriver1\">"+data.data.allOption.option0[0].option_content+"</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"radio icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" checked id=\"peterriver2\" name=\"peterriver\" />\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"peterriver2\">"+data.data.allOption.option0[1].option_content+"</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"radio icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" checked id=\"peterriver3\" name=\"peterriver\" />\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"peterriver3\">"+data.data.allOption.option0[2].option_content+"</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"radio icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" checked id=\"peterriver4\" name=\"peterriver\" />\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"peterriver4\">"+data.data.allOption.option0[3].option_content+"</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\n" +
-            //     "\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"jumbotron well\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>你最喜欢的明星</h3>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"checkbox icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" checked id=\"ck1\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck1\">peterriver</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"checkbox icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" id=\"ck2\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck2\">peterriver</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"checkbox icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\"  id=\"ck3\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck3\">peterriver</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"checkbox icheck-peterriver\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\"  id=\"ck4\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck4\">peterriver</label>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div style=\"padding: 10px 0 10px;\">\n" +
-            //     "\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div style=\"clear: both;\">\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div style=\"padding-bottom: 30px;\">\n" +
-            //     "\n" +
-            //     "\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"divclear\"></div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"divclear\"></div>\n" +
-            //     "\t\t\t\t\t\t\t\t\t\t\t\t</div>";
-
-           // list_content.append(content);
-
         }
-    )
+    );
+}
+
+//渲染答案
+//index表示哪一道题
+function voteAnswer(index,data) {
+    //获取span标签里面的option_id的值
+
+    for (var i = 0; i < data.data.allOption[index].length; i++) {
+        for (var j = 0; j < data.data.option[index].length; j++) {
+            if(data.data.allOption[index][i].option_id == data.data.option[index][j].option_id){
+                console.log("找到正确答案。。。" + data.data.option[index][j].option_id);
+                var test = $("#"+data.data.allOption[index][i].option_id);
+
+                var x = test.find(".radio_detail");
+                x.attr("checked","true");
+
+
+
+                // console.log(test);
+                 console.log("input"+x);
+
+            }
+        }
+    }
+
+
+    // var test = document.getElementsByClassName("radio icheck-peterriver")[0].getAttribute("value");
+    // console.log(test);
+
+    // var option_id = [];
+    // option_id.push($(".option_id").text());
+
+    // console.log("option_id = "+option_id.pop());
+
+
+
+    // var answer = [];
+    // //得到该题所选的选项
+    // for (var i = 0; i < data.data.option[index].length; i++) {
+    //     answer.push(data.data.option[index][i].option_id);
+    // }
+    //
+    // for (var j = 0; j <answer.length;j++){
+    //     if(data.data.allOption[index][i].option_id == answer[j]){
+    //
+    //     }
+    //
+    // }
+    //
+
+    // console.log(answer.pop());
+
+
+
+
+
+
 }
