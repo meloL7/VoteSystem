@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.elvis.vote.dao.User.UserDao">
+    <sql id="selectPrefix">
+        id,sno,pwd,email,sname,identify,sex,age,colleage,major,grade,classes,remark,del_flag
+    </sql>
+
+    <!--更改邮箱-->
+    <update id="updateEmail">
+        update user set email = #{email} where id = #{id}
+    </update>
+
+    <!--用户是否已经注册了-->
+    <select id="isUserExist" resultType="java.lang.Integer">
+        select count(1) from user where sno = #{sno}
+    </select>
+
+
+    <!--登录用的-->
+    <select id="selectOne" resultType="com.elvis.vote.pojo.User">
+        select
+        <include refid="selectPrefix"></include>
+        from user where sno=#{sno} and pwd=#{pwd}
+    </select>
+
+
+
+
+
+
+</mapper>

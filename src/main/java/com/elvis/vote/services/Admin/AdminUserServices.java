@@ -5,25 +5,19 @@ import com.elvis.vote.utils.APIResult;
 import io.swagger.models.auth.In;
 
 public interface AdminUserServices {
-
-    /**
-     * 通过身份加载信息
-     * @param identify
-     */
-    public void loadByIdentify(int identify);
-
-    /**
-     * 修改密码，发送邮箱告知
-     * @param id
-     */
-    public void ResetPwd(Long id);
+//
+//    /**
+//     * 修改密码，发送邮箱告知
+//     * @param id
+//     */
+//    boolean ResetPwd(Integer id);
 
     /**
      * 修改邮箱
      * @param id
      * @param newEmail
      */
-    public void stuChangeEmail(Long id, String newEmail);
+    APIResult stuChangeEmail(Integer id, String newEmail);
 
 
     /**

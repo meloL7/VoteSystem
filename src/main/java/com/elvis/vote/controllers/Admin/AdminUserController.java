@@ -30,4 +30,16 @@ public class AdminUserController {
         return list;
     }
 
+
+    @RequestMapping("admin/changeEmail.do")
+    public APIResult changeEmail(Integer id,String newEmail){
+        APIResult result = userServices.stuChangeEmail(id, newEmail);
+        return result;
+    }
+
+
+
+
+
+
 }

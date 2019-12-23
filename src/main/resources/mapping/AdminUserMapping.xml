@@ -37,19 +37,19 @@
         </if>
     </select>
 
+    <!--邮箱是否已经注册了-->
+    <select id="isEmailExist" resultType="java.lang.Integer">
+        select count(1) from user where email = #{email}
+    </select>
 
-    <update id="updateEmail" parameterType="com.elvis.vote.pojo.User">
-        update user
-        <set>
-            <if test="email!=null">
-                email = #{email}
-            </if>
-            <if test="pwd!=null">
-                pwd = #{pwd}
-            </if>
-        </set>
-        where id = #{id}
+    
+    <!--更改邮箱-->
+    <update id="updateEmail">
+        update user set email = #{email} where id = #{id}
     </update>
+
+
+
 
 
     <!--    权限-->

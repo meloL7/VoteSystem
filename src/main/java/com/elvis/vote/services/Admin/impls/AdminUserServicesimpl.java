@@ -9,6 +9,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -17,20 +19,36 @@ public class AdminUserServicesimpl implements AdminUserServices {
     @Resource(type = AdminDao.class)
     AdminDao adminDao;
 
-    @Override
-    public void loadByIdentify(int identify) {
 
+//    @Override
+//    public boolean ResetPwd(Long id) {
+//        return false;
+//    }
+
+    /**
+     * 修改邮箱
+     * @param id
+     * @param newEmail
+     * @return
+     */
+    @Override
+    public APIResult stuChangeEmail(Integer id, String newEmail) {
+        int isflag = adminDao.isEmailExist(newEmail);
+        if (isflag <= 0) {
+            int i = adminDao.updateEmail(id, newEmail);
+            if (i > 0) {
+                /*发送邮件给用户表示修改邮箱成功*/
+
+                System.out.println("修改邮箱成功");
+                return new APIResult("修改成功！",true,200);
+            }else {
+                return new APIResult("修改失败！", false, 500);
+            }
+        }else{
+            return new APIResult("该邮箱已经存在，不能再注册了！",false,500);
+        }
     }
 
-    @Override
-    public void ResetPwd(Long id) {
-
-    }
-
-    @Override
-    public void stuChangeEmail(Long id, String newEmail) {
-
-    }
 
     @Override
     public APIResult loadUserList(String identify, Integer indexpage) {
