@@ -1,6 +1,8 @@
 package com.elvis.vote.services.Admin;
 
+import com.elvis.vote.pojo.User;
 import com.elvis.vote.utils.APIResult;
+import io.swagger.models.auth.In;
 
 public interface AdminUserServices {
 //
@@ -47,10 +49,10 @@ public interface AdminUserServices {
 
 
     //权限管理
-    public APIResult searchColleage();
-    public APIResult searchMajor(String[] colleagename);
-    public APIResult searchGrade(String colleagename,String majorname);
-    public APIResult searchClasses(String colleagename, String majorname, String gradename);
+    public void searchColleage();
+    public void searchMajor(String colleagename);
+    public void searchGrade(String colleagename,String majorname);
+    public void searchClasses(String colleagename,String majorname,String gradename);
 
 
 

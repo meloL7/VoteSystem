@@ -58,22 +58,8 @@
         from colleage
     </select>
 
-    <select id="searchColleagesNum" resultType="java.lang.Integer">
-        select count(1)
-        from colleage
-    </select>
-
-
     <select id="searchMajors" resultType="com.elvis.vote.pojo.Major">
         select major_id,major_name
-        from colleage
-        LEFT JOIN major
-        on colleage.colleage_id = major.colleage_id
-        where colleage_name=#{colleageName}
-    </select>
-
-    <select id="searchMajorsNum" resultType="java.lang.Integer">
-        select count(1)
         from colleage
         LEFT JOIN major
         on colleage.colleage_id = major.colleage_id
@@ -90,32 +76,8 @@
         where colleage_name=#{colleageName} and major_name=#{colleageName}
     </select>
 
-    <select id="searchGradesNum" resultType="java.lang.Integer">
-        select count(1)
-        from colleage
-        LEFT JOIN major
-        on colleage.colleage_id = major.colleage_id
-        LEFT JOIN grade
-        on major.major_id = grade.major_id
-        where colleage_name=#{colleageName} and major_name=#{colleageName}
-    </select>
-
     <select id="searchClasses" resultType="com.elvis.vote.pojo.Classes">
         select classes_id,classes_name
-        from colleage
-        LEFT JOIN major
-        on colleage.colleage_id = major.colleage_id
-        LEFT JOIN grade
-        on major.major_id = grade.major_id
-        LEFT JOIN	classes
-        on grade.grade_id = classes.grade_id
-        where colleage_name=#{colleageName}
-        and major_name=#{majorName}
-         and grade_name=#{gradeName}
-    </select>
-
-    <select id="searchClassesNum" resultType="java.lang.Integer">
-        select count(1)
         from colleage
         LEFT JOIN major
         on colleage.colleage_id = major.colleage_id
