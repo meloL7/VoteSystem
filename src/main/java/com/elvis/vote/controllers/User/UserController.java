@@ -21,5 +21,11 @@ public class UserController {
         return login;
     }
 
+    @RequestMapping("user/loadinfo.do")
+    public APIResult loadUserInfo(String sno) {
+        APIResult result = userServices.loadUserInfo(sno);
+        return result;
+    }
+
 
 }

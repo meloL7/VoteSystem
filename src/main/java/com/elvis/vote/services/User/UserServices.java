@@ -4,15 +4,20 @@ import com.elvis.vote.utils.APIResult;
 
 public interface UserServices {
 
+    /**
+     * 登录
+     * @param sno
+     * @param pwd
+     * @return
+     */
     APIResult login(String sno, String pwd);
-
 
     /**
      * 加载用户信息
      * @param sno
      * @return
      */
-    public APIResult loadUserInfo(String sno);
+    APIResult loadUserInfo(String sno);
 
     /**
      * 查询原密码是否正确

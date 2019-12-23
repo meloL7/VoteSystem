@@ -137,7 +137,7 @@ function loadStudentData(indexpage) {
                             "\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"changeEmail(" + json[i].id + ")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID(" + json[i].id + ")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t</tr>\n";
@@ -156,41 +156,43 @@ function loadStudentData(indexpage) {
 
 
 //修改邮箱
-function changeEmail(id) {
-    console.log("id:" + id);
-    $('#changeemail').click(function () {
-        var newEmail = $("#newEmail").val();
-        var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-
-        if (!reg.test(newEmail)) {
-            alert("邮箱格式错误!")
-        }else if (newEmail == ""){
-            alert("邮箱不能为空！")
-        }else{
-            $.ajax({
-                url: "/elvis/admin/changeEmail.do?id="+id+"&newEmail="+newEmail,
-                type: "get",
-                data: {},
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    if (data.result==true) {
-                        $("#changeemail").attr("data-dismiss", "modal");
-                        alert(data.message);
-                        $("#newEmail").val("");
-                        var email = document.getElementById("email_" + id);
-                        email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + newEmail + "</td>\n";
-                    } else if (data.result==false) {
-                        alert(data.message);
-                        $("#newEmail").val("");
-                    }
-                }
-            });
-        }
-
-    });
-
+var id;
+function getID(userid) {
+    console.log("id:" + userid);
+    id = userid;
 }
+$("#changeemail").click(function () {
+    var newEmail = $("#newEmail").val();
+    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+
+    if (!reg.test(newEmail)) {
+        alert("邮箱格式错误!")
+    }else if (newEmail == ""){
+        alert("邮箱不能为空！")
+    }else{
+        $.ajax({
+            url: "/elvis/admin/changeEmail.do",
+            type: "post",
+            data: {'id':id,'newEmail':newEmail},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var email = document.getElementById("email_" + id);
+                var oldemail = document.getElementById("email_" + id).innerText;
+                if (data.result) {
+                    alert(data.message);
+                    email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + newEmail + "</td>\n";
+                } else if (!data.result) {
+                    alert(data.message);
+                    email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + oldemail + "</td>\n";
+                }
+                $("#newEmail").val("");
+                $("#exampleModalCenter").modal("hide");
+            }
+        });
+
+    }
+});
 
 
 //加载老师数据
