@@ -19,7 +19,7 @@ function loadTeacherList() {
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -64,7 +64,7 @@ function loadStudentList() {
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()'  type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\n" +
@@ -117,7 +117,7 @@ function searchStudent() {
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\n" +
@@ -171,7 +171,7 @@ function searchTeacher() {
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -212,7 +212,7 @@ function loadTPageData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -291,82 +291,8 @@ function loadTPageData(indexpage) {
 
 
 
-//权限初始数据记载
-function loadColleage() {
-    console.log("点击事件触发了")
-    $.post(
-        "/elvis/admin/loadcolleage",
-        {},
-        function (data) {
-            if(data.code == 200){
-
-                var colleagess = $("#colleageselc")
-                colleagess.empty();
-                var cop =  document.createElement("optgroup");
-                cop.className = "optgroup-1";
-                cop.label = "湖南理工大学"
-                for (var i = 0; i <data.data.length ; i++) {
-                    console.log(data.data[i].colleage_name)
-                    var option = document.createElement("option");
-                    option.className = "option-1";
-                    option.text = data.data[i].colleage_name;
-                    cop.append(option);
-                }
-                console.log(cop)
-                colleagess.append(cop);
-                colleagess.selectpicker('refresh');
-
-            }
-        }
-    );
-
-}
-function loadMajor(c) {
-
-    var data = {
-        colleagecontent:c
-    }
-    console.log(data)
-    $.ajax({
-        url:"/elvis/admin/loadmajor",
-        type:"post",
-        data:data,
-        traditional:true,
-        success:function (data) {
-            if(data.code == 200){
-
-                var majorss = $("#majorselc");
-                majorss.empty();
-                // data.data == biglist
-                // data.data.data[i] ==第几个小list
-
-                for (var i = 0; i <data.data.length ; i++) {
-                    var cop =  document.createElement("optgroup");
-                    cop.className = "optgroup-"+(i+1);
-                    // console.log(data.data[i].parentName)
-                    cop.label = data.data[i].parentName;
-                        // console.log("test"+data.data[0].data.length)
-                        for (var j = 0; j <data.data[i].data.length ; j++) {
-                            var option = document.createElement("option");
-                            option.className = "option-"+(i+1);
-                            option.text = data.data[i].data[j].major_name;
-                            cop.append(option);
-                        }
-                    majorss.append(cop);
-                    majorss.selectpicker('refresh');
 
 
-                }
-
-
-
-
-
-            }
-        }
-});
-
-}
 
 
 

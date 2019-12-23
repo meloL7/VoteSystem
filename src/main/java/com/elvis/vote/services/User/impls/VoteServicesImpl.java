@@ -1,6 +1,8 @@
 package com.elvis.vote.services.User.impls;
 
 import com.elvis.vote.dao.User.VoteDao;
+import com.elvis.vote.pojo.Option;
+import com.elvis.vote.pojo.Select;
 import com.elvis.vote.pojo.Vote;
 import com.elvis.vote.services.User.VoteServices;
 import com.elvis.vote.utils.APIResult;
@@ -8,7 +10,9 @@ import com.elvis.vote.utils.Pager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VoteServicesImpl implements VoteServices {
@@ -59,6 +63,8 @@ public class VoteServicesImpl implements VoteServices {
                         Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
                         pager = new Pager(number,indexpage,10);
                         List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null,null, indexpage, 10);
+                        String time = null;
+
                         pager.setData(votes);
 
                         if(votes.size() > 0){
@@ -113,6 +119,47 @@ public class VoteServicesImpl implements VoteServices {
         }catch (Exception e){
             result = new APIResult("出现异常！",false,500);
         }
+        return result;
+    }
+
+    @Override
+    public APIResult queryVoteDetail(Integer voter_id, Integer vote_id) {
+        //先得到vote信息（标题、简介、题目总数）
+        Vote voteByid = voteDao.selectVoteByid(vote_id);
+        APIResult result = null;
+        if(voteByid != null){
+            result = new APIResult("",true,200);
+            Map<Object,Object> data = new HashMap<>();
+            data.put("vote",voteByid);
+            //查询所有的题目
+            List<Select> selects = voteDao.selectAllSelect(voter_id, vote_id);
+            data.put("select",selects);
+
+            //保存一个题目的所有选项
+            Map<String,List> optionMap = new HashMap<>();
+
+            //保存一个题目的用户所选的选项
+            Map<String,List> answer = new HashMap<>();
+
+            //根据题目查询出所有的选项
+            for (int i = 0; i < selects.size(); i++) {
+
+                List<Option> options = voteDao.selectAllOption(selects.get(i).getSelect_id());
+                optionMap.put("option"+i,options);
+
+                //得到该题目的用户所选的选项
+                List<Option> ans = voteDao.selectAllOptionByselectid(voter_id, vote_id, selects.get(i).getSelect_id());
+                answer.put("answer"+i,ans);
+
+            }
+            data.put("allOption",optionMap);
+            data.put("option",answer);
+
+            result.setData(data);
+        }else {
+            result = new APIResult("没有vote_id!",false,500);
+        }
+
         return result;
     }
 
