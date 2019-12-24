@@ -1,7 +1,7 @@
 //查询所有待参与的问卷信息(my1)
 function fmy1(voter_id,type,voter_status,indexpage) {
 
-    var id = document.getElementById("ctl01_lblUserName").innerText;
+    var id = sessionStorage.getItem('id');
 
 
     console.log(id);

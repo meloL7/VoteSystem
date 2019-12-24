@@ -33,6 +33,16 @@ public interface AdminDao {
      */
     int updateEmail(Integer id,String email);
 
+
+    /**
+     * 通过用户的ID来修改密码
+     * @param id
+     * @param email
+     * @return
+     */
+    int updatePwd(Integer id,String email);
+
+
     /**
      * 查看用户是否已经存在于数据库中了
      * @param email

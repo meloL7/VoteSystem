@@ -2,6 +2,7 @@ package com.elvis.vote.controllers.User;
 
 import com.elvis.vote.services.User.UserServices;
 import com.elvis.vote.utils.APIResult;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,14 @@ public class UserController {
         APIResult result = userServices.loadUserInfo(sno);
         return result;
     }
+
+
+    @RequestMapping("user/changepwd.do")
+    public APIResult changePwd(Integer id,String oldPwd,String newPwd) {
+        APIResult result = userServices.updatePwd(id,oldPwd,newPwd);
+        return result;
+    }
+
 
 
 }

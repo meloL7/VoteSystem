@@ -13,9 +13,15 @@ function login() {
             if (sno == ""||pwd=="") {
                 alert("提交不能为空");
             }else if (data.result) {
+
                 alert(data.message);
-                window.sessionStorage.sname = data.data.sname;
-                window.sessionStorage.sno=data.data.sno;
+                var dd = data.data
+                window.sessionStorage.id = dd[0].id;
+                window.sessionStorage.sname = dd[0].sname;
+                window.sessionStorage.sno = dd[0].sno;
+
+                var str_data = JSON.stringify(dd);
+                window.sessionStorage.data = str_data;
 
                 window.location.href="/elvis/vote/my1.html";
 
@@ -26,7 +32,6 @@ function login() {
             }
         }
     });
-
 }
 
 
@@ -35,12 +40,12 @@ function loadInfo() {
     $.ajax({
         url:"/elvis/user/loadinfo.do",
         type:"post",
-        data: {'sno':sno},
+        data: {"sno":sno},
         dataType: "json",
         success:function (data) {
             console.log(data);
             var div_info = $("#user_info");
-            var json = data.data;
+            var json = data.data[0];
             var div_inner ="<div class=\"title\">\n" +
                 "                        注册信息\n" +
                 "                    </div>\n" +
@@ -58,6 +63,14 @@ function loadInfo() {
                 "\t\t\t\t\t\t\t\t\t\t"+json.sname+"\n" +
                 "\t\t\t\t\t\t\t\t\t</span>\n" +
                 "                        </div>\n" +
+                "\n" +
+                "                        <div class=\"items\">\n" +
+                "                            <b>身份</b>\n" +
+                "                            <span id=\"ctl01_ContentPlaceHolder1_lblUserId\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t"+json.identify+"\n" +
+                "\t\t\t\t\t\t\t\t\t</span>\n" +
+                "                        </div>\n" +
+                "\n" +
                 "                        <div class=\"items\">\n" +
                 "                            <b>学院</b>\n" +
                 "                            <span id=\"ctl01_ContentPlaceHolder1_lblUserId\">\n" +
@@ -77,11 +90,11 @@ function loadInfo() {
                 "                        </div>\n" +
                 "                        <div id=\"ctl01_ContentPlaceHolder1_divEmail\" class=\"items\">\n" +
                 "                            <b>邮件地址</b>\n" +
-                "                            <span id=\"ctl01_ContentPlaceHolder1_lblEmail\">871127471@qq.com</span>\n" +
+                "                            <span id=\"ctl01_ContentPlaceHolder1_lblEmail\">"+json.email+"</span>\n" +
                 "                        </div>\n" +
                 "                        <div id=\"ctl01_ContentPlaceHolder1_lkPasswordBox\" class=\"items\">\n" +
                 "                            <b>密码</b>\n" +
-                "                            <a id=\"ctl01_ContentPlaceHolder1_lkPassword\" onclick=\"add("+json.pwd+")\" class=\"wjx_alink\"\n" +
+                "                            <a id=\"ctl01_ContentPlaceHolder1_lkPassword\" onclick=\"add()\" class=\"wjx_alink\"\n" +
                 "                               CausesValidation=\"false\" href=\"javascript:void(0);\"\n" +
                 "                               style=\"display:inline-block;width:80px;\">修改密码</a>\n" +
                 "                        </div>\n" +
@@ -96,5 +109,49 @@ function loadInfo() {
 
         }
     });
+
+}
+
+
+
+function changePwd() {
+    var id = sessionStorage.getItem('id');
+    var oldPwd = $("#oldPwd").val();
+    var newPwd = $("#newpwd").val();
+    var renewpwd = $("#renewpwd").val();
+
+    console.log(oldPwd+"---"+newPwd+"---"+renewpwd);
+
+    if (oldPwd ==""||newPwd==""||renewpwd=="") {
+        alert("提交不能为空!");
+    }else if (newPwd != renewpwd) {
+        alert("新密码输入不一致！请重新输入!");
+        $("#newpwd").val("");
+        $("#renewpwd").val("");
+    }else if (oldPwd==newPwd){
+        alert("原密码和新密码一样！请重新输入!");
+        $("#newpwd").val("");
+        $("#renewpwd").val("");
+    }else {
+        $.ajax({
+            url: "/elvis/user/changepwd.do",
+            type: "post",
+            data: {'id':id,'oldPwd':oldPwd,'newPwd':newPwd},
+            dataType: "json",
+            success: function (data) {
+                if (data.result) {
+                    alert(data.message);
+                    $("#oldPwd").val("");
+                    $("#newpwd").val("");
+                    $("#renewpwd").val("");
+                }else if (!data.result){
+                    alert(data.message);
+                    $("#oldPwd").val("");
+                    $("#newpwd").val("");
+                    $("#renewpwd").val("");
+                }
+            }
+        });
+    }
 
 }

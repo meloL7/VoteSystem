@@ -1,8 +1,6 @@
 package com.elvis.vote.services.Admin;
 
-import com.elvis.vote.pojo.User;
 import com.elvis.vote.utils.APIResult;
-import io.swagger.models.auth.In;
 
 public interface AdminUserServices {
 //
