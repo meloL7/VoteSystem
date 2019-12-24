@@ -33,7 +33,10 @@ public class UserServicesImpl implements UserServices {
 
     @Override
     public APIResult loadUserInfo(String sno) {
-        return null;
+        User user = userDao.selectOne(sno, null);
+
+        return new APIResult("success",true,200,user);
+
     }
 
     @Override

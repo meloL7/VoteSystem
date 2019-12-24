@@ -42,7 +42,7 @@
         select count(1) from user where email = #{email}
     </select>
 
-    
+
     <!--更改邮箱-->
     <update id="updateEmail">
         update user set email = #{email} where id = #{id}
@@ -73,7 +73,7 @@
         on colleage.colleage_id = major.colleage_id
         LEFT JOIN grade
         on major.major_id = grade.major_id
-        where colleage_name=#{colleageName} and major_name=#{colleageName}
+        where colleage_name=#{colleageName} and major_name=#{majorName}
     </select>
 
     <select id="searchClasses" resultType="com.elvis.vote.pojo.Classes">
@@ -89,6 +89,49 @@
         and major_name=#{majorName}
          and grade_name=#{gradeName}
     </select>
+
+    <select id="searchColleageId" resultType="java.lang.Integer">
+        select colleage_id from colleage where colleage_name=#{colleagename}
+    </select>
+
+    <select id="searchMajorId" resultType="java.lang.Integer">
+        select major_id
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        where colleage_name=#{colleagename} and major_name=#{majorname}
+    </select>
+
+    <select id="searchGradeId" resultType="java.lang.Integer">
+        select grade_id
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        LEFT JOIN grade
+        on major.major_id = grade.major_id
+        where colleage_name=#{colleagename} and major_name=#{majorname} and grade_name=#{gradename}
+    </select>
+
+    <select id="searchClassesId" resultType="java.lang.Integer">
+        select classes_id
+        from colleage
+        LEFT JOIN major
+        on colleage.colleage_id = major.colleage_id
+        LEFT JOIN grade
+        on major.major_id = grade.major_id
+        LEFT JOIN	classes
+        on grade.grade_id = classes.grade_id
+        where colleage_name=#{colleagename} and major_name=#{majorname}
+        and grade_name=#{gradename} and classes_name=#{classesname}
+    </select>
+
+
+    <insert id="addPower" >
+      INSERT INTO user_power
+      (vote_id,colleage_id,major_id,grade_id,classes_id)
+       VALUES (#{sno}, #{colleageId}, #{majorId}, #{gradeId}, #{searchClassesId});
+    </insert>
+
 
 
 </mapper>

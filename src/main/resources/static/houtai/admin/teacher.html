@@ -349,18 +349,7 @@
                                         年级 :
                                         <select id="gradeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
                                                 data-actions-box="true" onchange="grachange()">
-                                            　 <optgroup label="1年级">
-                                            <option>廖俊杰</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </optgroup>
-                                            <optgroup label="2年级">
-                                                <option>廖俊杰</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </optgroup>
+
                                             　
                                         </select>
                                     </div>
@@ -369,31 +358,24 @@
                                         班级：
                                         <select id="classesselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
                                                 data-actions-box="true" onchange="clachange()">
-                                            　<optgroup label="班级">
-                                            <option>廖俊杰</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                        </optgroup>
+
 
                                             　
                                         </select>
 
                                     </div>
-                                    <br><br><br>
-                                    <div class="col-md-12 column" id="t5">
-                                        范围 :
-                                        <select id="rangeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
-                                                data-actions-box="true" onchange="ranchange()">
-                                            　<optgroup label="范围">
-                                            <option>廖俊杰</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                        </optgroup>
-                                            　
-                                        </select>
-                                    </div>
+<!--                                    <br><br><br>-->
+<!--                                    <div class="col-md-12 column" id="t5">-->
+<!--                                        范围 :-->
+<!--                                        <select id="rangeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"-->
+<!--                                                data-actions-box="true" onchange="ranchange()">-->
+<!--                                            　<optgroup label="范围">-->
+<!--                                            <option>教师</option>-->
+<!--                                            <option>学生</option>-->
+<!--                                        </optgroup>-->
+<!--                                            　-->
+<!--                                        </select>-->
+<!--                                    </div>-->
                                 </div>
 
 
@@ -417,7 +399,7 @@
 
 
                     <!-- 这里需要上传到数据库 -->
-                    <button id="powerchange" type="button" onclick="printInfo()" class="btn btn-primary waves-effect waves-light">Save
+                    <button onclick="saveResult()" type="button" class="btn btn-primary waves-effect waves-light">Save
                         changes</button>
 
                 </div>
@@ -548,8 +530,9 @@
 
 
     function colchange() {
-        // console.log($("#t1"));
+
         var colleagecontent = myDate("#t1");
+
         loadMajor(colleagecontent)
         $('#majorselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
         $("#majorselc").selectpicker('refresh'); //刷新
@@ -560,45 +543,41 @@
         $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
         $("#classesselc").selectpicker('refresh'); //刷新
 
-        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-        $("#rangeselc").selectpicker('refresh'); //刷新
+
     }
 
     function majchange() {
-        loadMajor();
-        major = myDate("#t2");
+        var major = myDate("#t2");
+
+        loadgrade(major)//加载grade数据
         $('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
         $("#gradeselc").selectpicker('refresh'); //刷新
 
         $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
         $("#classesselc").selectpicker('refresh'); //刷新
 
-        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-        $("#rangeselc").selectpicker('refresh'); //刷新
+
     }
 
     function grachange() {
         grade = myDate("#t3");
-        console.log(grade)
-        // uploadClass(grade)
+        //
+        loadclasses(grade)//加载classes数据
+        //
+        // $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        // $("#classesselc").selectpicker('refresh'); //刷新
+        //
 
-
-        $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-        $("#classesselc").selectpicker('refresh'); //刷新
-
-        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-        $("#rangeselc").selectpicker('refresh'); //刷新
     }
 
     function clachange() {
-        classes = myDate("#t4");
-        $('#rangeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-        $("#rangeselc").selectpicker('refresh'); //刷新
+        // classes = myDate("#t4");
+
     }
 
-    function ranchange() {
-        range = myDate("#t5");
-    }
+    // function ranchange() {
+    //     // range = myDate("#t5");
+    // }
 
 
     function myDate(t) {
@@ -607,23 +586,27 @@
         // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
 
         //循环的取出插件选择的元素(通过是否添加了selected类名判断)
-        for (var i = 0; i < $("li.selected").length; i++) {
+        for (var i = 0; i < $(t).find("li.selected").length; i++) {
+            // console.log("size"+$("li.selected").length)
             var kk = $(t).find("li.selected").eq(i)
             // for(var  j in kk){
-            // 	var value = j+"-----"+kk[j]
-            // 	console.log(value)
+            //     var value = j+"-----"+kk[j]
+            //     console.log(value)
             // }
+            // console.log("kk"+kk.attr("class"))
             var g = kk.attr("class")
+            // console.log("test"+g)
             g = `li.${g.substr(0,g.length-8)}`
-            // console.log(g)
+            // // console.log(g)
             var op = $(t).find(g).eq(0).find(".text").text()
             val = $(t).find("li.selected").eq(i).find(".text").text();
-
+            var c = $(t).find("li.selected").eq(i)
+            // console.log("test"+c)
             if (val != '') {
                 val = op+">"+val
-                staffs.	push(val);
+                staffs.push(val);
             }
-            console.log(staffs)
+            // console.log(staffs)
         }
 
         return staffs;

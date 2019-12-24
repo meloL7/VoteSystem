@@ -85,7 +85,7 @@ function searchTeacher(indexpage) {
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"loadColleage("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -131,7 +131,7 @@ function loadStudentData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sex + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].email + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"loadColleage("+json[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\n" +
@@ -154,6 +154,47 @@ function loadStudentData(indexpage) {
         }
     );
 }
+
+
+//修改邮箱
+var id;
+function getID(userid) {
+    console.log("id:" + userid);
+    id = userid;
+}
+$("#changeemail").click(function () {
+    var newEmail = $("#newEmail").val();
+    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+
+    if (!reg.test(newEmail)) {
+        alert("邮箱格式错误!")
+    }else if (newEmail == ""){
+        alert("邮箱不能为空！")
+    }else{
+        $.ajax({
+            url: "/elvis/admin/changeEmail.do",
+            type: "post",
+            data: {'id':id,'newEmail':newEmail},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var email = document.getElementById("email_" + id);
+                var oldemail = document.getElementById("email_" + id).innerText;
+                if (data.result) {
+                    alert(data.message);
+                    email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + newEmail + "</td>\n";
+                } else if (!data.result) {
+                    alert(data.message);
+                    email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + oldemail + "</td>\n";
+                }
+                $("#newEmail").val("");
+                $("#exampleModalCenter").modal("hide");
+            }
+        });
+
+    }
+});
+
 
 //加载老师数据
 function loadTeacherData(indexpage) {
@@ -180,7 +221,7 @@ function loadTeacherData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"loadColleage("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -508,9 +549,13 @@ function loadTPageData(indexpage) {
 //         }
 //     );
 // };
+
+var sno1;
+
 //权限初始数据记载
-function loadColleage() {
-    console.log("点击事件触发了")
+function loadColleage(sno) {
+    // console.log("点击事件触发了")
+    sno1 = sno;
     $.post(
         "/elvis/admin/loadcolleage",
         {},
@@ -543,7 +588,7 @@ function loadMajor(c) {
     var data = {
         colleagecontent:c
     }
-    console.log(data)
+    // console.log(data)
     $.ajax({
         url:"/elvis/admin/loadmajor",
         type:"post",
@@ -570,7 +615,54 @@ function loadMajor(c) {
                         cop.append(option);
                     }
                     majorss.append(cop);
-                    majorss.selectpicker('refresh');
+
+                }
+
+
+                majorss.selectpicker('refresh');
+
+
+            }
+        }
+    });
+
+}
+
+function loadgrade(c) {
+    console.log("进入了loadgrade")
+    var data = {
+        majorcontent:c
+    }
+
+    $.ajax({
+        url:"/elvis/admin/loadgrade",
+        type:"post",
+        data:data,
+        traditional:true,
+        success:function (data) {
+
+            if(data.code == 200){
+
+                var gradess = $("#gradeselc");
+                gradess.empty();
+                // data.data == biglist
+                // data.data.data[i] ==第几个小list
+
+                for (var i = 0; i <data.data.length ; i++) {
+
+                    var cop =  document.createElement("optgroup");
+                    cop.className = "optgroup-"+(i+1);
+                    // console.log(data.data[i].parentName)
+                    cop.label = data.data[i].parentName;
+                    // console.log("test"+data.data[0].data.length)
+                    for (var j = 0; j <data.data[i].data.length ; j++) {
+                        var option = document.createElement("option");
+                        option.className = "option-"+(i+1);
+                        option.text = data.data[i].data[j].grade_name;
+                        cop.append(option);
+                    }
+                    gradess.append(cop);
+                    gradess.selectpicker('refresh');
 
 
                 }
@@ -584,10 +676,141 @@ function loadMajor(c) {
     });
 
 }
+function loadclasses(c) {
+    console.log("进入loadclasses")
+    var data = {
+        classescontent:c
+    }
+
+    $.ajax({
+        url:"/elvis/admin/loadclasses",
+        type:"post",
+        data:data,
+        traditional:true,
+        success:function (data) {
+
+            if(data.code == 200){
+
+                var classes = $("#classesselc");
+                classes.empty();
+                // data.data == biglist
+                // data.data.data[i] ==第几个小list
+
+                for (var i = 0; i <data.data.length ; i++) {
+
+                    var cop =  document.createElement("optgroup");
+                    cop.className = "optgroup-"+(i+1);
+                    // console.log(data.data[i].parentName)
+                    cop.label = data.data[i].parentName;
+                    // console.log("test"+data.data[0].data.length)
+                    for (var j = 0; j <data.data[i].data.length ; j++) {
+                        var option = document.createElement("option");
+                        option.className = "option-"+(i+1);
+                        option.text = data.data[i].data[j].classes_name;
+                        cop.append(option);
+                    }
+                    classes.append(cop);
+                    classes.selectpicker('refresh');
+
+
+                }
 
 
 
 
+
+            }
+        }
+    });
+
+}
+function checkNull(t) {
+    var flag =false;
+    console.log($(t).find("li.selected"))
+    if($(t).find("li.selected").length>0){
+        flag = true;
+    }
+
+    return flag;
+
+
+}
+
+
+function saveResult() {
+
+    var f1 = checkNull("#t1");
+    var f2 = checkNull("#t2");
+    var f3 = checkNull("#t3");
+    var f4 = checkNull("#t4");
+    console.log(f1)
+    console.log(f2)
+    console.log(f3)
+    console.log(f4)
+    if(f1&f2&f3&f4){
+        var val = "",
+            staffs = [];
+        // staffs1 = []
+        // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+        // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+
+        //循环的取出插件选择的元素(通过是否添加了selected类名判断)
+        for (var i = 0; i < $("#t4").find("li.selected").length; i++) {
+            // console.log("size"+$("li.selected").length)
+            var kk = $("#t4").find("li.selected").eq(i)
+            // for(var  j in kk){
+            //     var value = j+"-----"+kk[j]
+            //     console.log(value)
+            // }
+            // console.log("kk"+kk.attr("class"))
+            var g = kk.attr("class")
+            // console.log("test"+g)
+            g = `li.${g.substr(0,g.length-8)}`
+            // // console.log(g)
+            var op = $("#t4").find(g).eq(0).find(".text").text()
+            val = $("#t4").find("li.selected").eq(i).find(".text").text();
+            var c = $("#t4").find("li.selected").eq(i)
+            console.log("test--"+val+"dsa")
+
+            if (val != '') {
+                // console.log("XX进来了")
+                val = op + ">" + val
+                staffs.push(val);
+            }
+        }
+
+        $.ajax({
+            url:"/elvis/admin/saveResult",
+            type:"post",
+            data:{
+                content:staffs,
+                // range:staffs1,
+                sno:sno1
+
+            },
+            traditional:true,
+            success:function (data) {
+                console.log(data.code)
+                if(data.code == 200){
+                    alert("赋予成功")
+                    $("#modal1").modal("hide");
+                }else {
+                    alert("赋予失败")
+                }
+            }
+
+        });
+
+
+
+
+    }else {
+        alert("您输入的有为空项,请检查后提交")
+    }
+
+
+
+}
 
 
 

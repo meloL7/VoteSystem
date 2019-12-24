@@ -1,5 +1,6 @@
 package com.elvis.vote.dao.Admin;
 import com.elvis.vote.pojo.*;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -47,6 +48,15 @@ public interface AdminDao {
     List<Major> searchMajors(String colleageName);
     List<Grade> searchGrades(String colleageName, String majorName);
     List<Classes> searchClasses(String colleageName, String majorName, String gradeName);
+
+
+    Integer searchColleageId(String colleagename);
+    Integer searchMajorId(String colleagename,String majorname);
+    Integer searchGradeId(String colleagename,String majorname,String gradename);
+    Integer searchClassesId(String colleagename,String majorname,String gradename,String classesname);
+
+    Integer addPower(String sno,Integer colleageId,Integer majorId,Integer gradeId,Integer searchClassesId);
+
 
 
 }
