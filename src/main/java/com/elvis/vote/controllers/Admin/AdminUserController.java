@@ -48,4 +48,22 @@ public class AdminUserController {
         APIResult result = userServices.searchMajor(colleagecontent);
         return result;
     }
+    @RequestMapping("admin/loadgrade")
+    public APIResult searchgrade(String[] majorcontent){
+        APIResult result = userServices.searchGrade(majorcontent);
+
+        return result;
+    }
+    @RequestMapping("admin/loadclasses")
+    public APIResult searchclasses(String[] classescontent){
+        APIResult result = userServices.searchClasses(classescontent);
+
+        return result;
+    }
+
+    @RequestMapping ("admin/saveResult")
+    public APIResult saveResult(String[]content,String sno){
+        APIResult result = userServices.saveResult(content, sno);
+        return result;
+    }
 }

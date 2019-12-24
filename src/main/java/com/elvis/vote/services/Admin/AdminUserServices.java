@@ -50,9 +50,11 @@ public interface AdminUserServices {
 
     //权限管理
     public APIResult searchColleage();
-    public APIResult searchMajor(String []colleagename);
-    public APIResult searchGrade(String colleagename,String majorname);
-    public APIResult searchClasses(String colleagename,String majorname,String gradename);
+    public APIResult searchMajor(String []colleagecontent);
+    public APIResult searchGrade(String []majorcontent);
+    public APIResult searchClasses(String[] gradecontent);
+
+    public APIResult saveResult(String[]content,String sno);
 
 
 

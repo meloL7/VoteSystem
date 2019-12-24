@@ -118,7 +118,7 @@ public class AdminUserServicesimpl implements AdminUserServices {
     public APIResult searchColleage() {
 
         List<Colleage> colleages = adminDao.searchColleages();
-        System.out.println(colleages);
+//        System.out.println(colleages);
         APIResult result = null;
         if(colleages!=null){
             result = new APIResult("成功！", true, 200, colleages);
@@ -159,11 +159,33 @@ public class AdminUserServicesimpl implements AdminUserServices {
     }
 
     @Override
-    public APIResult searchGrade(String colleagename, String majorname) {
-        List<Grade> grades = adminDao.searchGrades(colleagename, majorname);
+    public APIResult searchGrade(String []majornames) {
+        List<MyPower>biglist = new ArrayList();
+//        System.out.println("这丽"+majornames[0]);
+        for (String majorname:majornames
+        ) {
+            Integer last = majorname.lastIndexOf(">");
+            String parentName = majorname;
+            int i = majorname.indexOf(">");
+            String col = majorname.substring(i+1,last);
+//            System.out.println(col);
+
+
+            String real =majorname.substring(last+1,majorname.length());
+//            System.out.println(parentName);
+//            System.out.println(real);
+            List<Grade> grades = adminDao.searchGrades(col,real);
+//            List<Grade> grades = null;
+//            System.out.println(grades.size());
+            MyPower power = new MyPower();
+            power.setParentName(parentName);
+            power.setData(grades);
+            biglist.add(power);
+        }
+//
         APIResult result = null;
-        if(grades!=null){
-            result = new APIResult("成功！", true, 200, grades);
+        if(biglist!=null){
+            result = new APIResult("成功！", true, 200, biglist);
         }else {
             result = new APIResult("查询失败！", false, 500);
         }
@@ -171,14 +193,98 @@ public class AdminUserServicesimpl implements AdminUserServices {
     }
 
     @Override
-    public APIResult searchClasses(String colleagename, String majorname, String gradename) {
-        List<Classes> classes = adminDao.searchClasses(colleagename, majorname, gradename);
+    public APIResult searchClasses(String[] classesnames) {
+        List<MyPower>biglist = new ArrayList();
+        for (String classesname:classesnames
+        ) {
+
+            Integer last = classesname.lastIndexOf(">");
+            String parentName = classesname;//下拉导航栏的总参数
+
+            int i = classesname.indexOf(">");//定位总参数里面第一个>的位置
+            String temp = classesname.substring(i+1,last);//切割
+            int i1 = temp.indexOf(">");//切割中间 之后找到>的位置
+            String col = temp.substring(0,i1);
+            String maj = temp.substring((i1+1),temp.length());
+
+            String grd =classesname.substring(last+1,classesname.length());
+//            System.out.println(col);
+//            System.out.println(maj);
+//            System.out.println(grd);
+            List<Classes> classes = adminDao.searchClasses(col, maj, grd);
+
+
+            MyPower power = new MyPower();
+            power.setParentName(parentName);
+            power.setData(classes);
+            biglist.add(power);
+        }
+//
         APIResult result = null;
-        if(classes!=null){
-            result = new APIResult("成功！", true, 200, classes);
+        if(biglist!=null){
+            result = new APIResult("成功！", true, 200, biglist);
         }else {
             result = new APIResult("查询失败！", false, 500);
         }
+        return result;
+    }
+
+    @Override
+    public APIResult saveResult(String[]contents,String sno){
+//        StringBuffer sb = new StringBuffer();
+//        for (String range:ranges) {
+//            String r[] = range.split(",");
+//            sb.append(r[0]);
+//        }
+//        String range = sb.toString();
+//        Integer rangeID= null;
+//        if(range.equals("教师")){
+//            rangeID = 1;
+//        }else if(range.equals("学生")){
+//            rangeID = 2;
+//        }else {
+//            rangeID = 3;
+//        }
+        APIResult result = null;
+        boolean flag = true;
+        for (String content:contents) {
+            String[] split = content.split(">");
+            String col = split[1];
+            String maj = split[2];
+            String gra = split[3];
+            String cla = split[4];
+
+            Integer colleageId = adminDao.searchColleageId(col);
+            Integer majorId = adminDao.searchMajorId(col, maj);
+            Integer gradeId = adminDao.searchGradeId(col, maj, gra);
+            Integer ClassesId = adminDao.searchClassesId(col, maj, gra, cla);
+//            System.out.println("1--"+colleageId);
+//            System.out.println("2--"+majorId);
+//            System.out.println("3--"+gradeId);
+//            System.out.println("4--"+searchClassesId);
+
+
+            Integer i = adminDao.addPower(sno, colleageId, majorId, gradeId, ClassesId);
+            if(i<0){
+                flag = false;
+            }
+
+        }
+
+        System.out.println(flag);
+
+        if(!flag){
+            result = new APIResult("失败！", false, 500);
+        }
+
+        result = new APIResult("成功！", true, 200);
+
+
+
+
+
+
+
         return result;
     }
 
