@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan("com.elvis.vote.dao")
 public class RunningApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(RunningApplication.class, args);
         System.out.println("运行成功！");

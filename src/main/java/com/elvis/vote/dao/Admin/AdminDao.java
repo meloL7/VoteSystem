@@ -1,5 +1,4 @@
 package com.elvis.vote.dao.Admin;
-
 import com.elvis.vote.pojo.*;
 
 import java.util.List;

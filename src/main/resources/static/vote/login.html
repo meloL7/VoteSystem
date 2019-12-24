@@ -1,152 +1,161 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head id="Head1">
-		<title>
-			登录页面_问卷星
-		</title>
-		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<meta name="renderer" content="webkit|ie-comp|ie-stand" />
-		<link rel="stylesheet" href="./css/index.css?v=3" type="text/css" />
-		<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
-		<link rel="canonical" href="https://www.wjx.cn/login.aspx" />
-		<link rel="alternate" media="only screen and(max-width: 640px)" href="https://www.wjx.cn/mobile/login.aspx" />
-		<meta name="applicable-device" content="pc" />
-		<style>
-			.divAnti input {
+<head id="Head1">
+    <title>
+        登录页面_问卷星
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+    <link rel="stylesheet" href="./css/index.css?v=3" type="text/css"/>
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <link rel="canonical" href="https://www.wjx.cn/login.aspx"/>
+    <link rel="alternate" media="only screen and(max-width: 640px)" href="https://www.wjx.cn/mobile/login.aspx"/>
+    <meta name="applicable-device" content="pc"/>
+    <style>
+        .divAnti input {
             width: 140px !important;
             border: none;
             height: 40px !important;
-            line-height:40px !important;
+            line-height: 40px !important;
             font-size: 14px;
             padding-left: 46px;
             border-radius: 100px;
             border: 1px solid #e6e6e6;
             float: left !important;
         }
+
         .validate-box .submit-wrapper .third-party-login .wxpenguin-icon {
-    width: 56px;
-    height: 56px;
-    background: url("//image.wjx.com/images/register-login/weixin-nor.png") no-repeat center; 
-}
-.validate-box .submit-wrapper .third-party-login .wxpenguin-icon:hover {
-    background: url("//image.wjx.com/images/register-login/weixin.png") no-repeat center; 
-} 
-.validate-box .submit-wrapper .third-party-login .qywxpenguin-icon {
-    width: 56px;
-    height: 56px;
-    margin-right: 0;
-    background: url("//image.wjx.com/images/register-login/qiye-nor.png") no-repeat center; 
-}
-.validate-box .submit-wrapper .third-party-login .qywxpenguin-icon:hover {
-    background: url("//image.wjx.com/images/register-login/qiye.png") no-repeat center; 
-}
+            width: 56px;
+            height: 56px;
+            background: url("//image.wjx.com/images/register-login/weixin-nor.png") no-repeat center;
+        }
+
+        .validate-box .submit-wrapper .third-party-login .wxpenguin-icon:hover {
+            background: url("//image.wjx.com/images/register-login/weixin.png") no-repeat center;
+        }
+
+        .validate-box .submit-wrapper .third-party-login .qywxpenguin-icon {
+            width: 56px;
+            height: 56px;
+            margin-right: 0;
+            background: url("//image.wjx.com/images/register-login/qiye-nor.png") no-repeat center;
+        }
+
+        .validate-box .submit-wrapper .third-party-login .qywxpenguin-icon:hover {
+            background: url("//image.wjx.com/images/register-login/qiye.png") no-repeat center;
+        }
     </style>
-		<!-- <script src="/js/zhezhao.js?v=3" type="t  ext/javascript"></script> -->
-	</head>
-	<body id="body1" class="fp-viewing">
-		<form name="form" method="get" action="../user/login.do" id="form">
-<!--			<div>-->
-<!--				<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTMzMDM2MTg2NGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFClJlbWVtYmVyTWUZFxF7pc0uZ8ZR9vkjoA+iHovdcA==" />-->
-<!--			</div>-->
-<!--			<div>-->
-<!--				<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C2EE9ABB" />-->
-<!--				<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAbl64Hk/saGSW948m5bW2FWR1LBKX1P1xh290RQyTesRRHS0B3lkDg8wcTlzQR027xcCvP9YJ59uTpXZUTciHnZJx1yNK0PnRor9mt9az+5BdypqPqLgdpphNzIPTIm7G7Woidwk/KJVGFYjCIWN1FlgvMkcQ==" />-->
-<!--			</div>-->
-			<div class="fullpage-wrapper">
-				<div class="full-head clearfix">
+    <!-- <script src="/js/zhezhao.js?v=3" type="t  ext/javascript"></script> -->
+</head>
+<body id="body1" class="fp-viewing">
+<form name="form" method="post" action="my1.html" id="form">
+<!--    <div>-->
+<!--        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"-->
+<!--               value="/wEPDwUKMTMzMDM2MTg2NGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFClJlbWVtYmVyTWUZFxF7pc0uZ8ZR9vkjoA+iHovdcA=="/>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C2EE9ABB"/>-->
+<!--        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"-->
+<!--               value="/wEdAAbl64Hk/saGSW948m5bW2FWR1LBKX1P1xh290RQyTesRRHS0B3lkDg8wcTlzQR027xcCvP9YJ59uTpXZUTciHnZJx1yNK0PnRor9mt9az+5BdypqPqLgdpphNzIPTIm7G7Woidwk/KJVGFYjCIWN1FlgvMkcQ=="/>-->
+<!--    </div>-->
+    <div class="fullpage-wrapper">
+        <div class="full-head clearfix">
 
-					<div class="member pull-right">
-						<a href="sreg.html" class="btn btn-default btn-lg pull-left register " rel="nofollow">学生注册</a>
-						<a href="treg.html" class="btn btn-default btn-lg pull-left register " rel="nofollow">教师注册</a>
-					</div>
-				</div>
-				<div class="fullpage-main"></div>
-				<div class="validate-box" id="divSojump">
-					<fieldset class="validate-wrapper">
-						<h1 id="hlogintxt" class="validate-caption">登录</h1>
-						<ul>
-							<li>
-								<label for="sno" class="icon user-icon"></label>
-								<input name="sno" id="sno" name="sno" placeholder="请输入您的学号/工号" class="validate-input user-name"
-								 type="text" required="required"/>
-<!--								<input type="hidden" name="hfUserName" id="hfUserName" />-->
-								<div class="divclear"></div>
-							</li>
-							<li>
-								<label for="pwd" class="icon password-icon"></label>
-								<input required="required" name="pwd" type="password" id="pwd" placeholder="请输入登录密码" class="validate-input" />
-							</li>
-						</ul>
-						<div id="trRemember" class="remember-box">
+            <div class="member pull-right">
+                <a href="sreg.html" class="btn btn-default btn-lg pull-left register " rel="nofollow">学生注册</a>
+                <a href="treg.html" class="btn btn-default btn-lg pull-left register " rel="nofollow">教师注册</a>
+            </div>
+        </div>
+        <div class="fullpage-main"></div>
+        <div class="validate-box" id="divSojump">
+            <fieldset class="validate-wrapper">
+                <h1 id="hlogintxt" class="validate-caption">登录</h1>
+                <ul>
+                    <li>
+                        <label for="sno" class="icon user-icon"></label>
+                        <input name="sno" id="sno" name="sno" placeholder="请输入您的学号/工号" class="validate-input user-name"
+                               type="text" required="required"/>
+                        <!--								<input type="hidden" name="hfUserName" id="hfUserName" />-->
+                        <div class="divclear"></div>
+                    </li>
+                    <li>
+                        <label for="pwd" class="icon password-icon"></label>
+                        <input required="required" name="pwd" type="password" id="pwd" placeholder="请输入登录密码"
+                               class="validate-input"/>
+                    </li>
+                </ul>
+                <div id="trRemember" class="remember-box">
 
-							<a id="PasswordRecoveryLink" class="get-back pull-right" href="Appeal/demo.html">忘记密码？</a>
-						</div>
-					</fieldset>
-					<fieldset class="submit-wrapper" style="text-align: center; margin-top: 20px;">
+                    <a id="PasswordRecoveryLink" class="get-back pull-right" href="Appeal/demo.html">忘记密码？</a>
+                </div>
+            </fieldset>
+            <fieldset class="submit-wrapper" style="text-align: center; margin-top: 20px;">
 
-						<input type="submit" onclick="login()" value="登 录" id="tLoginButton" class="submitbutton" style="color:White;" />
+                <input type="button" onclick="login()" value="登 录" id="tLoginButton" class="submitbutton"
+                       style="color:White;"/>
 
-						<span style="color: red; line-height: 28px;">
+                <span style="color: red; line-height: 28px;">
 						</span>
-						<a href="reg.html" id="hrefRegister" title="只需２０秒，就可完成注册" class="register-now"></a>
+                <a href="reg.html" id="hrefRegister" title="只需２０秒，就可完成注册" class="register-now"></a>
 
-						<script type="text/javascript">
-							// var UserName = document.getElementById("sno");
-							// var hfUserName = document.getElementById("hfUserName");
-							// var Password = document.getElementById("pwd");
-							// var LoginButton = document.getElementById("LoginButton");
-							// var txtCode = document.getElementById("txtCode");
-							// var hrefGetCode = document.getElementById("hrefGetCode");
-							//
-							// function getCode() {
-							// 	if (!UserName.value) {
-							// 		alert("请先输入用户名");
-							// 		UserName.focus();
-							// 		return;
-							// 	}
-							// 	txtCode.focus();
-							// 	PDF_launch("/register/getcode.aspx?username=" + encodeURIComponent(hfUserName.value), 500, 150, codeCallBack);
-							// }
-							//
-							// function codeCallBack() {
-							// 	txtCode.focus();
-							// }
-							// String.prototype.dbc2sbc = function() {
-							// 	return this.replace(/[\uff01-\uff5e]/g, function(a) {
-							// 		return String.fromCharCode(a.charCodeAt(0) - 65248);
-							// 	}).replace(/\u3000/g, " ");
-							// }
-							// UserName.onkeypress = Password.onkeypress = function(e) {
-							// 	e = e || window.event;
-							// 	if (e && e.keyCode == 13) {
-							// 		LoginButton.click();
-							// 	}
-							// }
-							// UserName.onblur = UserName.onchange = function() {
-							// 	var str = this.value;
-							// 	var newstr = str.dbc2sbc();
-							// 	if (str != newstr) this.value = newstr;
-							// 	UserName.value = newstr;
-							// }
-							// if (txtCode) txtCode.onkeydown = UserName.onkeydown;
-							// if (UserName.value) Password.focus();
-							// else UserName.onblur();
-						</script>
-					</fieldset>
-				</div>
-				<div class="feelings-wrapper">
-					<div style="margin-bottom:12px;font-size:20px;">《登顶武功山》</div>
-				</div>
-			</div>
-		</form>
-
-
-		<!-- Other js-->
-		<script src="js/user.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                    // var UserName = document.getElementById("sno");
+                    // var hfUserName = document.getElementById("hfUserName");
+                    // var Password = document.getElementById("pwd");
+                    // var LoginButton = document.getElementById("LoginButton");
+                    // var txtCode = document.getElementById("txtCode");
+                    // var hrefGetCode = document.getElementById("hrefGetCode");
+                    //
+                    // function getCode() {
+                    // 	if (!UserName.value) {
+                    // 		alert("请先输入用户名");
+                    // 		UserName.focus();
+                    // 		return;
+                    // 	}
+                    // 	txtCode.focus();
+                    // 	PDF_launch("/register/getcode.aspx?username=" + encodeURIComponent(hfUserName.value), 500, 150, codeCallBack);
+                    // }
+                    //
+                    // function codeCallBack() {
+                    // 	txtCode.focus();
+                    // }
+                    // String.prototype.dbc2sbc = function() {
+                    // 	return this.replace(/[\uff01-\uff5e]/g, function(a) {
+                    // 		return String.fromCharCode(a.charCodeAt(0) - 65248);
+                    // 	}).replace(/\u3000/g, " ");
+                    // }
+                    // UserName.onkeypress = Password.onkeypress = function(e) {
+                    // 	e = e || window.event;
+                    // 	if (e && e.keyCode == 13) {
+                    // 		LoginButton.click();
+                    // 	}
+                    // }
+                    // UserName.onblur = UserName.onchange = function() {
+                    // 	var str = this.value;
+                    // 	var newstr = str.dbc2sbc();
+                    // 	if (str != newstr) this.value = newstr;
+                    // 	UserName.value = newstr;
+                    // }
+                    // if (txtCode) txtCode.onkeydown = UserName.onkeydown;
+                    // if (UserName.value) Password.focus();
+                    // else UserName.onblur();
+                </script>
+            </fieldset>
+        </div>
+        <div class="feelings-wrapper">
+            <div style="margin-bottom:12px;font-size:20px;">《登顶武功山》</div>
+        </div>
+    </div>
+</form>
 
 
-	</body>
+<!-- Other js-->
+<script src="js/user.js" type="text/javascript"></script>
+
+
+</body>
 
 </html>
