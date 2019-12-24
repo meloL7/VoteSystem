@@ -51,7 +51,7 @@
 							</dt>
 							<dd class="spinner-list">
 								<a href="javascript:void(0)" class="user-name ">
-									<span id="ctl01_lblUserName" style="">1</span>
+									<span id="ctl01_lblUserName" style=""></span>
 									<i class="index_iconfont fs14">&#xe656;</i></a>
 								<ul style="width:140px;right:0;left:auto;margin-top:-2px;">
 
@@ -59,13 +59,8 @@
 									<li><a href="myInfo.html"><i class="index_iconfont">&#xe63e;</i>用户信息</a></li>
 
 
-
-
-
-
-
 									<li id="ctl01_hrefWjxout" style="border-top:1px solid #D9D9D9;line-height:37px">
-										<a class="user-name" href="login.html">
+										<a id="icon_judge" onclick="logout()" class="user-name" href="login.html">
 											<i class="index_iconfont">&#xe63c;</i>退出
 										</a>
 									</li>
@@ -379,5 +374,7 @@ function __doPostBack(eventTarget, eventArgument) {
 			});
 
 		</script>
+
+		<script src="js/top.js" type="text/javascript"></script>
 
 	</body>

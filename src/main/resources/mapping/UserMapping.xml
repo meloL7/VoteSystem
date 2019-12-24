@@ -21,9 +21,14 @@
     <select id="selectOne" resultType="com.elvis.vote.pojo.User">
         select
         <include refid="selectPrefix"></include>
-        from user where sno=#{sno} and pwd=#{pwd}
+        from user where
+        <if test="sno!=null">
+            sno=#{sno}
+        </if>
+        <if test="pwd!=null">
+            and pwd=#{pwd}
+        </if>
     </select>
-
 
 
 

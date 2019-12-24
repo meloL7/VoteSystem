@@ -42,7 +42,7 @@
         select count(1) from user where email = #{email}
     </select>
 
-    
+
     <!--更改邮箱-->
     <update id="updateEmail">
         update user set email = #{email} where id = #{id}

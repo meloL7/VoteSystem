@@ -31,7 +31,7 @@ function searchStudent(indexpage) {
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<button onclick=onclick=\"loadColleage("+json[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\n" +
@@ -154,6 +154,47 @@ function loadStudentData(indexpage) {
         }
     );
 }
+
+
+//修改邮箱
+var id;
+function getID(userid) {
+    console.log("id:" + userid);
+    id = userid;
+}
+$("#changeemail").click(function () {
+    var newEmail = $("#newEmail").val();
+    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+
+    if (!reg.test(newEmail)) {
+        alert("邮箱格式错误!")
+    }else if (newEmail == ""){
+        alert("邮箱不能为空！")
+    }else{
+        $.ajax({
+            url: "/elvis/admin/changeEmail.do",
+            type: "post",
+            data: {'id':id,'newEmail':newEmail},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var email = document.getElementById("email_" + id);
+                var oldemail = document.getElementById("email_" + id).innerText;
+                if (data.result) {
+                    alert(data.message);
+                    email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + newEmail + "</td>\n";
+                } else if (!data.result) {
+                    alert(data.message);
+                    email.innerHTML = "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + id + "\">" + oldemail + "</td>\n";
+                }
+                $("#newEmail").val("");
+                $("#exampleModalCenter").modal("hide");
+            }
+        });
+
+    }
+});
+
 
 //加载老师数据
 function loadTeacherData(indexpage) {
