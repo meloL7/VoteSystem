@@ -66,7 +66,7 @@ public class TestServices implements AdminLoginServices {
         emailEntity.setEmail("");
         //设置过期时间
         redisUtil.set("email",emailEntity);
-        redisUtil.expire("email",1);
+        redisUtil.expire("email",1000);
         //发送邮箱
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<html><head><title></title></head><body>");
@@ -97,6 +97,7 @@ public class TestServices implements AdminLoginServices {
 
         EmailEntity emailEntity = (EmailEntity)redisUtil.get("email");
         System.out.println(emailEntity);
-        return null;
+        APIResult apiResult = new APIResult("",true,200,emailEntity);
+        return apiResult;
     }
 }
