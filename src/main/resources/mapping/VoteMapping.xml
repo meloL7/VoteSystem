@@ -77,6 +77,20 @@
 
     </select>
 
+    <select id="selectAllVoteDetail" resultType="com.elvis.vote.pojo.VoteContent">
+        select * from user_vote_details where voter_id = #{voter_id} and vote_id = #{vote_id};
+
+    </select>
+
+    <insert id="addVoteDetail">
+        insert into user_vote_details(voter_id,vote_id,select_id,option_id,vote_time)
+        values(#{voter_id},#{vote_id},#{select_id},#{option_id},now())
+    </insert>
+
+    <update id="updateVoteConnection">
+        update user_vote_connection set status=#{status} where voter_id = #{voter_id} and vote_id = #{vote_id}
+    </update>
+
 
     <!--    <select id="selectVoteByTitle" resultType="com.elvis.vote.pojo.Vote">-->
     <!--        select *-->

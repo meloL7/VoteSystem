@@ -3,7 +3,10 @@ package com.elvis.vote.dao.User;
 import com.elvis.vote.pojo.Option;
 import com.elvis.vote.pojo.Select;
 import com.elvis.vote.pojo.Vote;
+import com.elvis.vote.pojo.VoteContent;
 import com.github.pagehelper.Page;
+import io.swagger.models.auth.In;
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.List;
 
@@ -69,4 +72,11 @@ public interface VoteDao {
 
     //查询用户在该题的所选的答案
     public List<Option> selectAllOptionByselectid(Integer voter_id,Integer vote_id,Integer select_id);
+
+    //查询详情表
+    public VoteContent selectAllVoteDetail(Integer voter_id,Integer vote_id);
+
+    public Integer addVoteDetail(Integer voter_id,Integer vote_id,Integer select_id,Integer option_id);
+
+    public Integer updateVoteConnection(Integer voter_id,Integer vote_id,Integer status);
 }

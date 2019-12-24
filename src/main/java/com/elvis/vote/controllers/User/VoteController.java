@@ -39,6 +39,15 @@ public class VoteController {
         return result;
     }
 
+    //投票功能
+    @RequestMapping("user/addVoteDetail.do")
+    public APIResult addVoteDetail(Integer voter_id,Integer vote_id,Integer type,String connect){
+        APIResult result = voteServices.addVoteDetail(voter_id, vote_id,type, connect);
+        return result;
+    }
+
+
+
 
 
 }

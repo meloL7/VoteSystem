@@ -70,7 +70,7 @@
 }
 .title-item {
   padding: 19px 0 24px;
-  border-bottom: 1px dashed #e6e6e6;
+  /*border-bottom: 1px dashed #e6e6e6;*/
 }
 .title-item:last-child{
     border-bottom:0
@@ -1173,7 +1173,7 @@ width: 20px;
   margin-top: 20px;
 }
 
-/*×ÜÌå²âÆÀ±¨¸æ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .preface{
   /*background-color: #f5f7fa;
   border-radius: 0px;*/
@@ -1663,7 +1663,7 @@ div.bar {
   }
 }
 
-/* ºáÏò·ÅÖÃµÄÊÖ»ú¼°·Ö±æÂÊ¸üÐ¡µÄÉè±¸ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Ê¸ï¿½Ð¡ï¿½ï¿½ï¿½è±¸ */
 @media (max-width: 374px) {
   .the-table tfoot td .tol{
     margin-right: 2px;
