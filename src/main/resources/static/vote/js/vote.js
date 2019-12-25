@@ -110,7 +110,7 @@ function selectByNamemy1(voter_id,type,voter_status,indexpage,title,content) {
      // 搜索条件：title、name
 
     if(voter_id == null){
-        var id = document.getElementById("ctl01_lblUserName").innerText;
+        var id = sessionStorage.getItem('id');
         console.log(voter_id);
         var t = document.getElementById("selectpick-div").value;
         var name = document.getElementById("serachbox").value;
@@ -219,7 +219,7 @@ function selectByNamemy1(voter_id,type,voter_status,indexpage,title,content) {
 //查询所有参与问卷信息（my2）
 function fmy2(voter_id,type,voter_status,indexpage) {
 
-    var id = document.getElementById("ctl01_lblUserName").innerText;
+    var id = sessionStorage.getItem('id');
 
     if(voter_id == null){
         voter_id = id;
@@ -329,7 +329,7 @@ function fmy2(voter_id,type,voter_status,indexpage) {
 function selectByNamemy2(voter_id,type,voter_status,indexpage,title,content) {
 
     if(voter_id == null){
-        var id = document.getElementById("ctl01_lblUserName").innerText;
+        var id = sessionStorage.getItem('id');
 
         var t = document.getElementById("selectpick-div").value;
         var name = document.getElementById("serachbox").value;
@@ -442,7 +442,7 @@ function selectByNamemy2(voter_id,type,voter_status,indexpage,title,content) {
 //查询所有发布的问卷信息（my3）
 function fmy3(voter_id,type,voter_status,indexpage) {
     if(voter_id == null){
-        var id = document.getElementById("ctl01_lblUserName").innerText;
+        var id = sessionStorage.getItem('id');
         voter_id = id;
     }
 
@@ -543,7 +543,7 @@ function fmy3(voter_id,type,voter_status,indexpage) {
 function selectByNamemy3(voter_id,type,voter_status,indexpage,title,content) {
 
     if(voter_id == null){
-        var id = document.getElementById("ctl01_lblUserName").innerText;
+        var id = sessionStorage.getItem('id');
 
         var t = document.getElementById("selectpick-div").value;
         var name = document.getElementById("serachbox").value;
@@ -652,7 +652,7 @@ function selectByNamemy3(voter_id,type,voter_status,indexpage,title,content) {
 //查询所有未通过问卷
 function fmy0(voter_id,type,voter_status,indexpage) {
 
-    var id = document.getElementById("ctl01_lblUserName").innerText;
+    var id = sessionStorage.getItem('id');
 
     if(voter_id == null){
         voter_id = id;
@@ -763,7 +763,7 @@ function fmy0(voter_id,type,voter_status,indexpage) {
 function selectByNamemy0(voter_id,type,voter_status,indexpage,title,content) {
 
     if(voter_id == null){
-        var id = document.getElementById("ctl01_lblUserName").innerText;
+        var id = sessionStorage.getItem('id');
 
         var t = document.getElementById("selectpick-div").value;
         var name = document.getElementById("serachbox").value;
