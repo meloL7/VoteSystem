@@ -132,7 +132,7 @@ public class AdminUserServicesimpl implements AdminUserServices {
 
     @Override
     public APIResult searchMajor(String[] colleagenames) {
-        List<MyPower>biglist = new ArrayList();
+        List<MyPower> biglist = new ArrayList();
         for (String colleagename:colleagenames
              ) {
             Integer last = colleagename.lastIndexOf(">");

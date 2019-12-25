@@ -27,13 +27,20 @@ function init() {
     var voter_status = value[3];
     var indexpage = value[4];
 
+    // var save = $(".activity-box pull-left");
+    //
+    // var s = "<span class='voterid_voteid' id='"+vote_id+"' name='"+voter_id+"' disabled='disabled'></span>";
+    //
+    // save.append(s);
 
+    //表示投票
     if(flag == 1){
         //未通过
-        voteDetail(voter_id,vote_id,type,false);
+        voteDetail(voter_id,vote_id,type,voter_status,false);
     }else {
-        voteDetail(voter_id,vote_id,type,true);
+        voteDetail(voter_id,vote_id,type,voter_status,true);
     }
+
 
 
 
@@ -136,7 +143,7 @@ function init() {
 
 
 //
-function voteDetail(voter_id,vote_id,type,isFlag) {
+function voteDetail(voter_id,vote_id,type,voter_status,isFlag) {
     $.post(
         "/elvis/user/voteDetail.do",
         {
@@ -192,11 +199,11 @@ function voteDetail(voter_id,vote_id,type,isFlag) {
 
 
 
-            var title = "<div class='title'>\n" +
+            var title = "<div class='title' id='"+vote_id+"' name='"+voter_id+"' value='"+type+"'>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1>"+data.data.vote.title+"</h1>\n" +
                 "\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"title\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"introduction\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h2>"+data.data.vote.introduction+"</h2>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
 
@@ -205,7 +212,7 @@ function voteDetail(voter_id,vote_id,type,isFlag) {
             //遍历所有的题目
             for (var index = 0; index < data.data.select.length; index++) {
 
-                var head = "<div class='count unit'>\n" +
+                var head = "<div class='count unit' id='"+data.data.select[index].select_id+"'>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"jumbotron well\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>"+data.data.select[index].select_tiltle+"</h3>\n" +
@@ -219,9 +226,9 @@ function voteDetail(voter_id,vote_id,type,isFlag) {
                     for(var k = index;k < index + 1;k++){
                         //遍历所有的选项
                         for (var j = 0; j < data.data.allOption[k].length; j++) {
-                            var options = "<div class=\"checkbox icheck-peterriver\" id='"+data.data.allOption[k][j].option_id+"'>\n" +
-                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\"   class='radio_detail' >\n" +
-                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for=\"ck1\">"+data.data.allOption[k][j].option_content+"</label>\n" +
+                            var options = "<div class=\"checkbox icheck-peterriver choose"+data.data.select[index].select_id+"\" id='"+data.data.allOption[k][j].option_id+"'>\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" value='"+data.data.allOption[k][j].option_id+"' id='peterriver"+data.data.allOption[k][j].option_id+"' class='radio_detail' name='peterriver"+data.data.allOption[k][j].option_id+"' >\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for='peterriver"+data.data.allOption[k][j].option_id+"'>"+data.data.allOption[k][j].option_content+"</label>\n" +
                                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
                             content.append(options);
                         }
@@ -232,8 +239,8 @@ function voteDetail(voter_id,vote_id,type,isFlag) {
 
                         for (var i = 0; i < data.data.allOption[q].length; i++) {
 
-                            options = "<div class=\"radio icheck-peterriver\" id='"+data.data.allOption[q][i].option_id+"' >\n" +
-                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" class='radio_detail' id='peterriver"+data.data.allOption[q][i].option_id+"'  name='peterriver"+data.data.allOption[q][i].option_id+"' />\n" +
+                            options = "<div class=\"radio icheck-peterriver choose"+data.data.select[index].select_id+"\" id='"+data.data.allOption[q][i].option_id+"' >\n" +
+                                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" value='"+data.data.allOption[q][i].option_id+"' class='radio_detail' id='peterriver"+data.data.allOption[q][i].option_id+"'  name='peterriver"+data.data.select[index].select_id+"' />\n" +
                                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label for='peterriver"+data.data.allOption[q][i].option_id+"' >"+data.data.allOption[q][i].option_content+"</label>\n" +
                                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
 
@@ -246,10 +253,21 @@ function voteDetail(voter_id,vote_id,type,isFlag) {
                 content.append("</div>");
                 content.append("</div>");
 
-                voteAnswer(index,data);
+
+
+                //表示查看详情
+                if(voter_status == 2){
+                    voteAnswer(index,data);
+                }else if(voter_status == 3){  //表示投票
+                    console.log("投票。。。");
+                    //getVoteAnswer(index,data);
+
+                }
+
 
 
             }
+
         }
     );
 }
@@ -260,6 +278,9 @@ function voteAnswer(index,data) {
     //获取span标签里面的option_id的值
 
     for (var i = 0; i < data.data.allOption[index].length; i++) {
+        var display = $("#"+data.data.allOption[index][i].option_id);
+        var dis = display.find(".radio_detail");
+        dis.attr("disabled",true);
         for (var j = 0; j < data.data.option[index].length; j++) {
             if(data.data.allOption[index][i].option_id == data.data.option[index][j].option_id){
                 console.log("找到正确答案。。。" + data.data.option[index][j].option_id);
@@ -308,5 +329,102 @@ function voteAnswer(index,data) {
 
 
 
+
+}
+
+//得到答案
+function getVoteAnswer() {
+
+    //得到voter_id 和vote_id
+    var vote = document.getElementsByClassName("title")[0];
+    console.log(vote);
+    var vote_id = vote.getAttribute("id");
+    var voter_id = vote.getAttribute("name");
+    var type = vote.getAttribute("value");
+
+    console.log(vote_id + "-----" +voter_id + "-----" + type);
+
+    var data = document.getElementsByClassName("count unit");
+    var connect = new Array(data.length);
+
+    //标记
+    var chooseFlag = 0;
+
+    for (var i = 0; i <data.length ; i++) {
+
+        var one = {};
+        var x = data[i].getAttribute("id");
+
+         //x为哪一道题 select_id
+        one["select_id"] = x;
+        var list = [];
+        //拼接choose 单选
+        var option_id = document.getElementsByClassName("radio icheck-peterriver choose"+x);
+
+        for (var j = 0;j < option_id.length;j++){
+            var div = console.log("option_id = " + option_id[j].getAttribute("id"));
+            var option = option_id[j].children[0];
+            console.log(option);
+            // console.log("optionj = " + option_id[j]);
+            if(option.checked){
+                chooseFlag = chooseFlag + 1;
+                console.log("进来。。" + option.value);
+                //所选的选项
+                var option_value = option.value;
+
+                one["option_id"] = option_value;
+
+                // list.push(option_value);
+            }
+        }
+
+        //拼接多选
+        var options_id = document.getElementsByClassName("checkbox icheck-peterriver choose"+x);
+
+        for (var j = 0; j < options_id.length; j++) {
+            var option = options_id[j].children[0];
+            if(option.checked){
+                chooseFlag = chooseFlag + 1;
+                console.log("进来。。。。" + option.value);
+                //所选的选项
+                var option_value = option.value;
+                list.push(option_value);
+
+            }
+        }
+        one["list"] = list;
+        if(chooseFlag == 0){
+            alert("对不起，您第"+ (i + 1)+"题还没有选，请去选择！");
+            return;
+        }
+        chooseFlag = 0;
+        connect[i] = one;
+    }
+    var json = JSON.stringify(connect);
+    console.log("connect = " + json);
+
+    $.post(
+        "/elvis/user/addVoteDetail.do",
+        {
+            vote_id:vote_id,
+            voter_id:voter_id,
+            type:type,
+            connect:json,
+        },
+        function (data) {
+            console.log("投票成功！");
+            console.log(data);
+            if (data.result==true){
+                if(data.data == 1){
+                    window.location.href="my2.html";
+                }else {
+                    window.location.href="my5.html"
+                }
+            }else {
+                alert(data.msg)
+            }
+        },
+
+    )
 
 }

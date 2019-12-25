@@ -3,7 +3,7 @@
 
 <mapper namespace="com.elvis.vote.dao.User.UserDao">
     <sql id="selectPrefix">
-        id,sno,pwd,email,sname,identify,sex,age,colleage,major,grade,classes,remark,del_flag
+        id,sno,email,sname,identify,sex,age,colleage,major,grade,classes,remark,del_flag
     </sql>
 
     <!--更改邮箱-->
@@ -11,11 +11,27 @@
         update user set email = #{email} where id = #{id}
     </update>
 
-    <!--用户是否已经注册了-->
-    <select id="isUserExist" resultType="java.lang.Integer">
-        select count(1) from user where sno = #{sno}
+
+    <!--更改密码-->
+    <update id="updatePwd">
+        update user set pwd = #{pwd} where id = #{id}
+    </update>
+
+    <!--单独查询出用户的密码，安全-->
+    <select id="selectPwd" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select pwd from user where id = #{id}
     </select>
 
+    <!--用户是否已经注册了以及密码是否正确-->
+    <select id="isUser" resultType="java.lang.Integer">
+        select count(1) from user where
+        <if test="sno!=null">
+            sno = #{sno}
+        </if>
+        <if test="pwd!=null">
+            and pwd = #{pwd}
+        </if>
+    </select>
 
     <!--登录用的-->
     <select id="selectOne" resultType="com.elvis.vote.pojo.User">
@@ -30,6 +46,31 @@
         </if>
     </select>
 
+
+    <!--登录用的-->
+    <select id="selectUserAndPower" resultType="com.elvis.vote.pojo.Login">
+        select u.id,u.sno,u.email,u.sname,u.identify,u.sex,u.age,u.colleage,u.major,u.grade,u.classes,c.colleage_name,m.major_name,g.grade_name,k.classes_name
+        from user_power up
+        left join user u
+        on u.sno=up.voter_sno
+        left join colleage c
+        on c.colleage_id=up.colleage_id
+        left join major m
+        on m.major_id=up.major_id
+        left join grade g
+        on g.grade_id=up.grade_id
+        left join classes k
+        on k.classes_id=up.classes_id
+        where u.id=(
+        select id from user where
+        <if test="sno!=null">
+            sno=#{sno}
+        </if>
+        <if test="pwd!=null">
+            and pwd=#{pwd}
+        </if>
+        )
+    </select>
 
 
 

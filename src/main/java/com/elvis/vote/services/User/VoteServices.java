@@ -20,6 +20,8 @@ public interface VoteServices {
 
     public APIResult queryVoteDetail(Integer voter_id, Integer vote_id);
 
+    public APIResult addVoteDetail(Integer voter_id,Integer vote_id,Integer type,String connect);
+
     /**
      * 进入投票页面需要的数据
      * @param id

@@ -13,7 +13,7 @@
     <link id="ctl01_defaultcss" rel="stylesheet" type="text/css" href="./css/default.css?v=5"/>
     <link id="ctl01_cssmaster" rel="stylesheet" type="text/css" href="./css/wjxmaster.css?v=16"/>
     <script type="text/javascript" src="./js/jquery-1.8.3-min.js"></script>
-<!--    <script src="./js/layer.js?v=11"></script>-->
+    <script src="./js/layer.js?v=11"></script>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="/js/respond.min.js"></script>
     <![endif]-->
@@ -82,7 +82,7 @@
                         <ul style="width:140px;right:0;left:auto;margin-top:-2px;">
 
 
-                            <li><a href="myInfo.html"><i class="index_iconfont">&#xe63e;</i>用户信息</a></li>
+                            <li><a href="myInfo.html" id="info"><i class="index_iconfont">&#xe63e;</i>用户信息</a></li>
 
                             <li id="icon_judge" onclick="logout()" id="ctl01_hrefWjxout"
                                 style="border-top:1px solid #D9D9D9;line-height:37px">
@@ -197,10 +197,10 @@
 
                                             <tr>
                                                 <td align="left">
-                                                    <label for="NewPassword" id="NewPasswordLabel">原密码:</label>
+                                                    <label for="oldPwd">原密码:</label>
                                                 </td>
                                                 <td align="left">
-                                                    <input name="NewPassword" type="password" id="oldPwd"
+                                                    <input name="oldPwd" type="password" id="oldPwd"
                                                            class="wjxui-input  wjxui-input-sm">
 
                                                 </td>
@@ -208,21 +208,20 @@
 
                                             <tr>
                                                 <td align="left">
-                                                    <label for="NewPassword" id="NewPasswordLabel">新密码:</label>
+                                                    <label for="newpwd">新密码:</label>
                                                 </td>
                                                 <td align="left">
-                                                    <input name="NewPassword" type="password" id="newpwd1"
+                                                    <input name="newpwd" type="password" id="newpwd"
                                                            class="wjxui-input  wjxui-input-sm">
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td align="right">
-                                                    <label for="ConfirmNewPassword"
-                                                           id="ConfirmNewPasswordLabel">确认新密码:</label>
+                                                    <label for="renewpwd">确认新密码:</label>
                                                 </td>
                                                 <td align="left">
-                                                    <input name="ConfirmNewPassword" type="password" id="newpwd2"
+                                                    <input name="renewpwd" type="password" id="renewpwd"
                                                            class="wjxui-input  wjxui-input-sm">
                                                 </td>
                                             </tr>
@@ -245,7 +244,7 @@
                                         <input value="关闭" style="margin-right:8px;" class="wjxui-btn wjxui-btn-primary"
                                                type="button" onclick="xremove();">
                                         <input type="button" name="btnSavePassword" value="确定" id="sub"
-                                               class="wjxui-btn" onclick="Btnsubmit();">
+                                               class="wjxui-btn" onclick="changePwd();">
                                     </div>
 
                                 </div>
@@ -285,42 +284,6 @@
 
     };
 
-    function Btnsubmit() {
-
-        document.getElementById("oldPwd");
-        document.getElementById("newpwd1");
-        document.getElementById("newpwd2");
-
-        //ajax验证原密码是否正确
-        var checkOldPwd = true;
-
-
-        var checkPwdSame = false;
-
-
-        if (newpwd1.value == newpwd2.value & newpwd1.value != "" & newpwd2.value != "") {
-            checkPwdSame = true;
-        }
-
-        if (!checkPwdSame) {
-            document.getElementById("remInfo").style.display = "block";
-            document.getElementById("remInfo").innerHTML = "两次密码不一致！";
-        }
-
-
-        if (!checkOldPwd) {
-            document.getElementById("remInfo").style.display = "block";
-            document.getElementById("remInfo").innerHTML = "原密码错误！";
-
-        }
-
-
-        if (checkOldPwd & checkPwdSame) {
-            document.getElementById("form222").submit();
-        }
-
-
-    };
 </script>
 
 

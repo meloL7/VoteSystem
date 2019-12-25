@@ -4,6 +4,7 @@ import com.elvis.vote.dao.User.VoteDao;
 import com.elvis.vote.pojo.Option;
 import com.elvis.vote.pojo.Select;
 import com.elvis.vote.pojo.Vote;
+import com.elvis.vote.pojo.VoteContent;
 import com.elvis.vote.services.User.VoteServices;
 import com.elvis.vote.utils.APIResult;
 import com.elvis.vote.utils.Pager;
@@ -26,12 +27,14 @@ public class VoteServicesImpl implements VoteServices {
     public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage, int indexsize) {
         List<Vote> votes = null;
         Integer num = 0;
+
         APIResult result = null;
         try{
             votes = voteDao.selectAllVote(voter_id,type, voter_status,vote_status, indexpage, indexsize);
             num = voteDao.selectAllNumber(voter_id,type, voter_status,vote_status);
             System.out.println("数据条数："+num);
             Pager pager = new Pager(num, indexpage, 10);
+
             pager.setData(votes);
 
             if (votes.size() > 0) {
@@ -40,6 +43,7 @@ public class VoteServicesImpl implements VoteServices {
                 result = new APIResult("对不起，没有你想要的数据~~", false, 200);
             }
         }catch (Exception e){
+            e.printStackTrace();
             result = new APIResult("出现异常！",false,500);
         }
 
@@ -61,10 +65,12 @@ public class VoteServicesImpl implements VoteServices {
                 try{
                     //标题查
                     if(title == 0){
+
                         Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
                         pager = new Pager(number,indexpage,10);
                         List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null,null, indexpage, 10);
                         String time = null;
+
 
                         pager.setData(votes);
 
@@ -81,7 +87,9 @@ public class VoteServicesImpl implements VoteServices {
 
                         List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, null,totle, indexpage, 10);
 
+
                         pager.setData(votes);
+
                         if(votes.size() > 0){
                             result = new APIResult("",true,200,pager);
                         }else {
@@ -96,6 +104,8 @@ public class VoteServicesImpl implements VoteServices {
                     Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
                     pager = new Pager(number,indexpage,10);
                     List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null, null,indexpage, 10);
+
+
                     pager.setData(votes);
 
                     if(votes.size() > 0){
@@ -110,6 +120,7 @@ public class VoteServicesImpl implements VoteServices {
                     List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, content,null, indexpage, 10);
 
                     pager.setData(votes);
+
                     if(votes.size() > 0){
                         result = new APIResult("",true,200,pager);
                     }else {
@@ -167,6 +178,74 @@ public class VoteServicesImpl implements VoteServices {
         }
 
         return result;
+    }
+
+    //投票功能
+    @Override
+    public APIResult addVoteDetail(Integer voter_id, Integer vote_id,Integer type,String connect) {
+        Integer result = -1;
+        APIResult apiResult = null;
+        System.out.println("connect = " + connect + "voter_id = " + voter_id + "vote_id = " + vote_id);
+        String[] conn = connect.split("}");
+
+        try{
+            //每一个为一道题
+            for (int i = 0; i < conn.length; i++) {
+
+                //表示单选
+                if(conn[i].indexOf("option_id") > 0){
+                    String[] values = conn[i].split(",");
+                    String ss = null;
+                    ArrayList<String> save = new ArrayList();
+                    for (int j = 0; j < values.length; j++) {
+                        if(values[j].indexOf(":") > 0){
+                            String[] split_select = values[j].split(":");
+                            ss = split_select[1].replaceAll("\"","");
+                            save.add(ss);
+                        }
+                    }
+                    Integer select_id = Integer.parseInt(save.get(0));
+                    Integer option_id = Integer.parseInt(save.get(1));
+                    result = voteDao.addVoteDetail(voter_id, vote_id, select_id, option_id);
+                    System.out.println(select_id + "-----" + option_id);
+                }else {     //表示多选
+                    if(conn[i].indexOf(":") > 0){
+                        String[] values = conn[i].split(":");
+
+                        //得到题目
+                        String[] select = values[1].split(",");
+                        String select_id = select[0].replaceAll("\"","");
+                        System.out.println(select_id);
+                        //得到选项
+                        ArrayList<String> options = new ArrayList();
+                        String test = values[2].replaceAll("\"","");
+                        String test1 = test.replace("[","");
+                        String test2 = test1.replace("]","");
+                        System.out.println(test2);
+
+                        if(test2.indexOf(",") > 0){
+                            String[] split = test2.split(",");
+                            for (int j = 0; j < split.length; j++) {
+                                options.add(split[j]);
+                            }
+                        }else {
+                            options.add(test2);
+                        }
+                        for (int j = 0; j < options.size(); j++) {
+                            result = voteDao.addVoteDetail(voter_id, vote_id, Integer.parseInt(select_id), Integer.parseInt(options.get(j)));
+                        }
+                    }
+
+                }
+
+            }
+            Integer integer = voteDao.updateVoteConnection(voter_id, vote_id, 2);
+            apiResult = new APIResult("",true,200,type);
+        }catch (Exception e){
+            e.printStackTrace();
+            apiResult = new APIResult("出现异常！",false,500);
+        }
+        return  apiResult;
     }
 
     @Override

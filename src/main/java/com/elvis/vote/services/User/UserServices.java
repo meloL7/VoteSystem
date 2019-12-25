@@ -13,25 +13,18 @@ public interface UserServices {
     APIResult login(String sno, String pwd);
 
     /**
-     * 加载用户信息
+     * 更改用户密码
+     * @param newPwd
+     */
+    APIResult updatePwd(Integer id,String oldPwd, String newPwd);
+
+
+    /**
+     * 加载教师/学生信息
      * @param sno
      * @return
      */
     APIResult loadUserInfo(String sno);
-
-    /**
-     * 查询原密码是否正确
-     * @param sno
-     * @param oldpwd
-     * @return
-     */
-    public boolean checkOldPwd(String sno, String oldpwd);
-
-    /**
-     * 更改用户密码
-     * @param newPwd
-     */
-    public Boolean updatePwd(String sno, String newPwd);
 
 
 
