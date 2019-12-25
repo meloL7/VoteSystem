@@ -59,7 +59,10 @@ public interface AdminUserServices {
 
 
 
+    public APIResult checkPower(String sno);
 
+    public APIResult removePower(String sno);
+    public APIResult readPower(String sno);
 
 
 

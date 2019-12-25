@@ -2,7 +2,7 @@ package com.elvis.vote.pojo;
 
 public class Power {
     private int id;
-    private int user_id;
+    private int voter_sno;
     private int colleage_id;
     private int major_id;
     private int grade_id;
@@ -16,12 +16,12 @@ public class Power {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getVoter_sno() {
+        return voter_sno;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setVoter_sno(int voter_sno) {
+        this.voter_sno = voter_sno;
     }
 
     public int getColleage_id() {
