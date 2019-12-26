@@ -18,4 +18,6 @@ public interface UserDao {
 
     String selectPwd(Integer id);
 
+    List checkPower(String sno);
+
 }

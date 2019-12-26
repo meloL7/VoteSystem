@@ -72,7 +72,9 @@
         )
     </select>
 
-
+    <select id="checkPower" resultType="com.elvis.vote.pojo.Power">
+        select * from user_power where voter_sno = #{sno}
+    </select>
 
 
 </mapper>

@@ -35,6 +35,12 @@ public class UserController {
         return result;
     }
 
+    @RequestMapping("user/checkPower")
+    public APIResult checkPower(String sno) {
+        APIResult result = userServices.checkPower(sno);
+        return result;
+    }
+
 
 
 }

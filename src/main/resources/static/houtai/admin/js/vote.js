@@ -162,7 +162,7 @@ function timeout(t,s) {
                 if (data != null) {
                     console.log(data);
                     var vote_list = $("#voteContent");
-                    console.log(data.data.countrows);
+                    // console.log(data.data.countrows);
                     for (var i = 0; i < data.data.countrows; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
@@ -170,7 +170,7 @@ function timeout(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_colleage+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_identify+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<th>"+data.data.data[i].all_select_num+"</th>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_select_num+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_voter_num+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
@@ -224,7 +224,7 @@ function tsearch(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_colleage+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_identify+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<th>"+data.data.data[i].all_select_num+"</th>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_select_num+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_voter_num+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
