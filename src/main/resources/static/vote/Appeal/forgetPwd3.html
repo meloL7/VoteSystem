@@ -6,6 +6,8 @@
 		<title>忘记密码</title>
 		<link rel="shortcut icon" href="images/favicon.ico" />
 		<link type="text/css" href="../css/css.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+
 	</head>
 
 	<body>
@@ -18,7 +20,7 @@
 					<div class="liulist for-cur"></div>
 					<div class="liulist"></div>
 					<div class="liutextbox">
-						<div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+						<div class="liutext for-cur"><em>1</em><br /><strong>填写账号</strong></div>
 						<div class="liutext for-cur"><em>2</em><br /><strong>验证身份</strong></div>
 						<div class="liutext for-cur"><em>3</em><br /><strong>设置新密码</strong></div>
 						<div class="liutext"><em>4</em><br /><strong>完成</strong></div>
@@ -29,18 +31,18 @@
 
 					<dl>
 						<dt>新密码：</dt>
-						<dd><input type="password" id="pwd1" /></dd>
+						<dd><input type="password" id="newpwd" /></dd>
 						<div class="clears"></div>
 					</dl>
 
 					<dl>
 						<dt>确认密码：</dt>
-						<dd><input type="password" id="pwd2" /></dd>
+						<dd><input type="password" id="renewpwd" /></dd>
 						<div class="clears"></div>
 					</dl>
 
-					<span style="position:relative;left:112px;bottom:10px; color: red;
-	   display: none;" id="remInfo">两次密码不一致!</span>
+<!--					<span style="position:relative;left:112px;bottom:10px; color: red;-->
+<!--	   display: none;" id="remInfo">两次密码不一致!</span>-->
 
 					<div class="subtijiao"><input type="button" id="mybtn" value="提交" /></div>
 				</form>
@@ -49,20 +51,23 @@
 			<!--web-width/-->
 		</div>
 		<!--content/-->
-		<script>
-			var pwd1 = document.getElementById("pwd1")
-			var pwd2 = document.getElementById("pwd2")
-			var info = document.getElementById("remInfo")
-			var btn = document.getElementById("mybtn")
-			var form = document.getElementById("form")
+<!--		<script>-->
+<!--			var pwd1 = document.getElementById("pwd1")-->
+<!--			var pwd2 = document.getElementById("pwd2")-->
+<!--			var info = document.getElementById("remInfo")-->
+<!--			var btn = document.getElementById("mybtn")-->
+<!--			var form = document.getElementById("form")-->
 
-			btn.onclick = function() {
-				if (pwd1.value == pwd2.value) {
-					form.submit();
-				} else {
-					info.style.display = "block";
-				}
-			}
-		</script>
+<!--			btn.onclick = function() {-->
+<!--				if (pwd1.value == pwd2.value) {-->
+<!--					form.submit();-->
+<!--				} else {-->
+<!--					info.style.display = "block";-->
+<!--				}-->
+<!--			}-->
+<!--		</script>-->
+
+		<script type="text/javascript" src="../js/pwd.js"></script>
+
 	</body>
 </html>

@@ -6,7 +6,7 @@ if (sname==null){
     $("#ctl01_lblUserName").html("请登录！")
 
     $("#icon_judge").html("<i class='index_iconfont'>&#xe63c;</i>登录页面");
-    $("#spinner-list").removeAttr("href");
+    $(".spinner-list ul li #info").removeAttr("href");
     $("#icon_judge").removeAttr("onclick");
 }else {
     $("#ctl01_lblUserName").html(sname)//用户栏
