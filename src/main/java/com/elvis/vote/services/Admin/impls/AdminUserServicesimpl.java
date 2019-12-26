@@ -288,5 +288,62 @@ public class AdminUserServicesimpl implements AdminUserServices {
         return result;
     }
 
+    @Override
+    public APIResult checkPower(String sno) {
+        APIResult result = null;
+        List list = adminDao.checkPower(sno);
+        if(list.size()>0){
+            result = new APIResult("有权限",true,200);
+        }else if (list.size()<=0){
+            result = new APIResult("无权限",true,200);
+        }else{
+            result = new APIResult("查询权限失败",false,500);
+        }
+        return result;
+    }
+
+    @Override
+    public APIResult removePower(String sno) {
+        APIResult result = null;
+        Integer i = adminDao.removePower(sno);
+        if(i>0){
+            result = new APIResult("删除成功",true,200);
+        }else if(i<=0) {
+            result = new APIResult("删除失败",true,200);
+        }else {
+            result = new APIResult("服务器繁忙",false,500);
+        }
+        return result;
+    }
+
+    @Override
+    public APIResult readPower(String sno) {
+        APIResult result = null;
+        List<Power>list = adminDao.readPower(sno);
+        List<PowerName>newList = new ArrayList<>();
+        for (int i = 0; i <list.size() ; i++) {
+            int colleage_id = list.get(i).getColleage_id();
+            int major_id = list.get(i).getMajor_id();
+            int grade_id = list.get(i).getGrade_id();
+            int classes_id = list.get(i).getClasses_id();
+            String colleageName = adminDao.findColleageName(colleage_id);
+            String majorName = adminDao.findMajorName(major_id);
+            String gradeName = adminDao.findGradeName(grade_id);
+            String classesName = adminDao.findClassesName(classes_id);
+            PowerName powerName = new PowerName();
+            powerName.setColleage_name(colleageName);
+            powerName.setMajor_name(majorName);
+            powerName.setGrade_name(gradeName);
+            powerName.setClasses_name(classesName);
+            newList.add(powerName);
+        }
+        if(newList.size()>0){
+            result = new APIResult("成功",true,200,newList);
+        }
+
+        return result;
+    }
+
+
 
 }

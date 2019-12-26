@@ -128,10 +128,35 @@
 
     <insert id="addPower" >
       INSERT INTO user_power
-      (vote_id,colleage_id,major_id,grade_id,classes_id)
+      (voter_sno,colleage_id,major_id,grade_id,classes_id)
        VALUES (#{sno}, #{colleageId}, #{majorId}, #{gradeId}, #{searchClassesId});
     </insert>
 
+    <select id="checkPower" resultType="com.elvis.vote.pojo.Power">
+        select * from user_power where voter_sno = #{sno}
+    </select>
+
+
+    <delete id="removePower">
+        delete from user_power where voter_sno = #{sno}
+    </delete>
+
+    <select id="readPower" resultType="com.elvis.vote.pojo.Power">
+         select * from user_power where voter_sno = #{sno}
+    </select>
+
+    <select id="findColleageName" resultType="java.lang.String">
+         select colleage_name from colleage where colleage_id = #{colleage_id}
+    </select>
+    <select id="findMajorName" resultType="java.lang.String">
+         select major_name from major where major_id = #{major_id}
+    </select>
+    <select id="findGradeName" resultType="java.lang.String">
+         select grade_name from grade where grade_id = #{grade_id}
+    </select>
+    <select id="findClassesName" resultType="java.lang.String">
+         select classes_name from classes where classes_id = #{classes_id}
+    </select>
 
 
 </mapper>

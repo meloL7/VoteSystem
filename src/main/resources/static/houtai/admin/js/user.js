@@ -19,26 +19,33 @@ function searchStudent(indexpage) {
                 s_list.empty();
                 var json = data.data.list;
                 for (var i = 0; i < json.length; i++) {
-                    var tr_list="<tr>\n" +
+                    var tr_list="<tr id="+ json[i].sno+">\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].id+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sno+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].colleage+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].major+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].grade+"</td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].class+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].classes+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sname+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].age+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
+                        "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
+                        "\t<button id=\"power1\" onclick=\"checkP("+json[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" >权限管理</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button id=\"power2\" onclick=\"xclose("+json[i].sno+");\" type=\"button\" style=\"display: none;\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"btn btn-primary waves-effect waves-light\">取消权限</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"readPower("+json[i].sno+")\"   id=\"power3\" type=\"button\" style=\"display: none;\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\"#modal2\">查看权限</button>"+
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<button onclick='loadColleage()' type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t</tr>\n";
@@ -76,7 +83,7 @@ function searchTeacher(indexpage) {
                 var tr_list = $('#teacher_list');
                 tr_list.empty()
                 for (var i = 0; i < tjson.length; i++) {
-                    var td_list = "<tr><td>"+tjson[i].id+"</td>\n" +
+                    var td_list = "<tr id="+ json[i].sno+"><td>"+tjson[i].id+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sno+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].colleage+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].major+"</td>\n" +
@@ -85,12 +92,19 @@ function searchTeacher(indexpage) {
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"loadColleage("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                        "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
+                        "\t<button id=\"power1\" onclick=\"checkP("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" >权限管理</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button id=\"power2\" onclick=\"xclose("+tjson[i].sno+");\" type=\"button\" style=\"display: none;\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"btn btn-primary waves-effect waves-light\">取消权限</button>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"readPower("+tjson[i].sno+")\"     id=\"power3\" type=\"button\" style=\"display: none;\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\"#modal2\">查看权限</button>"+
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
                         "</tr>";
@@ -120,25 +134,33 @@ function loadStudentData(indexpage) {
                     s_list.empty();
                     var json = data.data.list;
                     for (var i = 0; i < json.length; i++) {
-                        var tr_list = "<tr>\n" +
+                        var tr_list = "<tr id="+ json[i].sno+">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + (i + 1) + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sno + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].colleage + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].major + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].grade + "</td>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].classes + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sname + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].age + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sex + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].email + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"loadColleage("+json[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                            "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
+                            "\t<button id=\"power1\" onclick=\"checkP("+json[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" >权限管理</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button id=\"power2\" onclick=\"xclose("+json[i].sno+");\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"btn btn-primary waves-effect waves-light\">取消权限</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button  onclick=\"readPower("+json[i].sno+")\"  id=\"power3\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\"#modal2\">查看权限</button>"+
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t&nbsp; | &nbsp;<a id=\"reset\" href=\"#\" data-toggle=\"modal\" data-target=\".bd-example-modal-sm\">重置密码</a>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t</tr>\n";
@@ -212,7 +234,7 @@ function loadTeacherData(indexpage) {
                     var body_list = $('#teacher_list');
                     body_list.empty();
                     for (var i = 0; i < tjson.length; i++) {
-                        var td_list = "<tr><td>"+tjson[i].id+"</td>\n" +
+                        var td_list = "<tr id="+ tjson[i].sno+"><td>"+tjson[i].id+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sno+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].colleage+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].major+"</td>\n" +
@@ -221,7 +243,15 @@ function loadTeacherData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"loadColleage("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                            "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
+                            "\t<button id=\"power1\" onclick=\"checkP("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" >权限管理</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button id=\"power2\" onclick=\"xclose("+tjson[i].sno+");\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"btn btn-primary waves-effect waves-light\">取消权限</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"readPower("+tjson[i].sno+")\" id=\"power3\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\"#modal2\">查看权限</button>"+
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -260,7 +290,7 @@ function loadSPageData(indexpage) {
                     s_list.empty();
                     var json = data.data.list;
                     for (var i = 0; i < json.length; i++) {
-                        var tr_list = "<tr>\n" +
+                        var tr_list = "<tr id="+ json[i].sno+" >\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + (i + 1) + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sno + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].colleage + "</td>\n" +
@@ -271,7 +301,15 @@ function loadSPageData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sex + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].email + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">赋予</button>\n" +
+                            "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
+                            "\t<button id=\"power1\" onclick=\"hid("+json[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" >权限管理</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button id=\"power2\" onclick=\"xclose("+json[i].sno+");\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"btn btn-primary waves-effect waves-light\">取消权限</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"readPower("+json[i].sno+")\" id=\"power3\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\"#modal2\">查看权限</button>"+
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\n" +
@@ -376,7 +414,15 @@ function loadTPageData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].sex+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.list[i].email+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\" data-target=\".bd-example-modal-lg\">权限管理</button>\n" +
+                            "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
+                            "\t<button id=\"power1\" onclick=\"hid("+tjson[i].sno+")\" type=\"button\" class=\"btn btn-primary waves-effect waves-light\" >权限管理</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button id=\"power2\" onclick=\"xclose("+tjson[i].sno+");\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"btn btn-primary waves-effect waves-light\">取消权限</button>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button onclick=\"readPower("+tjson[i].sno+")\" id=\"power3\" type=\"button\" style=\"display: none;\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\"#modal2\">查看权限</button>"+
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
@@ -738,7 +784,9 @@ function checkNull(t) {
 
 
 function saveResult() {
-
+    // var sno = window.sessionStorage.getItem("sno");
+    var sno = "123456"
+     sno ="#"+sno
     var f1 = checkNull("#t1");
     var f2 = checkNull("#t2");
     var f3 = checkNull("#t3");
@@ -794,6 +842,9 @@ function saveResult() {
                 if(data.code == 200){
                     alert("赋予成功")
                     $("#modal1").modal("hide");
+                    $(sno). find("#power4").css('display','none');
+                    $(sno). find("#power2").css('display','inline-block');
+                    $(sno). find("#power3").css('display','inline-block');
                 }else {
                     alert("赋予失败")
                 }
