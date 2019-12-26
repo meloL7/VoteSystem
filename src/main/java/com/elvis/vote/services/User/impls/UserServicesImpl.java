@@ -2,9 +2,12 @@ package com.elvis.vote.services.User.impls;
 
 import com.elvis.vote.dao.User.UserDao;
 import com.elvis.vote.pojo.Login;
+import com.elvis.vote.pojo.Student;
+import com.elvis.vote.pojo.Teacher;
 import com.elvis.vote.pojo.User;
 import com.elvis.vote.services.User.UserServices;
 import com.elvis.vote.utils.APIResult;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -42,9 +45,6 @@ public class UserServicesImpl implements UserServices {
 
     }
 
-
-
-
     @Override
     public APIResult updatePwd(Integer id,String oldPwd, String newPwd) {
         String oldpwd = userDao.selectPwd(id);
@@ -65,6 +65,73 @@ public class UserServicesImpl implements UserServices {
         List<User> users = userDao.selectOne(sno, null);
         return new APIResult("加载个人信息",true,200,users);
     }
+
+    @Override
+    public APIResult isUserExsit(String sno) {
+        int i = userDao.isUser(sno, null);
+        if (i > 0) {
+            List<User> user = userDao.selectOne(sno, null);
+            return new APIResult("success",true,200,user);
+        }else {
+            return new APIResult("该账号未注册，请先注册！",false,500);
+        }
+    }
+
+    @Override
+    public APIResult rePwd(Integer id, String newPwd) {
+        int i = userDao.updatePwd(newPwd, id);
+        if (i>0){
+            return new APIResult("新密码设置成功！",true,200);
+        }else {
+            return new APIResult("新密码设置失败！",false,200);
+        }
+    }
+
+
+    //注册验证
+    public APIResult getSinfo(String sno){
+        int i = userDao.isUser(sno, null);
+        if (i > 0) {
+            return new APIResult("该账号已经存在，返回登陆即可！", false, 500);
+        } else {
+            Student s = userDao.selectStudent(sno);
+            if (s != null) {
+                return new APIResult("验证通过",true,200,s);
+            }else {
+                return new APIResult("该学号不存在，请重新输入!",false,500);
+            }
+        }
+    }
+
+
+    //注册验证
+    public APIResult getTinfo(String sno){
+        int i = userDao.isUser(sno, null);
+        if (i > 0) {
+            return new APIResult("该账号已经存在，返回登陆即可！", false, 500);
+        } else {
+            Teacher t = userDao.selectTeacher(sno);
+            if (t != null) {
+                return new APIResult("教师信息",true,200,t);
+            }else {
+                return new APIResult("该工号不存在，请重新输入!",false,500);
+            }
+        }
+    }
+
+    //注册 -->
+    @Override
+    public APIResult regist(String sno, String identify, String email, String pwd, String sname, String sex, Integer age, String colleage, String major, String grade, String classes) {
+        User user = new User(sno,pwd,email,sname,sex,age,colleage,major,grade,classes,identify);
+        int j = userDao.insertUser(user);
+        if (j > 0) {
+            return new APIResult("注册成功！", true, 200);
+        } else {
+            return new APIResult("注册失败！", false, 500);
+        }
+    }
+
+
 
     @Override
     public void search(String condition, String content) {

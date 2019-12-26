@@ -7,6 +7,7 @@
 		<link rel="shortcut icon" href="images/favicon.ico" />
 		<link type="text/css" href="../css/css.css" rel="stylesheet" />
 		<script type="text/javascript" src="../js/jquery-1.8.3-min.js"></script>
+		<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
 
 	</head>
 
@@ -20,7 +21,7 @@
 					<div class="liulist"></div>
 					<div class="liulist"></div>
 					<div class="liutextbox">
-						<div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+						<div class="liutext for-cur"><em>1</em><br /><strong>填写账号</strong></div>
 						<div class="liutext for-cur"><em>2</em><br /><strong>验证身份</strong></div>
 						<div class="liutext"><em>3</em><br /><strong>设置新密码</strong></div>
 						<div class="liutext"><em>4</em><br /><strong>完成</strong></div>
@@ -31,13 +32,13 @@
 
 					<dl>
 						<dt>用户名：</dt>
-						<dd><input type="text" placeholder="自动获取" /></dd>
+						<dd><input type="text" id="pwd_sname" value="" readonly /></dd>
 						<div class="clears"></div>
 					</dl>
 
 					<dl class="sel-yzyx">
 						<dt>已验证邮箱：</dt>
-						<dd><input type="text" value="自动获取" readonly /></dd>
+						<dd><input type="text" id="pwd_email" value="" readonly /></dd>
 						<div class="clears"></div>
 					</dl>
 					<dl>
@@ -58,33 +59,26 @@
 		<!--content/-->
 
 
-
 		<script>
-			var info = document.getElementById("remInfo");
-			var code = document.getElementById("code");
-			var btn = document.getElementById("xbtn");
-			var form = document.getElementById("form");
-			var MySub = document.getElementById("sub");
-			var flag = false;
+			// var info = document.getElementById("remInfo");
+			// var form = document.getElementById("form");
+			// var MySub = document.getElementById("sub");
+			// var flag = false;
 
-
-			function checkcodes() {
-				console.log(1)
-				btn.innerHTML = "已发送	"
-				code.removeAttribute("disabled");
-			}
-
-			sub.onclick = function() {
-
-				//AJAX判断邮箱验证码是否正确
-				flag = true;
-				if (flag) {
-					form.submit();
-				} else {
-
-					info.style.display = 'block';
-				}
-			}
+			// sub.onclick = function() {
+			//
+			// 	//AJAX判断邮箱验证码是否正确
+			// 	flag = true;
+			// 	if (flag) {
+			// 		form.submit();
+			// 	} else {
+			//
+			// 		info.style.display = 'block';
+			// 	}
+			// }
 		</script>
+
+		<script type="text/javascript" src="../js/pwd.js"></script>
+
 	</body>
 </html>

@@ -49,6 +49,15 @@ public interface AdminVoteServices {
     public void watchNaire(int voteid);
 
 
+    /**
+     * 加载所有投票记录
+     * title 表示按照什么查
+     *  content表示搜索的内容
+     *  type 表示的是问卷还是投票
+     *  indexpage 表示当前页
+     */
+    public APIResult queryAllVote(Integer title,String content,int type,Integer indexpage);
+
 
 
 }

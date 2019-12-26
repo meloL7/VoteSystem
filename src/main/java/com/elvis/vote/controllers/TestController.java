@@ -42,8 +42,6 @@ public class TestController {
     @RequestMapping("/get")
     @ResponseBody
     public APIResult get(){
-
-
         return testServices.getverifyCode("email");
     }
 

@@ -138,173 +138,21 @@
 						</div>
 					</div>
 					<!-- end page title -->
-					<div class="card">
-						<div class="card-body">
-							<h4 class="card-title">问卷详情</h4>
-							<h1 id="title">标题:&nbsp;&nbsp;最爱的统计</h1>
-							<h3 id="introduction">简介:&nbsp;&nbsp;这是学校专门的最爱的统计问卷<h3>
-									<br>
-									<h3 id="openVoter">发起人员:&nbsp;&nbsp;教师 XXX<h3>
-											<h3 id="openVoteTime">发起时间:&nbsp;&nbsp;XXX<h3>
-
-
-						</div> <!-- end card-body-->
-					</div>
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="card card-body text-center">
-								<h4 class="card-title">第一题</h4>
-								<h5 class="card-text">题目类型:单选</h5>
-								<p class="card-text">你最喜欢的歌手.</p>
-
-								<div class="checkbox checkbox-info">
-									<div>
-
-										<input id="checkbox1" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox1">
-											大哥
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox2" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox2">
-											二弟
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox3" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox3">
-											三弟
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox4" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox4">
-											斯蒂
-										</label>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4">
-							<div class="card card-body text-center">
-								<h4 class="card-title">第一题</h4>
-								<h5 class="card-text">题目类型:单选</h5>
-								<p class="card-text">你最喜欢的歌手.</p>
-
-								<div class="checkbox checkbox-info">
-									<div>
-
-										<input id="checkbox1" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox1">
-											大哥
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox2" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox2">
-											二弟
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox3" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox3">
-											三弟
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox4" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox4">
-											斯蒂
-										</label>
-									</div>
-								</div>
-
-
-
-							</div>
-						</div>
-
-						<div class="col-lg-4">
-							<div class="card card-body text-center">
-								<h4 class="card-title">第一题</h4>
-								<h5 class="card-text">题目类型:单选</h5>
-								<p class="card-text">你最喜欢的歌手.</p>
-								<div class="checkbox checkbox-info">
-									<div>
-
-										<input id="checkbox1" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox1">
-											大哥
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox2" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox2">
-											二弟
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox3" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox3">
-											三弟
-										</label>
-									</div>
-									<div>
-
-										<input id="checkbox4" class="styled" type="checkbox" disabled="disabled">
-										<label for="checkbox4">
-											斯蒂
-										</label>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div id="head" class="card">
 
 					</div>
-					<div id="pass" style="display: inline-block;">
-						<a href="naire_manage.html" type="button" class="btn btn-primary  btn-lg waves-effect waves-light">审核通过</a>
-					</div>
-					<div id="nopass" style="display: inline-block;">
+					<div id="row" class="row">
 
-						<a href="naire_manage.html" type="button" class="btn btn-info  btn-lg waves-effect waves-light" data-toggle="modal"
-						 data-target="#exampleModalCenter">退回审核</a>
 					</div>
 
+					<div id="btn">
 
-
-					<div onclick="returnPre()" style="display: inline-block;">
-                        <a id="my" type="button" class="btn  btn-lg waves-effect waves-light">返回上一级</a>
-                    </div>
-
-
-
-
+					</div>
 					<!-- end row-->
 
 				</div> <!-- container-fluid -->
 			</div>
 			<!-- End Page-content -->
-
-
-
-
-
-
-
-
-
-
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 			 style="display: none;" aria-hidden="true">
@@ -319,7 +167,7 @@
 						<div class="modal-body">
 							<h5>请输入拒绝申诉的理由</h5>
 
-							<input type="text" class="" style="width: 100%;" />
+							<input id="nopassRuslt" type="text" class="" style="width: 100%;" />
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
@@ -327,7 +175,7 @@
 
 
 							<!-- 这里需要上传到数据库 -->
-							<button id="nopassresult" type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+							<button id="nopassresult" onclick="noPass()" type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
 
 						</div>
 					</div>
@@ -393,9 +241,7 @@
 
 			//页面加载时加载
 			$(document).ready(function () {
-                // if(window.location.href.indexOf("?") > 0){
-                //
-                // }
+				returnPre(0);
 
             });
 

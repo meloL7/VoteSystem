@@ -43,6 +43,14 @@ public class AdminVoteController {
 
     }
 
+    @RequestMapping("admin/seachVote.do")
+    public APIResult seachVote(Integer title,String content,Integer type,Integer indexpage){
+        return services.queryAllVote(title,content,type,indexpage);
+    }
+
+
+
+
 
 
 }

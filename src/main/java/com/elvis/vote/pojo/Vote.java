@@ -10,7 +10,7 @@ public class Vote {
     private String title;
     private String introduction;
     private int type;//1.问卷 2.选择
-    private int open_voter; //投票人id
+    private String open_voter; //投票人学号
     private String open_voter_name;
     private String open_voter_colleage; //院
     private int open_voter_identify; //投票人身份 1老师 2学生
@@ -56,11 +56,11 @@ public class Vote {
         this.type = type;
     }
 
-    public int getOpen_voter() {
+    public String getOpen_voter() {
         return open_voter;
     }
 
-    public void setOpen_voter(int open_voter) {
+    public void setOpen_voter(String open_voter) {
         this.open_voter = open_voter;
     }
 

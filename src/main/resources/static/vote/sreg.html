@@ -1,385 +1,179 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head id="Head1">
-		<title>
-			注册页面_问卷星
-		</title>
-		<meta name="renderer" content="webkit|ie-comp|ie-stand" />
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<head id="Head1">
+    <title>
+        注册页面_问卷星
+    </title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="./css/NewDefault.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/index.css?v=3" type="text/css"/>
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./js/sregist.js"></script>
 
-		<link rel="stylesheet" href="./css/NewDefault.css" type="text/css" />
-		<link rel="stylesheet" href="./css/index.css?v=3" type="text/css" />
+</head>
+<body class="fp-viewing">
+<form name="form" method="post" action="login.html" id="form">
+    <div>
+
+    </div>
+
+    <div>
+
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="355BB878"/>
+    </div>
+    <div id="fullpage" class="fullpage-wrapper">
+        <div class="full-head clearfix">
+            <a href="/" id="sojumplogo" class="logo pull-left">
+                <img src="./image/logo.png" alt="问卷星_不止问卷调查/在线考试">
+            </a>
+            <div class="member pull-right">
+                <a href="login.html" class="btn btn-default btn-lg pull-left login " rel="nofollow">登录</a>
+                <a href="#" class="btn btn-default btn-lg pull-left register hidden" rel="nofollow">注册</a>
+
+            </div>
+        </div>
+        <div class="fullpage-main"></div>
+
+        <div>
+            <!-- <script type="text/javascript" src="./js/jquery.pseudo.js"></script> -->
+            <!--[if lte IE 9]>
+            <script src="/js/jquery.placeholder.min.js"></script>
+            <script>
+                $(function () {
+                    $('input[placeholder]').placeholder();
+                });
+            </script>
+            <![endif]-->
+
+            <div id="register-box" class="validate-box">
+                <input name="hidInfo" type="text" style="display: none;"/>
+                <fieldset class="validate-wrapper">
+                    <h1 id="Register1_divVT" class="validate-caption">学生注册</h1>
+                    <div id="Register1_pnlCreate">
+                        <ul>
+                            <li>
+                                <label for="Register1_UserName" class="icon user-icon"></label>
+
+                                <input name="Register1$UserName" maxlength="50" id="Register1_UserName"
+                                       name="register-user-name" class="validate-input user-name"
+                                       type="text" placeholder="仅支持学生学号"/>
+
+                                <!-- 用AJAX异步传输修改按钮Value值 -->
+                                <div class="btn btn-default btn-lg get-code-btn">
+                                    <span onclick="checkSno()">验证</span>
+                                    <!-- 这上面的参数有三个值 1.验证通过 2.学号已注册 3.学号不存在-->
+                                </div>
+                            </li>
+
+                            <li>
+                                <label for="Password" class="icon password-icon"></label>
+                                <input name="Register1$Password" type="password" maxlength="20" id="Password"
+                                       class="validate-input"
+                                       placeholder="6~20位字母、数字或下划线" value="" disabled="disabled"/>
+                            </li>
 
 
-		<script>
-			// document.getElementById("checkemail").οnclick = function(){
-	// 	console.log("dasdasdsa")
-	//     alert("按钮被点击");
-	// }
-	
-	
-	/**
-	 * 邮箱验证
-	 */
-	
-	function Mycheckemail(){
-		
-		　	var myeamil = document.getElementById("Register1_EMAIL").value;
-			
-			console.log(myeamil)
-		　	
-			var mybtn = document.getElementById("checkemail");
-			
-			
-			
-			
-		　　
-			var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
-		 
-		　　if(myReg.test(myeamil)){
-				mybtn.innerHTML="验证成功"
-				
-				
-				
-				
-				//AJAX掉后台发送验证码
-				
-				
-				
-				document.getElementById('keycodes').removeAttribute('disabled');
-				
-				document.getElementById('keycodes').setAttribute("placeholder","请您输入验证码")
-			
-		　　　　	
-		　　}else{
-				document.getElementById("Register1_EMAIL").value = ""
-				document.getElementById("Register1_EMAIL").setAttribute("placeholder","邮箱格式不对")
-			}
-		}
-		
-		
-		/**
-		 * 注册业务
-		 */
-		function checkInfoAll(){
-				
-		
-			
-			
-			var checkUser = document.getElementById("checkuser");
-			
-			var checkemail = document.getElementById("checkemail");
-			
-			var pwd = document.getElementById("Password");
-			
-			var keycodesInfo = document.getElementById("keycodesInfo");
-			// console.log(pwd.value.length+"1111")
-			/**
-			                 * 密码包含 数字,英文,字符中的两种以上，长度6-20
-			                 */
-			// var reg =/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/; 
-			console.log(keycodesInfo.innerHTML);
-			var userFlag = false;
-			var pwdFlag = false;
-			var emailFlag = false;
-			var keyFlag  = false;
-			
-			var reg = /^(\w){6,20}$/;
-			
-		
-			
-			
-			
-			
-			/**
-			 * 验证码验证
-			 */
-			if(keycodesInfo.innerHTML == "验证成功"){
-				
-				
-				keyFlag = true;
-			}else{
-				document.getElementById("myInfo").style.display="block";
-				document.getElementById("myInfo").innerHTML="您的验证码未通过验证";
-			}
-			/**
-			 * 邮箱验证
-			 */
-			if(checkemail.innerHTML == "验证成功"){
-			
-				emailFlag = true;
-			}else{
-				
-				//还需AJAX传输过去判断邮箱是否已经存在 如果存在 placeholder改为邮箱已存在！！！
-				
-				document.getElementById("myInfo").style.display="block";
-				document.getElementById("myInfo").innerHTML="您的邮箱未通过验证";
-			}
-			
-			/**
-			 * 密码验证
-			 */
-			if (reg.exec(pwd.value)){
-				
-					
-					pwdFlag = true;
-			}else{
-				
-				document.getElementById("myInfo").style.display="block";
-				document.getElementById("myInfo").innerHTML="您的密码输入不规范";
-			}
-			/**
-			 * 用户名验证
-			 */
-			if(checkUser.innerHTML == "验证通过"){
-				
-				
-				userFlag = true;
-			}else{
-				document.getElementById("myInfo").style.display="block";
-				document.getElementById("myInfo").innerHTML="您的用户名未通过验证";
-			}
-			
-			
-			
-			if(userFlag&pwdFlag&emailFlag&keyFlag){
-				console.log(document.getElementById("form"))
-				
-				document.getElementById("form").submit();
-			}
-			
-			
-			
-			
-			
-		}
-		
-		
-		
-		
-		
+                            <li id="Register1_liMobile" style="text-align:left;">
+
+                                <label for="Register1_EMAIL" class="icon mobile-icon"></label>
+                                <input name="Register1$txtMobile" type="text" maxlength="32" id="Register1_EMAIL"
+                                       class="validate-input"
+                                       placeholder="邮箱验证" disabled="disabled"/>
+                                <div class="btn btn-default btn-lg get-code-btn" style="border-color:#f7941d !important"
+                                     id="checkemail"
+                                     onclick="Mycheckemail()">发送验证码
+                                </div>
+                            </li>
+
+                            <li id="Register1_liMobile" style="text-align:left;">
+
+
+                                <input name="Register1$txtMobile" type="text" maxlength="6" id="keycodes"
+                                       class="validate-input" placeholder="邮箱验证通过后，输入验证码"
+                                       disabled="disabled"/>
+
+                                <div class="btn btn-default btn-lg get-code-btn" style="display:none;border-color:#f7941d !important"
+                                     id="keycodesInfo">验证成功
+                                </div>
+
+                            </li>
+
+
+                            <li>
+
+                                <div>
+
+                                    <div style="clear:both"></div>
+                                    <div style="padding-top:20px;">
+                                        <span style="color: black; font:bold arial ; display: none;" id="myInfo"></span>
+
+                                        <input type="button" disabled="disabled" name="Register1$btnCreate" value="创建用户"
+                                               id="btnCreate" class="submitbutton" name="register-button"
+                                               onmouseover="this.className=&#39;submitbutton submitbutton_hover&#39;;" onmouseout="this.className=&#39;submitbutton&#39;;"
+                                        onclick="registStudent();" />
+                                        <a href="login.html" id="Register1_hrefLogin" class="log-on"
+                                           style="color:#fa911e;">已有账号，立即登录</a>
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </fieldset>
+
+            </div>
+            <!-- <script src="./js/register.js?v=3" type="text/javascript"></script>	 -->
+
+        </div>
+        <div class="feelings-wrapper">
+            <div style="margin-bottom: 12px; font-size: 20px;">《登顶武功山》</div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#keycodes").keyup(function () {
+            var keycode = $("#keycodes").val();
+            var myeamil = $("#Register1_EMAIL").val();
+
+            console.log("--------------------"+keycode);
+            $.ajax({
+                url:"/elvis/getcode.do",
+                type: "post",
+                data: {'email':myeamil},
+                dataType: "json",
+                success: function (data) {
+                    if (data.data==null){
+                        alert("验证码失效！请重新注册！");
+                        window.sessionStorage.clear();
+                        window.location.href = "/elvis/vote/login.html";
+                    }else {
+                        var acount = data.data.acount;
+                        if (keycode==acount){
+                            // $("#keycodesInfo")[0].style.display = 'block';
+                            $("#keycodesInfo").show();
+                            $("#btnCreate").removeAttr("disabled")
+                        }else {
+                            $("#keycodesInfo").hide();
+                            $("#btnCreate").attr("disabled","disabled")
+
+                        }
+                    }
+
+                }
+            });
+        });
+    });
 </script>
-	</head>
-	<body class="fp-viewing">
-		<form name="form" method="post" action="login.html" id="form">
-			<div>
 
-			</div>
-
-			<div>
-
-				<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="355BB878" />
-			</div>
-			<div id="fullpage" class="fullpage-wrapper">
-				<div class="full-head clearfix">
-					<a href="/" id="sojumplogo" class="logo pull-left">
-						<img src="./image/logo.png" alt="问卷星_不止问卷调查/在线考试">
-					</a>
-					<div class="member pull-right">
-						<a href="login.html" class="btn btn-default btn-lg pull-left login " rel="nofollow">登录</a>
-						<a href="#" class="btn btn-default btn-lg pull-left register hidden" rel="nofollow">注册</a>
-
-					</div>
-				</div>
-				<div class="fullpage-main"></div>
-
-
-				<div>
-
-
-
-					<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
-					<!-- <script type="text/javascript" src="./js/jquery.pseudo.js"></script> -->
-					<!--[if lte IE 9]>  
-     <script src="/js/jquery.placeholder.min.js"></script>  
-     <script>  
-        $(function(){  
-            $('input[placeholder]').placeholder();  
-        });  
-     </script>  
-    <![endif]-->
-					<div id="register-box" class="validate-box">
-
-
-
-
-
-						<input name="hidInfo" type="text" style="display: none;" />
-
-						<fieldset class="validate-wrapper">
-							<h1 id="Register1_divVT" class="validate-caption">学生注册</h1>
-
-
-
-							<div id="Register1_pnlCreate">
-
-								<ul>
-									<li>
-										<label for="register-user-name" class="icon user-icon"></label>
-
-										<input name="Register1$UserName" maxlength="50" id="Register1_UserName" name="register-user-name" class="validate-input user-name"
-										 type="text" placeholder="仅支持学生学号" />
-
-
-										<!-- 用AJAX异步传输修改按钮Value值 -->
-										<div class="btn btn-default btn-lg get-code-btn" style="border-color:#f7941d !important
-							left:302px ">
-											<span id="checkuser">验证</span>
-											<!-- 这上面的参数有三个值 1.验证通过 2.学号已注册 3.学号不存在							 -->
-										</div>
-
-
-
-
-									<li>
-										<label for="register-password" class="icon password-icon"></label>
-										<input name="Register1$Password" type="password" maxlength="20" id="Password" class="validate-input"
-										 placeholder="6~20位字母、数字或下划线" value="" />
-
-									</li>
-
-
-
-									<li id="Register1_liMobile" style="text-align:left;">
-
-										<label for="mobile-number" class="icon mobile-icon"></label>
-										<input name="Register1$txtMobile" type="text" maxlength="32" id="Register1_EMAIL" class="validate-input"
-										 placeholder="邮箱验证" />
-										<div class="btn btn-default btn-lg get-code-btn" style="border-color:#f7941d !important" id="checkemail"
-										 onclick="Mycheckemail()">发送验证码</div>
-
-									</li>
-
-									<li id="Register1_liMobile" style="text-align:left;">
-
-
-										<input name="Register1$txtMobile" type="text" maxlength="6" id="keycodes" class="validate-input" placeholder="邮箱验证通过后，输入验证码"
-										 disabled="disabled" />
-
-										<!-- AJAX验证 -->
-
-
-
-
-										<div class="btn btn-default btn-lg get-code-btn" style="border-color:#f7941d !important" id="keycodesInfo">验证成功</div>
-
-
-
-
-
-
-									</li>
-
-
-									<li>
-
-										<div>
-
-											<div style="clear:both"></div>
-											<div style="padding-top:20px;">
-												<span style="color: black; font:bold arial ; display: none;" id="myInfo"></span>
-
-												<input type="button" name="Register1$btnCreate" value="创建用户"" 
-					   id=" btnCreate" class="submitbutton"
-												 name="register-button" onmouseover="this.className=&#39;submitbutton submitbutton_hover&#39;;" onmouseout="this.className=&#39;submitbutton&#39;;"
-												 onclick="checkInfoAll();" />
-												<a href="login.html" id="Register1_hrefLogin" class="log-on" style="color:#fa911e;">已有账号，立即登录</a>
-											</div>
-
-
-
-										</div>
-
-									</li>
-
-
-
-
-								</ul>
-
-							</div>
-						</fieldset>
-
-					</div>
-					<script type="text/javascript">
-						function $$(id) {
-							return document.getElementById(id);
-						}
-
-
-						var userName = $$("Register1_UserName");
-
-						var password = $$("Register1_Password");
-						var email = $$("Register1_Email");
-						var confirmPassword = $$("Register1_ConfirmPassword");
-						var lbMsg = $$("Register1_lbMsg");
-
-						var createUserButton = $$("Register1_btnCreate");
-
-						var divAntiSpam = $$("divAntiSpam");
-						var rndnum = "1997660479";
-
-						if (divAntiSpam) {
-							var validateImage = divAntiSpam.getElementsByTagName("input")[0];
-						}
-
-						function LoginSmall(obj) {
-
-							window.parent.PDF_close();
-							window.parent.PDF_launch(obj.href, 480, 522, null, "登录问卷星");
-							obj.href = "#";
-							return false;
-						}
-						var divType = document.getElementById("Register1_divType");
-
-						var inputTypes = null;
-
-						if (divType) {
-							inputTypes = divType.getElementsByTagName("input");
-						}
-
-						function selectTag(showContent, selfObj) {
-							// 操作标签
-							var tag = document.getElementById("RE-Tags").getElementsByTagName("li");
-							var taglength = tag.length;
-							for (i = 0; i < taglength; i++) {
-								tag[i].className = "";
-							}
-							selfObj.className = "RE-selectTag";
-							// 操作内容
-							inputTypes[showContent].checked = true;
-						}
-						var isUserValid = false;
-						var isPasswordValid = false;
-						var isEmailValid = false;
-						var isConfirmPasswordValid = false;
-
-						function endregister() {
-							window.parent.isLogin = 1;
-							window.parent.isTiyan = false;
-							window.parent.PDF_close();
-						}
-
-						function showhide(id, tar) {
-							var obj = $$(id);
-							obj.style.display = tar.checked ? "" : "none";
-						}
-					</script>
-
-
-
-
-
-
-					<!-- <script src="./js/register.js?v=3" type="text/javascript"></script>	 -->
-
-
-				</div>
-				<div class="feelings-wrapper">
-					<div style="margin-bottom: 12px; font-size: 20px;">《登顶武功山》</div>
-				</div>
-			</div>
-		</form>
-	</body>
+</body>
 </html>
