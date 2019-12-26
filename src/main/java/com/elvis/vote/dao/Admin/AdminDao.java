@@ -67,6 +67,16 @@ public interface AdminDao {
 
     Integer addPower(String sno,Integer colleageId,Integer majorId,Integer gradeId,Integer searchClassesId);
 
+    List checkPower(String sno);
+
+    Integer removePower(String sno);
+
+    List<Power> readPower(String sno);
+
+    String findColleageName(Integer colleageId);
+    String findMajorName(Integer majorId);
+    String findGradeName(Integer gradeId);
+    String findClassesName(Integer classesId);
 
 
 }

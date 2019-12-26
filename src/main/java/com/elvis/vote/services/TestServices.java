@@ -49,7 +49,6 @@ public class TestServices implements AdminLoginServices {
     @Value("${spring.mail.username}")
     private String mailUserName;
 
-
     public APIResult sendEmail(String email){
 
         //验证邮箱是否存在
@@ -65,14 +64,14 @@ public class TestServices implements AdminLoginServices {
         emailEntity.setTime(outDate);
         emailEntity.setEmail("");
         //设置过期时间
-        redisUtil.set("email",emailEntity);
-        redisUtil.expire("email",1000);
+        redisUtil.set(email,emailEntity);
+        redisUtil.expire(email,60*5);
         //发送邮箱
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<html><head><title></title></head><body>");
+        stringBuilder.append("<html><head><title></title></head><body style=\"font-size:16px;font-family:等线;\">");
         stringBuilder.append("您好<br/>");
-        stringBuilder.append("您的验证码是：").append(verifyCode).append("<br/>");
-        stringBuilder.append("您可以复制此验证码并返回至XXX，以验证您的邮箱。<br/>");
+        stringBuilder.append("您的验证码是：<span style=\"font-size:18px;color:red;\">").append(verifyCode).append("</span><br/>");
+        stringBuilder.append("您可以复制此验证码以验证您的邮箱。<br/>");
         stringBuilder.append("此验证码只能使用一次，在5分钟内有效。验证成功则自动失效。<br/>");
         stringBuilder.append("如果您没有进行上述操作，请忽略此邮件。");
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -82,7 +81,7 @@ public class TestServices implements AdminLoginServices {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
             mimeMessageHelper.setFrom(mailUserName);//这里只是设置username 并没有设置host和password，因为host和password在springboot启动创建JavaMailSender实例的时候已经读取了
-            mimeMessageHelper.setTo("1442554245@qq.com");
+            mimeMessageHelper.setTo(email);
             mimeMessage.setSubject("邮箱验证");
             mimeMessageHelper.setText(stringBuilder.toString(),true);
             mailSender.send(mimeMessage);
@@ -94,8 +93,7 @@ public class TestServices implements AdminLoginServices {
     }
 
     public APIResult getverifyCode(String email){
-
-        EmailEntity emailEntity = (EmailEntity)redisUtil.get("email");
+        EmailEntity emailEntity = (EmailEntity)redisUtil.get(email);
         System.out.println(emailEntity);
         APIResult apiResult = new APIResult("",true,200,emailEntity);
         return apiResult;

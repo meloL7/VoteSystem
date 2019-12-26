@@ -17,6 +17,7 @@
         update user set pwd = #{pwd} where id = #{id}
     </update>
 
+
     <!--单独查询出用户的密码，安全-->
     <select id="selectPwd" parameterType="java.lang.Integer" resultType="java.lang.String">
         select pwd from user where id = #{id}
@@ -72,6 +73,23 @@
         )
     </select>
 
+    <!--注册用的-->
+    <select id="selectStudent" parameterType="java.lang.String" resultType="com.elvis.vote.pojo.Student">
+        select sno,sname,sex,age,colleage,major,grade,classes
+        from student where sno=#{sno}
+    </select>
+
+    <!--注册用的-->
+    <select id="selectTeacher" parameterType="java.lang.String" resultType="com.elvis.vote.pojo.Teacher">
+        select sno,sname,sex,age,colleage,major,grade,classes
+        from teacher where sno=#{sno}
+    </select>
+
+    <!--注册用的-->
+    <insert id="insertUser" parameterType="com.elvis.vote.pojo.User">
+        insert into user(sno,pwd,email,sname,identify,sex,age,colleage,major,grade,classes)
+        values(#{sno},#{pwd},#{email},#{sname},#{identify},#{sex},#{age},#{colleage},#{major},#{grade},#{classes})
+    </insert>
 
 
 

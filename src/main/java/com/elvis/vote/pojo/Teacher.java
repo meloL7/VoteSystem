@@ -1,10 +1,13 @@
 package com.elvis.vote.pojo;
 
-public class User {
-    private Integer id;
+
+import java.io.Serializable;
+
+/**
+ * 学校教师表
+ */
+public class Teacher implements Serializable {
     private String sno;
-    private String pwd;
-    private String email;
     private String sname;
     private String sex;
     private Integer age;
@@ -13,16 +16,13 @@ public class User {
     private String grade;
     private String classes;
     private String remark;
-    private String del_flag;
-    private String identify; //教师 学生
 
-    public User() {
+
+    public Teacher() {
     }
 
-    public User(String sno, String pwd, String email, String sname, String sex, Integer age, String colleage, String major, String grade, String classes, String identify) {
+    public Teacher(String sno, String sname, String sex, Integer age, String colleage, String major, String grade, String classes, String remark) {
         this.sno = sno;
-        this.pwd = pwd;
-        this.email = email;
         this.sname = sname;
         this.sex = sex;
         this.age = age;
@@ -30,15 +30,7 @@ public class User {
         this.major = major;
         this.grade = grade;
         this.classes = classes;
-        this.identify = identify;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.remark = remark;
     }
 
     public String getSno() {
@@ -47,22 +39,6 @@ public class User {
 
     public void setSno(String sno) {
         this.sno = sno;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getSname() {
@@ -129,39 +105,19 @@ public class User {
         this.remark = remark;
     }
 
-    public String getDel_flag() {
-        return del_flag;
-    }
-
-    public void setDel_flag(String del_flag) {
-        this.del_flag = del_flag;
-    }
-
-    public String getIdentify() {
-        return identify;
-    }
-
-    public void setIdentify(String identify) {
-        this.identify = identify;
-    }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", sno=" + sno +
-                ", pwd='" + pwd + '\'' +
-                ", email='" + email + '\'' +
+        return "Teacher{" +
+                "sno='" + sno + '\'' +
                 ", sname='" + sname + '\'' +
-                ", sex=" + sex +
+                ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", colleage='" + colleage + '\'' +
                 ", major='" + major + '\'' +
                 ", grade='" + grade + '\'' +
                 ", classes='" + classes + '\'' +
                 ", remark='" + remark + '\'' +
-                ", del_flag='" + del_flag + '\'' +
-                ", identify=" + identify +
                 '}';
     }
 }

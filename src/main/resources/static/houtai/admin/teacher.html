@@ -295,7 +295,7 @@
     </div>
 
 
-    <!-- modal权限 -->
+    <!-- modal权限  赋予权限-->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
          aria-hidden="true" style="display: none;" id="modal1">
         <div class="modal-dialog modal-xl">
@@ -410,6 +410,63 @@
         </div>
     </div>
 </div>
+
+
+<!-- modal权限  查看权限-->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true" style="display: none;" id="modal2">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="myLargeModalLabel1">权 限 查 看</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="width: 200px;">
+
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" id="t5">
+                                    学院 :
+                                    <select id="col1" class="selectpicker" multiple >
+                                    </select>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12 column" id="t6">
+                                    专业 :
+                                    <select id="maj1" class="selectpicker" multiple>
+                                    </select>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12 column" id="t7">
+                                    年级 :
+                                    <select id="gra1" class="selectpicker" multiple  >　
+                                    </select>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12 column" id="t8">
+                                    班级：
+                                    <select id="cla1" class="selectpicker" multiple >
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Modal -->
@@ -633,5 +690,323 @@
     // }
 
 </script>
+
+<script>
+    function checkP(s) {
+        var sno = "#"+s;
+
+        $.ajax({
+            url:"/elvis/admin/checkPower",
+            type:"post",
+            data:{
+                sno:s,
+            },
+            success:function (data) {
+                console.log(data.message)
+
+                if(data.message=="有权限") {
+
+                    $(sno).find("#power1").css('display','none');
+                    $(sno).find("#power2").css('display','inline-block');
+                    $(sno). find("#power3").css('display','inline-block');
+                }else if(data.message=="无权限"){
+                    $(sno). find("#power1").css('display','none');
+                    $(sno). find("#power4").css('display','inline-block');
+                }else {
+                    alert("服务器繁忙")
+                }
+            }
+
+
+        });
+
+
+
+
+
+
+
+    }
+
+    function xclose(sno) {
+
+
+        var xno = "#"+sno;
+        $.ajax({
+            url:"/elvis/admin/removePower",
+            type:"post",
+            data:{
+                sno:sno,
+            },
+            success:function (data) {
+                if(data.message=="删除成功") {
+
+                    $(xno).find("#power2").css('display','none');
+                    $(xno). find("#power3").css('display','none');
+                    $(xno). find("#power4").css('display','inline-block');
+                    alert(data.message)
+                }else if(data.message=="删除失败"){
+                    alert(data.message)
+                }else {
+                    alert(data.message)
+                }
+
+            }
+
+
+        });
+    }
+
+    function readPower(sno) {
+        var col = [];
+        var maj = [];
+        var gra = [];
+        var cla = [];
+
+
+        xno = "#"+sno;
+        $.ajax({
+            url:"/elvis/admin/readPower",
+            type:"post",
+            data:{
+                sno:sno,
+            },
+            success:function (data) {
+
+                for (var i = 0; i <data.data.length ; i++) {
+                    var colleageName = data.data[i].colleage_name;
+                    var majorName = data.data[i].major_name;
+                    var gradeName = data.data[i].grade_name;
+                    var classesName = data.data[i].classes_name;
+
+                    if(col.indexOf(colleageName)<0){
+                        col.push(colleageName)
+                    }
+                    if(maj.indexOf(majorName)<0){
+                        maj.push(majorName)
+                    }
+                    if(gra.indexOf(gradeName)<0){
+                        gra.push(gradeName)
+                    }
+                    if(cla.indexOf(classesName)<0){
+                        cla.push(classesName)
+                    }
+                }
+                loadColleage1(sno,col) //加载初始学校数据
+                var gtitle = loadMajor1(col,maj);
+                var ctitle = loadGrade1(gtitle,gra);
+                loadclasses1(ctitle,cla)
+
+            }
+
+
+        });
+    }
+    var cols = [];
+
+
+    function loadColleage1(sno,col) {
+
+        // console.log(col)
+        sno1 = sno;
+        $.post(
+            "/elvis/admin/loadcolleage",
+            {},
+            function (data) {
+                if(data.code == 200){
+                    var colleagess = $("#col1")
+
+                    colleagess.empty();
+                    var cop =  document.createElement("optgroup");
+                    cop.className = "optgroup-1";
+                    cop.label = "湖南理工大学"
+                    for (var i = 0; i <data.data.length ; i++) {
+                        // console.log(data.data[i].colleage_name)
+                        var option = document.createElement("option");
+                        option.className = "option-1";
+                        option.text = data.data[i].colleage_name;
+                        if(col.indexOf(data.data[i].colleage_name)>-1){
+                            console.log("我来勒")
+                            option.setAttribute("selected","selected")
+                        }
+
+                        option.setAttribute("disabled","disabled")
+                        cop.append(option);
+                    }
+                    colleagess.append(cop);
+                    colleagess.selectpicker('refresh');
+
+                }
+            }
+        );
+
+    }
+    var grades = [];
+function loadMajor1(col,maj) {
+
+    for (var i = 0; i <col.length ; i++) {
+        var temp = col[i];
+        temp= "湖南理工大学>"+temp;
+        cols.push(temp)
+    }
+    var data = {
+        colleagecontent:cols
+    }
+    var that = this;
+    $.ajax({
+        url:"/elvis/admin/loadmajor",
+        type:"post",
+        data:data,
+        traditional:true,
+        async:false,
+        success:function (data) {
+            if(data.code == 200){
+
+
+                var majorss = $("#maj1");
+                majorss.empty();
+                // data.data == biglist
+                // data.data.data[i] ==第几个小list
+                for (var i = 0; i <data.data.length ; i++) {
+                    var cop =  document.createElement("optgroup");
+                    cop.className = "optgroup-"+(i+1);
+                    // console.log(data.data[i].parentName)
+                    cop.label = data.data[i].parentName;
+                    // console.log("test"+data.data[0].data.length)
+                    for (var j = 0; j <data.data[i].data.length ; j++) {
+                        var option = document.createElement("option");
+                        option.className = "option-"+(i+1);
+                        if(maj.indexOf(data.data[i].data[j].major_name)>-1){
+                            option.setAttribute("selected","selected")
+                            grades.push(data.data[i].parentName+">"+data.data[i].data[j].major_name);
+                        }
+                        option.text = data.data[i].data[j].major_name;
+                        option.setAttribute("disabled","disabled")
+                        cop.append(option);
+                    }
+                    majorss.append(cop);
+
+                }
+
+                majorss.selectpicker('refresh');
+
+
+            }
+        }
+    });
+
+    return grades;
+}
+var classess= [];
+function loadGrade1(gtitle,gra) {
+    console.log("进入了loadgrade")
+    var data = {
+        majorcontent:gtitle
+    }
+
+    $.ajax({
+        url:"/elvis/admin/loadgrade",
+        type:"post",
+        data:data,
+        traditional:true,
+        async:false,
+        success:function (data) {
+
+            if(data.code == 200){
+
+                var gradess = $("#gra1");
+                gradess.empty();
+                // data.data == biglist
+                // data.data.data[i] ==第几个小list
+
+                for (var i = 0; i <data.data.length ; i++) {
+
+                    var cop =  document.createElement("optgroup");
+                    cop.className = "optgroup-"+(i+1);
+                    // console.log(data.data[i].parentName)
+                    cop.label = data.data[i].parentName;
+                    // console.log("test"+data.data[0].data.length)
+                    for (var j = 0; j <data.data[i].data.length ; j++) {
+                        var option = document.createElement("option");
+                        option.className = "option-"+(i+1);
+                        if(gra.indexOf(data.data[i].data[j].grade_name)>-1){
+                            option.setAttribute("selected","selected")
+                            classess.push(data.data[i].parentName+">"+data.data[i].data[j].grade_name);
+                        }
+                        option.text = data.data[i].data[j].grade_name;
+                        option.setAttribute("disabled","disabled")
+                        cop.append(option);
+                    }
+                    gradess.append(cop);
+                    gradess.selectpicker('refresh');
+
+
+                }
+
+
+
+
+
+            }
+        }
+    });
+        return classess;
+}
+
+    function loadclasses1(ctitle,cla) {
+        console.log("进入loadclasses1")
+        var data = {
+            classescontent:ctitle
+        }
+
+        $.ajax({
+            url:"/elvis/admin/loadclasses",
+            type:"post",
+            data:data,
+            traditional:true,
+            success:function (data) {
+
+                if(data.code == 200){
+
+                    var classes = $("#cla1");
+                    classes.empty();
+                    // data.data == biglist
+                    // data.data.data[i] ==第几个小list
+
+                    for (var i = 0; i <data.data.length ; i++) {
+
+                        var cop =  document.createElement("optgroup");
+                        cop.className = "optgroup-"+(i+1);
+                        // console.log(data.data[i].parentName)
+                        cop.label = data.data[i].parentName;
+                        // console.log("test"+data.data[0].data.length)
+                        for (var j = 0; j <data.data[i].data.length ; j++) {
+                            var option = document.createElement("option");
+                            option.className = "option-"+(i+1);
+                            if(cla.indexOf(data.data[i].data[j].classes_name)>-1){
+                                option.setAttribute("selected","selected")
+                            }
+                            option.text = data.data[i].data[j].classes_name;
+                            option.setAttribute("disabled","disabled")
+                            cop.append(option);
+                        }
+                        classes.append(cop);
+                        classes.selectpicker('refresh');
+
+
+                    }
+
+
+
+
+
+                }
+            }
+        });
+
+    }
+</script>
+
+
 
 </html>

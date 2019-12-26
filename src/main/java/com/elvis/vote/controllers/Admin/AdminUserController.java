@@ -66,4 +66,21 @@ public class AdminUserController {
         APIResult result = userServices.saveResult(content, sno);
         return result;
     }
+    @RequestMapping ("admin/checkPower")
+    public APIResult checkPower(String sno){
+        APIResult result = userServices.checkPower(sno);
+        return result;
+    }
+    @RequestMapping("admin/removePower")
+    public APIResult removePower(String sno){
+        APIResult result = userServices.removePower(sno);
+        return result;
+    }
+
+    @RequestMapping("admin/readPower")
+    public APIResult readPower(String sno){
+        APIResult result = userServices.readPower(sno);
+        return result;
+    }
+
 }

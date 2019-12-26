@@ -6,11 +6,7 @@
 		<title>忘记密码</title>
 		<link rel="shortcut icon" href="images/favicon.ico" />
 		<link type="text/css" href="../css/css.css" rel="stylesheet" />
-
-
-
-
-
+		<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
 	</head>
 
 	<body>
@@ -23,7 +19,7 @@
 					<div class="liulist"></div>
 					<div class="liulist"></div>
 					<div class="liutextbox">
-						<div class="liutext for-cur"><em>1</em><br /><strong>填写账户名</strong></div>
+						<div class="liutext for-cur"><em>1</em><br /><strong>填写账号</strong></div>
 						<div class="liutext"><em>2</em><br /><strong>验证身份</strong></div>
 						<div class="liutext"><em>3</em><br /><strong>设置新密码</strong></div>
 						<div class="liutext"><em>4</em><br /><strong>完成</strong></div>
@@ -31,21 +27,21 @@
 				</div>
 				<!--for-liucheng/-->
 				<form action="forgetPwd2.html" method="get" class="forget-pwd" id="form">
+<!--					<dl>-->
+<!--						<dt>身份：</dt>-->
+<!--						<dd><select>-->
+<!--								<option>老师</option>-->
+<!--								<option>学生</option>-->
+<!--							</select></dd>-->
+<!--						<div class="clears"></div>-->
+<!--					</dl>-->
 					<dl>
-						<dt>身份：</dt>
-						<dd><select>
-								<option value="">老师</option>
-								<option value="">学生</option>
-							</select></dd>
+						<dt>学号/工号：</dt>
+						<dd><input type="text" id="sno"/></dd>
 						<div class="clears"></div>
 					</dl>
-					<dl>
-						<dt>账户名：</dt>
-						<dd><input type="text" /></dd>
-						<div class="clears"></div>
-					</dl>
-					<span style="position:relative;left:112px;bottom:10px; color: red;
-		display: none;" id="remInfo">账户名不存在!</span>
+<!--					<span style="position:relative;left:112px;bottom:10px; color: red;-->
+<!--		display: none;" id="remInfo">账户名不存在!</span>-->
 					<div class="subtijiao"><input type="button" value="提交" onclick="checkALL()" /></div>
 				</form>
 				<!--forget-pwd/-->
@@ -53,25 +49,7 @@
 			<!--web-width/-->
 		</div>
 		<!--content/-->
-
-
-
-
-		<script>
-			var info = document.getElementById("remInfo");
-
-			var form = document.getElementById("form");
-
-			function checkALL() {
-				// console.log(info)
-
-				var flag = true;
-				if (flag) {
-					form.submit();
-				} else {
-					info.style.display = "block";
-				}
-			}
-		</script>
+		
+		<script type="text/javascript" src="../js/pwd.js"></script>
 	</body>
 </html>
