@@ -92,6 +92,11 @@
     </update>
 
 
+
+
+
+
+
     <!--    <select id="selectVoteByTitle" resultType="com.elvis.vote.pojo.Vote">-->
     <!--        select *-->
     <!--        from vote-->

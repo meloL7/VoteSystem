@@ -65,4 +65,53 @@
         </if>
     </select>
 
+
+
+
+    <select id="selectAllVote" resultType="com.elvis.vote.pojo.Vote">
+        select * from vote where type=#{type}
+        <if test="open_voter_name != null">
+            and open_voter_name like concat('%',#{open_voter_name},'%')
+        </if>
+        <if test="title != null">
+            and title like concat('%',#{concat},'%')
+        </if>
+        <if test="open_voter_identify != null">
+            and open_voter_identify = #{open_voter_identify}
+        </if>
+        <if test="open_voter != null">
+            and open_voter like concat('%',#{open_voter},'%')
+        </if>
+    </select>
+
+
+    <select id="searchAllVoteNumber" resultType="java.lang.Integer">
+        select count(1)
+        from vote where type=#{type}
+        <if test="open_voter_name != null">
+            and open_voter_name like concat('%',#{open_voter_name},'%')
+        </if>
+        <if test="title != null">
+            and title like concat('%',#{concat},'%')
+        </if>
+        <if test="open_voter_identify != null">
+            and open_voter_identify = #{open_voter_identify}
+        </if>
+        <if test="open_voter != null">
+            and open_voter like concat('%',#{open_voter},'%')
+        </if>
+    </select>
+
+    <select id="selectAllVoteBySex" resultType="com.elvis.vote.pojo.Vote">
+        select * from vote where open_voter in(
+            select sno from user where sex = #{sex}
+        )
+    </select>
+
+    <select id="selectAllVoteBySexNumber" resultType="java.lang.Integer">
+        select count(1) from vote where open_voter in(
+            select sno from user where sex = #{sex}
+        )
+    </select>
+
 </mapper>

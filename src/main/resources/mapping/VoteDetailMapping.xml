@@ -8,7 +8,41 @@
          from user_vote_details
     </select>
 
-<!--    <select id="searchVoteContentList" resultType="com.elvis.vote.pojo.VoteContent">-->
+
+    <select id="selectVoteById" resultType="com.elvis.vote.pojo.Vote">
+        select * from vote where id = #{id}
+    </select>
+
+    <select id="selectAllSelectbyVoteid" resultType="com.elvis.vote.pojo.Select">
+        select * from `select` where select_id in(
+	        select select_id from user_vote_details where vote_id = #{vote_id}
+        )
+    </select>
+
+    <select id="selectUserBysno" resultType="com.elvis.vote.pojo.User">
+        select * from user where sno = #{sno}
+    </select>
+
+    <select id="selectAllOptionBySelectid" resultType="com.elvis.vote.pojo.Option">
+        select * from `option` where select_id = #{select_id};
+    </select>
+
+    <update id="updateVoteStatusByVoteid">
+        update vote set vote_status = #{vote_status},begin_time = #{time} where id=#{voteid}
+
+    </update>
+
+    <update id="updateVoteNopass">
+        update vote set vote_status = #{vote_status},end_time = #{time},nopass_result = #{nopass} where id=#{voteid}
+
+    </update>
+
+    <update id="updateUserVote">
+        update user_vote_connection set status = #{status} where vote_id = #{voteid}
+    </update>
+
+<!--
+    <select id="searchVoteContentList" resultType="com.elvis.vote.pojo.VoteContent">-->
 <!--        select `id`, `voter_id`, `vote_id`, `select_id`, `option_id`, `vote_time`-->
 <!--         from user_vote_details-->
 <!--    </select>-->

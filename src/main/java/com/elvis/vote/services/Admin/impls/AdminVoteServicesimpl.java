@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static java.lang.Integer.numberOfLeadingZeros;
 import static java.lang.Integer.parseInt;
 
 @Service
@@ -262,5 +263,88 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
     @Override
     public void watchNaire(int voteid) {
 
+    }
+
+    @Override
+    public APIResult queryAllVote(Integer title, String content, int type, Integer indexpage) {
+
+        Pager pager = null;
+        APIResult result = null;
+
+        if(title == 1){     //按照投票人id查
+            List<Vote> votes = dao.selectAllVote(type, content, null, null, null, indexpage);
+
+            if(votes.size() == 0){
+                result = new APIResult("对不起，没有您想要的数据！",true,200);
+            }else {
+                Integer num = dao.searchAllVoteNumber(type, content, null, null, null, indexpage);
+                pager = new Pager(num,indexpage,10);
+                pager.setData(votes);
+                result = new APIResult("",true,200,pager);
+            }
+
+        }else if(title == 2){   //按照投票人姓名查
+            List<Vote> votes = dao.selectAllVote(type, null, content, null, null, indexpage);
+            if(votes.size() == 0){
+                result = new APIResult("对不起，没有您想要的数据！",true,200);
+            }else {
+                Integer num = dao.searchAllVoteNumber(type, null, content, null, null, indexpage);
+                pager = new Pager(num,indexpage,10);
+                pager.setData(votes);
+                result = new APIResult("",true,200,pager);
+            }
+
+        }else if(title == 3){   //按照投票人身份查
+            if(content.equals("学生")){
+                List<Vote> votes = dao.selectAllVote(type, null, null, 2, null, indexpage);
+                if(votes.size() == 0){
+                    result = new APIResult("对不起，没有您想要的数据！",true,200);
+                }else {
+                    Integer num = dao.searchAllVoteNumber(type, null, null, 2, null, indexpage);
+                    pager = new Pager(num,indexpage,10);
+                    pager.setData(votes);
+                    result = new APIResult("",true,200,pager);
+                }
+
+            }else if(content.equals("教师")){
+                List<Vote> votes = dao.selectAllVote(type, null, null, 1, null, indexpage);
+                if(votes.size() == 0){
+                    result = new APIResult("对不起，没有您想要的数据！",true,200);
+                }else {
+                    Integer num = dao.searchAllVoteNumber(type, null, null, 1, null, indexpage);
+                    pager = new Pager(num,indexpage,10);
+                    pager.setData(votes);
+                    result = new APIResult("",true,200,pager);
+                }
+
+            }else {
+                result = new APIResult("对不起，您输入的信息不对！请输入学生或者教师！",false,200);
+            }
+        }else if(title == 4){   //按照投票人性别查
+
+            List<Vote> votes = dao.selectAllVoteBySex(type, content, indexpage);
+            if(votes.size() == 0){
+                result = new APIResult("对不起，没有您想要的数据！",true,200);
+            }else {
+                Integer num = dao.selectAllVoteBySexNumber(type, content, indexpage);
+                pager = new Pager(num,indexpage,10);
+                pager.setData(votes);
+                result = new APIResult("",true,200,pager);
+            }
+
+        }else if(title == 5){   //按照主题查
+            List<Vote> votes = dao.selectAllVote(type, null, null, null, content, indexpage);
+            if(votes.size() == 0){
+                result = new APIResult("对不起，没有您想要的数据！",true,200);
+            }else {
+                Integer num = dao.searchAllVoteNumber(type, null, null, null, content, indexpage);
+                pager = new Pager(num,indexpage,10);
+                pager.setData(votes);
+                result = new APIResult("",true,200,pager);
+            }
+
+        }
+
+        return result;
     }
 }

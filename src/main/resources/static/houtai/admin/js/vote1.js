@@ -25,7 +25,7 @@ function wait(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
 
@@ -69,9 +69,9 @@ function timeout(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].end_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp;|&nbsp;\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../anaysis.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择分析</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../anaysis.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择分析</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
@@ -114,7 +114,7 @@ function pass(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
 
@@ -158,7 +158,7 @@ function nopass(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].end_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].nopass_result+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
 
@@ -205,7 +205,7 @@ function asearch(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_vote_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
                         vote_list.append(vote);
@@ -252,9 +252,9 @@ function tsearch(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].end_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp;|&nbsp;\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../anaysis.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择分析</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../anaysis.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择分析</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
@@ -300,7 +300,7 @@ function psearch(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
 
@@ -347,7 +347,7 @@ function npsearch(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].end_time+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].nopass_result+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"\">查看选择详情</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看选择详情</a>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
 

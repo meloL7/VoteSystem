@@ -1,6 +1,7 @@
 package com.elvis.vote.dao.Admin;
 
 import com.elvis.vote.pojo.Vote;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -18,4 +19,18 @@ public interface AdminVoteDao {
                            Integer open_voter_identify,String title,
                            String nopass_result,  Integer all_select_num,
                            Integer all_voter_num,Integer type,Integer vote_status);
+
+
+    //查找所有的投票信息
+    List<Vote> selectAllVote(Integer type,String open_voter,String open_voter_name,
+                             Integer open_voter_identify,String title,Integer indexpage);
+
+
+    //查找投票信息总数
+    Integer searchAllVoteNumber(Integer type,String open_voter,String open_voter_name,
+                             Integer open_voter_identify,String title,Integer indexpage);
+
+    List<Vote> selectAllVoteBySex(Integer type,String sex,Integer indexpage);
+
+    Integer selectAllVoteBySexNumber(Integer type,String sex,Integer indexpage);
 }

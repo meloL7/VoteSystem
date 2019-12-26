@@ -154,10 +154,11 @@
 
 
 										<select class="form-control form-control-sm" style="flex: 0.1 0 auto;">
-											<option>投票人</option>
-											<option>身份</option>
-											<option>性别</option>
-											<option>问卷标题</option>
+											<option value="1">投票人ID</option>
+											<option value="2">投票人</option>
+											<option value="3">身份</option>
+											<option value="4">性别</option>
+											<option value="5">问卷标题</option>
 										</select>
 										<!-- <div class="form-group">
 											<label>Threshold value</label>
@@ -176,7 +177,8 @@
 										<table class="table table-centered table-striped table-nowrap">
 											<thead>
 												<tr>
-													<th>ID</th>
+													<th>序号</th>
+													<th>学号/工号</th>
 													<th>投票人</th>
 													<th>投票人身份</th>
 													<th>投票人性别</th>
@@ -189,6 +191,7 @@
 											<tbody>
 												<tr>
 													<td>1</td>
+													<td>12345</td>
 													<td>张帅军</td>
 													<td>学生</td>
 													<td>男</td>
@@ -301,6 +304,7 @@
 		<!-- App js -->
 		<script src="assets/js/theme.js"></script>
 		<script src="assets/pages/fileuploads-demo.js"></script>
+		<script src="js/voteDetail.js"></script>
 		<script>
 			$('.input-group input[name="pickdate"]').each(function() {
 				$(this).datepicker({
@@ -331,6 +335,12 @@
 			// document.getElementById("chongzhi").onclick = function () {
 			//     CKEDITOR.instances.editor1.setData('<p>This is the editor data.</p>');
 			// }
+		</script>
+
+		<script>
+			$(document).ready(function () {
+				loadVote();
+			})
 		</script>
 	</body>
 

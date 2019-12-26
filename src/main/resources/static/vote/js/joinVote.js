@@ -188,6 +188,7 @@ function voteDetail(voter_id,vote_id,type,voter_status,isFlag) {
 
             //审核不通过原因
             var beacuse = $("#beacuse");
+            $("#beacuse").css({fontSize:"25px",color:"#FF3030",marginBottom:"10px"});
             console.log(h);
             var con;
             if(!isFlag){
@@ -256,7 +257,7 @@ function voteDetail(voter_id,vote_id,type,voter_status,isFlag) {
 
 
                 //表示查看详情
-                if(voter_status == 2){
+                if(voter_status == 2 || voter_status == 4){
                     voteAnswer(index,data);
                 }else if(voter_status == 3){  //表示投票
                     console.log("投票。。。");
