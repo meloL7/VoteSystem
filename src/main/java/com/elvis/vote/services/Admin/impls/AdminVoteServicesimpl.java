@@ -1,6 +1,7 @@
 package com.elvis.vote.services.Admin.impls;
 
 import com.elvis.vote.dao.Admin.AdminVoteDao;
+import com.elvis.vote.pojo.User;
 import com.elvis.vote.pojo.Vote;
 import com.elvis.vote.services.Admin.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
@@ -8,6 +9,7 @@ import com.elvis.vote.utils.Pager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.numberOfLeadingZeros;
@@ -270,62 +272,98 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
 
         Pager pager = null;
         APIResult result = null;
-
+        ArrayList<Object> data = new ArrayList<>();
         if(title == 0){
-            List<Vote> votes = dao.selectAllVote(type, null, null, null, null, indexpage);
+            List<Vote> votes = dao.selectAllVote(type, null, null, null, null, indexpage,10);
 
             if(votes.size() == 0){
                 result = new APIResult("对不起，没有您想要的数据！",true,200);
             }else {
+                ArrayList users = new ArrayList();
+                for (int i = 0; i < votes.size(); i++) {
+                    User user = dao.selectUserByid(votes.get(i).getId());
+                    users.add(user);
+                }
                 Integer num = dao.searchAllVoteNumber(type, null, null, null, null, indexpage);
                 pager = new Pager(num,indexpage,10);
                 pager.setData(votes);
-                result = new APIResult("",true,200,pager);
+                data.add(pager);
+                data.add(users);
+                result = new APIResult("",true,200,data);
             }
         }else if(title == 1){     //按照投票人id查
-            List<Vote> votes = dao.selectAllVote(type, content, null, null, null, indexpage);
+            List<Vote> votes = dao.selectAllVote(type, content, null, null, null, indexpage,10);
+            System.out.println("votes.size() = " + votes.size());
 
             if(votes.size() == 0){
                 result = new APIResult("对不起，没有您想要的数据！",true,200);
             }else {
+                ArrayList users = new ArrayList();
+                for (int i = 0; i < votes.size(); i++) {
+                    User user = dao.selectUserByid(votes.get(i).getId());
+                    users.add(user);
+                }
                 Integer num = dao.searchAllVoteNumber(type, content, null, null, null, indexpage);
                 pager = new Pager(num,indexpage,10);
                 pager.setData(votes);
-                result = new APIResult("",true,200,pager);
+                data.add(pager);
+                data.add(users);
+                result = new APIResult("",true,200,data);
             }
 
         }else if(title == 2){   //按照投票人姓名查
-            List<Vote> votes = dao.selectAllVote(type, null, content, null, null, indexpage);
+            List<Vote> votes = dao.selectAllVote(type, null, content, null, null, indexpage,10);
             if(votes.size() == 0){
                 result = new APIResult("对不起，没有您想要的数据！",true,200);
             }else {
+                ArrayList users = new ArrayList();
+                for (int i = 0; i < votes.size(); i++) {
+                    User user = dao.selectUserByid(votes.get(i).getId());
+                    users.add(user);
+                }
                 Integer num = dao.searchAllVoteNumber(type, null, content, null, null, indexpage);
                 pager = new Pager(num,indexpage,10);
                 pager.setData(votes);
-                result = new APIResult("",true,200,pager);
+                data.add(pager);
+                data.add(users);
+                result = new APIResult("",true,200,data);
             }
 
         }else if(title == 3){   //按照投票人身份查
             if(content.equals("学生")){
-                List<Vote> votes = dao.selectAllVote(type, null, null, 2, null, indexpage);
+                List<Vote> votes = dao.selectAllVote(type, null, null, 2, null, indexpage,10);
                 if(votes.size() == 0){
                     result = new APIResult("对不起，没有您想要的数据！",true,200);
                 }else {
+                    ArrayList users = new ArrayList();
+                    for (int i = 0; i < votes.size(); i++) {
+                        User user = dao.selectUserByid(votes.get(i).getId());
+                        users.add(user);
+                    }
                     Integer num = dao.searchAllVoteNumber(type, null, null, 2, null, indexpage);
                     pager = new Pager(num,indexpage,10);
                     pager.setData(votes);
-                    result = new APIResult("",true,200,pager);
+                    data.add(pager);
+                    data.add(users);
+                    result = new APIResult("",true,200,data);
                 }
 
             }else if(content.equals("教师")){
-                List<Vote> votes = dao.selectAllVote(type, null, null, 1, null, indexpage);
+                List<Vote> votes = dao.selectAllVote(type, null, null, 1, null, indexpage,10);
                 if(votes.size() == 0){
                     result = new APIResult("对不起，没有您想要的数据！",true,200);
                 }else {
+                    ArrayList users = new ArrayList();
+                    for (int i = 0; i < votes.size(); i++) {
+                        User user = dao.selectUserByid(votes.get(i).getId());
+                        users.add(user);
+                    }
                     Integer num = dao.searchAllVoteNumber(type, null, null, 1, null, indexpage);
                     pager = new Pager(num,indexpage,10);
                     pager.setData(votes);
-                    result = new APIResult("",true,200,pager);
+                    data.add(pager);
+                    data.add(users);
+                    result = new APIResult("",true,200,data);
                 }
 
             }else {
@@ -333,25 +371,39 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
             }
         }else if(title == 4){   //按照投票人性别查
 
-            List<Vote> votes = dao.selectAllVoteBySex(type, content, indexpage);
+            List<Vote> votes = dao.selectAllVoteBySex(type, content, indexpage,10);
             if(votes.size() == 0){
                 result = new APIResult("对不起，没有您想要的数据！",true,200);
             }else {
+                ArrayList users = new ArrayList();
+                for (int i = 0; i < votes.size(); i++) {
+                    User user = dao.selectUserByid(votes.get(i).getId());
+                    users.add(user);
+                }
                 Integer num = dao.selectAllVoteBySexNumber(type, content, indexpage);
                 pager = new Pager(num,indexpage,10);
                 pager.setData(votes);
-                result = new APIResult("",true,200,pager);
+                data.add(pager);
+                data.add(users);
+                result = new APIResult("",true,200,data);
             }
 
         }else if(title == 5){   //按照主题查
-            List<Vote> votes = dao.selectAllVote(type, null, null, null, content, indexpage);
+            List<Vote> votes = dao.selectAllVote(type, null, null, null, content, indexpage,10);
             if(votes.size() == 0){
                 result = new APIResult("对不起，没有您想要的数据！",true,200);
             }else {
+                ArrayList users = new ArrayList();
+                for (int i = 0; i < votes.size(); i++) {
+                    User user = dao.selectUserByid(votes.get(i).getId());
+                    users.add(user);
+                }
                 Integer num = dao.searchAllVoteNumber(type, null, null, null, content, indexpage);
                 pager = new Pager(num,indexpage,10);
                 pager.setData(votes);
-                result = new APIResult("",true,200,pager);
+                data.add(pager);
+                data.add(users);
+                result = new APIResult("",true,200,data);
             }
 
         }

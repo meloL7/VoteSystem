@@ -236,45 +236,144 @@ function votePass() {
 /**
  * 进入投票详情管理的初始化加载数据
  */
-function loadVoteList(type) {
-    var option = $(".form-control form-control-sm").val();
-    console.log(option);
-
-    var content = $("#custname").val();
-    console.log(content);
-
-    if(content == null || content == ""){
-        option = 0;
+function loadVoteList(type,indexpage,option,content) {
+    if(option == null){
+        option = $("#selectvalue option:selected").val();
+        content = $("#custname").val();
+        if(content == null || content == ""){
+            option = 0;
+        }
     }
-    
+    console.log(option + "----" + content + "-----" + type + "----" + indexpage);
+    var href = window.location.search;
+    sessionStorage.setItem("option",option);
+    sessionStorage.setItem("content",content);
+    sessionStorage.setItem("type",type);
+    sessionStorage.setItem("indexpage",indexpage);
+
+    console.log(option + "----" + content + "-----" + type + "----" + indexpage);
     $.post(
         "/elvis/admin/seachVote.do",
         {
             title:option,
             content:content,
             type:type,
-            indexpage:0,
+            indexpage:indexpage,
         },
         function (data) {
             console.log(data);
 
             var table = $("#tbody");
+            table.empty();
 
-            for (var i = 0; i < data.data.data.length; i++) {
+            for (var i = 0; i < data.data[0].data.length; i++) {
                 var tr = "<tr>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i + 1)+"</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>12345</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>张帅军</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>学生</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>男</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>你最喜欢的明星</td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2019/12/11</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sno+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sname+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].identify+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sex+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[0].data[i].title+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[0].data[i].open_time+"</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"naire_detail_detail.html\">查看详情</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\'naire_detail_detail.html\?voteid="+data.data[0].data[i].id+"'>查看详情</a>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
+
+                table.append(tr);
             }
+            var index = "<tr>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t<td colspan=\"6\" align=\"center\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul class=\"pagination pagination-rounded\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item previous disabled\" id=\"complex-header-datatable_previous\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"0\" tabindex=\"0\" class=\"page-link\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"mdi mdi-chevron-left\"></i>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item active\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"1\" tabindex=\"0\" class=\"page-link\">1</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"2\" tabindex=\"0\" class=\"page-link\">2</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"3\" tabindex=\"0\" class=\"page-link\">3</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"4\" tabindex=\"0\" class=\"page-link\">4</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"5\" tabindex=\"0\" class=\"page-link\">5</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"6\" tabindex=\"0\" class=\"page-link\">6</a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item next\" id=\"complex-header-datatable_next\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"7\" tabindex=\"0\" class=\"page-link\"><i\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"mdi mdi-chevron-right\"></i></a>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ul>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
+
+            table.append(index);
         }
     )
     
+}
+
+function back() {
+    var option = sessionStorage.getItem("option");
+    var content = sessionStorage.getItem("content");
+    var type = sessionStorage.getItem("type");
+    var indexpage = sessionStorage.getItem("indexpage");
+
+    console.log(option + "---" + content +"--" + content + "---"+type + "---" + indexpage);
+
+    loadVoteList(type,indexpage,option,content);
+
+}
+
+//加载naire_detail_detail界面数据
+function loadNaireDetail() {
+    var param = window.location.search.substr(1);
+    var vote_id = param.split("=")[1];
+    console.log("vote_id = " + vote_id);
+
+    $.post(
+        "/elvis/admin/loadVoteDetail.do",
+        {
+            vote_id:vote_id,
+        },
+        function (data) {
+            console.log(data);
+            var table = $("#tbody");
+
+            //题目数
+            for (var i = 0; i < data.data[2].length; i++) {
+
+                //问题数
+                for (var j = 0; j < data.data[3][i].length; j++) {
+                    var tr = "<tr>\n" +
+                        "                                        <th scope=\"row\">"+(i + 1)+"</th>\n" +
+                        "                                        <td>"+data.data[2][i].select_tiltle+"</td>\n" +
+                        "                                        <td>"+data.data[3][i][j].option_content+"</td>\n" +
+                        "                                    </tr>";
+
+                    table.append(tr);
+                }
+            }
+
+            var href = $("#backhref");
+            var a;
+            if(data.data[0].type == 1){
+                a = "<a href=\"naire_detail.html?back\"   type=\"button\" class=\"btn  btn-lg waves-effect waves-light\" >返回上一级</a>";
+            }else {
+                a = "<a href=\"vote_detail.html?back\"   type=\"button\" class=\"btn  btn-lg waves-effect waves-light\" >返回上一级</a>";
+            }
+            href.append(a);
+
+        }
+
+    )
 }
