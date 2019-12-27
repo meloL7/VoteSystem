@@ -170,7 +170,7 @@
 										<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
 										 maxlength="16" />
 
-										<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
+										<a style="color: #ffffff;line-height: 25px" onclick="loadVoteList(1)" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
 									</div>
 									<br><br>
 									<div class="table-responsive">
@@ -188,7 +188,7 @@
 
 												</tr>
 											</thead>
-											<tbody>
+											<tbody id="tbody">
 												<tr>
 													<td>1</td>
 													<td>12345</td>
@@ -197,12 +197,6 @@
 													<td>男</td>
 													<td>你最喜欢的明星</td>
 													<td>2019/12/11</td>
-													<!-- <td>
-													    <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="赋予|封禁" name="switch" checked  lay-skin="switch">
-													</td>
-												    <td>
-												        <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="正常|封禁" name="switch" checked  lay-skin="switch">
-												    </td>-->
 													<td>
 														<a href="naire_detail_detail.html">查看详情</a>
 													</td>
@@ -304,7 +298,7 @@
 		<!-- App js -->
 		<script src="assets/js/theme.js"></script>
 		<script src="assets/pages/fileuploads-demo.js"></script>
-		<script src="js/voteDetail.js"></script>
+		<script src="js/detail.js"></script>
 		<script>
 			$('.input-group input[name="pickdate"]').each(function() {
 				$(this).datepicker({
@@ -337,9 +331,11 @@
 			// }
 		</script>
 
+
+
 		<script>
 			$(document).ready(function () {
-				loadVote();
+				loadVoteList(1);
 			})
 		</script>
 	</body>

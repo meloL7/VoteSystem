@@ -271,7 +271,18 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
         Pager pager = null;
         APIResult result = null;
 
-        if(title == 1){     //按照投票人id查
+        if(title == 0){
+            List<Vote> votes = dao.selectAllVote(type, null, null, null, null, indexpage);
+
+            if(votes.size() == 0){
+                result = new APIResult("对不起，没有您想要的数据！",true,200);
+            }else {
+                Integer num = dao.searchAllVoteNumber(type, null, null, null, null, indexpage);
+                pager = new Pager(num,indexpage,10);
+                pager.setData(votes);
+                result = new APIResult("",true,200,pager);
+            }
+        }else if(title == 1){     //按照投票人id查
             List<Vote> votes = dao.selectAllVote(type, content, null, null, null, indexpage);
 
             if(votes.size() == 0){

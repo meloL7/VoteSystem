@@ -239,12 +239,14 @@ public class VoteServicesImpl implements VoteServices {
                 }
 
             }
-            Integer integer = voteDao.updateVoteConnection(voter_id, vote_id, 2);
             apiResult = new APIResult("",true,200,type);
         }catch (Exception e){
             e.printStackTrace();
             apiResult = new APIResult("出现异常！",false,500);
+            return apiResult;
         }
+        Integer integer = voteDao.updateVoteConnection(voter_id, vote_id, 2);
+        Integer integer1 = voteDao.updateVote(vote_id, 2);
         return  apiResult;
     }
 

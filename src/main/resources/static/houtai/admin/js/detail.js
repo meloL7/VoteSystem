@@ -87,10 +87,21 @@ function initVoteData(vote_id,voter_status) {
                 "\t\t\t\t\t\t\t<h3 id=\"introduction\">简介:&nbsp;&nbsp;"+data.data[0].introduction+"</h3>\n" +
                 "\t\t\t\t\t\t\t<br>\n" +
                 "\t\t\t\t\t\t\t<h3 id=\"openVoter\">发起人员:&nbsp;&nbsp;"+data.data[0].open_voter_identify+" "+data.data[1]+"</h3>\n" +
-                "\t\t\t\t\t\t\t<h3 id=\"openVoteTime\">发起时间:&nbsp;&nbsp;"+data.data[0].open_time+"</h3>\n" +
+                "\t\t\t\t\t\t\t<h3 id=\"openVoteTime\"></h3>\n" +
                 "\t\t\t\t\t\t</div>";
 
             head.append(h);
+
+            var h = $("#openVoteTime");
+            var span;
+            if(voter_status == 4){
+                span = "<span>结束时间:&nbsp;&nbsp;"+data.data[0].end_time+"</span>"
+            }else if(voter_status == 3){
+                span = "<span>发起时间:&nbsp;&nbsp;"+data.data[0].open_time+"</span>"
+            }else if(voter_status == 1 || voter_status == 2){
+                span = "<span>通过时间:&nbsp;&nbsp;"+data.data[0].begin_time+"</span>"
+            }
+            h.append(span);
 
             var div = $("#row");
             //遍历题目
@@ -220,4 +231,50 @@ function votePass() {
         }
     )
 
+}
+
+/**
+ * 进入投票详情管理的初始化加载数据
+ */
+function loadVoteList(type) {
+    var option = $(".form-control form-control-sm").val();
+    console.log(option);
+
+    var content = $("#custname").val();
+    console.log(content);
+
+    if(content == null || content == ""){
+        option = 0;
+    }
+    
+    $.post(
+        "/elvis/admin/seachVote.do",
+        {
+            title:option,
+            content:content,
+            type:type,
+            indexpage:0,
+        },
+        function (data) {
+            console.log(data);
+
+            var table = $("#tbody");
+
+            for (var i = 0; i < data.data.data.length; i++) {
+                var tr = "<tr>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i + 1)+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>12345</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>张帅军</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>学生</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>男</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>你最喜欢的明星</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2019/12/11</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"naire_detail_detail.html\">查看详情</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
+            }
+        }
+    )
+    
 }

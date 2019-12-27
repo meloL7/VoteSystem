@@ -33,7 +33,7 @@
     </update>
 
     <update id="updateVoteNopass">
-        update vote set vote_status = #{vote_status},end_time = #{time},nopass_result = #{nopass} where id=#{voteid}
+        update vote set vote_status = #{vote_status},end_time = #{time},nopass_result,begin_time = #{time} = #{nopass} where id=#{voteid}
 
     </update>
 
