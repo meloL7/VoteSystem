@@ -51,7 +51,7 @@
             and open_voter_name like concat('%',#{voterName},'%') limit #{indexpages},#{pagesize}
         </if>
         <if test="totle != null">
-            and all_voter_num = #{totle}
+            and all_voter_num = #{totle} limit #{indexpages},#{pagesize}
         </if>
     </select>
 

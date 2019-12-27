@@ -152,23 +152,7 @@
                                         <th>选项内容</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>大哥是苏</td>
-                                        <td>大哥</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>大哥是苏</td>
-                                        <td>小弟</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>大哥是苏</td>
-                                        <td>扛把子</td>
-                                    </tr>
-                                    </tr>
+                                    <tbody id="tbody">
 
                                     </tbody>
                                 </table>
@@ -178,8 +162,10 @@
                         <!-- end card-body-->
                     </div>
                 </div> <!-- end col -->
-                <a href="naire_detail.html"   type="button" class="btn  btn-lg waves-effect waves-light" >返回上一级</a>
-            </div>
+                <div id="backhref">
+
+                </div>
+                </div>
             <!-- end row-->
 
         </div> <!-- container-fluid -->
@@ -234,6 +220,12 @@
 <!-- App js -->
 <script src="assets/js/theme.js"></script>
 <script src="assets/pages/fileuploads-demo.js"></script>
+<script src="js/detail.js"></script>
+<script>
+    $(document).ready(function () {
+        loadNaireDetail();
+    })
+</script>
 
 </body>
 
