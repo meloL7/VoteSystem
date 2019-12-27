@@ -52,7 +52,7 @@
             <div id="register-box" class="validate-box">
                 <input name="hidInfo" type="text" style="display: none;"/>
                 <fieldset class="validate-wrapper">
-                    <h1 id="Register1_divVT" class="validate-caption">学生注册</h1>
+                    <h1 id="Register1_divVT" class="validate-caption">教师注册</h1>
                     <div id="Register1_pnlCreate">
                         <ul>
                             <li>
@@ -60,11 +60,11 @@
 
                                 <input name="Register1$UserName" maxlength="50" id="Register1_UserName"
                                        name="register-user-name" class="validate-input user-name"
-                                       type="text" placeholder="仅支持学生学号"/>
+                                       type="text" placeholder="仅支持教师工号"/>
 
                                 <!-- 用AJAX异步传输修改按钮Value值 -->
-                                <div class="btn btn-default btn-lg get-code-btn">
-                                    <span onclick="checkSno()">验证</span>
+                                <div class="btn btn-default btn-lg get-code-btn" id="yanzhen" onclick="checkSno()">
+                                    <span>验证</span>
                                     <!-- 这上面的参数有三个值 1.验证通过 2.学号已注册 3.学号不存在-->
                                 </div>
                             </li>
@@ -89,7 +89,7 @@
                                 </div>
                             </li>
 
-                            <li id="Register1_liMobile" style="text-align:left;">
+                            <li id="Register1_liMobile1" style="text-align:left;">
 
 
                                 <input name="Register1$txtMobile" type="text" maxlength="6" id="keycodes"
@@ -140,6 +140,34 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#Register1_EMAIL").keyup(function () {
+            var myeamil = $("#Register1_EMAIL").val();
+            console.log("..."+myeamil)
+            $.ajax({
+                url:"/elvis/isemail.do",
+                type: "post",
+                data: {'email':myeamil},
+                dataType: "json",
+                success: function (data) {
+                    if (!data.result){
+                        // $("#checkemail").attr("disabled","disabled");
+                        // $("#checkemail").html("邮箱已存在");
+                        alert(data.message)
+                        $("#Register1_EMAIL").val("");
+                    }else if (data.result) {
+                        $("#checkemail").removeAttr("disabled");
+                        $("#checkemail").html("发送验证码");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
 <script type="text/javascript">
     $(document).ready(function(){
         $("#keycodes").keyup(function () {

@@ -194,7 +194,7 @@
                                        class="form-control"
                                        maxlength="16"/>
 
-                                <a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm" href="javascript:void(0)" onclick="searchTeacher();return false;"><i
+                                <a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm" href="javascript:void(0)" onclick="searchTeacher(1);return false;"><i
                                         class="feather-search"></i>查询</a>
                             </div>
                             <br><br>
@@ -241,7 +241,6 @@
                                                     <a href="#" aria-controls="complex-header-datatable" data-dt-idx="3"
                                                        tabindex="0" class="page-link">3</a>
                                                     </li>
-                                                <li class="paginate_button page-item ">
                                                     <a href="#" aria-controls="complex-header-datatable" data-dt-idx="4"
                                                        tabindex="0" class="page-link">4</a>
                                                     </li>
@@ -484,7 +483,7 @@
             <div class="modal-body">
                 <h5>请输入新的邮箱</h5>
 
-                <input type="email" class="" style="width: 100%;"/>
+                <input type="text" id="newEmail" class="" style="width: 100%;"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close

@@ -42,4 +42,12 @@ public interface UserDao {
     int insertUser(User user);
 
 
+    /**
+     * 查看用户是否已经存在于数据库中了
+     * @param email
+     * @return
+     */
+    int isEmailExist(String email);
+
+
 }

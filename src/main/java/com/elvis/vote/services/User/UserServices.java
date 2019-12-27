@@ -47,6 +47,8 @@ public interface UserServices {
      */
     APIResult rePwd(Integer id,String newPwd);
 
+    APIResult isExsitEmail(String email);
+
 
     public APIResult getSinfo(String sno);
     public APIResult getTinfo(String sno);

@@ -91,6 +91,10 @@
         values(#{sno},#{pwd},#{email},#{sname},#{identify},#{sex},#{age},#{colleage},#{major},#{grade},#{classes})
     </insert>
 
+    <!--邮箱是否已经注册了-->
+    <select id="isEmailExist" resultType="java.lang.Integer">
+        select count(1) from user where email = #{email}
+    </select>
 
 
 </mapper>
