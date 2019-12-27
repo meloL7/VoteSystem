@@ -79,4 +79,6 @@ public interface VoteDao {
     public Integer addVoteDetail(Integer voter_id,Integer vote_id,Integer select_id,Integer option_id);
 
     public Integer updateVoteConnection(Integer voter_id,Integer vote_id,Integer status);
+
+    Integer updateVote(Integer vote_id,Integer status);
 }

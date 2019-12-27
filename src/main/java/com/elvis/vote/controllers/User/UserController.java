@@ -36,6 +36,7 @@ public class UserController {
         return result;
     }
 
+
     @RequestMapping("user/changepwd.do")
     public APIResult changePwd(Integer id,String oldPwd,String newPwd) {
         APIResult result = userServices.updatePwd(id,oldPwd,newPwd);
@@ -65,6 +66,12 @@ public class UserController {
     @RequestMapping("/repwd.do")
     public APIResult rePwd(Integer id,String newPwd){
         APIResult result = userServices.rePwd(id, newPwd);
+        return result;
+    }
+
+    @RequestMapping("user/checkPower")
+    public APIResult checkPower(String sno) {
+        APIResult result = userServices.checkPower(sno);
         return result;
     }
 

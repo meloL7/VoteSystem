@@ -165,4 +165,22 @@ public class UserServicesImpl implements UserServices {
     public void searchByAllVoters(int num) {
 
     }
+
+    @Override
+    public APIResult checkPower(String sno) {
+        APIResult result = null;
+        List list = userDao.checkPower(sno);
+//        System.out.println("test"+list.size());
+        if(list.size()>0){
+            result = new APIResult("有权限",true,200);
+        }else if(list.size()<=0){
+            result = new APIResult("无权限",true,200);
+        }else{
+            result = new APIResult("查询失败",false,500);
+        }
+
+
+        return result;
+
+    }
 }

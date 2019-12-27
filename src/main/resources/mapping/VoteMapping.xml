@@ -91,6 +91,16 @@
         update user_vote_connection set status=#{status} where voter_id = #{voter_id} and vote_id = #{vote_id}
     </update>
 
+    <update id="updateVote">
+        update vote set all_voter_num = all_voter_num + 1
+        where id = #{vote_id}
+    </update>
+
+
+
+
+
+
 
     <!--    <select id="selectVoteByTitle" resultType="com.elvis.vote.pojo.Vote">-->
     <!--        select *-->
