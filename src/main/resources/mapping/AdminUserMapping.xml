@@ -37,6 +37,19 @@
         </if>
     </select>
 
+
+
+    <!--后台登录-->
+    <select id="checkAdminByUsernameAndPwd" resultType="com.elvis.vote.pojo.Admin">
+        select id,username,password,email from admin where
+        <if test="username!=null">
+            username=#{username}
+        </if>
+        <if test="password">
+            and password =#{password}
+        </if>
+    </select>
+
     <!--邮箱是否已经注册了-->
     <select id="isEmailExist" resultType="java.lang.Integer">
         select count(1) from user where email = #{email}
@@ -124,7 +137,6 @@
         where colleage_name=#{colleagename} and major_name=#{majorname}
         and grade_name=#{gradename} and classes_name=#{classesname}
     </select>
-
 
     <insert id="addPower" >
       INSERT INTO user_power

@@ -1,254 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8" />
-		<title>主页</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-		<meta content="MyraStudio" name="author" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="utf-8"/>
+    <title>主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+    <meta content="MyraStudio" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-		<!-- App favicon -->
-		<!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+    <!-- App favicon -->
+    <!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
 
-		<!-- App css -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-		<link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
-		<link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-		<!-- Dropify css -->
-		<link href="../plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="assets/css/awesome-bootstrap-checkbox.css">
-		<link rel="stylesheet" href="assets/css/build.css">
-		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Dropify css -->
+    <link href="../plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/awesome-bootstrap-checkbox.css">
+    <link rel="stylesheet" href="assets/css/build.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
 
+</head>
 
-	</head>
+<body>
 
-	<body>
-
-		<!-- Begin page -->
-		<div id="layout-wrapper">
-			<header id="page-topbar">
-				<div class="navbar-header">
-					<!-- LOGO -->
-					<div class="navbar-brand-box d-flex align-items-left">
-						<a href="../index.html" class="logo">
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <header id="page-topbar">
+        <div class="navbar-header">
+            <!-- LOGO -->
+            <div class="navbar-brand-box d-flex align-items-left">
+                <a href="index.html" class="logo">
 							<span>
 								<img src="assets/images/logo-light.png" alt="" height="18">
 							</span>
-							<i>
-								<img src="assets/images/logo-small.png" alt="" height="24">
-							</i>
-						</a>
-						<button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light" id="vertical-menu-btn">
-							<i class="fa fa-fw fa-bars"></i>
-						</button>
-					</div>
-					<div class="dropdown d-inline-block ml-2">
-						<button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown" data-toggle="dropdown"
-						 aria-haspopup="true" aria-expanded="false">
-							<span class="d-none d-sm-inline-block ml-1">Admin</span>
-						</button>
-					</div>
-				</div>
-		</div>
-		</header>
+                    <i>
+                        <img src="assets/images/logo-small.png" alt="" height="24">
+                    </i>
+                </a>
+                <button type="button"
+                        class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light"
+                        id="vertical-menu-btn">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+            </div>
+            <div class="dropdown d-inline-block ml-2">
+                <button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="d-none d-sm-inline-block ml-1" id="admin_name">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+</div>
+<script>
+    $(function () {
+        var name = sessionStorage.getItem('username');
+        console.log("name=" + name);
+        var ii = $("#admin_name").html();
+        // var ii = document.getElementById("adminname");
+        console.log("---" + ii);
 
-		<!-- ========== Left Sidebar Start ========== -->
-		<div class="vertical-menu">
+        if (name == null) {
+            // $("#admin_name").html('请登录');
+            // $("#adminname").attr("href","pages-login.html");
+            // $("#page-header-user-dropdown").attr("onclick",returnLogin());
+            window.location.href = "/elvis/houtai/admin/pages-login.html";
+        } else {
+            $("#admin_name").html(name);//用户栏
+        }
 
-			<div data-simplebar class="h-100">
+    });
 
-				<!--- Sidemenu -->
-				<div id="sidebar-menu">
-					<!-- Left Menu Start -->
-					<ul class="metismenu list-unstyled" id="side-menu">
-						<li class="menu-title">菜单</li>
-						<li>
-							<a href="index.html" class="waves-effect">
-								<i class="mdi mdi-view-dashboard"></i>
-								<span>首页</span></a>
-						</li>
-						<li>
-							<a href="javascript: void(0);" class="has-arrow waves-effect">
-								<i class=" mdi mdi-account-multiple-outline"></i>
-								<span>用户管理</span></a>
+    function logout() {
+        sessionStorage.clear();
+    }
+</script>
 
-							<ul class="sub-menu" aria-expanded="false">
-								<li><a href="teacher.html">教师管理</a></li>
-								<li><a href="student.html">学生管理</a></li>
-							</ul>
-						</li>
-						<li class="mm-active">
-							<a href="javascript: void(0);" class="has-arrow waves-effect" aria-expanded="true">
-								<i class="mdi mdi-clipboard-text-play"></i>投票管理</span></a>
-							<ul class="sub-menu  mm-collapse mm-show" aria-expanded="false">
-								<li><a href="naire_manage.html" class="active">问卷管理</a></li>
-								<li><a href="vote_manage.html">选择管理</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="javascript: void(0);" class="has-arrow waves-effect">
-								<i class="mdi mdi-book-open-page-variant"></i>投票详情管理</span></a>
-							<ul class="sub-menu" aria-expanded="false">
-								<li><a href="naire_detail.html">问卷详情</a></li>
-								<li><a href="vote_detail.html">选择详情</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal" data-target="#exampleModal">
-								<i class="mdi mdi-equalizer"></i>
-								<span>分析</span></a>
-							<ul class="sub-menu" aria-expanded="false">
-								<li><a href="anaysis.html">问卷分析</a></li>
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
 
-							</ul>
-						</li>
-						<li>
-							<a href="javascript: void(0);" class="has-arrow waves-effect">
-								<i class="mdi mdi-wrench"></i>系统</span></a>
-							<ul class="sub-menu" aria-expanded="false">
-								<li><a href="pages-invoice.html">退出</a></li>
+    <div data-simplebar class="h-100">
 
-							</ul>
-						</li>
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title">菜单</li>
+                <li>
+                    <a href="index.html" class="waves-effect">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span>首页</span></a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class=" mdi mdi-account-multiple-outline"></i>
+                        <span>用户管理</span></a>
 
-					</ul>
-				</div>
-				<!-- Sidebar -->
-			</div>
-		</div>
-		<!-- Left Sidebar End -->
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="teacher.html">教师管理</a></li>
+                        <li><a href="student.html">学生管理</a></li>
+                    </ul>
+                </li>
+                <li class="mm-active">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect" aria-expanded="true">
+                        <i class="mdi mdi-clipboard-text-play"></i>投票管理</span></a>
+                    <ul class="sub-menu  mm-collapse mm-show" aria-expanded="false">
+                        <li><a href="naire_manage.html" class="active">问卷管理</a></li>
+                        <li><a href="vote_manage.html">选择管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-book-open-page-variant"></i>投票详情管理</span></a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="naire_detail.html">问卷详情</a></li>
+                        <li><a href="vote_detail.html">选择详情</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal"
+                       data-target="#exampleModal">
+                        <i class="mdi mdi-equalizer"></i>
+                        <span>分析</span></a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="anaysis.html">问卷分析</a></li>
 
-		<!-- ============================================================== -->
-		<!-- Start right Content here -->
-		<!-- ============================================================== -->
-		<div class="main-content">
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-wrench"></i>系统</span></a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="pages-login.html" onclick="logout()" id="quit">退出</a></li>
 
-			<div class="page-content">
-				<div class="container-fluid">
+                    </ul>
+                </li>
 
-					<!-- start page title -->
-					<div class="row">
-						<div class="col-12">
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->
 
-						</div>
-					</div>
-					<!-- end page title -->
-					<div id="head" class="card">
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
 
-					</div>
-					<div id="row" class="row">
+    <div class="page-content">
+        <div class="container-fluid">
 
-					</div>
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
 
-					<div id="btn">
+                </div>
+            </div>
+            <!-- end page title -->
+            <div id="head" class="card">
 
-					</div>
-					<!-- end row-->
+            </div>
+            <div id="row" class="row">
 
-				</div> <!-- container-fluid -->
-			</div>
-			<!-- End Page-content -->
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-			 style="display: none;" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalCenterTitle">提 示</h5>
-							<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<h5>请输入拒绝申诉的理由</h5>
+            </div>
 
-							<input id="nopassRuslt" type="text" class="" style="width: 100%;" />
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
+            <div id="btn">
 
+            </div>
+            <!-- end row-->
 
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">提 示</h5>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>请输入拒绝申诉的理由</h5>
 
-							<!-- 这里需要上传到数据库 -->
-							<button id="nopassresult" onclick="noPass()" type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-
-
-
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;"
-			 aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">提 示</h5>
-							<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							分析需要到投票管理中查看!
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<!-- end main content-->
-		</div>
-		<!-- END layout-wrapper -->
-
-		<!-- Overlay-->
-		<div class="menu-overlay"></div>
+                    <input id="nopassRuslt" type="text" class="" style="width: 100%;"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">
+                        Close
+                    </button>
 
 
-		<!-- jQuery  -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/bootstrap.bundle.min.js"></script>
-		<script src="assets/js/metismenu.min.js"></script>
-		<script src="assets/js/waves.js"></script>
-		<script src="assets/js/simplebar.min.js"></script>
+                    <!-- 这里需要上传到数据库 -->
+                    <button id="nopassresult" onclick="noPass()" type="button"
+                            class="btn btn-primary waves-effect waves-light">Save changes
+                    </button>
 
-		<!-- Morris Js-->
-		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         style="display: none;"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">提 示</h5>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    分析需要到投票管理中查看!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">
+                        Close
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!-- Overlay-->
+<div class="menu-overlay"></div>
+
+
+<!-- Morris Js-->
+<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 <!--		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>-->
-		<script src="../plugins/dropify/dropify.min.js"></script>
+<script src="../plugins/dropify/dropify.min.js"></script>
 <!--		<script src="../plugins/ckeditor/ckeditor.js"></script>-->
-		<!-- Morris Custom Js-->
-		<script src="assets/pages/dashboard-demo.js"></script>
+<!-- Morris Custom Js-->
+<script src="assets/pages/dashboard-demo.js"></script>
 
-		<!-- App js -->
-		<script src="assets/js/theme.js"></script>
+<!-- App js -->
+<script src="assets/js/theme.js"></script>
 
-		<script src="assets/pages/fileuploads-demo.js"></script>
-        <script src="js/detail.js"></script>
-		<script type="text/javascript">
+<script src="assets/pages/fileuploads-demo.js"></script>
+<script src="js/detail.js"></script>
+<script type="text/javascript">
 
-			//页面加载时加载
-			$(document).ready(function () {
-				returnPre(0);
+    //页面加载时加载
+    $(document).ready(function () {
+        returnPre(0);
 
-            });
-
-
-		</script>
+    });
 
 
-	</body>
+</script>
+
+
+</body>
 
 </html>

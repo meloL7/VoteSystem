@@ -139,6 +139,22 @@ public class AdminUserServicesimpl implements AdminUserServices {
         }
     }
 
+    //后台登录
+    @Override
+    public APIResult checkAdminByUsernameAndPwd(String username, String password) {
+        Admin isAdmin = adminDao.checkAdminByUsernameAndPwd(username,null);
+        if (null==isAdmin){
+            return new APIResult("账号不存在",false,500);
+        }else {
+            Admin admin = adminDao.checkAdminByUsernameAndPwd(username,password);
+            if (admin==null){
+                return new APIResult( "密码输入错误，请重新输入！",false,501,admin);
+            }else {
+                return new APIResult( "登录成功",true,200,admin);
+            }
+        }
+    }
+
 
     //权限
     @Override

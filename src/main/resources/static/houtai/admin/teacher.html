@@ -32,6 +32,14 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+
+
     <style>
         .bootstrap-select{
             min-width: 1080px;
@@ -68,12 +76,36 @@
                 <button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                    <span class="d-none d-sm-inline-block ml-1">Admin</span>
+                    <span class="d-none d-sm-inline-block ml-1" id="admin_name">Admin</span>
                 </button>
             </div>
         </div>
     </header>
 </div>
+<script>
+    $(function () {
+        var name = sessionStorage.getItem('username');
+        console.log("name=" + name);
+        var ii = $("#admin_name").html();
+        // var ii = document.getElementById("adminname");
+        console.log("---" + ii);
+
+        if (name == null) {
+            // $("#admin_name").html('请登录');
+            // $("#adminname").attr("href","pages-login.html");
+            // $("#page-header-user-dropdown").attr("onclick",returnLogin());
+            window.location.href = "/elvis/houtai/admin/pages-login.html";
+        } else {
+            $("#admin_name").html(name);//用户栏
+        }
+
+    });
+
+    function logout() {
+        sessionStorage.clear();
+    }
+</script>
+
 
 
 <!-- ========== Left Sidebar Start ========== -->
@@ -131,7 +163,7 @@
                         <i class="mdi mdi-wrench"></i>
                         <span>系统</span></a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-invoice.html">退出</a></li>
+                        <li><a href="pages-login.html" onclick="logout()" id="quit">退出</a></li>
 
                     </ul>
                 </li>
@@ -531,12 +563,6 @@
     </div>
 </div>
 
-<!-- jQuery  -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/metismenu.min.js"></script>
-<script src="assets/js/waves.js"></script>
-<script src="assets/js/simplebar.min.js"></script>
 
 <!-- Plugins js -->
 <script src="../plugins/autonumeric/autoNumeric-min.js"></script>

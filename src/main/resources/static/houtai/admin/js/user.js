@@ -812,7 +812,7 @@ function saveResult() {
             // console.log("kk"+kk.attr("class"))
             var g = kk.attr("class")
             // console.log("test"+g)
-            g = `li.${g.substr(0,g.length-8)}`
+            g = `li.${g.substr(0,g.length-8)}`;
             // // console.log(g)
             var op = $("#t4").find(g).eq(0).find(".text").text()
             val = $("#t4").find("li.selected").eq(i).find(".text").text();
