@@ -12,6 +12,7 @@ function checkSno() {
                 if (data.result){
                     console.log(data);
                     alert(data.message);
+                    $("#yanzhen").attr("disabled","disabled");
                     $("#Password").removeAttr("disabled");
                     $("#Register1_EMAIL").removeAttr("disabled");
                     window.sessionStorage.sname = data.data.sname;

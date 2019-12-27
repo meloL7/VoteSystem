@@ -29,7 +29,7 @@ function searchStudent(indexpage) {
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sname+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].age+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + json[i].id + "\">"+json[i].email+"</td>\n" +
                         "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
@@ -45,7 +45,7 @@ function searchStudent(indexpage) {
                         "\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+json[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t</tr>\n";
@@ -83,14 +83,14 @@ function searchTeacher(indexpage) {
                 var tr_list = $('#teacher_list');
                 tr_list.empty()
                 for (var i = 0; i < tjson.length; i++) {
-                    var td_list = "<tr id="+ json[i].sno+"><td>"+tjson[i].id+"</td>\n" +
+                    var td_list = "<tr id="+ tjson[i].sno+"><td>"+tjson[i].id+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sno+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].colleage+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].major+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sname+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].age+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + tjson[i].id + "\">"+tjson[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
                         "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
@@ -104,7 +104,7 @@ function searchTeacher(indexpage) {
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+tjson[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
                         "</tr>";
@@ -144,7 +144,7 @@ function loadStudentData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sname + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].age + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sex + "</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].email + "</td>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + json[i].id + "\">" + json[i].email + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
                             "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
@@ -160,7 +160,7 @@ function loadStudentData(indexpage) {
                             "\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+json[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t</tr>\n";
@@ -186,7 +186,7 @@ function getID(userid) {
 }
 $("#changeemail").click(function () {
     var newEmail = $("#newEmail").val();
-    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+    var reg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
 
     if (!reg.test(newEmail)) {
         alert("邮箱格式错误!")
@@ -241,7 +241,7 @@ function loadTeacherData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sname+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].age+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + tjson[i].id + "\">"+tjson[i].email+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
                             "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
@@ -255,7 +255,7 @@ function loadTeacherData(indexpage) {
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+tjson[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
                             "</tr>";
@@ -274,7 +274,7 @@ function loadTeacherData(indexpage) {
 
 
 
-//分了页的加载学生数据
+//分了页的加载学生数据(调用这个函数就行)
 function loadSPageData(indexpage) {
     $.ajax(
         {
@@ -390,7 +390,7 @@ function loadSPageData(indexpage) {
 
 
 
-//分了页的加载老师数据
+//分了页的加载老师数据（调用这个函数就行）
 function loadTPageData(indexpage) {
     $.ajax(
         {
@@ -504,7 +504,6 @@ function loadTPageData(indexpage) {
         }
     );
 }
-
 
 
 
