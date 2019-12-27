@@ -7,6 +7,8 @@ import com.elvis.vote.utils.APIRequest;
 import com.elvis.vote.utils.APIResult;
 import io.swagger.models.auth.In;
 
+import java.util.List;
+
 public interface UserServices {
 
     /**
@@ -68,6 +70,8 @@ public interface UserServices {
     public void searchByOpenVoter(String name);
 
     public void searchByAllVoters(int num);
+
+    public APIResult checkPower(String sno);
 
 //    /**
 //     *

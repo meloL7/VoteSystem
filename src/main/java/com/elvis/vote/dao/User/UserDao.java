@@ -20,6 +20,8 @@ public interface UserDao {
 
     String selectPwd(Integer id);
 
+    List checkPower(String sno);
+
     /**
      * 从学校的学生表中通过学号查询这个人是否是这个学校的
      * @param sno
