@@ -87,10 +87,21 @@ function initVoteData(vote_id,voter_status) {
                 "\t\t\t\t\t\t\t<h3 id=\"introduction\">简介:&nbsp;&nbsp;"+data.data[0].introduction+"</h3>\n" +
                 "\t\t\t\t\t\t\t<br>\n" +
                 "\t\t\t\t\t\t\t<h3 id=\"openVoter\">发起人员:&nbsp;&nbsp;"+data.data[0].open_voter_identify+" "+data.data[1]+"</h3>\n" +
-                "\t\t\t\t\t\t\t<h3 id=\"openVoteTime\">发起时间:&nbsp;&nbsp;"+data.data[0].open_time+"</h3>\n" +
+                "\t\t\t\t\t\t\t<h3 id=\"openVoteTime\"></h3>\n" +
                 "\t\t\t\t\t\t</div>";
 
             head.append(h);
+
+            var h = $("#openVoteTime");
+            var span;
+            if(voter_status == 4){
+                span = "<span>结束时间:&nbsp;&nbsp;"+data.data[0].end_time+"</span>"
+            }else if(voter_status == 3){
+                span = "<span>发起时间:&nbsp;&nbsp;"+data.data[0].open_time+"</span>"
+            }else if(voter_status == 1 || voter_status == 2){
+                span = "<span>通过时间:&nbsp;&nbsp;"+data.data[0].begin_time+"</span>"
+            }
+            h.append(span);
 
             var div = $("#row");
             //遍历题目
@@ -220,4 +231,135 @@ function votePass() {
         }
     )
 
+}
+
+/**
+ * 进入投票详情管理的初始化加载数据
+ */
+function loadVoteList(type,indexpage,option,content) {
+    if(option == null){
+        option = $("#selectvalue option:selected").val();
+        content = $("#custname").val();
+        if(content == null || content == ""){
+            option = 0;
+        }
+    }
+    console.log(option + "----" + content + "-----" + type + "----" + indexpage);
+    var href = window.location.search;
+    sessionStorage.setItem("option",option);
+    sessionStorage.setItem("content",content);
+    sessionStorage.setItem("type",type);
+    sessionStorage.setItem("indexpage",indexpage);
+
+    console.log(option + "----" + content + "-----" + type + "----" + indexpage);
+    $.post(
+        "/elvis/admin/seachVote.do",
+        {
+            title:option,
+            content:content,
+            type:type,
+            indexpage:indexpage,
+        },
+        function (data) {
+            console.log(data);
+
+            var table = $("#tbody");
+            table.empty();
+
+            if(data.data[0].beginrows + data.data[0].pagesize > data.data[0].countrows){
+                k = data.data[0].countrows - data.data[0].beginrows;
+            }else {
+                k = data.data[0].pagesize;
+            }
+
+            for (var i = 0; i < k; i++) {
+                var tr = "<tr>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i + 1)+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sno+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sname+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].identify+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sex+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[0].data[i].title+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[0].data[i].open_time+"</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\'naire_detail_detail.html\?voteid="+data.data[0].data[i].id+"'>查看详情</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
+
+                table.append(tr);
+            }
+            $(".zxf_pagediv").createPage({
+                pageNum: data.data[0].countpage,
+                current: indexpage,
+                backfun: function (e) {
+                    if(e.current > data.data[0].countrows){
+
+                        return
+                    }
+                    if(e.current == 0){
+                        e.current = 1;
+                    }
+                    console.log(e.current);
+                    loadVoteList(type,e.current,option,content);
+                }
+            });
+        }
+    )
+    
+}
+
+function back() {
+    var option = sessionStorage.getItem("option");
+    var content = sessionStorage.getItem("content");
+    var type = sessionStorage.getItem("type");
+    var indexpage = sessionStorage.getItem("indexpage");
+
+    console.log(option + "---" + content +"--" + content + "---"+type + "---" + indexpage);
+
+    loadVoteList(type,indexpage,option,content);
+
+}
+
+//加载naire_detail_detail界面数据
+function loadNaireDetail() {
+    var param = window.location.search.substr(1);
+    var vote_id = param.split("=")[1];
+    console.log("vote_id = " + vote_id);
+
+    $.post(
+        "/elvis/admin/loadVoteDetail.do",
+        {
+            vote_id:vote_id,
+        },
+        function (data) {
+            console.log(data);
+            var table = $("#tbody");
+
+            //题目数
+            for (var i = 0; i < data.data[2].length; i++) {
+
+                //问题数
+                for (var j = 0; j < data.data[3][i].length; j++) {
+                    var tr = "<tr>\n" +
+                        "                                        <th scope=\"row\">"+(i + 1)+"</th>\n" +
+                        "                                        <td>"+data.data[2][i].select_tiltle+"</td>\n" +
+                        "                                        <td>"+data.data[3][i][j].option_content+"</td>\n" +
+                        "                                    </tr>";
+
+                    table.append(tr);
+                }
+            }
+
+            var href = $("#backhref");
+            var a;
+            if(data.data[0].type == 1){
+                a = "<a href=\"naire_detail.html?back\"   type=\"button\" class=\"btn  btn-lg waves-effect waves-light\" >返回上一级</a>";
+            }else {
+                a = "<a href=\"vote_detail.html?back\"   type=\"button\" class=\"btn  btn-lg waves-effect waves-light\" >返回上一级</a>";
+            }
+            href.append(a);
+
+        }
+
+    )
 }

@@ -14,6 +14,7 @@
 
 		<!-- App css -->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/zxf_page.css" rel="stylesheet" type="text/css"/>
 		<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
 		<link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
@@ -155,7 +156,7 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp; -->
 
 
-										<select class="form-control form-control-sm" style="flex: 0.1 0 auto;">
+										<select id="selectvalue" class="form-control form-control-sm" style="flex: 0.1 0 auto;">
 											<option>投票人</option>
 											<option>身份</option>
 											<option>性别</option>
@@ -168,7 +169,7 @@
 
 
 
-										<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
+										<input id="custname" onclick="loadVoteList(2,1,null,null)" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
 										 maxlength="16" />
 
 										<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
@@ -177,77 +178,27 @@
 									<div class="table-responsive">
 										<table class="table table-centered table-striped table-nowrap">
 											<thead>
-												<tr>
-													<th>ID</th>
-													<th>投票人</th>
-													<th>投票人身份</th>
-													<th>投票人性别</th>
-													<th>选择标题</th>
-													<th>选择提交的选项</th>
-													<th>选项的内容</th>
-													<th>提交时间</th>
+											<tr>
+												<th>序号</th>
+												<th>学号/工号</th>
+												<th>投票人</th>
+												<th>投票人身份</th>
+												<th>投票人性别</th>
+												<th>问卷标题</th>
+												<th>提交时间</th>
+												<th>操作</th>
 
-
-												</tr>
+											</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>张帅军</td>
-													<td>学生</td>
-													<td>男</td>
-													<td>你最喜欢的明星</td>
-													<td>A</td>
-													<td>大哥</td>
-													<td>2019/12/11</td>
-													<!-- <td>
-													    <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="赋予|封禁" name="switch" checked  lay-skin="switch">
-													</td>
-												    <td>
-												        <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="正常|封禁" name="switch" checked  lay-skin="switch">
-												    </td>
-												    <td>
-												    	<a href="change_email.html?id=1">修改邮箱</a>
+											<tbody id="tbody">
 
-												    </td> -->
-												</tr>
 
-												<tr>
-													<td colspan="6" align="center">
-														<ul class="pagination pagination-rounded">
-															<li class="paginate_button page-item previous disabled" id="complex-header-datatable_previous">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="0" tabindex="0" class="page-link">
-																	<i class="mdi mdi-chevron-left"></i>
-																</a>
-															</li>
-															<li class="paginate_button page-item active">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-															</li>
-															<li class="paginate_button page-item next" id="complex-header-datatable_next">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="7" tabindex="0" class="page-link"><i
-																	 class="mdi mdi-chevron-right"></i></a>
-															</li>
-														</ul>
-													</td>
-												</tr>
 											</tbody>
 										</table>
+
 									</div>
+
+                                    <div class="zxf_pagediv"></div>
 
 								</div> <!-- end card-body-->
 							</div> <!-- end card-->
@@ -305,10 +256,12 @@
 		<script src="../plugins/ckeditor/ckeditor.js"></script>
 		<!-- Morris Custom Js-->
 		<script src="assets/pages/dashboard-demo.js"></script>
+        <script src="assets/js/zxf_page.js" type="text/javascript"></script>
 
 		<!-- App js -->
 		<script src="assets/js/theme.js"></script>
 		<script src="assets/pages/fileuploads-demo.js"></script>
+		<script src="js/detail.js"></script>
 		<script>
 			$('.input-group input[name="pickdate"]').each(function() {
 				$(this).datepicker({
@@ -319,6 +272,16 @@
 					orientation: 'bottom'
 				});
 			});
+		</script>
+
+		<script>
+			$(document).ready(function () {
+				if(window.location.search.indexOf("back") > 0){
+					back();
+				}else {
+					loadVoteList(2,1,null,null);
+				}
+			})
 		</script>
 
 		<script>

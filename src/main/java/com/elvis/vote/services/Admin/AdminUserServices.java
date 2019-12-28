@@ -35,6 +35,11 @@ public interface AdminUserServices {
     APIResult searchUserList(Integer key, String value, String identify, Integer indexpage);
 
 
+    /**
+     * 管理员登录管理 验证用户名和密码
+     */
+
+    APIResult checkAdminByUsernameAndPwd(String username,String password);
 
 
 

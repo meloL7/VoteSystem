@@ -2,42 +2,51 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<title>主页</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-	<meta content="MyraStudio" name="author" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <title>主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+    <meta content="MyraStudio" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
 
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Plugins css -->
+    <link href="../plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css"/>
+    <link href="../plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
+
+    <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
 
 
-	<!-- App favicon -->
-	<link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/zxf_page.css" rel="stylesheet" type="text/css"/>
 
-	<!-- Plugins css -->
-	<link href="../plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
-	<link href="../plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+    <script src="assets/js/zxf_page.js"></script>
 
-	<link href="../plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
-	<link href="../plugins/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css" />
-	<link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        .bootstrap-select {
+            min-width: 1080px;
 
-	<!-- App css -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-	<link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
-
-	<style>
-		.bootstrap-select{
-			min-width: 1080px;
-
-		}
-	</style>
+        }
+    </style>
 
 
 </head>
@@ -46,99 +55,122 @@
 
 <!-- Begin page -->
 <div id="layout-wrapper">
-	<header id="page-topbar">
-		<div class="navbar-header">
-			<!-- LOGO -->
-			<div class="navbar-brand-box d-flex align-items-left">
-				<a href="index.html" class="logo">
+    <header id="page-topbar">
+        <div class="navbar-header">
+            <!-- LOGO -->
+            <div class="navbar-brand-box d-flex align-items-left">
+                <a href="index.html" class="logo">
 							<span>
 								<img src="assets/images/logo-light.png" alt="" height="18">
 							</span>
-					<i>
-						<img src="assets/images/logo-small.png" alt="" height="24">
-					</i>
-				</a>
-				<button type="button"
-						class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light"
-						id="vertical-menu-btn">
-					<i class="fa fa-fw fa-bars"></i>
-				</button>
-			</div>
-			<div class="dropdown d-inline-block ml-2">
-				<button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown"
-						data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-					<span class="d-none d-sm-inline-block ml-1">Admin</span>
-				</button>
-			</div>
-		</div>
-	</header>
+                    <i>
+                        <img src="assets/images/logo-small.png" alt="" height="24">
+                    </i>
+                </a>
+                <button type="button"
+                        class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light"
+                        id="vertical-menu-btn">
+                    <i class="fa fa-fw fa-bars"></i>
+                </button>
+            </div>
+            <div class="dropdown d-inline-block ml-2">
+                <button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="d-none d-sm-inline-block ml-1" id="admin_name">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
 </div>
+<script>
+    $(function () {
+        var name = sessionStorage.getItem('username');
+        console.log("name=" + name);
+        var ii = $("#admin_name").html();
+        // var ii = document.getElementById("adminname");
+        console.log("---" + ii);
+
+        if (name == null) {
+            // $("#admin_name").html('请登录');
+            // $("#adminname").attr("href","pages-login.html");
+            // $("#page-header-user-dropdown").attr("onclick",returnLogin());
+            window.location.href = "/elvis/houtai/admin/pages-login.html";
+        } else {
+            $("#admin_name").html(name);//用户栏
+        }
+
+    });
+
+    function logout() {
+        sessionStorage.clear();
+    }
+</script>
 
 
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu">
 
-	<div data-simplebar class="h-100">
+    <div data-simplebar class="h-100">
 
-		<!--- Sidemenu -->
-		<div id="sidebar-menu">
-			<!-- Left Menu Start -->
-			<ul class="metismenu list-unstyled" id="side-menu">
-				<li class="menu-title">菜单</li>
-				<li>
-					<a href="index.html" class="waves-effect">
-						<i class="mdi mdi-view-dashboard"></i>
-						<span>首页</span></a>
-				</li>
-				<li>
-					<a href="javascript: void(0);" class="has-arrow waves-effect">
-						<i class=" mdi mdi-account-multiple-outline"></i>
-						<span>用户管理</span></a>
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title">菜单</li>
+                <li>
+                    <a href="index.html" class="waves-effect">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span>首页</span></a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class=" mdi mdi-account-multiple-outline"></i>
+                        <span>用户管理</span></a>
 
-					<ul class="sub-menu" aria-expanded="false">
-						<li><a href="teacher.html">教师管理</a></li>
-						<li><a href="student.html">学生管理</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript: void(0);" class="has-arrow waves-effect">
-						<i class=" mdi mdi-clipboard-text-play"></i>投票管理</span></a>
-					<ul class="sub-menu" aria-expanded="false">
-						<li><a href="naire_manage.html">问卷管理</a></li>
-						<li><a href="vote_manage.html">选择管理</a></li>
-					</ul>
-				</li>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="teacher.html">教师管理</a></li>
+                        <li><a href="student.html">学生管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class=" mdi mdi-clipboard-text-play"></i>投票管理</span></a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="naire_manage.html">问卷管理</a></li>
+                        <li><a href="vote_manage.html">选择管理</a></li>
+                    </ul>
+                </li>
 
-				<li>
-					<a href="javascript: void(0);" class="has-arrow waves-effect">
-						<i class="mdi mdi-book-open-page-variant"></i>
-						<span>投票详情管理</span></a>
-					<ul class="sub-menu" aria-expanded="false">
-						<li><a href="naire_detail.html">问卷详情</a></li>
-						<li><a href="vote_detail.html">选择详情</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal"
-					   data-target="#exampleModal">
-						<i class="mdi mdi-equalizer"></i>
-						<span>分析</span></a>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-book-open-page-variant"></i>
+                        <span>投票详情管理</span></a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="naire_detail.html">问卷详情</a></li>
+                        <li><a href="vote_detail.html">选择详情</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal"
+                       data-target="#exampleModal">
+                        <i class="mdi mdi-equalizer"></i>
+                        <span>分析</span></a>
 
-				</li>
-				<li>
-					<a href="javascript: void(0);" class="has-arrow waves-effect">
-						<i class="mdi mdi-wrench"></i>
-						<span>系统</span></a>
-					<ul class="sub-menu" aria-expanded="false">
-						<li><a href="pages-invoice.html">退出</a></li>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-wrench"></i>
+                        <span>系统</span></a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="pages-login.html" onclick="logout()" id="quit">退出</a></li>
 
-					</ul>
-				</li>
-			</ul>
-		</div>
-		<!-- Sidebar -->
-	</div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
 </div>
 <!-- Left Sidebar End -->
 
@@ -147,27 +179,27 @@
 <!-- ============================================================== -->
 <div class="main-content">
 
-	<div class="page-content">
-		<div class="container-fluid">
+    <div class="page-content">
+        <div class="container-fluid">
 
-			<!-- start page title -->
-			<div class="row">
-				<div class="col-12">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
 
-				</div>
-			</div>
-			<!-- end page title -->
+                </div>
+            </div>
+            <!-- end page title -->
 
 
-			<div class="row">
-				<div class="col-xl-12">
-					<div class="card">
-						<div class="card-body">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
 
-							<h4 class="card-title">教师管理</h4>
-							<p class="card-subtitle mb-4 font-size-13">教师列表</p>
-							<div class="input-group input-daterange">
-								<!-- <input id="begindate" name="pickdate" style="width: 240px" type="text"
+                            <h4 class="card-title">教师管理</h4>
+                            <p class="card-subtitle mb-4 font-size-13">教师列表</p>
+                            <div class="input-group input-daterange">
+                                <!-- <input id="begindate" name="pickdate" style="width: 240px" type="text"
                                 placeholder="申请日期(起)" data-date-format="yyyy-mm-dd" class="form-control" />
 
                             <div class="input-group-addon">~</div>
@@ -177,330 +209,280 @@
                             &nbsp;&nbsp;&nbsp;&nbsp; -->
 
 
-								<select class="form-control form-control-sm" id="student_select" style="flex: 0.1 0 auto;">
-									<option value="0">学生工号</option>
-									<option value="1">学生姓名</option>
-									<option value="2">学生院系</option>
-									<option value="3">学生专业</option>
-									<option value="4">学生年级</option>
-									<option value="5">学生班级</option>
-								</select>
-								<!-- <div class="form-group">
+                                <select class="form-control form-control-sm" id="student_select"
+                                        style="flex: 0.1 0 auto;">
+                                    <option value="0">学生工号</option>
+                                    <option value="1">学生姓名</option>
+                                    <option value="2">学生院系</option>
+                                    <option value="3">学生专业</option>
+                                    <option value="4">学生年级</option>
+                                    <option value="5">学生班级</option>
+                                </select>
+                                <!-- <div class="form-group">
                                     <label>Threshold value</label>
                                     <input type="text" maxlength="25" name="thresholdconfig" class="form-control" id="thresholdconfig">
                                 </div> -->
 
 
-								<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..."
-									   class="form-control"
-									   maxlength="16"/>
+                                <input id="custname" name="custname" type="text" style="width: 240px" placeholder="..."
+                                       class="form-control"
+                                       maxlength="16"/>
 
-								<a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm" href="javascript:void(0)" onclick="searchTeacher();return false;"><i
-										class="feather-search"></i>查询</a>
-							</div>
-							<br><br>
-							<div class="table-responsive">
-								<table class="table table-centered table-striped table-nowrap">
-									<thead>
-									<tr>
-										<th>ID</th>
-										<th>学号/工号</th>
-										<th>院系</th>
-										<th>专业</th>
-										<th>年级</th>
-										<th>班级</th>
-										<th>姓名</th>
-										<th>年龄</th>
-										<th>性别</th>
-										<th>邮箱</th>
-										<th>投票权限</th>
-										<th>操作</th>
-									</tr>
-									</thead>
-									<tbody id="student_list">
+                                <a style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"
+                                   href="javascript:void(0)" onclick="searchStudent(1);return false;"><i
+                                        class="feather-search"></i>查询</a>
+                            </div>
+                            <br><br>
+                            <div class="table-responsive">
+                                <table class="table table-centered table-striped table-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>学号/工号</th>
+                                        <th>院系</th>
+                                        <th>专业</th>
+                                        <th>年级</th>
+                                        <th>班级</th>
+                                        <th>姓名</th>
+                                        <th>年龄</th>
+                                        <th>性别</th>
+                                        <th>邮箱</th>
+                                        <th>投票权限</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="student_list">
 
-									</tbody>
-								</table>
-								<table class="table table-centered" id="page_table">
-									<tr>
-										<td colspan="6" align="center">
-											<ul class="pagination pagination-rounded">
-												<li class="paginate_button page-item previous disabled"
-													id="complex-header-datatable_previous">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="0"
-													   tabindex="0" class="page-link">
-														<i class="mdi mdi-chevron-left"></i>
-													</a>
-												</li>
-												<li class="paginate_button page-item active">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="1"
-													   tabindex="0" class="page-link">1</a>
-												</li>
-												<li class="paginate_button page-item ">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="2"
-													   tabindex="0" class="page-link">2</a>
-												</li>
-												<li class="paginate_button page-item ">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="3"
-													   tabindex="0" class="page-link">3</a>
-												</li>
-												<li class="paginate_button page-item ">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="4"
-													   tabindex="0" class="page-link">4</a>
-												</li>
-												<li class="paginate_button page-item ">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="5"
-													   tabindex="0" class="page-link">5</a>
-												</li>
-												<li class="paginate_button page-item ">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="6"
-													   tabindex="0" class="page-link">6</a>
-												</li>
-												<li class="paginate_button page-item next"
-													id="complex-header-datatable_next">
-													<a href="#" aria-controls="complex-header-datatable" data-dt-idx="7"
-													   tabindex="0" class="page-link"><i
-															class="mdi mdi-chevron-right"></i></a>
-												</li>
-											</ul>
-										</td>
-									</tr>
-								</table>
-							</div>
+                                    </tbody>
+                                </table>
+                                <table class="table table-centered" id="page_table">
+                                    <tr><td colspan="12" align="center"><div class="zxf_pagediv"></div></td></tr>
+                                </table>
+                            </div>
 
-						</div> <!-- end card-body-->
-					</div> <!-- end card-->
-				</div> <!-- end col -->
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col -->
 
-			</div>
-			<!-- end row-->
+            </div>
+            <!-- end row-->
 
-		</div> <!-- container-fluid -->
-	</div>
-	<!-- End Page-content -->
-	<!-- modal重置密码 -->
-	<div class="modal fade bd-example-modal-sm show" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-		 style="display: none; padding-right: 15px;" aria-modal="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title h4" id="mySmallModalLabel">提 示</h5>
-					<button type="button" class="close waves-effect waves-light" data-dismiss="modal"
-							aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>密码重置成功,新密码已发送至用户绑定的邮箱</p>
-				</div>
-			</div>
-		</div>
-	</div>
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    <!-- modal重置密码 -->
+    <div class="modal fade bd-example-modal-sm show" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         style="display: none; padding-right: 15px;" aria-modal="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4" id="mySmallModalLabel">提 示</h5>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>密码重置成功,新密码已发送至用户绑定的邮箱</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-	<!-- modal权限  赋予权限-->
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-		 aria-hidden="true" style="display: none;" id="modal1">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title h4" id="myLargeModalLabel">权 限 管 理</h5>
-					<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body" style="width: 200px;">
+    <!-- modal权限  赋予权限-->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true" style="display: none;" id="modal1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4" id="myLargeModalLabel">权 限 管 理</h5>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="width: 200px;">
 
-					<div class="container">
-						<div class="row clearfix">
-							<div class="col-md-12 column">
-
-
-
+                    <div class="container">
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
 
 
+                                <div class="row clearfix">
+                                    <div class="col-md-12 column" id="t1">
+                                        学院 :
+                                        <select id="colleageselc" class="selectpicker" multiple data-live-search="true"
+                                                data-live-search-placeholder="搜索" data-actions-box="true"
+                                                onchange="colchange()"
+                                        >
 
-
-
-
-								<div class="row clearfix">
-									<div class="col-md-12 column" id="t1">
-										学院 :
-										<select id="colleageselc" class="selectpicker" multiple data-live-search="true"
-												data-live-search-placeholder="搜索" data-actions-box="true"
-												onchange="colchange()"
-										>
-
-										</select>
-									</div>
-									<br><br><br>
-									<div class="col-md-12 column" id="t2">
-										专业 :
-										<select id="majorselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
-												data-actions-box="true" onchange="majchange()">
-											<!-- 　<optgroup label="专业">
+                                        </select>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t2">
+                                        专业 :
+                                        <select id="majorselc" class="selectpicker" multiple data-live-search="true"
+                                                data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="majchange()">
+                                            <!-- 　<optgroup label="专业">
                                                 <option>廖俊杰</option>
                                                 <option>option2</option>
                                                 <option>option3</option>
                                                 <option>option4</option>
                                             </optgroup> -->
-											　
-										</select>
-									</div>
-									<br><br><br>
-									<div class="col-md-12 column" id="t3">
-										年级 :
-										<select id="gradeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
-												data-actions-box="true" onchange="grachange()">
+                                            　
+                                        </select>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t3">
+                                        年级 :
+                                        <select id="gradeselc" class="selectpicker" multiple data-live-search="true"
+                                                data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="grachange()">
 
-											　
-										</select>
-									</div>
-									<br><br><br>
-									<div class="col-md-12 column" id="t4">
-										班级：
-										<select id="classesselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
-												data-actions-box="true" onchange="clachange()">
-
-
-											　
-										</select>
-
-									</div>
-									<!--                                    <br><br><br>-->
-									<!--                                    <div class="col-md-12 column" id="t5">-->
-									<!--                                        范围 :-->
-									<!--                                        <select id="rangeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"-->
-									<!--                                                data-actions-box="true" onchange="ranchange()">-->
-									<!--                                            　<optgroup label="范围">-->
-									<!--                                            <option>教师</option>-->
-									<!--                                            <option>学生</option>-->
-									<!--                                        </optgroup>-->
-									<!--                                            　-->
-									<!--                                        </select>-->
-									<!--                                    </div>-->
-								</div>
+                                            　
+                                        </select>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="col-md-12 column" id="t4">
+                                        班级：
+                                        <select id="classesselc" class="selectpicker" multiple data-live-search="true"
+                                                data-live-search-placeholder="搜索"
+                                                data-actions-box="true" onchange="clachange()">
 
 
+                                            　
+                                        </select>
+
+                                    </div>
+                                    <!--                                    <br><br><br>-->
+                                    <!--                                    <div class="col-md-12 column" id="t5">-->
+                                    <!--                                        范围 :-->
+                                    <!--                                        <select id="rangeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"-->
+                                    <!--                                                data-actions-box="true" onchange="ranchange()">-->
+                                    <!--                                            　<optgroup label="范围">-->
+                                    <!--                                            <option>教师</option>-->
+                                    <!--                                            <option>学生</option>-->
+                                    <!--                                        </optgroup>-->
+                                    <!--                                            　-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
+                                </div>
 
 
-
-							</div>
-						</div>
-					</div>
-
+                            </div>
+                        </div>
+                    </div>
 
 
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">
+                        Close
+                    </button>
 
 
+                    <!-- 这里需要上传到数据库 -->
+                    <button onclick="saveResult()" type="button" class="btn btn-primary waves-effect waves-light">Save
+                        changes
+                    </button>
 
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-
-
-
-					<!-- 这里需要上传到数据库 -->
-					<button onclick="saveResult()" type="button" class="btn btn-primary waves-effect waves-light">Save
-						changes</button>
-
-				</div>
+                </div>
 
 
-
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <!-- modal权限  查看权限-->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	 aria-hidden="true" style="display: none;" id="modal2">
-	<div class="modal-dialog modal-xl">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title h4" id="myLargeModalLabel1">权 限 查 看</h5>
-				<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body" style="width: 200px;">
+     aria-hidden="true" style="display: none;" id="modal2">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4" id="myLargeModalLabel1">权 限 查 看</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="width: 200px;">
 
-				<div class="container">
-					<div class="row clearfix">
-						<div class="col-md-12 column">
-							<div class="row clearfix">
-								<div class="col-md-12 column" id="t5">
-									学院 :
-									<select id="col1" class="selectpicker" multiple >
-									</select>
-								</div>
-								<br><br><br>
-								<div class="col-md-12 column" id="t6">
-									专业 :
-									<select id="maj1" class="selectpicker" multiple>
-									</select>
-								</div>
-								<br><br><br>
-								<div class="col-md-12 column" id="t7">
-									年级 :
-									<select id="gra1" class="selectpicker" multiple  >　
-									</select>
-								</div>
-								<br><br><br>
-								<div class="col-md-12 column" id="t8">
-									班级：
-									<select id="cla1" class="selectpicker" multiple >
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close</button>
-			</div>
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="row clearfix">
+                                <div class="col-md-12 column" id="t5">
+                                    学院 :
+                                    <select id="col1" class="selectpicker" multiple>
+                                    </select>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12 column" id="t6">
+                                    专业 :
+                                    <select id="maj1" class="selectpicker" multiple>
+                                    </select>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12 column" id="t7">
+                                    年级 :
+                                    <select id="gra1" class="selectpicker" multiple>　
+                                    </select>
+                                </div>
+                                <br><br><br>
+                                <div class="col-md-12 column" id="t8">
+                                    班级：
+                                    <select id="cla1" class="selectpicker" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close
+                </button>
+            </div>
 
 
-
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
-
 
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="changeemail"
-	 style="display: none;"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalCenterTitle">提 示</h5>
-				<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<h5>请输入新的邮箱</h5>
+     style="display: none;"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">提 示</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>请输入新的邮箱</h5>
 
-				<input type="email" class="" style="width: 100%;"/>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close
-				</button>
+                <input type="text" id="newEmail" class="" style="width: 100%;"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close
+                </button>
 
 
-				<!-- 这里需要上传到数据库 -->
-				<button id="changeemail" type="button" class="btn btn-primary waves-effect waves-light">Save changes
-				</button>
+                <!-- 这里需要上传到数据库 -->
+                <button id="changeemail" type="button" class="btn btn-primary waves-effect waves-light">Save changes
+                </button>
 
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </div>
@@ -513,34 +495,28 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-	 style="display: none;"
-	 aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">提 示</h5>
-				<button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				分析需要到投票管理中查看!
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close
-				</button>
+     style="display: none;"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">提 示</h5>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                分析需要到投票管理中查看!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect waves-light" data-dismiss="modal">Close
+                </button>
 
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- jQuery  -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/metismenu.min.js"></script>
-<script src="assets/js/waves.js"></script>
-<script src="assets/js/simplebar.min.js"></script>
 
 <!-- Plugins js -->
 <script src="../plugins/autonumeric/autoNumeric-min.js"></script>
@@ -565,446 +541,430 @@
 <script src="js/user.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-	$(function () {
-		loadStudentData(1);
-	});
+    $(function () {
+        loadStudentData(1);
+    });
 </script>
 
 </body>
 <script>
-	var colleage = "";
-	var major = "";
-	var grade = "";
-	var classes = "";
-	var range = "";
+    var colleage = "";
+    var major = "";
+    var grade = "";
+    var classes = "";
+    var range = "";
 
 
+    function colchange() {
 
-	function colchange() {
+        var colleagecontent = myDate("#t1");
 
-		var colleagecontent = myDate("#t1");
+        loadMajor(colleagecontent)
+        $('#majorselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#majorselc").selectpicker('refresh'); //刷新
 
-		loadMajor(colleagecontent)
-		$('#majorselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-		$("#majorselc").selectpicker('refresh'); //刷新
+        $('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#gradeselc").selectpicker('refresh'); //刷新
 
-		$('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-		$("#gradeselc").selectpicker('refresh'); //刷新
-
-		$('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-		$("#classesselc").selectpicker('refresh'); //刷新
-
-
-	}
-
-	function majchange() {
-		var major = myDate("#t2");
-
-		loadgrade(major)//加载grade数据
-		$('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-		$("#gradeselc").selectpicker('refresh'); //刷新
-
-		$('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-		$("#classesselc").selectpicker('refresh'); //刷新
+        $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#classesselc").selectpicker('refresh'); //刷新
 
 
-	}
+    }
 
-	function grachange() {
-		grade = myDate("#t3");
-		//
-		loadclasses(grade)//加载classes数据
-		//
-		// $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-		// $("#classesselc").selectpicker('refresh'); //刷新
-		//
+    function majchange() {
+        var major = myDate("#t2");
 
-	}
+        loadgrade(major)//加载grade数据
+        $('#gradeselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#gradeselc").selectpicker('refresh'); //刷新
 
-	function clachange() {
-		// classes = myDate("#t4");
-
-	}
-
-	// function ranchange() {
-	//     // range = myDate("#t5");
-	// }
+        $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        $("#classesselc").selectpicker('refresh'); //刷新
 
 
-	function myDate(t) {
-		var val = "",
-				staffs = [];
-		// var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+    }
 
-		//循环的取出插件选择的元素(通过是否添加了selected类名判断)
-		for (var i = 0; i < $(t).find("li.selected").length; i++) {
-			// console.log("size"+$("li.selected").length)
-			var kk = $(t).find("li.selected").eq(i)
-			// for(var  j in kk){
-			//     var value = j+"-----"+kk[j]
-			//     console.log(value)
-			// }
-			// console.log("kk"+kk.attr("class"))
-			var g = kk.attr("class")
-			// console.log("test"+g)
-			g = `li.${g.substr(0,g.length-8)}`
-			// // console.log(g)
-			var op = $(t).find(g).eq(0).find(".text").text()
-			val = $(t).find("li.selected").eq(i).find(".text").text();
-			var c = $(t).find("li.selected").eq(i)
-			// console.log("test"+c)
-			if (val != '') {
-				val = op+">"+val
-				staffs.push(val);
-			}
-			// console.log(staffs)
-		}
+    function grachange() {
+        grade = myDate("#t3");
+        //
+        loadclasses(grade)//加载classes数据
+        //
+        // $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+        // $("#classesselc").selectpicker('refresh'); //刷新
+        //
 
-		return staffs;
+    }
 
-	}
+    function clachange() {
+        // classes = myDate("#t4");
+
+    }
+
+    // function ranchange() {
+    //     // range = myDate("#t5");
+    // }
 
 
+    function myDate(t) {
+        var val = "",
+            staffs = [];
+        // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+
+        //循环的取出插件选择的元素(通过是否添加了selected类名判断)
+        for (var i = 0; i < $(t).find("li.selected").length; i++) {
+            // console.log("size"+$("li.selected").length)
+            var kk = $(t).find("li.selected").eq(i)
+            // for(var  j in kk){
+            //     var value = j+"-----"+kk[j]
+            //     console.log(value)
+            // }
+            // console.log("kk"+kk.attr("class"))
+            var g = kk.attr("class")
+            // console.log("test"+g)
+            g = `li.${g.substr(0, g.length - 8)}`
+            // // console.log(g)
+            var op = $(t).find(g).eq(0).find(".text").text()
+            val = $(t).find("li.selected").eq(i).find(".text").text();
+            var c = $(t).find("li.selected").eq(i)
+            // console.log("test"+c)
+            if (val != '') {
+                val = op + ">" + val
+                staffs.push(val);
+            }
+            // console.log(staffs)
+        }
+
+        return staffs;
+
+    }
 
 
-
-
-	// //刷新年级
-	// //刷新班级
-	// function uploadClass(grad){
-	//     var str = `<optgroup label="班级">
-	// 			<option>廖俊杰</option>
-	// 			<option>4</option>
-	// 			<option>5</option>
-	// 		    <option>6</option>
-	// 		</optgroup>`
-	//     for (var i = 0; i < grad.length; i++) {
-	//
-	//     }
-	// }
+    // //刷新年级
+    // //刷新班级
+    // function uploadClass(grad){
+    //     var str = `<optgroup label="班级">
+    // 			<option>廖俊杰</option>
+    // 			<option>4</option>
+    // 			<option>5</option>
+    // 		    <option>6</option>
+    // 		</optgroup>`
+    //     for (var i = 0; i < grad.length; i++) {
+    //
+    //     }
+    // }
 
 </script>
 
 <script>
-	function checkP(s) {
-		var sno = "#"+s;
-
-		$.ajax({
-			url:"/elvis/admin/checkPower",
-			type:"post",
-			data:{
-				sno:s,
-			},
-			success:function (data) {
-				console.log(data.message)
-
-				if(data.message=="有权限") {
-
-					$(sno).find("#power1").css('display','none');
-					$(sno).find("#power2").css('display','inline-block');
-					$(sno). find("#power3").css('display','inline-block');
-				}else if(data.message=="无权限"){
-					$(sno). find("#power1").css('display','none');
-					$(sno). find("#power4").css('display','inline-block');
-				}else {
-					alert("服务器繁忙")
-				}
-			}
-
-
-		});
-
-
-
-
-
-
-
-	}
-
-	function xclose(sno) {
-
-
-		var xno = "#"+sno;
-		$.ajax({
-			url:"/elvis/admin/removePower",
-			type:"post",
-			data:{
-				sno:sno,
-			},
-			success:function (data) {
-				if(data.message=="删除成功") {
-
-					$(xno).find("#power2").css('display','none');
-					$(xno). find("#power3").css('display','none');
-					$(xno). find("#power4").css('display','inline-block');
-					alert(data.message)
-				}else if(data.message=="删除失败"){
-					alert(data.message)
-				}else {
-					alert(data.message)
-				}
-
-			}
-
-
-		});
-	}
-
-	function readPower(sno) {
-		var col = [];
-		var maj = [];
-		var gra = [];
-		var cla = [];
-
-
-		xno = "#"+sno;
-		$.ajax({
-			url:"/elvis/admin/readPower",
-			type:"post",
-			data:{
-				sno:sno,
-			},
-			success:function (data) {
-
-				for (var i = 0; i <data.data.length ; i++) {
-					var colleageName = data.data[i].colleage_name;
-					var majorName = data.data[i].major_name;
-					var gradeName = data.data[i].grade_name;
-					var classesName = data.data[i].classes_name;
-
-					if(col.indexOf(colleageName)<0){
-						col.push(colleageName)
-					}
-					if(maj.indexOf(majorName)<0){
-						maj.push(majorName)
-					}
-					if(gra.indexOf(gradeName)<0){
-						gra.push(gradeName)
-					}
-					if(cla.indexOf(classesName)<0){
-						cla.push(classesName)
-					}
-				}
-				loadColleage1(sno,col) //加载初始学校数据
-				var gtitle = loadMajor1(col,maj);
-				var ctitle = loadGrade1(gtitle,gra);
-				loadclasses1(ctitle,cla)
-
-			}
-
-
-		});
-	}
-	var cols = [];
-
-
-	function loadColleage1(sno,col) {
-
-		// console.log(col)
-		sno1 = sno;
-		$.post(
-				"/elvis/admin/loadcolleage",
-				{},
-				function (data) {
-					if(data.code == 200){
-						var colleagess = $("#col1")
-
-						colleagess.empty();
-						var cop =  document.createElement("optgroup");
-						cop.className = "optgroup-1";
-						cop.label = "湖南理工大学"
-						for (var i = 0; i <data.data.length ; i++) {
-							// console.log(data.data[i].colleage_name)
-							var option = document.createElement("option");
-							option.className = "option-1";
-							option.text = data.data[i].colleage_name;
-							if(col.indexOf(data.data[i].colleage_name)>-1){
-								console.log("我来勒")
-								option.setAttribute("selected","selected")
-							}
-
-							option.setAttribute("disabled","disabled")
-							cop.append(option);
-						}
-						colleagess.append(cop);
-						colleagess.selectpicker('refresh');
-
-					}
-				}
-		);
-
-	}
-	var grades = [];
-	function loadMajor1(col,maj) {
-		cols = []
-		grades = []
-		for (var i = 0; i <col.length ; i++) {
-			var temp = col[i];
-			temp= "湖南理工大学>"+temp;
-			cols.push(temp)
-		}
-
-		var data = {
-			colleagecontent:cols
-		}
-		var that = this;
-		$.ajax({
-			url:"/elvis/admin/loadmajor",
-			type:"post",
-			data:data,
-			traditional:true,
-			async:false,
-			success:function (data) {
-				if(data.code == 200){
-
-
-					var majorss = $("#maj1");
-					majorss.empty();
-					// data.data == biglist
-					// data.data.data[i] ==第几个小list
-					for (var i = 0; i <data.data.length ; i++) {
-						var cop =  document.createElement("optgroup");
-						cop.className = "optgroup-"+(i+1);
-						// console.log(data.data[i].parentName)
-						cop.label = data.data[i].parentName;
-						// console.log("test"+data.data[0].data.length)
-						for (var j = 0; j <data.data[i].data.length ; j++) {
-							var option = document.createElement("option");
-							option.className = "option-"+(i+1);
-							if(maj.indexOf(data.data[i].data[j].major_name)>-1){
-								option.setAttribute("selected","selected")
-								grades.push(data.data[i].parentName+">"+data.data[i].data[j].major_name);
-							}
-							option.text = data.data[i].data[j].major_name;
-							option.setAttribute("disabled","disabled")
-							cop.append(option);
-						}
-						majorss.append(cop);
-
-					}
-
-					majorss.selectpicker('refresh');
-
-
-				}
-			}
-		});
-
-		return grades;
-	}
-	var classess= [];
-	function loadGrade1(gtitle,gra) {
-		console.log("进入了loadgrade")
-		classess = []
-		var data = {
-			majorcontent:gtitle
-		}
-
-		$.ajax({
-			url:"/elvis/admin/loadgrade",
-			type:"post",
-			data:data,
-			traditional:true,
-			async:false,
-			success:function (data) {
-
-				if(data.code == 200){
-
-					var gradess = $("#gra1");
-					gradess.empty();
-					// data.data == biglist
-					// data.data.data[i] ==第几个小list
-
-					for (var i = 0; i <data.data.length ; i++) {
-
-						var cop =  document.createElement("optgroup");
-						cop.className = "optgroup-"+(i+1);
-						// console.log(data.data[i].parentName)
-						cop.label = data.data[i].parentName;
-						// console.log("test"+data.data[0].data.length)
-						for (var j = 0; j <data.data[i].data.length ; j++) {
-							var option = document.createElement("option");
-							option.className = "option-"+(i+1);
-							if(gra.indexOf(data.data[i].data[j].grade_name)>-1){
-								option.setAttribute("selected","selected")
-								classess.push(data.data[i].parentName+">"+data.data[i].data[j].grade_name);
-							}
-							option.text = data.data[i].data[j].grade_name;
-							option.setAttribute("disabled","disabled")
-							cop.append(option);
-						}
-						gradess.append(cop);
-						gradess.selectpicker('refresh');
-
-
-					}
-
-
-
-
-
-				}
-			}
-		});
-		return classess;
-	}
-
-	function loadclasses1(ctitle,cla) {
-
-		console.log("进入loadclasses1")
-		var data = {
-			classescontent:ctitle
-		}
-
-		$.ajax({
-			url:"/elvis/admin/loadclasses",
-			type:"post",
-			data:data,
-			traditional:true,
-			success:function (data) {
-
-				if(data.code == 200){
-
-					var classes = $("#cla1");
-					classes.empty();
-					// data.data == biglist
-					// data.data.data[i] ==第几个小list
-
-					for (var i = 0; i <data.data.length ; i++) {
-
-						var cop =  document.createElement("optgroup");
-						cop.className = "optgroup-"+(i+1);
-						// console.log(data.data[i].parentName)
-						cop.label = data.data[i].parentName;
-						// console.log("test"+data.data[0].data.length)
-						for (var j = 0; j <data.data[i].data.length ; j++) {
-							var option = document.createElement("option");
-							option.className = "option-"+(i+1);
-							if(cla.indexOf(data.data[i].data[j].classes_name)>-1){
-								option.setAttribute("selected","selected")
-							}
-							option.text = data.data[i].data[j].classes_name;
-							option.setAttribute("disabled","disabled")
-							cop.append(option);
-						}
-						classes.append(cop);
-						classes.selectpicker('refresh');
-
-
-					}
-
-
-
-
-
-				}
-			}
-		});
-
-	}
+    function checkP(s) {
+        var sno = "#" + s;
+
+        $.ajax({
+            url: "/elvis/admin/checkPower",
+            type: "post",
+            data: {
+                sno: s,
+            },
+            success: function (data) {
+                console.log(data.message)
+
+                if (data.message == "有权限") {
+
+                    $(sno).find("#power1").css('display', 'none');
+                    $(sno).find("#power2").css('display', 'inline-block');
+                    $(sno).find("#power3").css('display', 'inline-block');
+                } else if (data.message == "无权限") {
+                    $(sno).find("#power1").css('display', 'none');
+                    $(sno).find("#power4").css('display', 'inline-block');
+                } else {
+                    alert("服务器繁忙")
+                }
+            }
+
+
+        });
+
+
+    }
+
+    function xclose(sno) {
+
+
+        var xno = "#" + sno;
+        $.ajax({
+            url: "/elvis/admin/removePower",
+            type: "post",
+            data: {
+                sno: sno,
+            },
+            success: function (data) {
+                if (data.message == "删除成功") {
+
+                    $(xno).find("#power2").css('display', 'none');
+                    $(xno).find("#power3").css('display', 'none');
+                    $(xno).find("#power4").css('display', 'inline-block');
+                    alert(data.message)
+                } else if (data.message == "删除失败") {
+                    alert(data.message)
+                } else {
+                    alert(data.message)
+                }
+
+            }
+
+
+        });
+    }
+
+    function readPower(sno) {
+        var col = [];
+        var maj = [];
+        var gra = [];
+        var cla = [];
+
+
+        xno = "#" + sno;
+        $.ajax({
+            url: "/elvis/admin/readPower",
+            type: "post",
+            data: {
+                sno: sno,
+            },
+            success: function (data) {
+
+                for (var i = 0; i < data.data.length; i++) {
+                    var colleageName = data.data[i].colleage_name;
+                    var majorName = data.data[i].major_name;
+                    var gradeName = data.data[i].grade_name;
+                    var classesName = data.data[i].classes_name;
+
+                    if (col.indexOf(colleageName) < 0) {
+                        col.push(colleageName)
+                    }
+                    if (maj.indexOf(majorName) < 0) {
+                        maj.push(majorName)
+                    }
+                    if (gra.indexOf(gradeName) < 0) {
+                        gra.push(gradeName)
+                    }
+                    if (cla.indexOf(classesName) < 0) {
+                        cla.push(classesName)
+                    }
+                }
+                loadColleage1(sno, col) //加载初始学校数据
+                var gtitle = loadMajor1(col, maj);
+                var ctitle = loadGrade1(gtitle, gra);
+                loadclasses1(ctitle, cla)
+
+            }
+
+
+        });
+    }
+
+    var cols = [];
+
+
+    function loadColleage1(sno, col) {
+
+        // console.log(col)
+        sno1 = sno;
+        $.post(
+            "/elvis/admin/loadcolleage",
+            {},
+            function (data) {
+                if (data.code == 200) {
+                    var colleagess = $("#col1")
+
+                    colleagess.empty();
+                    var cop = document.createElement("optgroup");
+                    cop.className = "optgroup-1";
+                    cop.label = "湖南理工大学"
+                    for (var i = 0; i < data.data.length; i++) {
+                        // console.log(data.data[i].colleage_name)
+                        var option = document.createElement("option");
+                        option.className = "option-1";
+                        option.text = data.data[i].colleage_name;
+                        if (col.indexOf(data.data[i].colleage_name) > -1) {
+                            console.log("我来勒")
+                            option.setAttribute("selected", "selected")
+                        }
+
+                        option.setAttribute("disabled", "disabled")
+                        cop.append(option);
+                    }
+                    colleagess.append(cop);
+                    colleagess.selectpicker('refresh');
+
+                }
+            }
+        );
+
+    }
+
+    var grades = [];
+
+    function loadMajor1(col, maj) {
+
+        for (var i = 0; i < col.length; i++) {
+            var temp = col[i];
+            temp = "湖南理工大学>" + temp;
+            cols.push(temp)
+        }
+        var data = {
+            colleagecontent: cols
+        }
+        var that = this;
+        $.ajax({
+            url: "/elvis/admin/loadmajor",
+            type: "post",
+            data: data,
+            traditional: true,
+            async: false,
+            success: function (data) {
+                if (data.code == 200) {
+
+
+                    var majorss = $("#maj1");
+                    majorss.empty();
+                    // data.data == biglist
+                    // data.data.data[i] ==第几个小list
+                    for (var i = 0; i < data.data.length; i++) {
+                        var cop = document.createElement("optgroup");
+                        cop.className = "optgroup-" + (i + 1);
+                        // console.log(data.data[i].parentName)
+                        cop.label = data.data[i].parentName;
+                        // console.log("test"+data.data[0].data.length)
+                        for (var j = 0; j < data.data[i].data.length; j++) {
+                            var option = document.createElement("option");
+                            option.className = "option-" + (i + 1);
+                            if (maj.indexOf(data.data[i].data[j].major_name) > -1) {
+                                option.setAttribute("selected", "selected")
+                                grades.push(data.data[i].parentName + ">" + data.data[i].data[j].major_name);
+                            }
+                            option.text = data.data[i].data[j].major_name;
+                            option.setAttribute("disabled", "disabled")
+                            cop.append(option);
+                        }
+                        majorss.append(cop);
+
+                    }
+
+                    majorss.selectpicker('refresh');
+
+
+                }
+            }
+        });
+
+        return grades;
+    }
+
+    var classess = [];
+
+    function loadGrade1(gtitle, gra) {
+        console.log("进入了loadgrade")
+        var data = {
+            majorcontent: gtitle
+        }
+
+        $.ajax({
+            url: "/elvis/admin/loadgrade",
+            type: "post",
+            data: data,
+            traditional: true,
+            async: false,
+            success: function (data) {
+
+                if (data.code == 200) {
+
+                    var gradess = $("#gra1");
+                    gradess.empty();
+                    // data.data == biglist
+                    // data.data.data[i] ==第几个小list
+
+                    for (var i = 0; i < data.data.length; i++) {
+
+                        var cop = document.createElement("optgroup");
+                        cop.className = "optgroup-" + (i + 1);
+                        // console.log(data.data[i].parentName)
+                        cop.label = data.data[i].parentName;
+                        // console.log("test"+data.data[0].data.length)
+                        for (var j = 0; j < data.data[i].data.length; j++) {
+                            var option = document.createElement("option");
+                            option.className = "option-" + (i + 1);
+                            if (gra.indexOf(data.data[i].data[j].grade_name) > -1) {
+                                option.setAttribute("selected", "selected")
+                                classess.push(data.data[i].parentName + ">" + data.data[i].data[j].grade_name);
+                            }
+                            option.text = data.data[i].data[j].grade_name;
+                            option.setAttribute("disabled", "disabled")
+                            cop.append(option);
+                        }
+                        gradess.append(cop);
+                        gradess.selectpicker('refresh');
+
+
+                    }
+
+
+                }
+            }
+        });
+        return classess;
+    }
+
+    function loadclasses1(ctitle, cla) {
+        console.log("进入loadclasses1")
+        var data = {
+            classescontent: ctitle
+        }
+
+        $.ajax({
+            url: "/elvis/admin/loadclasses",
+            type: "post",
+            data: data,
+            traditional: true,
+            success: function (data) {
+
+                if (data.code == 200) {
+
+                    var classes = $("#cla1");
+                    classes.empty();
+                    // data.data == biglist
+                    // data.data.data[i] ==第几个小list
+
+                    for (var i = 0; i < data.data.length; i++) {
+
+                        var cop = document.createElement("optgroup");
+                        cop.className = "optgroup-" + (i + 1);
+                        // console.log(data.data[i].parentName)
+                        cop.label = data.data[i].parentName;
+                        // console.log("test"+data.data[0].data.length)
+                        for (var j = 0; j < data.data[i].data.length; j++) {
+                            var option = document.createElement("option");
+                            option.className = "option-" + (i + 1);
+                            if (cla.indexOf(data.data[i].data[j].classes_name) > -1) {
+                                option.setAttribute("selected", "selected")
+                            }
+                            option.text = data.data[i].data[j].classes_name;
+                            option.setAttribute("disabled", "disabled")
+                            cop.append(option);
+                        }
+                        classes.append(cop);
+                        classes.selectpicker('refresh');
+
+
+                    }
+
+
+                }
+            }
+        });
+
+    }
 </script>
-
 
 
 </html>

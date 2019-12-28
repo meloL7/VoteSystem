@@ -29,7 +29,7 @@ function searchStudent(indexpage) {
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sname+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].age+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].sex+"</td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t<td>"+json[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + json[i].id + "\">"+json[i].email+"</td>\n" +
                         "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\t data-target=\".bd-example-modal-lg\">赋予权限</button>"+
@@ -45,12 +45,27 @@ function searchStudent(indexpage) {
                         "\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+json[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t</tr>\n";
                     s_list.append(tr_list);
                 }
+                $(".zxf_pagediv").createPage({
+                    pageNum: data.data.pages,
+                    current: data.data.pageNum,
+                    backfun: function (e) {
+                        if (e.current > data.data.pages) {
+                            return
+                        }
+                        if (e.current == 0) {
+                            e.current = 1
+                        }
+                        console.log(e.current+"---"+e.pageNum);
+                        // pageGet(e.current, pager.pagesize);
+                        searchStudent(e.current);
+                    }
+                });
             }else {
                 alert(data.message+"-->出现"+data.code+"错误！请检查您输入的数值是否和选项匹配！");
             }
@@ -83,14 +98,14 @@ function searchTeacher(indexpage) {
                 var tr_list = $('#teacher_list');
                 tr_list.empty()
                 for (var i = 0; i < tjson.length; i++) {
-                    var td_list = "<tr id="+ json[i].sno+"><td>"+tjson[i].id+"</td>\n" +
+                    var td_list = "<tr id="+ tjson[i].sno+"><td>"+tjson[i].id+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sno+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].colleage+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].major+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sname+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].age+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + tjson[i].id + "\">"+tjson[i].email+"</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
                         "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
@@ -104,12 +119,27 @@ function searchTeacher(indexpage) {
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+tjson[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                         "\n" +
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
                         "</tr>";
                     tr_list.append(td_list);
                 }
+                $(".zxf_pagediv").createPage({
+                    pageNum: data.data.pages,
+                    current: data.data.pageNum,
+                    backfun: function (e) {
+                        if (e.current > data.data.pages) {
+                            return
+                        }
+                        if (e.current == 0) {
+                            e.current = 1
+                        }
+                        console.log(e.current+"---"+e.pageNum);
+                        // pageGet(e.current, pager.pagesize);
+                        searchTeacher(e.current);
+                    }
+                });
             }else {
                 alert(data.message+"-->出现"+data.code+"错误！请检查您输入的数值是否和选项匹配！");
             }
@@ -144,7 +174,7 @@ function loadStudentData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sname + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].age + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].sex + "</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t<td>" + json[i].email + "</td>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + json[i].id + "\">" + json[i].email + "</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
                             "<button id=\"power4\" onclick=\"loadColleage("+json[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
@@ -160,12 +190,29 @@ function loadStudentData(indexpage) {
                             "\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+json[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t</tr>\n";
                         s_list.append(tr_list);
                     }
+                    // window.sessionStorage.pages = data.data.pages;
+                    // window.sessionStorage.pageNum = data.data.pageNum;
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.pages,
+                        current: data.data.pageNum,
+                        backfun: function (e) {
+                            if (e.current > data.data.pages) {
+                                return
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            console.log(e.current+"---"+e.pageNum);
+                            // pageGet(e.current, pager.pagesize);
+                            loadStudentData(e.current);
+                        }
+                    });
 
                 }else {
                     alert(data.message+"-->出现"+data.code+"错误");
@@ -186,7 +233,7 @@ function getID(userid) {
 }
 $("#changeemail").click(function () {
     var newEmail = $("#newEmail").val();
-    var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+    var reg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
 
     if (!reg.test(newEmail)) {
         alert("邮箱格式错误!")
@@ -234,14 +281,14 @@ function loadTeacherData(indexpage) {
                     var body_list = $('#teacher_list');
                     body_list.empty();
                     for (var i = 0; i < tjson.length; i++) {
-                        var td_list = "<tr id="+ tjson[i].sno+"><td>"+tjson[i].id+"</td>\n" +
+                        var td_list = "<tr id="+ tjson[i].sno+"><td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sno+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].colleage+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].major+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sname+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].age+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sex+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].email+"</td>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td id=\"email_" + tjson[i].id + "\">"+tjson[i].email+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
                             "<button id=\"power4\" onclick=\"loadColleage("+tjson[i].sno+")\"  type=\"button\" style=\"display: none;\"\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"btn btn-primary waves-effect waves-light\" data-toggle=\"modal\"\n" +
@@ -255,13 +302,27 @@ function loadTeacherData(indexpage) {
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
+                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" onclick=\"getID("+tjson[i].id+")\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">修改邮箱</a>\n" +
                             "\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>" +
                             "</tr>";
                         body_list.append(td_list);
                     }
-
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.pages,
+                        current: data.data.pageNum,
+                        backfun: function (e) {
+                            if (e.current > data.data.pages) {
+                                return
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            console.log(e.current+"---"+e.pageNum);
+                            // pageGet(e.current, pager.pagesize);
+                            loadTeacherData(e.current);
+                        }
+                    });
                 }else {
                     alert(data.message+"-->出现"+data.code+"错误");
                 }
@@ -274,7 +335,10 @@ function loadTeacherData(indexpage) {
 
 
 
-//分了页的加载学生数据
+
+
+//弃用了！
+//分了页的加载学生数据(调用这个函数就行)
 function loadSPageData(indexpage) {
     $.ajax(
         {
@@ -390,7 +454,7 @@ function loadSPageData(indexpage) {
 
 
 
-//分了页的加载老师数据
+//分了页的加载老师数据（调用这个函数就行）
 function loadTPageData(indexpage) {
     $.ajax(
         {
@@ -504,7 +568,6 @@ function loadTPageData(indexpage) {
         }
     );
 }
-
 
 
 
@@ -812,7 +875,7 @@ function saveResult() {
             // console.log("kk"+kk.attr("class"))
             var g = kk.attr("class")
             // console.log("test"+g)
-            g = `li.${g.substr(0,g.length-8)}`
+            g = `li.${g.substr(0,g.length-8)}`;
             // // console.log(g)
             var op = $("#t4").find(g).eq(0).find(".text").text()
             val = $("#t4").find("li.selected").eq(i).find(".text").text();

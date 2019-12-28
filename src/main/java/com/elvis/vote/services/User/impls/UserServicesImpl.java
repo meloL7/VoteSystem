@@ -87,6 +87,19 @@ public class UserServicesImpl implements UserServices {
         }
     }
 
+    /**
+     * 检测邮箱是否已经注册了
+     * @param email
+     * @return
+     */
+    public APIResult isExsitEmail(String email){
+        int isflag = userDao.isEmailExist(email);
+        if (isflag > 0) {
+            return new APIResult("该邮箱已注册！请重新输入！",false,500);
+        }
+        return new APIResult("",true,200);
+    }
+
 
     //注册验证
     public APIResult getSinfo(String sno){
@@ -112,12 +125,13 @@ public class UserServicesImpl implements UserServices {
         } else {
             Teacher t = userDao.selectTeacher(sno);
             if (t != null) {
-                return new APIResult("教师信息",true,200,t);
+                return new APIResult("验证通过",true,200,t);
             }else {
                 return new APIResult("该工号不存在，请重新输入!",false,500);
             }
         }
     }
+
 
     //注册 -->
     @Override
@@ -130,7 +144,6 @@ public class UserServicesImpl implements UserServices {
             return new APIResult("注册失败！", false, 500);
         }
     }
-
 
 
     @Override

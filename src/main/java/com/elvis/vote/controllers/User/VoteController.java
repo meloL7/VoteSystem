@@ -19,9 +19,9 @@ public class VoteController {
     @RequestMapping("user/vote.do")
     public APIResult test(Integer voter_id, Integer type, Integer voter_status,Integer vote_status, Integer indexpage) {
         System.out.println("voter_status = " + voter_status);
-        System.out.println("type = " + type);
+        System.out.println("type = " + type + "indexpage = " + indexpage);
         System.out.println(voter_id);
-        APIResult test = voteServices.queryAllVote(voter_id,type, voter_status,vote_status, indexpage, 10);
+        APIResult test = voteServices.queryAllVote(voter_id,type, voter_status,vote_status, indexpage);
         System.out.println(test);
         return test;
     }

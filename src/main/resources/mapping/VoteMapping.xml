@@ -9,7 +9,7 @@
         from vote
         where id in (
             select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type} and vote_status = #{vote_status} limit #{indexpages},#{pagesize}
+        ) and type = #{type} limit #{indexpages},#{pagesize}
     </select>
 
     <select id="selectAllNumber" resultType="java.lang.Integer">
@@ -17,7 +17,7 @@
         from vote
         where id in (
             select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type} and vote_status = #{vote_status}
+        ) and type = #{type}
     </select>
 
     <select id="selectVoteBySearchNumber" resultType="java.lang.Integer">
@@ -25,7 +25,7 @@
         from vote
         where id in (
         select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type} and vote_status = #{vote_status}
+        ) and type = #{type}
         <if test="title != null">
             and title like concat('%',#{title},'%')
         </if>
@@ -43,7 +43,7 @@
         from vote
         where id in (
         select vote_id from user_vote_connection where voter_id = #{voter_id} and status = #{voter_status}
-        ) and type = #{type} and vote_status = #{vote_status}
+        ) and type = #{type}
         <if test="title != null">
             and title like concat('%',#{title},'%') limit #{indexpages},#{pagesize}
         </if>
@@ -51,7 +51,7 @@
             and open_voter_name like concat('%',#{voterName},'%') limit #{indexpages},#{pagesize}
         </if>
         <if test="totle != null">
-            and all_voter_num = #{totle}
+            and all_voter_num = #{totle} limit #{indexpages},#{pagesize}
         </if>
     </select>
 
@@ -89,6 +89,11 @@
 
     <update id="updateVoteConnection">
         update user_vote_connection set status=#{status} where voter_id = #{voter_id} and vote_id = #{vote_id}
+    </update>
+
+    <update id="updateVote">
+        update vote set all_voter_num = all_voter_num + 1
+        where id = #{vote_id}
     </update>
 
 

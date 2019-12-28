@@ -122,7 +122,11 @@ function changePwd() {
 
     console.log(oldPwd+"---"+newPwd+"---"+renewpwd);
 
-    if (oldPwd ==""||newPwd==""||renewpwd=="") {
+    var reg = /^(\w){6,20}$/;
+
+    if(!reg.exec(newPwd)){
+        alert("密码格式为6~20位字母、数字或下划线，请重新输入！")
+    }else if (oldPwd ==""||newPwd==""||renewpwd=="") {
         alert("提交不能为空!");
     }else if (newPwd != renewpwd) {
         alert("新密码输入不一致！请重新输入!");

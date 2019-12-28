@@ -52,6 +52,10 @@ public interface AdminDao {
     int isEmailExist(String email);
 
 
+    /**
+     * 后台管理员登录 验证账户密码是否相同
+     */
+    Admin checkAdminByUsernameAndPwd(String username, String password);
 
     //权限
     List<Colleage> searchColleages();

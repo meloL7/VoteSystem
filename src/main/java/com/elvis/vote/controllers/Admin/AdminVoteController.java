@@ -45,6 +45,7 @@ public class AdminVoteController {
 
     @RequestMapping("admin/seachVote.do")
     public APIResult seachVote(Integer title,String content,Integer type,Integer indexpage){
+        System.out.println(title + "---" + content + "---"+type);
         return services.queryAllVote(title,content,type,indexpage);
     }
 

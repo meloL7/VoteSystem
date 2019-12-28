@@ -45,6 +45,8 @@ function checkcodes() {
         }
     });
     $("#xbtn").html("已发送");
+    $("#xbtn").addClass('disabled');
+    $("#xbtn").css("color","#686868");
     $("#code").removeAttr("disabled");
 
 }
@@ -79,7 +81,14 @@ $("#mybtn").click(function () {
     var newpwd = $("#newpwd").val();
     var renewpwd = $("#renewpwd").val();
 
-    if (renewpwd != newpwd) {
+    /**
+     * 密码包含 数字,英文,字符中的两种以上，长度6-20
+     */
+    var reg = /^(\w){6,20}$/;
+
+    if(!reg.exec(newpwd)){
+        alert("密码格式为6~20位字母、数字或下划线，请重新输入！")
+    }else if (renewpwd != newpwd) {
         alert("两次密码输入不一致，请重新输入！")
     }else {
         $.ajax({

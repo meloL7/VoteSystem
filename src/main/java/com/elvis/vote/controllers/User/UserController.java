@@ -76,6 +76,12 @@ public class UserController {
     }
 
 
+    @RequestMapping("/isemail.do")
+    public APIResult emailExist(String email) {
+        return userServices.isExsitEmail(email);
+    }
+
+
     @RequestMapping("/getinfo.do")
     public APIResult checkSno(String identify,String sno) {
         if ("学生".equals(identify)) {

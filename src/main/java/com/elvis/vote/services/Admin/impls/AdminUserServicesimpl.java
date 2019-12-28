@@ -6,21 +6,33 @@ import com.elvis.vote.services.Admin.AdminUserServices;
 import com.elvis.vote.utils.APIResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.mail.internet.MimeMessage;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AdminUserServicesimpl implements AdminUserServices {
-
+    private int pagesize = 4;
     @Resource(type = AdminDao.class)
     AdminDao adminDao;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String mailUserName;
+
 
     /**
-     * 修改邮箱
+     * 修改邮箱,发送邮件。。
      * @param id
      * @param newEmail
      * @return
@@ -32,8 +44,24 @@ public class AdminUserServicesimpl implements AdminUserServices {
             int i = adminDao.updateEmail(id, newEmail);
             if (i > 0) {
                 /*发送邮件给用户表示修改邮箱成功*/
-
                 System.out.println("修改邮箱成功");
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("<html><head><title></title></head><body style=\"font-size:16px;font-family:等线;\">");
+                stringBuilder.append("您好<br/>");
+                stringBuilder.append("您账号绑定的邮箱已修改成功！<br/>");
+                MimeMessage mimeMessage = mailSender.createMimeMessage();
+                try {
+                    MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+//                    SimpleMailMessage mimeMessageHelper = new SimpleMailMessage();
+                    mimeMessageHelper.setFrom(mailUserName);//这里只是设置username 并没有设置host和password，因为host和password在springboot启动创建JavaMailSender实例的时候已经读取了
+                    mimeMessageHelper.setTo(newEmail);
+                    mimeMessageHelper.setSubject("邮箱验证");
+                    mimeMessageHelper.setText(stringBuilder.toString());
+                    mailSender.send(mimeMessage);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
                 return new APIResult("修改成功！",true,200);
             }else {
                 return new APIResult("修改失败！", false, 500);
@@ -45,7 +73,7 @@ public class AdminUserServicesimpl implements AdminUserServices {
 
     @Override
     public APIResult loadUserList(String identify, Integer indexpage) {
-        PageHelper.startPage(indexpage, 2);
+        PageHelper.startPage(indexpage, pagesize);
         //1为老师，2为学生
         List<User> users = adminDao.selectAllUsers(identify);
 
@@ -109,6 +137,22 @@ public class AdminUserServicesimpl implements AdminUserServices {
             }
         } catch (Exception e) {
             return new APIResult("有错误！",false,500);
+        }
+    }
+
+    //后台登录
+    @Override
+    public APIResult checkAdminByUsernameAndPwd(String username, String password) {
+        Admin isAdmin = adminDao.checkAdminByUsernameAndPwd(username,null);
+        if (null==isAdmin){
+            return new APIResult("账号不存在",false,500);
+        }else {
+            Admin admin = adminDao.checkAdminByUsernameAndPwd(username,password);
+            if (admin==null){
+                return new APIResult( "密码输入错误，请重新输入！",false,501,admin);
+            }else {
+                return new APIResult( "登录成功",true,200,admin);
+            }
         }
     }
 
