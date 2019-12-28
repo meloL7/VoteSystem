@@ -35,6 +35,19 @@ public class AdminUserController {
         return result;
     }
 
+    /**
+     *管理员登录
+     * @param username
+     * @param password
+     * @return
+     */
+    @RequestMapping("admin/login.do")
+    public APIResult adminLogin(String username,String password){
+        APIResult result = userServices.checkAdminByUsernameAndPwd(username,password);
+        return result;
+    }
+
+
 
     //权限
     @RequestMapping("admin/loadcolleage")

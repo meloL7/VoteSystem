@@ -51,6 +51,21 @@ function searchStudent(indexpage) {
                         "\t\t\t\t\t\t\t\t\t</tr>\n";
                     s_list.append(tr_list);
                 }
+                $(".zxf_pagediv").createPage({
+                    pageNum: data.data.pages,
+                    current: data.data.pageNum,
+                    backfun: function (e) {
+                        if (e.current > data.data.pages) {
+                            return
+                        }
+                        if (e.current == 0) {
+                            e.current = 1
+                        }
+                        console.log(e.current+"---"+e.pageNum);
+                        // pageGet(e.current, pager.pagesize);
+                        searchStudent(e.current);
+                    }
+                });
             }else {
                 alert(data.message+"-->出现"+data.code+"错误！请检查您输入的数值是否和选项匹配！");
             }
@@ -110,6 +125,21 @@ function searchTeacher(indexpage) {
                         "</tr>";
                     tr_list.append(td_list);
                 }
+                $(".zxf_pagediv").createPage({
+                    pageNum: data.data.pages,
+                    current: data.data.pageNum,
+                    backfun: function (e) {
+                        if (e.current > data.data.pages) {
+                            return
+                        }
+                        if (e.current == 0) {
+                            e.current = 1
+                        }
+                        console.log(e.current+"---"+e.pageNum);
+                        // pageGet(e.current, pager.pagesize);
+                        searchTeacher(e.current);
+                    }
+                });
             }else {
                 alert(data.message+"-->出现"+data.code+"错误！请检查您输入的数值是否和选项匹配！");
             }
@@ -166,6 +196,23 @@ function loadStudentData(indexpage) {
                             "\t\t\t\t\t\t\t\t\t</tr>\n";
                         s_list.append(tr_list);
                     }
+                    // window.sessionStorage.pages = data.data.pages;
+                    // window.sessionStorage.pageNum = data.data.pageNum;
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.pages,
+                        current: data.data.pageNum,
+                        backfun: function (e) {
+                            if (e.current > data.data.pages) {
+                                return
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            console.log(e.current+"---"+e.pageNum);
+                            // pageGet(e.current, pager.pagesize);
+                            loadStudentData(e.current);
+                        }
+                    });
 
                 }else {
                     alert(data.message+"-->出现"+data.code+"错误");
@@ -234,7 +281,7 @@ function loadTeacherData(indexpage) {
                     var body_list = $('#teacher_list');
                     body_list.empty();
                     for (var i = 0; i < tjson.length; i++) {
-                        var td_list = "<tr id="+ tjson[i].sno+"><td>"+tjson[i].id+"</td>\n" +
+                        var td_list = "<tr id="+ tjson[i].sno+"><td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].sno+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].colleage+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+tjson[i].major+"</td>\n" +
@@ -261,7 +308,21 @@ function loadTeacherData(indexpage) {
                             "</tr>";
                         body_list.append(td_list);
                     }
-
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.pages,
+                        current: data.data.pageNum,
+                        backfun: function (e) {
+                            if (e.current > data.data.pages) {
+                                return
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            console.log(e.current+"---"+e.pageNum);
+                            // pageGet(e.current, pager.pagesize);
+                            loadTeacherData(e.current);
+                        }
+                    });
                 }else {
                     alert(data.message+"-->出现"+data.code+"错误");
                 }
@@ -274,6 +335,9 @@ function loadTeacherData(indexpage) {
 
 
 
+
+
+//弃用了！
 //分了页的加载学生数据(调用这个函数就行)
 function loadSPageData(indexpage) {
     $.ajax(
@@ -812,7 +876,7 @@ function saveResult() {
             // console.log("kk"+kk.attr("class"))
             var g = kk.attr("class")
             // console.log("test"+g)
-            g = `li.${g.substr(0,g.length-8)}`
+            g = `li.${g.substr(0,g.length-8)}`;
             // // console.log(g)
             var op = $("#t4").find(g).eq(0).find(".text").text()
             val = $("#t4").find("li.selected").eq(i).find(".text").text();
