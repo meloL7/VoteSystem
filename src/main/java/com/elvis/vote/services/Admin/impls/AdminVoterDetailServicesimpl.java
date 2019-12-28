@@ -65,8 +65,10 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
         Integer integer = advdDao.updateVoteNopass(voteid, 4, time, nopass);
 
         if(integer > 0){
+            //有问题。。。(应该添加一条联系，status = 1 发布)（再查询该享有权限下的所有用户，建立联系，status = 3 待参与）
             Integer i = advdDao.updateUserVote(voteid, 4);
             result = new APIResult("",true,200,i);
+
         }else {
             result = new APIResult("失败！",false,500);
         }
@@ -85,8 +87,12 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
 
         Integer integer = advdDao.updateVoteStatusByVoteid(voteid, 2, time);
         if(integer > 0){
+
+            //有问题。。。(应该添加一条联系，status = 1 发布)（再查询该享有权限下的所有用户，建立联系，status = 3 待参与）
             Integer i = advdDao.updateUserVote(voteid, 2);
             result = new APIResult("",true,200,i);
+
+
         }else {
             result = new APIResult("失败！",false,500);
         }

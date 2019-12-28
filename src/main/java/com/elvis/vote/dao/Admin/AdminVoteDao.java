@@ -33,7 +33,7 @@ public interface AdminVoteDao {
 
     List<Vote> selectAllVoteBySex(Integer type,String sex,Integer indexpage,Integer pagesize);
 
-    Integer selectAllVoteBySexNumber(Integer type,String sex,Integer indexpage);
+    Integer selectAllVoteBySexNumber(Integer type,String sex);
 
     //查找用户信息
     User selectUserByid(Integer id);

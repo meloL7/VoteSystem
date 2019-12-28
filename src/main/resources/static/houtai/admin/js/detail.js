@@ -266,7 +266,13 @@ function loadVoteList(type,indexpage,option,content) {
             var table = $("#tbody");
             table.empty();
 
-            for (var i = 0; i < data.data[0].data.length; i++) {
+            if(data.data[0].beginrows + data.data[0].pagesize > data.data[0].countrows){
+                k = data.data[0].countrows - data.data[0].beginrows;
+            }else {
+                k = data.data[0].pagesize;
+            }
+
+            for (var i = 0; i < k; i++) {
                 var tr = "<tr>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i + 1)+"</td>\n" +
                     "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data[1][i].sno+"</td>\n" +
@@ -282,41 +288,21 @@ function loadVoteList(type,indexpage,option,content) {
 
                 table.append(tr);
             }
-            var index = "<tr>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t<td colspan=\"6\" align=\"center\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ul class=\"pagination pagination-rounded\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item previous disabled\" id=\"complex-header-datatable_previous\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"0\" tabindex=\"0\" class=\"page-link\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class=\"mdi mdi-chevron-left\"></i>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item active\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"1\" tabindex=\"0\" class=\"page-link\">1</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"2\" tabindex=\"0\" class=\"page-link\">2</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"3\" tabindex=\"0\" class=\"page-link\">3</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"4\" tabindex=\"0\" class=\"page-link\">4</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"5\" tabindex=\"0\" class=\"page-link\">5</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item \">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"6\" tabindex=\"0\" class=\"page-link\">6</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<li class=\"paginate_button page-item next\" id=\"complex-header-datatable_next\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" aria-controls=\"complex-header-datatable\" data-dt-idx=\"7\" tabindex=\"0\" class=\"page-link\"><i\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t class=\"mdi mdi-chevron-right\"></i></a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</li>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ul>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
+            $(".zxf_pagediv").createPage({
+                pageNum: data.data[0].countpage,
+                current: indexpage,
+                backfun: function (e) {
+                    if(e.current > data.data[0].countrows){
 
-            table.append(index);
+                        return
+                    }
+                    if(e.current == 0){
+                        e.current = 1;
+                    }
+                    console.log(e.current);
+                    loadVoteList(type,e.current,option,content);
+                }
+            });
         }
     )
     

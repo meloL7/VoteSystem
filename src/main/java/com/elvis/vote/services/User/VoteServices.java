@@ -14,7 +14,7 @@ public interface VoteServices {
      * @param type
      * @return
      */
-    public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage, int indexsize);
+    public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage);
 
     public APIResult queryVoteBySearch(Integer voter_id,Integer type,Integer voter_status,int vote_status,Integer title,String content,Integer indexpage);
 

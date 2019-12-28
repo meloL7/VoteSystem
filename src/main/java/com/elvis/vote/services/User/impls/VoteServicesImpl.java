@@ -19,29 +19,33 @@ import java.util.Map;
 @Service
 public class VoteServicesImpl implements VoteServices {
 
+    private int indexsize = 10;
+
     @Resource(type = VoteDao.class)
     VoteDao voteDao;
 
 
     @Override
-    public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage, int indexsize) {
+    public APIResult queryAllVote(int voter_id,int type, int voter_status,int vote_status, int indexpage) {
         List<Vote> votes = null;
         Integer num = 0;
 
         APIResult result = null;
         try{
-            votes = voteDao.selectAllVote(voter_id,type, voter_status,vote_status, indexpage, indexsize);
+
             num = voteDao.selectAllNumber(voter_id,type, voter_status,vote_status);
             System.out.println("数据条数："+num);
-            Pager pager = new Pager(num, indexpage, 10);
+            if(num == 0){
+                result = new APIResult("对不起，没有你想要的数据~~", false, 200);
+                return result;
+            }
+            Pager pager = new Pager(num, indexpage, indexsize);
+            votes = voteDao.selectAllVote(voter_id,type, voter_status,vote_status, pager.getBeginrows(), indexsize);
 
             pager.setData(votes);
 
-            if (votes.size() > 0) {
-                result = new APIResult("成功！", true, 200, pager);
-            } else {
-                result = new APIResult("对不起，没有你想要的数据~~", false, 200);
-            }
+            result = new APIResult("成功！", true, 200, pager);
+
         }catch (Exception e){
             e.printStackTrace();
             result = new APIResult("出现异常！",false,500);
@@ -67,22 +71,27 @@ public class VoteServicesImpl implements VoteServices {
                     if(title == 0){
 
                         Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
+                        if(number == 0){
+                            result = new APIResult("对不起，没有你想要的数据~~",false,200);
+                            return result;
+                        }
                         pager = new Pager(number,indexpage,10);
-                        List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null,null, indexpage, 10);
+                        List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null,null, pager.getBeginrows(), indexsize);
                         String time = null;
 
 
                         pager.setData(votes);
 
-                        if(votes.size() > 0){
-                            result = new APIResult("",true,200,pager);
-                        }else {
-                            result = new APIResult("对不起，没有你想要的数据~~",false,200);
-                        }
+                        result = new APIResult("",true,200,pager);
+
 
                     }else if(title == 1){ //人数查
                         Integer totle = Integer.valueOf(content);
                         Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, null, null,totle);
+                        if(number == 0){
+                            result = new APIResult("对不起，没有你想要的数据~~",false,200);
+                            return result;
+                        }
                         pager = new Pager(number,indexpage,10);
 
                         List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, null,totle, indexpage, 10);
@@ -90,11 +99,8 @@ public class VoteServicesImpl implements VoteServices {
 
                         pager.setData(votes);
 
-                        if(votes.size() > 0){
-                            result = new APIResult("",true,200,pager);
-                        }else {
-                            result = new APIResult("对不起，没有你想要的数据~~",false,200);
-                        }
+                        result = new APIResult("",true,200,pager);
+
                     }
                 }catch (Exception e){
                     result = new APIResult("对不起，查询请输入正确的格式~~",false,200);
@@ -102,30 +108,32 @@ public class VoteServicesImpl implements VoteServices {
             }else {
                 if(title == 0){
                     Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, content, null,null);
+                    if(number == 0){
+                        result = new APIResult("对不起，没有你想要的数据~~",false,200);
+                        return result;
+                    }
                     pager = new Pager(number,indexpage,10);
-                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null, null,indexpage, 10);
+                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, content, null, null,pager.getBeginrows(), 10);
 
 
                     pager.setData(votes);
 
-                    if(votes.size() > 0){
-                        result = new APIResult("",true,200,pager);
-                    }else {
-                        result = new APIResult("对不起，没有你想要的数据~~",false,200);
-                    }
+                    result = new APIResult("",true,200,pager);
+
 
                 }else if(title == 1){ //按发起人查
                     Integer number = voteDao.selectVoteBySearchNumber(voter_id,type, voter_status,vote_status, null, content,null);
+                    if(number == 0){
+                        result = new APIResult("对不起，没有你想要的数据~~",false,200);
+                        return result;
+                    }
                     pager = new Pager(number,indexpage,10);
-                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, content,null, indexpage, 10);
+                    List<Vote> votes = voteDao.selectVoteBySearch(voter_id,type, voter_status,vote_status, null, content,null, pager.getBeginrows(), 10);
 
                     pager.setData(votes);
 
-                    if(votes.size() > 0){
-                        result = new APIResult("",true,200,pager);
-                    }else {
-                        result = new APIResult("对不起，没有你想要的数据~~",false,200);
-                    }
+                    result = new APIResult("",true,200,pager);
+
                 }
             }
         }catch (Exception e){
