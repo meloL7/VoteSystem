@@ -23,13 +23,13 @@
 					<br>
 					<div class="jumbotron well">
 
-							<div class="form-group">
+							<div  class="form-group">
 								<p style="color: black;">标题 (内容不能为空!)</p>
-								<input type="text" class="form-control" maxlength="16" placeholder="请输入标题" id="bigtitle" />
+								<input  type="text" class="form-control" maxlength="16" placeholder="请输入标题" id="bigtitle" />
 							</div>
 							<div class="form-group">
 								<p style="color: black;">投票简介 (内容不能为空！)</p>
-								<textarea cols="4" rows="4" class="form-control" placeholder="请输入投票简介" id="introduction"></textarea>
+								<textarea  cols="4" rows="4" class="form-control" placeholder="请输入投票简介" id="introduction"></textarea>
 							</div>
 
 
@@ -67,7 +67,7 @@
 
 		<script>
 			var index = 1;
-			window.sessionStorage.tempid = 1;
+			// window.sessionStorage.tempid = 1;
 			var count = 0;
 			var count1 = 1;
 			var choosecount = 0;
@@ -93,7 +93,6 @@
 				var timuSize = 0;
 				for (const key of father.childNodes) {
 					if (key.className != undefined) {
-						console.log(typeof(key.className))
 						if (key.className.indexOf("timu")) {
 							timuSize++;
 						}
@@ -107,7 +106,7 @@
 					n.className = "form-group jumbotron well timu";
 					n.name = "div_timu";
 					var tt =
-						`<h3 >题目</h3><h4 style="color:#CD4F39;">(题目最多为10个,最少为1个,内容不能为空!)</h4>
+						`<h3>题目</h3><h4 style="color:#CD4F39;">(题目最多为10个,最少为1个,内容不能为空!)</h4>
 						<input type="text" name="smalltitle" class="form-control" maxlength="16">
 						<br>
 						<h5>操作</h5>
@@ -134,7 +133,10 @@
 									
 										<h3>选择</h3><h4 style="color:#CD4F39">(选项最多为10个,最少为2个,内容不能为空!)</h4>
 										<div class="input-group" id="the${count + 1}choose">
-										
+												<div id="the1choose1" class="form-group xunazhe" style="display: block;"><input class="form-control xuanzhe" name="question1">
+												<a class="btn input-group-addon" id="" onclick="deletechoose(the${count + 1}choose,the1choose1)">删除选择</a></div>
+												<div id="the2choose1" class="form-group " style="display: block;"><input class="form-control xunazhe" name="question2 ">
+												<a class="btn input-group-addon" id="" onclick="deletechoose(the${count + 1}choose,the2choose1)">删除选择</a></div>
 										
 										</div>`
 					n.innerHTML = tt;
@@ -185,35 +187,29 @@
 				}
 
 				if (chooseSize < 10) {
-
-
-
-
 					// var realid = `"${id.id}"`;
 					var i = count1++;
 					console.log(id)
+
 					var n = document.createElement("div")
 					var d = id.id;
 					n.style.display = "block";
-					n.id = `the${i}choose1`
-					n.className = "form-group";
+					n.id = `the${i+2}choose1`
+					n.className = "form-group xuanze";
 					n.innerHTML =
-						`<input class="form-control" name="question${choosecount + 1}">
-							<a class="btn input-group-addon" id="" onclick="deletechoose(${d},the${i}choose1)">删除选择</a>`
+						`<input class="form-control xuanzhe" name="question${chooseSize +1	} ">
+							<a class="btn input-group-addon" id="" onclick="deletechoose(${d},the${i+2}choose1)">删除选择</a>`
 
 
 
 					id.appendChild(n);
 					choosecount++;
 
-				} else {
-
 				}
 
 			}
 
 			function deletechoose(k, t) {
-
 				var chooseSize = 0;
 				for (const key of k.childNodes) {
 					if (key.className != undefined) {
@@ -263,17 +259,16 @@
 
 			function okSumbit() {
 
-
+				var voteContent = [];
 				var bigtitle = document.getElementById("bigtitle");
 				var introduction = document.getElementById("introduction");
-				3
+
 
 
 
 				var bigtitleflag = false;
 				var introductionflag = false;
 				var titleflag = false;
-				var titleNum = false;
 				var chooseflag = true;
 
 
@@ -285,46 +280,99 @@
 					introductionflag = true;
 
 				}
-
+				//取出所有的题目
+				var dd = [];
 				var title = $("#toupiao>div>input[name='smalltitle']");
-
-
-
 				for (var i = 0; i < title.length; i++) {
 					if (title[i].value == "") {
 						titleflag = false;
 					} else {
+						var stitle = title[i].value;
+						stitle=title[i].value+">";
+						dd.push(stitle)
 						titleflag = true;
 					}
-
 				}
-
-
-
+				//取出所有的选项
+				var temp = [];
 				var titlediv = $("#toupiao > div");
 				for (var i = 0; i < titlediv.length; i++) {
+					var x="" //存每一个投票的内容
 					var titleitem = $("#toupiao > div:eq(" + i + ") input:gt(2)");
-
 					if (titleitem.length < 2) {
 						chooseflag = false;
-					} else {
-						for (var i = 0; i < titleitem.length; i++) {
-							// console.log(titleitem[i].value);
-							if (titleitem[i].value == "") {
+					} else if(titleitem.length>=2){
+						for (var j = 0; j < titleitem.length; j ++) {
+							if(titleitem[j].value != ""){
+								x = x+titleitem[j].value+">";
+							}
+							if (titleitem[j].value == "") {
 								chooseflag = false;
 							}
-
 						}
+						temp.push(x);
 					}
-
-
-
 				}
+
+				for (var i = 0; i <dd.length ; i++) {
+					var sb = dd[i]+temp[i];
+					var sb2 = sb.substr(0,sb.length-1)
+					voteContent.push(sb2)
+				}
+
+
 
 
 				if (bigtitleflag && introductionflag && titleflag && chooseflag) {
-					alert("等待管理员验证,将以邮件形式发送结果");
-					form.submit();
+					var range = window.sessionStorage.range;
+					var holdtime =window.sessionStorage.holdtime;
+					var power = window.sessionStorage.power;
+
+
+					var open_voter_sno = window.sessionStorage.sno;
+					var type = window.sessionStorage.type;
+					var sname = window.sessionStorage.sname;
+					var identify = window.sessionStorage.identify;
+					var colleage = window.sessionStorage.colleage; //暂无
+					var mybigtitle = bigtitle.value;
+					var myintro = introduction.value;
+					var all_select_num = $("#toupiao").find(".timu").length;
+					var content = voteContent;
+					$.ajax({
+						url:"/elvis/openNewVote",
+						data: {
+							'open_voter_sno':open_voter_sno,
+							'type':type,
+							'sname':sname,
+							'colleage':colleage,
+							'mybigtitle':mybigtitle,
+							'myintro':myintro,
+							'all_select_num':all_select_num,
+							'range':range,
+							'holdtime':holdtime,
+							'power':power,
+							'content':content,
+
+
+						},
+						traditional:true,
+						success: function (data) {
+							if(data.message=="成功"){
+								alert("创建成功")
+							}else if(data.message=="失败"){
+								alert("创建失败")
+							}else {
+								alert("服务器错误")
+							}
+						}
+
+					});
+
+
+
+
+					// alert("等待管理员验证,将以邮件形式发送结果");
+					// form.submit();
 				} else {
 					alert("投票信息设置存在不合法的地方，请返回修改")
 				}
@@ -346,7 +394,7 @@
 			}
 		</script>
 
-
+		<script src = "./js/goVote.js"></script>
 
 
 	</body>

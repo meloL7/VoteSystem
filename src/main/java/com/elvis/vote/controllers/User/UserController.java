@@ -95,6 +95,16 @@ public class UserController {
         }
         return null;
     }
+    @RequestMapping("openNewVote")
+    public APIResult openNewVote(String open_voter_sno,Integer type,String sname,String colleage,
+                                 String mybigtitle,String myintro,Integer all_select_num,
+                                 String range,String holdtime,String power,String[]content){
+
+        System.out.println(power);
+        System.out.println(content[0]);
+        System.out.println(myintro);
+        return null;
+    }
 
 
 }

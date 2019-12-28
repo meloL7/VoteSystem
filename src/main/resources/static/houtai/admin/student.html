@@ -837,12 +837,14 @@
 	}
 	var grades = [];
 	function loadMajor1(col,maj) {
-
+		cols = []
+		grades = []
 		for (var i = 0; i <col.length ; i++) {
 			var temp = col[i];
 			temp= "湖南理工大学>"+temp;
 			cols.push(temp)
 		}
+
 		var data = {
 			colleagecontent:cols
 		}
@@ -894,6 +896,7 @@
 	var classess= [];
 	function loadGrade1(gtitle,gra) {
 		console.log("进入了loadgrade")
+		classess = []
 		var data = {
 			majorcontent:gtitle
 		}
@@ -948,6 +951,7 @@
 	}
 
 	function loadclasses1(ctitle,cla) {
+
 		console.log("进入loadclasses1")
 		var data = {
 			classescontent:ctitle

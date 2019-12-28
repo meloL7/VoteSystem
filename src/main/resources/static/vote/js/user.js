@@ -28,7 +28,7 @@ function login() {
             }else if (!data.result){
                 alert(data.message);
                 $('#pwd').val("");
-                window.location.href="/elvis/vote/login.html";
+                // window.location.href="/elvis/vote/login.html";
             }
         }
     });

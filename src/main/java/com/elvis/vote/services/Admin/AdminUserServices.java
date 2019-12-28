@@ -53,6 +53,7 @@ public interface AdminUserServices {
     public APIResult searchClasses(String[] gradecontent);
 
     public APIResult saveResult(String[]content,String sno);
+    public APIResult saveResultT(String []content,String sno);
 
 
 

@@ -132,6 +132,12 @@
        VALUES (#{sno}, #{colleageId}, #{majorId}, #{gradeId}, #{searchClassesId});
     </insert>
 
+    <insert id="addTPower" >
+      INSERT INTO user_power
+      (voter_sno,colleage_id,major_id)
+       VALUES (#{sno}, #{colleageId}, #{majorId});
+    </insert>
+
     <select id="checkPower" resultType="com.elvis.vote.pojo.Power">
         select * from user_power where voter_sno = #{sno}
     </select>

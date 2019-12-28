@@ -66,6 +66,11 @@ public class AdminUserController {
         APIResult result = userServices.saveResult(content, sno);
         return result;
     }
+    @RequestMapping ("admin/saveResultT")
+    public APIResult saveResultT(String[]content,String sno){
+        APIResult result = userServices.saveResultT(content, sno);
+        return result;
+    }
     @RequestMapping ("admin/checkPower")
     public APIResult checkPower(String sno){
         APIResult result = userServices.checkPower(sno);

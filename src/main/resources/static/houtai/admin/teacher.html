@@ -311,15 +311,6 @@
                     <div class="container">
                         <div class="row clearfix">
                             <div class="col-md-12 column">
-
-
-
-
-
-
-
-
-
                                 <div class="row clearfix">
                                     <div class="col-md-12 column" id="t1">
                                         学院 :
@@ -344,26 +335,26 @@
                                             　
                                         </select>
                                     </div>
-                                    <br><br><br>
-                                    <div class="col-md-12 column" id="t3">
-                                        年级 :
-                                        <select id="gradeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
-                                                data-actions-box="true" onchange="grachange()">
+<!--                                    <br><br><br>-->
+<!--                                    <div class="col-md-12 column" id="t3">-->
+<!--                                        年级 :-->
+<!--                                        <select id="gradeselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"-->
+<!--                                                data-actions-box="true" onchange="grachange()">-->
 
-                                            　
-                                        </select>
-                                    </div>
-                                    <br><br><br>
-                                    <div class="col-md-12 column" id="t4">
-                                        班级：
-                                        <select id="classesselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"
-                                                data-actions-box="true" onchange="clachange()">
+<!--                                            　-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                    <br><br><br>-->
+<!--                                    <div class="col-md-12 column" id="t4">-->
+<!--                                        班级：-->
+<!--                                        <select id="classesselc" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="搜索"-->
+<!--                                                data-actions-box="true" onchange="clachange()">-->
 
 
-                                            　
-                                        </select>
+<!--                                            　-->
+<!--                                        </select>-->
 
-                                    </div>
+<!--                                    </div>-->
 <!--                                    <br><br><br>-->
 <!--                                    <div class="col-md-12 column" id="t5">-->
 <!--                                        范围 :-->
@@ -399,7 +390,7 @@
 
 
                     <!-- 这里需要上传到数据库 -->
-                    <button onclick="saveResult()" type="button" class="btn btn-primary waves-effect waves-light">Save
+                    <button onclick="saveResultT()" type="button" class="btn btn-primary waves-effect waves-light">Save
                         changes</button>
 
                 </div>
@@ -440,18 +431,8 @@
                                     <select id="maj1" class="selectpicker" multiple>
                                     </select>
                                 </div>
-                                <br><br><br>
-                                <div class="col-md-12 column" id="t7">
-                                    年级 :
-                                    <select id="gra1" class="selectpicker" multiple  >　
-                                    </select>
-                                </div>
-                                <br><br><br>
-                                <div class="col-md-12 column" id="t8">
-                                    班级：
-                                    <select id="cla1" class="selectpicker" multiple >
-                                    </select>
-                                </div>
+                              
+
                             </div>
                         </div>
                     </div>
@@ -616,21 +597,21 @@
 
     }
 
-    function grachange() {
-        grade = myDate("#t3");
-        //
-        loadclasses(grade)//加载classes数据
-        //
-        // $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
-        // $("#classesselc").selectpicker('refresh'); //刷新
-        //
+    // function grachange() {
+    //     grade = myDate("#t3");
+    //     //
+    //     loadclasses(grade)//加载classes数据
+    //     //
+    //     // $('#classesselc').selectpicker('val', ['noneSelectedText']) //回到初始状态
+    //     // $("#classesselc").selectpicker('refresh'); //刷新
+    //     //
+    //
+    // }
 
-    }
-
-    function clachange() {
-        // classes = myDate("#t4");
-
-    }
+    // function clachange() {
+    //     // classes = myDate("#t4");
+    //
+    // }
 
     // function ranchange() {
     //     // range = myDate("#t5");
@@ -760,9 +741,6 @@
     function readPower(sno) {
         var col = [];
         var maj = [];
-        var gra = [];
-        var cla = [];
-
 
         xno = "#"+sno;
         $.ajax({
@@ -776,8 +754,6 @@
                 for (var i = 0; i <data.data.length ; i++) {
                     var colleageName = data.data[i].colleage_name;
                     var majorName = data.data[i].major_name;
-                    var gradeName = data.data[i].grade_name;
-                    var classesName = data.data[i].classes_name;
 
                     if(col.indexOf(colleageName)<0){
                         col.push(colleageName)
@@ -785,22 +761,12 @@
                     if(maj.indexOf(majorName)<0){
                         maj.push(majorName)
                     }
-                    if(gra.indexOf(gradeName)<0){
-                        gra.push(gradeName)
-                    }
-                    if(cla.indexOf(classesName)<0){
-                        cla.push(classesName)
-                    }
                 }
                 loadColleage1(sno,col) //加载初始学校数据
-                var gtitle = loadMajor1(col,maj);
-                var ctitle = loadGrade1(gtitle,gra);
-                loadclasses1(ctitle,cla)
-
+                loadMajor1(col,maj);
             }
-
-
         });
+
     }
     var cols = [];
 
@@ -841,9 +807,9 @@
         );
 
     }
-    var grades = [];
+    // var grades = [];
 function loadMajor1(col,maj) {
-
+        cols = [];
     for (var i = 0; i <col.length ; i++) {
         var temp = col[i];
         temp= "湖南理工大学>"+temp;
@@ -861,13 +827,17 @@ function loadMajor1(col,maj) {
         async:false,
         success:function (data) {
             if(data.code == 200){
-
-
+                console.log("test");
                 var majorss = $("#maj1");
                 majorss.empty();
-                // data.data == biglist
-                // data.data.data[i] ==第几个小list
-                for (var i = 0; i <data.data.length ; i++) {
+                majorss.selectpicker('refresh');
+                // var childNodes = majorss.childNodes;
+                // for(var i = 0; i < childNodes.length; i++) {
+                //     var node = childNodes[i];
+                //     majorss.removeChild(node);
+                // }
+                console.log(data.data.length);
+                for (var i = 0; i < data.data.length ; i++) {
                     var cop =  document.createElement("optgroup");
                     cop.className = "optgroup-"+(i+1);
                     // console.log(data.data[i].parentName)
@@ -878,133 +848,131 @@ function loadMajor1(col,maj) {
                         option.className = "option-"+(i+1);
                         if(maj.indexOf(data.data[i].data[j].major_name)>-1){
                             option.setAttribute("selected","selected")
-                            grades.push(data.data[i].parentName+">"+data.data[i].data[j].major_name);
+                            // grades.push(data.data[i].parentName+">"+data.data[i].data[j].major_name);
                         }
                         option.text = data.data[i].data[j].major_name;
                         option.setAttribute("disabled","disabled")
                         cop.append(option);
                     }
                     majorss.append(cop);
-
                 }
+                // majorss.empty();
 
                 majorss.selectpicker('refresh');
-
-
             }
         }
     });
 
-    return grades;
+    // return grades;
 }
-var classess= [];
-function loadGrade1(gtitle,gra) {
-    console.log("进入了loadgrade")
-    var data = {
-        majorcontent:gtitle
-    }
-
-    $.ajax({
-        url:"/elvis/admin/loadgrade",
-        type:"post",
-        data:data,
-        traditional:true,
-        async:false,
-        success:function (data) {
-
-            if(data.code == 200){
-
-                var gradess = $("#gra1");
-                gradess.empty();
-                // data.data == biglist
-                // data.data.data[i] ==第几个小list
-
-                for (var i = 0; i <data.data.length ; i++) {
-
-                    var cop =  document.createElement("optgroup");
-                    cop.className = "optgroup-"+(i+1);
-                    // console.log(data.data[i].parentName)
-                    cop.label = data.data[i].parentName;
-                    // console.log("test"+data.data[0].data.length)
-                    for (var j = 0; j <data.data[i].data.length ; j++) {
-                        var option = document.createElement("option");
-                        option.className = "option-"+(i+1);
-                        if(gra.indexOf(data.data[i].data[j].grade_name)>-1){
-                            option.setAttribute("selected","selected")
-                            classess.push(data.data[i].parentName+">"+data.data[i].data[j].grade_name);
-                        }
-                        option.text = data.data[i].data[j].grade_name;
-                        option.setAttribute("disabled","disabled")
-                        cop.append(option);
-                    }
-                    gradess.append(cop);
-                    gradess.selectpicker('refresh');
-
-
-                }
-
-
-
-
-
-            }
-        }
-    });
-        return classess;
-}
-
-    function loadclasses1(ctitle,cla) {
-        console.log("进入loadclasses1")
-        var data = {
-            classescontent:ctitle
-        }
-
-        $.ajax({
-            url:"/elvis/admin/loadclasses",
-            type:"post",
-            data:data,
-            traditional:true,
-            success:function (data) {
-
-                if(data.code == 200){
-
-                    var classes = $("#cla1");
-                    classes.empty();
-                    // data.data == biglist
-                    // data.data.data[i] ==第几个小list
-
-                    for (var i = 0; i <data.data.length ; i++) {
-
-                        var cop =  document.createElement("optgroup");
-                        cop.className = "optgroup-"+(i+1);
-                        // console.log(data.data[i].parentName)
-                        cop.label = data.data[i].parentName;
-                        // console.log("test"+data.data[0].data.length)
-                        for (var j = 0; j <data.data[i].data.length ; j++) {
-                            var option = document.createElement("option");
-                            option.className = "option-"+(i+1);
-                            if(cla.indexOf(data.data[i].data[j].classes_name)>-1){
-                                option.setAttribute("selected","selected")
-                            }
-                            option.text = data.data[i].data[j].classes_name;
-                            option.setAttribute("disabled","disabled")
-                            cop.append(option);
-                        }
-                        classes.append(cop);
-                        classes.selectpicker('refresh');
-
-
-                    }
-
-
-
-
-
-                }
-            }
-        });
-
-    }
+// var classess= [];
+// function loadGrade1(gtitle,gra) {
+//     console.log("进入了loadgrade")
+//     var data = {
+//         majorcontent:gtitle
+//     }
+//
+//     $.ajax({
+//         url:"/elvis/admin/loadgrade",
+//         type:"post",
+//         data:data,
+//         traditional:true,
+//         async:false,
+//         success:function (data) {
+//
+//             if(data.code == 200){
+//
+//                 var gradess = $("#gra1");
+//                 gradess.empty();
+//                 // data.data == biglist
+//                 // data.data.data[i] ==第几个小list
+//
+//                 for (var i = 0; i <data.data.length ; i++) {
+//
+//                     var cop =  document.createElement("optgroup");
+//                     cop.className = "optgroup-"+(i+1);
+//                     // console.log(data.data[i].parentName)
+//                     cop.label = data.data[i].parentName;
+//                     // console.log("test"+data.data[0].data.length)
+//                     for (var j = 0; j <data.data[i].data.length ; j++) {
+//                         var option = document.createElement("option");
+//                         option.className = "option-"+(i+1);
+//                         if(gra.indexOf(data.data[i].data[j].grade_name)>-1){
+//                             option.setAttribute("selected","selected")
+//                             classess.push(data.data[i].parentName+">"+data.data[i].data[j].grade_name);
+//                         }
+//                         option.text = data.data[i].data[j].grade_name;
+//                         option.setAttribute("disabled","disabled")
+//                         cop.append(option);
+//                     }
+//                     gradess.append(cop);
+//                     gradess.selectpicker('refresh');
+//
+//
+//                 }
+//
+//
+//
+//
+//
+//             }
+//         }
+//     });
+//         return classess;
+// }
+//
+//     function loadclasses1(ctitle,cla) {
+//         console.log("进入loadclasses1")
+//         var data = {
+//             classescontent:ctitle
+//         }
+//
+//         $.ajax({
+//             url:"/elvis/admin/loadclasses",
+//             type:"post",
+//             data:data,
+//             traditional:true,
+//             success:function (data) {
+//
+//                 if(data.code == 200){
+//
+//                     var classes = $("#cla1");
+//                     classes.empty();
+//                     // data.data == biglist
+//                     // data.data.data[i] ==第几个小list
+//
+//                     for (var i = 0; i <data.data.length ; i++) {
+//
+//                         var cop =  document.createElement("optgroup");
+//                         cop.className = "optgroup-"+(i+1);
+//                         // console.log(data.data[i].parentName)
+//                         cop.label = data.data[i].parentName;
+//                         // console.log("test"+data.data[0].data.length)
+//                         for (var j = 0; j <data.data[i].data.length ; j++) {
+//                             var option = document.createElement("option");
+//                             option.className = "option-"+(i+1);
+//                             if(cla.indexOf(data.data[i].data[j].classes_name)>-1){
+//                                 option.setAttribute("selected","selected")
+//                             }
+//                             option.text = data.data[i].data[j].classes_name;
+//                             option.setAttribute("disabled","disabled")
+//                             cop.append(option);
+//                         }
+//                         classes.append(cop);
+//                         classes.selectpicker('refresh');
+//
+//
+//                     }
+//
+//
+//
+//
+//
+//                 }
+//             }
+//         });
+//
+//     }
 
 
 

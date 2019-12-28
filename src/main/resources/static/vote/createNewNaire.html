@@ -68,7 +68,7 @@
 										</select>
 									</div>
 									<br><br><br>
-									<div class="col-md-12 column" id="t8">
+									<div class="col-md-12 column" id="t8" style="display: none;">
 										班级：
 										<select id="cla1" class="selectpicker" multiple >
 										</select>
@@ -124,7 +124,11 @@
 	</body>
 	<script>
 		$(document).ready(function () {
-			readPower("12321");
+			var sno = window.sessionStorage.sno;
+			var data = window.sessionStorage.data;
+			var s = JSON.parse(data);
+			var identify = s[0].identify;
+			readPower(sno,identify);
 
 		});
 
@@ -163,7 +167,7 @@
 
 		}
 
-		function readPower(sno) {
+		function readPower(sno,identify) {
 			var col = [];
 			var maj = [];
 			var gra = [];
@@ -171,6 +175,7 @@
 
 
 			xno = "#"+sno;
+
 			$.ajax({
 				url:"/elvis/admin/readPower",
 				type:"post",
@@ -178,36 +183,66 @@
 					sno:sno,
 				},
 				success:function (data) {
+					if(identify =="教师"){
+						for (var i = 0; i <data.data.length ; i++) {
+							var colleageName = data.data[i].colleage_name;
+							var majorName = data.data[i].major_name;
 
-					for (var i = 0; i <data.data.length ; i++) {
-						var colleageName = data.data[i].colleage_name;
-						var majorName = data.data[i].major_name;
-						var gradeName = data.data[i].grade_name;
-						var classesName = data.data[i].classes_name;
+							if(col.indexOf(colleageName)<0){
+								col.push(colleageName)
+							}
+							if(maj.indexOf(majorName)<0){
+								maj.push(majorName)
+							}
+						}
+						loadColleage1(sno,col) //加载初始学校数据
+						loadMajor1(col,maj);
+						$("#t6").css("display","block")
 
-						if(col.indexOf(colleageName)<0){
-							col.push(colleageName)
-						}
-						if(maj.indexOf(majorName)<0){
-							maj.push(majorName)
-						}
-						if(gra.indexOf(gradeName)<0){
-							gra.push(gradeName)
-						}
-						if(cla.indexOf(classesName)<0){
-							cla.push(classesName)
-						}
 					}
-					loadColleage1(sno,col) //加载初始学校数据
-					var gtitle = loadMajor1(col,maj);
-					var ctitle = loadGrade1(gtitle,gra);
-					loadclasses1(ctitle,cla)
+					if(identify =="学生"){
+						for (var i = 0; i <data.data.length ; i++) {
+							var colleageName = data.data[i].colleage_name;
+							var majorName = data.data[i].major_name;
+							var gradeName = data.data[i].grade_name;
+							var classesName = data.data[i].classes_name;
+
+							if(col.indexOf(colleageName)<0){
+								col.push(colleageName)
+							}
+							if(maj.indexOf(majorName)<0){
+								maj.push(majorName)
+							}
+							if(gra.indexOf(gradeName)<0){
+								gra.push(gradeName)
+							}
+							if(cla.indexOf(classesName)<0){
+								cla.push(classesName)
+							}
+						}
+						loadColleage1(sno,col) //加载初始学校数据
+						var gtitle = loadMajor1(col,maj);
+						var ctitle = loadGrade1(gtitle,gra);
+						loadclasses1(ctitle,cla)
+						$("#t8").css("display","block")
+					}
+
+
 
 				}
 
 
 			});
 		}
+
+
+
+
+
+
+
+
+
 		var cols = [];
 
 
@@ -404,67 +439,105 @@
 		}
 
 		function saveResult(a) {
-			// var sno = window.sessionStorage.getItem("sno");
-			var sno = "123456"
+
+
+
+
+			//这里需要改变
+			var sno = window.sessionStorage.sno;
+			var data = window.sessionStorage.data;
+			var s = JSON.parse(data);
+			var identify = s[0].identify;
+			window.sessionStorage.identify = identify;
+			var
 			sno ="#"+sno
-			var f4 = checkNull("#t8");
-			var f5 = checkNull("#t9");
-			var f6 = checkNull("#t10");
+			var flag ;
+			if(identify=="教师"){
+				var f5 = checkNull("#t9");
+				var f6 = checkNull("#t10");
+				flag = checkNull("#t6");
+				if(flag&f5&f6){
+					var val = "",
+							staffs = [],staffs1 = [];
+					//循环的取出插件选择的元素(通过是否添加了selected类名判断)
+					for (var i = 0; i < $("#t6").find("li.selected").length; i++) {
+						var kk = $("#t6").find("li.selected").eq(i)
+						var g = kk.attr("class")
+						g = `li.${g.substr(0,g.length-8)}`
+						var op = $("#t6").find(g).eq(0).find(".text").text()
+						val = $("#t6").find("li.selected").eq(i).find(".text").text();
+						var c = $("#t6").find("li.selected").eq(i)
+						if (val != '') {
 
-			if(f4&f5&f6){
-				var val = "",
-						staffs = [],staffs1 = [];
-
-				//循环的取出插件选择的元素(通过是否添加了selected类名判断)
-				for (var i = 0; i < $("#t8").find("li.selected").length; i++) {
-					// console.log("size"+$("li.selected").length)
-					var kk = $("#t8").find("li.selected").eq(i)
-					// for(var  j in kk){
-					//     var value = j+"-----"+kk[j]
-					//     console.log(value)
-					// }
-					// console.log("kk"+kk.attr("class"))
-					var g = kk.attr("class")
-					// console.log("test"+g)
-					g = `li.${g.substr(0,g.length-8)}`
-					// // console.log(g)
-					var op = $("#t8").find(g).eq(0).find(".text").text()
-					val = $("#t8").find("li.selected").eq(i).find(".text").text();
-					var c = $("#t8").find("li.selected").eq(i)
-
-
-					if (val != '') {
-						// console.log("XX进来了")
-						val = op + ">" + val
-						staffs.push(val);
+							val = op + ">" + val
+							staffs.push(val);
+						}
 					}
+
+					var range = $("#t9").find("li.selected").eq(1).find(".text").text();
+					var holdtime = $("#t10").find("li.selected").eq(1).find(".text").text();
+
+					// console.log(range);
+					// console.log(holdtime);
+
+					var type = 1;
+					var power = staffs;
+
+
+					// window.sessionStorage.removeItem("range");
+					// window.sessionStorage.removeItem("holdtime");
+					// window.sessionStorage.removeItem("power");
+
+					window.sessionStorage.range = range;
+					window.sessionStorage.holdtime = holdtime;
+					window.sessionStorage.type = 1;
+					window.sessionStorage.power = power;
+					a.href="vote.html";
+
+
+				}else {
+					alert("您输入的有为空项,请检查后提交")
 				}
+			}
+			if(identify=="学生"){
+				var f5 = checkNull("#t9");
+				var f6 = checkNull("#t10");
+				flag = checkNull("#t8");
+				if(flag&f5&f6){
+					var val = "",
+							staffs = [],staffs1 = [];
+					//循环的取出插件选择的元素(通过是否添加了selected类名判断)
+					for (var i = 0; i < $("#t8").find("li.selected").length; i++) {
+						var kk = $("#t8").find("li.selected").eq(i)
+						var g = kk.attr("class")
+						g = `li.${g.substr(0,g.length-8)}`
+						var op = $("#t8").find(g).eq(0).find(".text").text()
+						val = $("#t8").find("li.selected").eq(i).find(".text").text();
+						var c = $("#t8").find("li.selected").eq(i)
 
+						if (val != '') {
+							// console.log("XX进来了")
+							val = op + ">" + val
+							staffs.push(val);
+						}
+					}
+					var range = $("#t9").find("li.selected").eq(1).find(".text").text();
+					var holdtime = $("#t10").find("li.selected").eq(1).find(".text").text();
+					var type = 1;
+					var power = staffs;
+					// window.sessionStorage.removeItem("range");
+					// window.sessionStorage.removeItem("holdtime");
+					// window.sessionStorage.removeItem("power");
 
+					window.sessionStorage.range = range;
+					window.sessionStorage.holdtime = holdtime;
+					window.sessionStorage.type = 1;
+					window.sessionStorage.power = power;
 
-				var range = $("#t9").find("li.selected").eq(i).find(".text").text();
-				var holdtime = $("#t10").find("li.selected").eq(i).find(".text").text();
-				var type = 1;
-				var power = JSON.stringify(staffs);
-
-
-				window.sessionStorage.removeItem("range");
-				window.sessionStorage.removeItem("holdtime");
-				window.sessionStorage.removeItem("power");
-
-
-
-				window.sessionStorage.range = range;
-				window.sessionStorage.holdtime = holdtime;
-				window.sessionStorage.type = 1;
-				window.sessionStorage.power = power;
-
-				console.log(a);
-				a.href="vote.html";
-
-
-			}else {
-				alert("您输入的有为空项,请检查后提交")
+					a.href="vote.html";
+				}else {
+					alert("您输入的有为空项,请检查后提交")
+				}
 			}
 		}
 
@@ -474,10 +547,7 @@
 			if($(t).find("li.selected").length>0){
 				flag = true;
 			}
-
 			return flag;
-
-
 		}
 
 	</script>
