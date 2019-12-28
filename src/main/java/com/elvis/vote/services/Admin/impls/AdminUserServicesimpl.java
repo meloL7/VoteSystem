@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class AdminUserServicesimpl implements AdminUserServices {
-    private int pagesize = 10;
+    private int pagesize = 4;
     @Resource(type = AdminDao.class)
     AdminDao adminDao;
 
