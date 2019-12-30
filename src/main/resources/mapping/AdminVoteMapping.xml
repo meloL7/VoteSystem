@@ -6,7 +6,7 @@
 
     <select id="searchInfo" resultType="com.elvis.vote.pojo.Vote">
        select * from vote where type=#{type} and vote_status=#{vote_status}
-       order by id
+       limit #{beginrows},#{pagesize}
     </select>
 
     <select id="searchInfoAllNum" resultType="java.lang.Integer">

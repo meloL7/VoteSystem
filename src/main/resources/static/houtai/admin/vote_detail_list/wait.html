@@ -19,7 +19,7 @@
 		<link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 		<!-- Dropify css -->
 		<link href="../../plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
-
+		<link href="../assets/css/zxf_page.css" rel="stylesheet" type="text/css"/>
 
 	</head>
 
@@ -169,7 +169,7 @@
 										<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
 										 maxlength="16" />
 
-										<a onclick="search(2,3)" style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
+										<a onclick="asearch(2,3,1,null,null)" style="color: #ffffff;line-height: 25px" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
 									</div>
 									<tbr><br>
 									<div class="table-responsive">
@@ -191,41 +191,13 @@
 
 
 											</tbody>
-											<table class="table table-centered">
-												<tr>
-													<td colspan="6" align="center">
-														<ul class="pagination pagination-rounded">
-															<li class="paginate_button page-item previous disabled" id="complex-header-datatable_previous">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="0" tabindex="0" class="page-link">
-																	<i class="mdi mdi-chevron-left"></i>
-																</a>
-															</li>
-															<li class="paginate_button page-item active">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-															</li>
-															<li class="paginate_button page-item ">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-															</li>
-															<li class="paginate_button page-item next" id="complex-header-datatable_next">
-																<a href="#" aria-controls="complex-header-datatable" data-dt-idx="7" tabindex="0" class="page-link"><i
-																		class="mdi mdi-chevron-right"></i></a>
-															</li>
-														</ul>
-													</td>
-												</tr>
-											</table>
+										</table>
+										<table class="table table-centered" id="page_table">
+											<tr>
+												<td colspan="12" align="center">
+													<div class="zxf_pagediv"></div>
+												</td>
+											</tr>
 										</table>
 										<a href="../vote_manage.html"   type="button" class="btn  btn-lg waves-effect waves-light" >返回上一级</a>
 									</div>
@@ -293,18 +265,18 @@
 		<script src="../assets/pages/fileuploads-demo.js"></script>
 		<script src="../js/vote1.js"></script>
 		<script src="../js/vote.js"></script>
+		<script src="../assets/js/zxf_page.js"></script>
 		<script type="text/javascript">
+
 
 			//页面加载时加载
 			$(document).ready(function () {
 
 				if(window.location.href.indexOf("?") > 0){
-					ttsearch();
+					aasearch();
 				}else {
-					wait(2,3);
+					wait(2,3,1);
 				}
-
-
 			});
 
 		</script>

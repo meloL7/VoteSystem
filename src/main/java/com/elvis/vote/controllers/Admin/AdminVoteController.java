@@ -16,26 +16,21 @@ public class AdminVoteController {
     AdminVoteServices services;
 
     @RequestMapping("admin/loadVote.do")
-    public APIResult loadInfo(int type,int vote_status,int indexPage){
+    public APIResult loadInfo(Integer type,Integer vote_status,Integer indexPage){
 //        System.out.println(type+vote_status+indexPage);
+        System.out.println("test"+indexPage);
+        APIResult apiResult = services.loadInfo(type, vote_status, indexPage, 8);
 
-        APIResult apiResult = services.loadInfo(type, vote_status, indexPage, 10);
         return apiResult;
     }
     @RequestMapping("admin/loadSearch.do")
     public APIResult loadSearchInfo(String condition,String content,Integer type,Integer vote_status,Integer indexPage) {
-//        System.out.println(type+vote_status+indexPage);
-
-        System.out.println("--"+condition);
-        System.out.println("--"+content);
-
+        System.out.println(type+vote_status+indexPage+condition+content);
 
         APIResult result = null;
-        try {
-            result = services.Search(condition, content, type, vote_status, indexPage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        result = services.Search(condition, content, type, vote_status, indexPage,8);
+
 
         return result;
 
