@@ -14,9 +14,25 @@
     </select>
 
     <select id="selectAllSelectbyVoteid" resultType="com.elvis.vote.pojo.Select">
-        select * from `select` where select_id in(
-	        select select_id from user_vote_details where vote_id = #{vote_id}
-        )
+        select * from `select` where vote_id = #{vote_id}
+    </select>
+
+    <select id="selectUserByMajor" resultType="com.elvis.vote.pojo.User">
+        select * from user where major = (
+	SELECT major_name from major where major_id = #{majorid}
+)
+    </select>
+
+    <select id="selectUserByTeacher" resultType="com.elvis.vote.pojo.User">
+    SELECT * from user where major = (
+	    SELECT major_name from major where major_id = #{majorid}
+    )and identify = '教师'
+    </select>
+
+    <select id="selectUserByStudent" resultType="com.elvis.vote.pojo.User">
+    SELECT * FROM user where classes = (
+	    SELECT classes_name from classes where classes_id = #{claessid}
+    ) and identify = '学生'
     </select>
 
     <select id="selectUserBysno" resultType="com.elvis.vote.pojo.User">
@@ -38,9 +54,16 @@
     </update>
 
     <update id="updateUserVote">
-        update user_vote_connection set status = #{status} where vote_id = #{voteid}
+        update user_vote_connection set status = #{status} where voter_id = #{voterid} and vote_id = #{voteid}
     </update>
 
+    <insert id="addUserVote">
+        insert into user_vote_connection(voter_id,vote_id,status) values (#{voterid},#{voteid},#{status})
+    </insert>
+
+    <select id="selectUseridBySno" resultType="java.lang.Integer">
+        select id from user where sno = #{sno}
+    </select>
 <!--
     <select id="searchVoteContentList" resultType="com.elvis.vote.pojo.VoteContent">-->
 <!--        select `id`, `voter_id`, `vote_id`, `select_id`, `option_id`, `vote_time`-->

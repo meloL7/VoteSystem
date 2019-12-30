@@ -1,6 +1,7 @@
 package com.elvis.vote.dao.Admin;
 
 import com.elvis.vote.pojo.*;
+import io.swagger.models.auth.In;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -23,6 +24,19 @@ public interface AdminVoteDetailDao {
     Integer updateVoteNopass(Integer voteid, Integer vote_status, Timestamp time, String nopass);
 
     //修改user_vote_connection表
-    Integer updateUserVote(Integer voteid,Integer status);
+    Integer updateUserVote(Integer voterid,Integer voteid,Integer status);
+
+    //添加user_vote_connection表联系
+    Integer addUserVote(Integer voterid, Integer voteid,Integer status);
+
+    //根据sno查询用户的id
+    Integer selectUseridBySno(String sno);
+
+
+    List<User> selectUserByMajor(Integer majorid);
+
+    List<User> selectUserByTeacher(Integer majorid);
+
+    List<User> selectUserByStudent(Integer claessid);
 
 }

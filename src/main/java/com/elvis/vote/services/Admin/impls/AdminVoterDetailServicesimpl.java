@@ -52,7 +52,7 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
     }
 
     @Override
-    public APIResult voteNopass(Integer voteid, String nopass) {
+    public APIResult voteNopass(String sno,Integer voteid, String nopass) {
         APIResult result = null;
         //获取系统当前时间
         Date date = new Date(System.currentTimeMillis());
@@ -62,12 +62,16 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
         java.sql.Timestamp time = new java.sql.Timestamp(date.getTime());
         System.out.println(time);
 
+        //查询出发起人的id,根据vote的状态，status为3时是等待审核，得到相应的voter_id和vote_id
+        //建立联系，
+        Vote vote = advdDao.selectVoteById(voteid);
+        Integer voter_id = advdDao.selectUseridBySno(vote.getOpen_voter());
+        Integer integer1 = advdDao.addUserVote(voter_id, voteid, 4);
+        //通过了审核，改变投票的状态，更新时间
         Integer integer = advdDao.updateVoteNopass(voteid, 4, time, nopass);
 
         if(integer > 0){
-            //有问题。。。(应该添加一条联系，status = 1 发布)（再查询该享有权限下的所有用户，建立联系，status = 3 待参与）
-            Integer i = advdDao.updateUserVote(voteid, 4);
-            result = new APIResult("",true,200,i);
+            result = new APIResult("",true,200);
 
         }else {
             result = new APIResult("失败！",false,500);
@@ -76,21 +80,28 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
     }
 
     @Override
-    public APIResult votePass(Integer voteid) {
+    public APIResult votePass(String sno,Integer voteid) {
         APIResult result = null;
         Date date = new Date(System.currentTimeMillis());
         System.out.println(date);
 
         //将时间转化为数据库时间
         java.sql.Timestamp time = new java.sql.Timestamp(date.getTime());
+
         System.out.println(time);
 
-        Integer integer = advdDao.updateVoteStatusByVoteid(voteid, 2, time);
+        //查询出发起人的id,根据vote的状态，status为3时是等待审核，得到相应的voter_id和vote_id
+        //建立联系，
+        Vote vote = advdDao.selectVoteById(voteid);
+        Integer voter_id = advdDao.selectUseridBySno(vote.getOpen_voter());
+        advdDao.addUserVote(voter_id,voteid,1);
+        //通过了审核，改变投票的状态，更新时间
+        Integer integer = advdDao.updateVoteStatusByVoteid(voteid, 1, time);
         if(integer > 0){
 
             //有问题。。。(应该添加一条联系，status = 1 发布)（再查询该享有权限下的所有用户，建立联系，status = 3 待参与）
-            Integer i = advdDao.updateUserVote(voteid, 2);
-            result = new APIResult("",true,200,i);
+
+            result = new APIResult("",true,200);
 
 
         }else {
