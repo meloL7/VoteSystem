@@ -4,7 +4,7 @@ public class Option {
     private int id;
     private int option_id;
     private String option_content;
-    private int select_id;//属于哪个选项的选项id
+    private int select_id;//属于哪个选项的选项id 1为单选 2为多选
 
     public int getId() {
         return id;

@@ -124,6 +124,22 @@
 	</body>
 	<script>
 		$(document).ready(function () {
+
+			if(window.sessionStorage.range!=null){
+				window.sessionStorage.removeItem("range");
+			}
+			if(window.sessionStorage.holdtime!=null){
+				window.sessionStorage.removeItem("holdtime");
+			}
+			if(window.sessionStorage.type!=null){
+				window.sessionStorage.removeItem("type");
+			}
+			if(window.sessionStorage.power!=null){
+				window.sessionStorage.removeItem("power");
+			}
+
+
+
 			var sno = window.sessionStorage.sno;
 			var data = window.sessionStorage.data;
 			var s = JSON.parse(data);
@@ -448,6 +464,8 @@
 			var data = window.sessionStorage.data;
 			var s = JSON.parse(data);
 			var identify = s[0].identify;
+
+			window.sessionStorage.colleage = s[0].colleage;
 			window.sessionStorage.identify = identify;
 			var
 			sno ="#"+sno

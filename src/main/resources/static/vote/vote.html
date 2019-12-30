@@ -114,11 +114,11 @@
 							&nbsp;<a class=" btn btn-primary" id="addchoosebtn" onclick="addchoose(the${count + 1}choose)">添加选择</a>
 									
 									<div class="radio radio-info radio-inline">
-										<input type="radio" id="inlineRadio${num}" value="option1" name="radioInline${num}" checked="">
+										<input type="radio" id="inlineRadio${num}" value="option1" name="radioInline${num}" checked="checked">
 										<label for="inlineRadio${num}"> 单选 </label>
 									</div>
 									<div class="radio radio-inline">
-										<input type="radio" id="inlineRadio${num + 1}" value="option2" name="radioInline${num}">
+										<input type="radio" id="inlineRadio${num + 1}" value="option2" name="radioInline${num}" >
 										<label for="inlineRadio${num + 1}"> 多选 </label>
 									</div>
 									
@@ -280,8 +280,27 @@
 					introductionflag = true;
 
 				}
+				//取出每道题目是单选还是多选
+				var opttypes = [];
+				var optype =  $("#toupiao>div input[type='radio']");
+				for (var i = 0; i <optype.length  ; i++) {
+					var temp;
+					if(optype[i].checked){
+						temp = 1;
+					}
+
+					i++;
+					if(optype[i].checked){
+						temp = 2;
+					}
+					opttypes.push(temp);
+				}
+
+
+
+
 				//取出所有的题目
-				var dd = [];
+				var question = [];
 				var title = $("#toupiao>div>input[name='smalltitle']");
 				for (var i = 0; i < title.length; i++) {
 					if (title[i].value == "") {
@@ -289,7 +308,7 @@
 					} else {
 						var stitle = title[i].value;
 						stitle=title[i].value+">";
-						dd.push(stitle)
+						question.push(stitle)
 						titleflag = true;
 					}
 				}
@@ -314,10 +333,12 @@
 					}
 				}
 
-				for (var i = 0; i <dd.length ; i++) {
-					var sb = dd[i]+temp[i];
-					var sb2 = sb.substr(0,sb.length-1)
-					voteContent.push(sb2)
+				for (var i = 0; i <question.length ; i++) {
+					var sb = question[i]+temp[i]+opttypes[i];
+
+
+
+					voteContent.push(sb)
 				}
 
 
@@ -333,17 +354,26 @@
 					var type = window.sessionStorage.type;
 					var sname = window.sessionStorage.sname;
 					var identify = window.sessionStorage.identify;
+					if(identify == "教师"){
+						identify = 1;
+					}else if(identify == "学生"){
+						identify = 2;
+					}
 					var colleage = window.sessionStorage.colleage; //暂无
 					var mybigtitle = bigtitle.value;
 					var myintro = introduction.value;
 					var all_select_num = $("#toupiao").find(".timu").length;
 					var content = voteContent;
+
+					console.log(content);
+
 					$.ajax({
 						url:"/elvis/openNewVote",
 						data: {
 							'open_voter_sno':open_voter_sno,
 							'type':type,
 							'sname':sname,
+							'identify':identify,
 							'colleage':colleage,
 							'mybigtitle':mybigtitle,
 							'myintro':myintro,
@@ -352,13 +382,11 @@
 							'holdtime':holdtime,
 							'power':power,
 							'content':content,
-
-
 						},
 						traditional:true,
 						success: function (data) {
 							if(data.message=="成功"){
-								alert("创建成功")
+								alert("等待管理员验证,将以邮件形式发送结果");
 							}else if(data.message=="失败"){
 								alert("创建失败")
 							}else {
@@ -371,7 +399,7 @@
 
 
 
-					// alert("等待管理员验证,将以邮件形式发送结果");
+
 					// form.submit();
 				} else {
 					alert("投票信息设置存在不合法的地方，请返回修改")
@@ -392,6 +420,35 @@
 				window.scrollTo(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
 				$(document).scrollTop($(document).height());
 			}
+
+			// function checkOption1(op1) {
+			// 	var optype =  $("#toupiao>div input[type='radio']");
+			// 	for (var i = 0; i <optype.length ; i++) {
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		i++;
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		console.log("分界线");
+			// 	}
+			// }
+			//
+			// function checkOption2(op2) {
+			// 	var optype =  $("#toupiao>div input[type='radio']");
+			// 	for (var i = 0; i <optype.length  ; i++) {
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		i++;
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		console.log("分界线");
+			// 	}
+			// }
+
+
+
+
+
+
+
+
+
 		</script>
 
 		<script src = "./js/goVote.js"></script>

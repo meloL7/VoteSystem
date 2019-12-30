@@ -3,6 +3,7 @@ package com.elvis.vote.services.User;
 import com.elvis.vote.pojo.Student;
 import com.elvis.vote.pojo.Teacher;
 import com.elvis.vote.pojo.User;
+import com.elvis.vote.pojo.Vote;
 import com.elvis.vote.utils.APIRequest;
 import com.elvis.vote.utils.APIResult;
 import io.swagger.models.auth.In;
@@ -86,6 +87,10 @@ public interface UserServices {
 //     */
 //    public Page loadVoteInfo(Long id,int vote_Status,int indexpage,int countRows,int pagesize);
 
+    public APIResult addVote(String open_voter_sno, Integer type, String sname, Integer identify,
+                             String colleage, String mybigtitle, String myintro,
+                             Integer all_select_num, String range, String holdtime,
+                             String power, String[] content);
 
 
 }
