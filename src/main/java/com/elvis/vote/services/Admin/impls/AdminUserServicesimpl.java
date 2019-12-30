@@ -306,8 +306,6 @@ public class AdminUserServicesimpl implements AdminUserServices {
 //            System.out.println("2--"+majorId);
 //            System.out.println("3--"+gradeId);
 //            System.out.println("4--"+searchClassesId);
-
-
             Integer i = adminDao.addPower(sno, colleageId, majorId, gradeId, ClassesId);
             if(i<0){
                 flag = false;
@@ -322,13 +320,35 @@ public class AdminUserServicesimpl implements AdminUserServices {
         }
 
         result = new APIResult("成功！", true, 200);
+        return result;
+    }
 
+    @Override
+    public APIResult saveResultT(String[] contents, String sno) {
+        APIResult result = null;
+        boolean flag = true;
+        for (String content:contents) {
+            String[] split = content.split(">");
+            String col = split[1];
+            String maj = split[2];
 
+            Integer colleageId = adminDao.searchColleageId(col);
+            Integer majorId = adminDao.searchMajorId(col, maj);
 
+            Integer i = adminDao.addTPower(sno, colleageId, majorId);
+            if(i<0){
+                flag = false;
+            }
 
+        }
 
+        System.out.println(flag);
 
+        if(!flag){
+            result = new APIResult("失败！", false, 500);
+        }
 
+        result = new APIResult("成功！", true, 200);
         return result;
     }
 

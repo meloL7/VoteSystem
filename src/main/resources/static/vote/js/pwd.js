@@ -15,6 +15,7 @@ function checkALL() {
                 window.sessionStorage.sname = data.data[0].sname;
                 window.sessionStorage.email = data.data[0].email;
 
+
                 window.location.href="/elvis/vote/Appeal/forgetPwd2.html";
             }else if (!data.result){
                 alert(data.message);

@@ -73,9 +73,7 @@
         )
     </select>
 
-    <select id="checkPower" resultType="com.elvis.vote.pojo.Power">
-        select * from user_power where voter_sno = #{sno}
-    </select>
+
     <!--注册用的-->
     <select id="selectStudent" parameterType="java.lang.String" resultType="com.elvis.vote.pojo.Student">
         select sno,sname,sex,age,colleage,major,grade,classes
@@ -97,6 +95,94 @@
     <!--邮箱是否已经注册了-->
     <select id="isEmailExist" resultType="java.lang.Integer">
         select count(1) from user where email = #{email}
+    </select>
+<!--    检查是否有权限-->
+    <select id="checkPower" resultType="com.elvis.vote.pojo.Power">
+        select * from user_power where voter_sno = #{sno}
+    </select>
+
+
+    <insert id="addVote">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+         SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO vote
+        ( `title`, `introduction`,
+            `type`, `open_voter`,
+        `open_voter_name`, `open_voter_colleage`,
+        `open_voter_identify`, `open_time`,
+         `all_select_num`, `all_voter_num`,
+          `vote_status`,`hold_time`)
+        VALUES
+        (
+        #{title}, #{introduction},
+        #{type} ,  #{open_voter},
+         #{open_voter_name},
+           #{open_voter_colleage},
+           #{ open_voter_identify},
+          now(), #{all_select_num},
+           0,3,#{hold_time}
+        );
+
+    </insert>
+    <insert id="addRange1">
+
+        INSERT INTO vote_range
+        (`vote_id`, `identify`,
+        `colleage_id`, `major_id`
+         )
+        VALUES
+        (#{vote_id},#{identify},#{colleage_id},#{major_id});
+
+    </insert>
+    <insert id="addRange2">
+
+        INSERT INTO vote_range
+        (`vote_id`, `identify`,
+        `colleage_id`, `major_id`,
+        `grade_id`, `classes_id`
+        )
+        VALUES
+        (#{vote_id},#{identify},#{colleage_id},#{major_id},
+         #{grade_id}, #{classes_id});
+
+    </insert>
+
+
+
+    <insert id="addNewSelect">
+        <selectKey resultType="java.lang.Integer" keyProperty="select_id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `select`
+        (`select_tiltle`, `select_type`, `vote_id`)
+        VALUES (#{select_tiltle},#{select_type},#{vote_id});
+
+    </insert>
+
+    <insert id="addNewOption">
+        INSERT INTO `option`
+        (`option_content`, `select_id`)
+         VALUES (#{option_content},#{select_id});
+    </insert>
+
+
+
+
+
+
+
+    <select id="findColleageId" resultType="java.lang.Integer">
+         select colleage_id from colleage where colleage_name = #{colleage_name}
+    </select>
+    <select id="findMajorId" resultType="java.lang.Integer">
+         select major_id from major where major_name = #{major_name}
+    </select>
+    <select id="findGradeId" resultType="java.lang.Integer">
+         select grade_id from grade where grade_name = #{grade_name}
+    </select>
+    <select id="findClassesId" resultType="java.lang.Integer">
+         select classes_id from classes where classes_name = #{classes_name}
     </select>
 
 

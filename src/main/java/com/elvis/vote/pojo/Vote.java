@@ -19,10 +19,9 @@ public class Vote {
     private Date end_time;//结束时间（审核不通过时间为结束时间，正常投票2天自动结束）
     private int all_select_num; //题目总数
     private int all_voter_num; //投票人总数
-    private String range;//投票人范围（1老师，2学生，3老师和学生)
     private String nopass_result; //不通过的理由
     private int vote_status;//1.通过审核 2.未通过审核 3.等待审核 4.已结束
-    private int voter_status; //1 发布 2参与  3待参与  4
+    private String hold_time; //3天 7天
 
     public int getId() {
         return id;
@@ -78,6 +77,10 @@ public class Vote {
             return "教师";
         }else if(open_voter_identify == 2){
             return "学生";
+        }else if(open_voter_identify == 3){
+            return "1";
+        }else if(open_voter_identify == 4){
+            return "2";
         }else {
             return null;
         }
@@ -141,14 +144,6 @@ public class Vote {
         this.all_voter_num = all_voter_num;
     }
 
-    public String getRange() {
-        return range;
-    }
-
-    public void setRange(String range) {
-        this.range = range;
-    }
-
     public String getNopass_result() {
         return nopass_result;
     }
@@ -165,12 +160,12 @@ public class Vote {
         this.vote_status = vote_status;
     }
 
-    public int getVoter_status() {
-        return voter_status;
+    public String getHold_time() {
+        return hold_time;
     }
 
-    public void setVoter_status(int voter_status) {
-        this.voter_status = voter_status;
+    public void setHold_time(String hold_time) {
+        this.hold_time = hold_time;
     }
 
     public String getOpen_voter_name() {
@@ -188,7 +183,7 @@ public class Vote {
                 ", title='" + title + '\'' +
                 ", introduction='" + introduction + '\'' +
                 ", type=" + type +
-                ", open_voter=" + open_voter +
+                ", open_voter='" + open_voter + '\'' +
                 ", open_voter_name='" + open_voter_name + '\'' +
                 ", open_voter_colleage='" + open_voter_colleage + '\'' +
                 ", open_voter_identify=" + open_voter_identify +
@@ -197,10 +192,9 @@ public class Vote {
                 ", end_time=" + end_time +
                 ", all_select_num=" + all_select_num +
                 ", all_voter_num=" + all_voter_num +
-                ", range='" + range + '\'' +
                 ", nopass_result='" + nopass_result + '\'' +
                 ", vote_status=" + vote_status +
-                ", voter_status=" + voter_status +
+                ", hold_time='" + hold_time + '\'' +
                 '}';
     }
 }

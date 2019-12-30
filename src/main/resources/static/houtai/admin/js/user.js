@@ -848,8 +848,7 @@ function checkNull(t) {
 
 function saveResult() {
     // var sno = window.sessionStorage.getItem("sno");
-    var sno = "123456"
-     sno ="#"+sno
+
     var f1 = checkNull("#t1");
     var f2 = checkNull("#t2");
     var f3 = checkNull("#t3");
@@ -904,10 +903,11 @@ function saveResult() {
                 console.log(data.code)
                 if(data.code == 200){
                     alert("赋予成功")
+                    var x = "#"+sno1;
                     $("#modal1").modal("hide");
-                    $(sno). find("#power4").css('display','none');
-                    $(sno). find("#power2").css('display','inline-block');
-                    $(sno). find("#power3").css('display','inline-block');
+                    $(x). find("#power4").css('display','none');
+                    $(x). find("#power2").css('display','inline-block');
+                    $(x). find("#power3").css('display','inline-block');
                 }else {
                     alert("赋予失败")
                 }
@@ -925,7 +925,84 @@ function saveResult() {
 
 
 }
+function saveResultT() {
+    var tstaff = [];
+    // var sno = window.sessionStorage.getItem("sno");
 
+    var f1 = checkNull("#t1");
+    var f2 = checkNull("#t2");
+
+    console.log(f1)
+    console.log(f2)
+    if(f1&f2){
+        var val = "",
+            staffs = [];
+        // staffs1 = []
+        // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+        // var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+
+        //循环的取出插件选择的元素(通过是否添加了selected类名判断)
+        for (var i = 0; i < $("#t2").find("li.selected").length; i++) {
+            // console.log("size"+$("li.selected").length)
+            var kk = $("#t2").find("li.selected").eq(i)
+            // for(var  j in kk){
+            //     var value = j+"-----"+kk[j]
+            //     console.log(value)
+            // }
+            // console.log("kk"+kk.attr("class"))
+            var g = kk.attr("class")
+            // console.log("test"+g)
+            g = `li.${g.substr(0,g.length-8)}`
+            // // console.log(g)
+            var op = $("#t2").find(g).eq(0).find(".text").text()
+            val = $("#t2").find("li.selected").eq(i).find(".text").text();
+            var c = $("#t2").find("li.selected").eq(i)
+            console.log("test--"+val+"dsa")
+
+            if (val != '') {
+                // console.log("XX进来了")
+                val = op + ">" + val
+                tstaff.push(val);
+            }
+        console.log(tstaff)
+        }
+
+        $.ajax({
+            url:"/elvis/admin/saveResultT",
+            type:"post",
+            data:{
+                content:tstaff,
+                // range:staffs1,
+                sno:sno1
+
+            },
+            traditional:true,
+            success:function (data) {
+                console.log(data.code)
+                if(data.code == 200){
+                    alert("赋予成功")
+                    var x = "#"+sno1;
+                    $("#modal1").modal("hide");
+                    $(x). find("#power4").css('display','none');
+                    $(x). find("#power2").css('display','inline-block');
+                    $(x). find("#power3").css('display','inline-block');
+                }else {
+                    alert("赋予失败")
+                }
+            }
+
+        });
+
+
+
+
+    }else {
+        alert("您输入的有为空项,请检查后提交")
+    }
+
+
+
+}
 
 
 
