@@ -17,14 +17,14 @@ public interface AdminVoteDetailServices {
      * @param nopass 理由
      * @return
      */
-    public APIResult voteNopass(String sno,Integer voteid,String nopass);
+    public APIResult voteNopass(Integer voteid,String nopass);
 
     /**
      * 通过审核
      * @param voteid
      * @return
      */
-    public APIResult votePass(String sno,Integer voteid);
+    public APIResult votePass(Integer voteid);
 
     /**
      * 查看详情

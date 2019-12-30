@@ -23,15 +23,15 @@ public class AdminVoteDetailController {
     }
 
     @RequestMapping("admin/voteNoPass.do")
-    public APIResult voteNoPass(String sno,Integer vote_id,String nopass){
-        APIResult result = voteDetailServices.voteNopass(sno,vote_id, nopass);
+    public APIResult voteNoPass(Integer vote_id,String nopass){
+        APIResult result = voteDetailServices.voteNopass(vote_id, nopass);
         System.out.println(result);
         return result;
     }
 
     @RequestMapping("admin/votePass.do")
-    public APIResult votePass(String sno,Integer vote_id){
-        APIResult result = voteDetailServices.votePass(sno,vote_id);
+    public APIResult votePass(Integer vote_id){
+        APIResult result = voteDetailServices.votePass(vote_id);
         System.out.println(result);
         return result;
     }

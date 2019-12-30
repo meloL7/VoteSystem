@@ -35,6 +35,10 @@
     ) and identify = '学生'
     </select>
 
+    <select id="selectVoteRange" resultType="com.elvis.vote.pojo.VoteRange">
+        select vote_id,identify,colleage_id,major_id,grade_id,classes_id from vote_range where vote_id = #{voteid}
+    </select>
+
     <select id="selectUserBysno" resultType="com.elvis.vote.pojo.User">
         select * from user where sno = #{sno}
     </select>
@@ -61,8 +65,8 @@
         insert into user_vote_connection(voter_id,vote_id,status) values (#{voterid},#{voteid},#{status})
     </insert>
 
-    <select id="selectUseridBySno" resultType="java.lang.Integer">
-        select id from user where sno = #{sno}
+    <select id="selectUseridBySno" resultType="com.elvis.vote.pojo.User">
+        select * from user where sno = #{sno}
     </select>
 <!--
     <select id="searchVoteContentList" resultType="com.elvis.vote.pojo.VoteContent">-->

@@ -30,8 +30,10 @@ public interface AdminVoteDetailDao {
     Integer addUserVote(Integer voterid, Integer voteid,Integer status);
 
     //根据sno查询用户的id
-    Integer selectUseridBySno(String sno);
+    User selectUseridBySno(String sno);
 
+
+    List<VoteRange> selectVoteRange(Integer voteid);
 
     List<User> selectUserByMajor(Integer majorid);
 
