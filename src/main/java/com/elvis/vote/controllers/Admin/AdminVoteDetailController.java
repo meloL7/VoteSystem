@@ -35,4 +35,11 @@ public class AdminVoteDetailController {
         System.out.println(result);
         return result;
     }
+//    @RequestMapping("admin/getQuestion")
+//    public APIResult getQuestion(Integer vote_id){
+//        APIResult result = a.votePass(vote_id);
+//        System.out.println(result);
+//        return result;
+//    }
+
 }

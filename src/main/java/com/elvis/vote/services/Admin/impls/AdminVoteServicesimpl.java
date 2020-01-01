@@ -1,8 +1,7 @@
 package com.elvis.vote.services.Admin.impls;
 
 import com.elvis.vote.dao.Admin.AdminVoteDao;
-import com.elvis.vote.pojo.User;
-import com.elvis.vote.pojo.Vote;
+import com.elvis.vote.pojo.*;
 import com.elvis.vote.services.Admin.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
 import com.elvis.vote.utils.Pager;
@@ -440,5 +439,31 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
         }
 
         return result;
+    }
+
+    @Override
+    public APIResult querySelectByVoteId(Integer voteID) {
+
+        APIResult result = new APIResult("",true,200);
+        List<Select> selects = dao.querySelectByVoteId(voteID);
+        result.setData(selects);
+        return result;
+    }
+
+    @Override
+    public APIResult getAnse(Integer select_id) {
+        List<Option> options = dao.getOption(select_id);
+        List<Answer> answers = new ArrayList<>();
+        for(int i=0;i<options.size();i++){
+            Option option = options.get(i);
+            Integer value = dao.getAnseNumber(option.getOption_id());
+            System.out.println(value);
+            Answer answer = new Answer();
+            answer.setOption(option);
+            answer.setValue(value);
+            answers.add(answer);
+        }
+        APIResult apiResult = new APIResult("",true,200,answers);
+        return apiResult;
     }
 }

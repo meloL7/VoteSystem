@@ -59,5 +59,14 @@ public interface AdminVoteServices {
     public APIResult queryAllVote(Integer title,String content,Integer type,Integer indexpage);
 
 
+    /**
+     * 根据问卷 那所有问题id
+     */
+    public APIResult querySelectByVoteId(Integer voteID);
 
+    /**
+     * 根据select id 获取选项 以及选择人数
+     */
+
+    public APIResult getAnse(Integer select_id);
 }

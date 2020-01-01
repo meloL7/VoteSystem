@@ -1,13 +1,16 @@
 package com.elvis.vote.controllers.Admin;
 
+import com.elvis.vote.pojo.Option;
 import com.elvis.vote.services.Admin.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @ResponseBody
@@ -44,6 +47,16 @@ public class AdminVoteController {
         return services.queryAllVote(title,content,type,indexpage);
     }
 
+    @RequestMapping("admin/querySelect")
+    public APIResult querySelect(Integer voteId){
+
+        return services.querySelectByVoteId(voteId);
+    }
+    @RequestMapping("admin/queryAnse")
+    public APIResult queryAnse(Integer selectId){
+
+        return services.getAnse(selectId);
+    }
 
 
 

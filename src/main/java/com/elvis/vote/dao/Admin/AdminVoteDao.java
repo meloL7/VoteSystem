@@ -1,5 +1,7 @@
 package com.elvis.vote.dao.Admin;
 
+import com.elvis.vote.pojo.Option;
+import com.elvis.vote.pojo.Select;
 import com.elvis.vote.pojo.User;
 import com.elvis.vote.pojo.Vote;
 import io.swagger.models.auth.In;
@@ -40,5 +42,11 @@ public interface AdminVoteDao {
 
     //查找用户信息
     User selectUserByid(Integer id);
+
+    List<Select> querySelectByVoteId(Integer voteId);
+
+    List<Option> getOption(Integer selectId);
+
+    Integer getAnseNumber(Integer optionId);
 
 }

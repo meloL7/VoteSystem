@@ -166,10 +166,10 @@
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
-<div class="main-content">
+<div class="main-content" >
 
     <div class="page-content">
-        <div class="container-fluid">
+        <div class="container-fluid" id="rowbody">
 
             <!-- start page title -->
             <div class="row">
@@ -181,102 +181,36 @@
             </div>
             <!-- end page title -->
 
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="chartjs-size-monitor">
-                                <div class="chartjs-size-monitor-expand">
-                                    <div class=""></div>
-                                </div>
-                                <div class="chartjs-size-monitor-shrink">
-                                    <div class=""></div>
-                                </div>
-                            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-xl-3">-->
+<!--                </div>-->
+<!--                <div class="col-xl-6">-->
+<!--                    <div class="card">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="chartjs-size-monitor">-->
+<!--                                <div class="chartjs-size-monitor-expand">-->
+<!--                                    <div class=""></div>-->
+<!--                                </div>-->
+<!--                                <div class="chartjs-size-monitor-shrink">-->
+<!--                                    <div class=""></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                            <h4 class="card-title">Line Chart</h4>
-                            <p class="card-subtitle mb-4">Example of line chart chart js.</p>
+<!--                            <h4 class="card-title">Line Chart</h4>-->
+<!--                            <p class="card-subtitle mb-4">Example of line chart chart js.</p>-->
 
-                            <canvas id="lineChart" width="730" height="365" class="chartjs-render-monitor box"
-                                    style="display: block; height: 332px; width: 664px;">
+<!--                            <canvas id="lineChart" width="730" height="365" class="chartjs-render-monitor box"-->
+<!--                                    style="display: block; height: 332px; width: 664px;">-->
 
-                            </canvas>
+<!--                            </canvas>-->
 
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col -->
+<!--                        </div> &lt;!&ndash; end card-body&ndash;&gt;-->
+<!--                    </div> &lt;!&ndash; end card&ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end col &ndash;&gt;-->
 
+<!--            </div>-->
+<!--            &lt;!&ndash; end row&ndash;&gt;-->
 
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="chartjs-size-monitor">
-                                <div class="chartjs-size-monitor-expand">
-                                    <div class=""></div>
-                                </div>
-                                <div class="chartjs-size-monitor-shrink">
-                                    <div class=""></div>
-                                </div>
-                            </div>
-
-                            <h4 class="card-title">Bar Chart</h4>
-                            <p class="card-subtitle mb-4">Example of bar chart chart js.</p>
-
-                            <canvas id="barChart" width="730" height="365" class="chartjs-render-monitor box"
-                                    style="display: block; height: 332px; width: 664px;"></canvas>
-
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col -->
-            </div>
-            <!-- end row-->
-
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="chartjs-size-monitor">
-                                <div class="chartjs-size-monitor-expand">
-                                    <div class=""></div>
-                                </div>
-                                <div class="chartjs-size-monitor-shrink">
-                                    <div class=""></div>
-                                </div>
-                            </div>
-
-                            <h4 class="card-title">Area chart</h4>
-                            <p class="card-subtitle mb-4">Example of line area chart js.</p>
-
-                            <canvas id="areaChart" width="730" height="365" class="chartjs-render-monitor box "
-                                    style="display: block; height: 332px; width: 664px;"></canvas>
-
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col -->
-
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="chartjs-size-monitor">
-                                <div class="chartjs-size-monitor-expand">
-                                    <div class=""></div>
-                                </div>
-                                <div class="chartjs-size-monitor-shrink">
-                                    <div class=""></div>
-                                </div>
-                            </div>
-
-                            <h4 class="card-title">Pie chart</h4>
-                            <p class="card-subtitle mb-4">Example of line pie chart js.</p>
-
-                            <canvas id="pieChart" style="display: block; height: 332px; width: 664px; " width="730"
-                                    height="365" class="chartjs-render-monitor box"></canvas>
-
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col -->
-            </div>
-            <!-- end row-->
 
         </div> <!-- container-fluid -->
     </div>
@@ -321,82 +255,146 @@
 <script src="js/anaysis.js"></script>
 
 <script>
-    var myChart1 = echarts.init(document.getElementsByClassName('box')[0]);
-    var myChart2 = echarts.init(document.getElementsByClassName('box')[1]);
-    var myChart3 = echarts.init(document.getElementsByClassName('box')[2]);
-    var myChart4 = echarts.init(document.getElementsByClassName('box')[3]);
-    console.log(myChart4);
+    $(function () {
+        //获取href里面的值
+        var href = window.location.search.substr(1);
+        // console.log((href!=null)+"6666");
+        var split = href.split("&");
 
-    var option1 = {
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '引擎1', '引擎2', '引擎3', '引擎4', '引擎5']
-        },
-        series: [{
-            name: '访问来源',
-            type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
+        var value = [];
+        for (var i = 0; i < split.length; i++) {
+            var v = split[i].split("=");
+            value.push(v[1]);
+        }
 
-            data: [{
-                value: 335,
-                name: '直接访问'
+        var condition = decodeURI(value[0]);
+        var content = decodeURI(value[1]);
+        var type = value[2];
+        var vote_status = value[3];
+        var indexpage = value[4];
+        var vote_id = value[5];
+        getSelect(vote_id)
+    })
+
+    function  getSelect(voteId) {
+
+        $.post(
+            "/elvis/admin/querySelect",
+            {
+                voteId
             },
-                {
-                    value: 310,
-                    name: '邮件营销'
-                },
-                {
-                    value: 234,
-                    name: '联盟广告'
-                },
-                {
-                    value: 135,
-                    name: '视频广告'
-                },
-                {
-                    value: 1548,
-                    name: '搜索引擎'
-                },
-                {
-                    value: 1548,
-                    name: '引擎1'
-                },
-                {
-                    value: 1548,
-                    name: '引擎2'
-                },
-                {
-                    value: 1548,
-                    name: '引擎3'
-                },
-                {
-                    value: 1548,
-                    name: '引擎4'
-                },
-                {
-                    value: 1548,
-                    name: '引擎5	'
+            function (data) {
+               // console.log("2222"+data.data)
+                addBox(data.data)
+                addBox(data.data)
+
+                for(var i in data.data) {
+                    var mychart = echarts.init(document.getElementsByClassName('box')[i]);
+                    getanse(data.data[i],mychart)
+                    var mychart2 = echarts.init(document.getElementsByClassName('box')[1]);
+
+                    getanse(data.data[i],mychart2)
+
+
                 }
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            }
-        }]
-    };
-    myChart1.setOption(option1);
-    myChart2.setOption(option1);
-    myChart3.setOption(option1);
-    myChart4.setOption(option1);
+                })
+
+    }
+
+
+
+
+    function getanse(select,mychart) {
+        var Data = new Array();
+        var xue = new Array();
+        var selectId = select.select_id;
+        // console.log(selectId)
+            //根据id获取选项的名字和数量
+        $.post(
+                "/elvis/admin/queryAnse",
+                {
+                    selectId
+                },
+                function (data) {
+                    console.log(data.data[0])
+                    for (let i in data.data) {
+                        var t = data.data[i];
+                         var xuanxiang = t.option.option_content;
+                        var demo = {
+                            name:xuanxiang,
+                            value:t.value
+                        }
+                        xue.push(xuanxiang)
+                        Data.push(demo)
+                    }
+                    console.log(xue)
+                    console.log(Data)
+                    var option = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data: xue
+                        },
+                        series: [{
+                            name: select.select_title,
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: Data,
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }]
+                    };
+                    mychart.setOption(option)
+                })
+
+
+
+    }
+    function  addBox(select) {
+       var body =  $("#rowbody")
+        // body.empty()
+        for(var i of select){
+            var box = ` <div class="row">
+                <div class="col-xl-3">
+                </div>
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="chartjs-size-monitor">
+                                <div class="chartjs-size-monitor-expand">
+                                    <div class=""></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink">
+                                    <div class=""></div>
+                                </div>
+                            </div>
+
+                            <h4 class="card-title">${i.select_tiltle}</h4>
+
+                            <canvas id="lineChart" width="730" height="365" class="chartjs-render-monitor box"
+                                    style="display: block; height: 332px; width: 664px;">
+
+                            </canvas>
+
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col -->
+
+            </div>`
+            body.append(box)
+        }
+
+    }
 </script>
 </body>
 

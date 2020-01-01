@@ -119,4 +119,13 @@
         select * from user where id = #{id}
     </select>
 
+    <select id="querySelectByVoteId" resultType="com.elvis.vote.pojo.Select">
+        select * from `select` where vote_id = #{voteId}
+    </select>
+    <select id="getAnseNumber" resultType="java.lang.Integer">
+        select  count(1) from user_vote_details where option_id = #{optionId}
+    </select>
+    <select id="getOption" resultType="com.elvis.vote.pojo.Option">
+        select * from `option` where select_id = #{selectId}
+    </select>
 </mapper>
