@@ -195,14 +195,15 @@ public class UserServicesImpl implements UserServices {
         //1.新建投票信息;(投票状态)
         System.out.println(range);
         int newRange = 0;
-        if(range.equals("教师")){
+        if(range.equals("学生")){
             range = "1";
             newRange = Integer.parseInt(range);
         }
-        if(range.equals("学生")){
+        if(range.equals("教师")){
             range = "2";
             newRange = Integer.parseInt(range);
         }
+
         if(range.equals("教师和学生")){
             range = "3";
             newRange = Integer.parseInt(range);

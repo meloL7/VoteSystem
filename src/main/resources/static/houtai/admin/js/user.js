@@ -964,7 +964,7 @@ function saveResultT() {
                 val = op + ">" + val
                 tstaff.push(val);
             }
-        console.log(tstaff)
+            console.log(tstaff)
         }
 
         $.ajax({
