@@ -74,7 +74,7 @@
             and open_voter_name like concat('%',#{open_voter_name},'%')
         </if>
         <if test="title != null">
-            and title like concat('%',#{tilte},'%')
+            and title like concat('%',#{title},'%')
         </if>
         <if test="open_voter_identify != null">
             and open_voter_identify = #{open_voter_identify}
@@ -105,8 +105,8 @@
 
     <select id="selectAllVoteBySex" resultType="com.elvis.vote.pojo.Vote">
         select * from vote where open_voter in(
-            select sno from user where sex = #{sex} limit #{indexpage},#{pagesize}
-        )
+            select sno from user where sex = #{sex}
+        )limit #{indexpage},#{pagesize}
     </select>
 
     <select id="selectAllVoteBySexNumber" resultType="java.lang.Integer">
