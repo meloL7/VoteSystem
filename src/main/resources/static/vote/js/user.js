@@ -145,9 +145,9 @@ function changePwd() {
             success: function (data) {
                 if (data.result) {
                     alert(data.message);
-                    $("#oldPwd").val("");
-                    $("#newpwd").val("");
-                    $("#renewpwd").val("");
+                    sessionStorage.clear();
+                    location.href = "http://localhost:8080/elvis/vote/login.html"
+
                 }else if (!data.result){
                     alert(data.message);
                     $("#oldPwd").val("");

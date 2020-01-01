@@ -160,8 +160,6 @@
 
 
 					</div>
-			</div>
-		</div>
 
 
 
@@ -169,6 +167,19 @@
 
 
 
+					<script>
+						$(document).ready(function () {
+							if(sessionStorage.id ==null
+									|sessionStorage.sname ==null
+									|sessionStorage.sno == null
+									|sessionStorage.data ==null){
+								alert("非法访问,请重新登录！！！")
+								sessionStorage.clear();
+								location.href = "http://localhost:8080/elvis/vote/login.html"
+							}
+
+						});
+					</script>
 
 		<script type="text/javascript">
 			var currentApps = "";

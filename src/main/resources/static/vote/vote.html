@@ -59,10 +59,14 @@
 				if(sessionStorage.power==null
 						|sessionStorage.type==null
 						|sessionStorage.holdtime==null
-						|sessionStorage.range==null){
-					alert("非法访问,未设置权限！！！")
+						|sessionStorage.range==null
+						|sessionStorage.id ==null
+						|sessionStorage.sname ==null
+						|sessionStorage.sno == null
+						|sessionStorage.data ==null){
+					alert("非法访问,请重新登录！！！")
 					sessionStorage.clear();
-
+					location.href = "http://localhost:8080/elvis/vote/login.html"
 				}
 
 			});
