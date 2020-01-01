@@ -78,8 +78,8 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
         Vote vote = advdDao.selectVoteById(voteid);
         User user = advdDao.selectUseridBySno(vote.getOpen_voter());
         Integer integer1 = advdDao.addUserVote(user.getId(), voteid, 4);
-        //通过了审核，改变投票的状态，更新时间
-        Integer integer = advdDao.updateVoteNopass(voteid, 4, time, nopass);
+        //没有通过了审核，改变投票的状态，更新时间
+        Integer integer = advdDao.updateVoteNopass(voteid, 2, time, nopass);
 
         if(integer > 0){
             //给发起人发送一个email信息,通知他审核通过
