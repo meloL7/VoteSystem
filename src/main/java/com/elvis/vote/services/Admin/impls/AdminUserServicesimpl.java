@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,55 +87,83 @@ public class AdminUserServicesimpl implements AdminUserServices {
 
     @Override
     public APIResult searchUserList(Integer key, String value, String identify, Integer indexpage) {
+        System.out.println("service层");
         try {
             if (key != null && key == 0) {
                 /**
                  * 按学号查/按工号查
                  */
-                List<User> listbysno = adminDao.selectUserByValue(value, null, null, null, null, null, identify);
-                System.out.println("按sno查出 ： " + listbysno);
+                PageHelper.startPage(indexpage, pagesize);
+                List<User> list = adminDao.selectUserByValue(value, null, null, null, null, null, identify);
+
+                System.out.println("按sno查出 ： " + list);
+
+                PageInfo listbysno = new PageInfo(list);
                 return new APIResult("success", true, 200, listbysno);
+
             } else if (key != null && key == 1) {
                 /**
                  * 按姓名查询
                  */
-                List<User> listbyname = adminDao.selectUserByValue(null, value, null, null, null, null, identify);
-                System.out.println("按name查出 ： " + listbyname);
+                PageHelper.startPage(indexpage, pagesize);
+                List<User> list = adminDao.selectUserByValue(null, value, null, null, null, null, identify);
+                System.out.println("按name查出 ： " + list);
+                PageInfo listbyname = new PageInfo(list);
                 return new APIResult("success", true, 200, listbyname);
             } else if (key != null && key == 2) {
                 /**
                  * 按学院查询
                  */
-                List<User> listbycolleage = adminDao.selectUserByValue(null, null, value, null, null, null, identify);
-                System.out.println("按colleage查出 ： " + listbycolleage);
+                PageHelper.startPage(indexpage, pagesize);
+
+                List<User> list = adminDao.selectUserByValue(null, null, value, null, null, null, identify);
+                System.out.println("按colleage查出 ： " + list);
+
+                PageInfo listbycolleage = new PageInfo(list);
                 return new APIResult("success", true, 200, listbycolleage);
             } else if (key != null && key == 3) {
                 /**
                  * 按专业查询
                  */
-                List<User> listbymajor = adminDao.selectUserByValue(null, null, null, value, null, null, identify);
-                System.out.println("按major查出 ： " + listbymajor);
+                PageHelper.startPage(indexpage, pagesize);
+
+                List<User> list = adminDao.selectUserByValue(null, null, null, value, null, null, identify);
+                System.out.println("按major查出 ： " + list);
+
+                PageInfo listbymajor = new PageInfo(list);
                 return new APIResult("success", true, 200, listbymajor);
             } else if (key != null && key == 4) {
                 /**
                  * 按年级查询
                  */
-                List<User> listbygrade = adminDao.selectUserByValue(null, null, null, null, value, null, identify);
-                System.out.println("按grade查出 ： " + listbygrade);
+                PageHelper.startPage(indexpage, pagesize);
+
+                List<User> list = adminDao.selectUserByValue(null, null, null, null, value, null, identify);
+                System.out.println("按grade查出 ： " + list);
+
+                PageInfo listbygrade = new PageInfo(list);
                 return new APIResult("success", true, 200, listbygrade);
             } else if (key != null && key == 5) {
                 /**
                  * 按班级查询
                  */
-                List<User> listbyclasses = adminDao.selectUserByValue(null, null, null, null, null, value, identify);
-                System.out.println("按classes查出 ： " + listbyclasses);
+                PageHelper.startPage(indexpage, pagesize);
+
+                List<User> list = adminDao.selectUserByValue(null, null, null, null, null, value, identify);
+                System.out.println("按classes查出 ： " + list);
+
+                PageInfo listbyclasses = new PageInfo(list);
                 return new APIResult("success", true, 200, listbyclasses);
             } else {
                 /**
                  * 查询所有
                  */
-                List<User> listall = adminDao.selectUserByValue(null, null, null, null, null, null, identify);
-                System.out.println("查出所有 ： " + listall);
+                PageHelper.startPage(indexpage, pagesize);
+
+                List<User> list = adminDao.selectUserByValue(null, null, null, null, null, null, identify);
+                System.out.println("查出所有 ： " + list);
+
+                PageInfo listall = new PageInfo(list);
                 return new APIResult("success", true, 200, listall);
             }
         } catch (Exception e) {
@@ -178,7 +209,7 @@ public class AdminUserServicesimpl implements AdminUserServices {
     public APIResult searchMajor(String[] colleagenames) {
         List<MyPower> biglist = new ArrayList();
         for (String colleagename:colleagenames
-             ) {
+        ) {
             Integer last = colleagename.lastIndexOf(">");
             String parentName = colleagename;
 
