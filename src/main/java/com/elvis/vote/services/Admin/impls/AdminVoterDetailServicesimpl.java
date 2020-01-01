@@ -183,6 +183,9 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
             for (int i = 0; i < user.size(); i++) {
                 for (int j = 0; j < user.get(i).size(); j++) {
                     User u = (User)user.get(i).get(j);
+                    if(u.getId() == uu.getId()){
+                        continue;
+                    }
 
                     //建立联系user_vote_connection
                     Integer integer1 = advdDao.addUserVote(u.getId(), voteid, 3);
@@ -192,9 +195,9 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
                     System.out.println("email = " + email);
                     StringBuilder string = new StringBuilder();
                     if(vote.getType() == 1){
-                        stringBuilder.append("您有代参与的问卷，请在"+vote.getEnd_time()+"之前完成！");
+                        stringBuilder.append("您有代参与的问卷，请尽快完成！");
                     }else {
-                        stringBuilder.append("您有代参与的投票，请在"+vote.getEnd_time()+"之前完成！");
+                        stringBuilder.append("您有代参与的投票，请在尽快完成！");
                     }
                     MimeMessage message = mailSender.createMimeMessage();
                     try {
