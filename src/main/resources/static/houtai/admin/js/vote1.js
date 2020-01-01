@@ -197,7 +197,7 @@ function timeout(t,s,indexpage) {
     );
 }
 
-function tsearch(t,s,indexpage,condition,content) {
+function tsearch1(t,s,indexpage,condition,content) {
     if(content == null){
         content = $("#custname").val();
     }
@@ -282,7 +282,7 @@ function ttsearch() {
     s = value[3];
     indexpage = value[4];
 
-    tsearch(t,s,indexpage,condition,content)
+    tsearch1(t,s,indexpage,condition,content)
 
 }
 
