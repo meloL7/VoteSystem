@@ -125,6 +125,7 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
         //查询出发起人的id,根据vote的状态，status为3时是等待审核，得到相应的voter_id和vote_id
         //建立联系，
         Vote vote = advdDao.selectVoteById(voteid);
+        System.out.println("vote = " + vote );
         User uu = advdDao.selectUseridBySno(vote.getOpen_voter());
         System.out.println(uu);
         advdDao.addUserVote(uu.getId(), voteid, 1);
@@ -204,6 +205,7 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
                         mimeMessageHelper.setSubject("发送消息");
                         mimeMessageHelper.setText(stringBuilder.toString());
                         mailSender.send(message);
+                        stringBuilder.setLength(0);
                     }catch (Exception e){
                         e.printStackTrace();
                         result = new APIResult("邮箱发送错误",false,500);
