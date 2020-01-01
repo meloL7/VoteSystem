@@ -14,7 +14,7 @@ public class Login implements Serializable {
     private String major;
     private String grade;
     private String classes;
-    private String college_name;
+    private String colleage_name;
     private String major_name;
     private String grade_name;
     private String classes_name;
@@ -108,12 +108,12 @@ public class Login implements Serializable {
         this.classes = classes;
     }
 
-    public String getCollege_name() {
-        return college_name;
+    public String getColleage_name() {
+        return colleage_name;
     }
 
-    public void setCollege_name(String college_name) {
-        this.college_name = college_name;
+    public void setColleage_name(String colleage_name) {
+        this.colleage_name = colleage_name;
     }
 
     public String getMajor_name() {
@@ -154,7 +154,7 @@ public class Login implements Serializable {
                 ", major='" + major + '\'' +
                 ", grade='" + grade + '\'' +
                 ", classes='" + classes + '\'' +
-                ", college_name='" + college_name + '\'' +
+                ", colleage_name='" + colleage_name + '\'' +
                 ", major_name='" + major_name + '\'' +
                 ", grade_name='" + grade_name + '\'' +
                 ", classes_name='" + classes_name + '\'' +
