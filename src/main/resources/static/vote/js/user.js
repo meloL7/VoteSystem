@@ -1,4 +1,5 @@
 function login() {
+    console.log("进来了");
     var sno = $('#sno').val();
     var pwd = $('#pwd').val();
     console.log(sno+"---"+pwd);
