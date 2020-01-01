@@ -11,8 +11,11 @@
 		<link href="./css/wjxUI.css?v=10" rel="stylesheet" />
 		<link id="ctl01_quetsioncss" rel="stylesheet" type="text/css" href="./css/myquestionnaires.css?v=590" />
 		<link id="ctl01_cssmaster" rel="stylesheet" type="text/css" href="./css/wjxmaster.css?v=16" />
+		<link href="./css/zxf_page.css" rel="stylesheet" type="text/css"/>
+
 		<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
 		<script src="./js/layer.js?v=11"></script>
+		<script type="text/javascript" src="./js/zxf_page.js"></script>
 		<!--[if lt IE 9]>
             <script type="text/javascript" src="/js/respond.min.js" ></script>
     <![endif]-->
@@ -199,7 +202,7 @@ function __doPostBack(eventTarget, eventArgument) {
 													</select>
 													<input name="searchbox" type="text" id="serachbox" class="serarchbox" />
 
-													<i class="search-icon index_iconfont" onclick="selectByNamemy2(null,1,2,0,null,null);">&#xe668;</i>
+													<i class="search-icon index_iconfont" onclick="selectByNamemy2(null,1,2,1,null,null);">&#xe668;</i>
 												</div>
 											</form>
 										</div>
@@ -237,25 +240,8 @@ function __doPostBack(eventTarget, eventArgument) {
 
 
 
-									<div id="ctl01_ContentPlaceHolder1_lmlpage" class="wjxui-page clearfix" style="padding-bottom: 70px;">
-										<span id="ctl01_ContentPlaceHolder1_choosepagecout" class="fl">&nbsp;&nbsp; 每页
-											<select name="ctl01$ContentPlaceHolder1$ddlPageCount" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl01$ContentPlaceHolder1$ddlPageCount\&#39;,\&#39;\&#39;)&#39;, 0)"
-											 id="ctl01_ContentPlaceHolder1_ddlPageCount" class="wjxui-select wjxui-select-sm">
-												<option selected="selected" value="4">4</option>
-												<option value="8">8</option>
-												<option value="10">10</option>
-												<option value="15">15</option>
+									<div class="zxf_pagediv"></div>
 
-											</select>
-											条</span>
-										<div id="ctl01_ContentPlaceHolder1_pagehttml" class="page-list pager-linkpage changePage fr"><a href="javascript:void(0);"
-											 alt="0" class="pageBtn disabled page-first "><i class="iconfont">&#xe65a;</i></a><a href="javascript:void(0);"
-											 alt="0" class="pageBtn page-up disabled "><i class="iconfont">&#xe65b;</i></a><span id="curPage">1/2</span><a
-											 href="javascript:void(0);" alt="2" class="pageBtn page-down"><i class="iconfont">&#xe659;</i></a><a href="javascript:void(0);"
-											 alt="2" class="pageBtn page-last"><i class="iconfont">&#xe658;</i></a>&nbsp;到第&nbsp;<input type='text'
-											 style='height:24px;line-height:24px;border:1px solid #d9d9d9;width:42px;padding-left:5px;' />&nbsp;页&nbsp;<input
-											 type='button' class='wjxui-btn wjxui-btn-primary wjxui-btn-sm' value='确定' /></div>
-									</div>
 
 
 
@@ -355,7 +341,7 @@ function __doPostBack(eventTarget, eventArgument) {
 			if(window.location.href.indexOf("?") > 0){
 				backDetail();
 			}else {
-				fmy2(null,1,2,0);
+				fmy2(null,1,2,1);
 			}
 
 

@@ -120,11 +120,10 @@
 								<div class="pic-box icon vote-icon"></div>
 								<div class="details-wrapper">
 									<div class="details-title">
-										<span>投票</span>
+										<span>选择</span>
 									</div>
 
-									<div class="details-info">图文视频，选项随机</div>
-									<div class="details-info">实时排行，微信投票</div>
+									<div class="details-info">权限管控,自由创建</div>
 								</div>
 
 								<a href="createNewVote.html" class="main__btn--new">创建</a>
@@ -141,10 +140,11 @@
 								<div class="pic-box icon search-icon"></div>
 								<div class="details-wrapper">
 									<div class="details-title">
-										<span>表单</span>
+										<span>问卷</span>
 									</div>
-									<div class="details-info">信息登记，活动报名</div>
-									<div class="details-info"><a href="/mysojump/uploadexcel.aspx" class="wjx_alink_gray" style="text-decoration:none !important;">Excel导入数据</a></div>
+									<div class="details-info">多个选择,并同分析</div>
+
+
 								</div>
 								<a href="createNewNaire.html" data-qtype="4" class="main__btn--new">创建</>
 
@@ -160,8 +160,6 @@
 
 
 					</div>
-			</div>
-		</div>
 
 
 
@@ -169,6 +167,19 @@
 
 
 
+					<script>
+						$(document).ready(function () {
+							if(sessionStorage.id ==null
+									|sessionStorage.sname ==null
+									|sessionStorage.sno == null
+									|sessionStorage.data ==null){
+								alert("非法访问,请重新登录！！！")
+								sessionStorage.clear();
+								location.href = "http://localhost:8080/elvis/vote/login.html"
+							}
+
+						});
+					</script>
 
 		<script type="text/javascript">
 			var currentApps = "";
@@ -406,15 +417,7 @@
 
 		<div style="display:none;">
 			<script src="https://s6.cnzz.com/z_stat.php?id=4478442&web_id=4478442" language="JavaScript"></script>
-			<script>
-				var _hmt = _hmt || [];
-				(function() {
-					var hm = document.createElement("script");
-					hm.src = "https://hm.baidu.com/hm.js?21be24c80829bd7a683b2c536fcf520b";
-					var s = document.getElementsByTagName("script")[0];
-					s.parentNode.insertBefore(hm, s);
-				})();
-			</script>
+
 		</div>
 
 		<!-- Other js-->

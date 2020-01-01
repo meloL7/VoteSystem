@@ -23,13 +23,13 @@
 					<br>
 					<div class="jumbotron well">
 
-							<div class="form-group">
+							<div  class="form-group">
 								<p style="color: black;">标题 (内容不能为空!)</p>
-								<input type="text" class="form-control" maxlength="16" placeholder="请输入标题" id="bigtitle" />
+								<input  type="text" class="form-control" maxlength="16" placeholder="请输入标题" id="bigtitle" />
 							</div>
 							<div class="form-group">
 								<p style="color: black;">投票简介 (内容不能为空！)</p>
-								<textarea cols="4" rows="4" class="form-control" placeholder="请输入投票简介" id="introduction"></textarea>
+								<textarea  cols="4" rows="4" class="form-control" placeholder="请输入投票简介" id="introduction"></textarea>
 							</div>
 
 
@@ -46,6 +46,7 @@
 					<button type="button" class="btn btn-lg btn-primary btn-block" id="addvote">增加问题(题目总数为0/10)</button>
 					<button type="button" class="btn btn-lg btn-primary btn-block" id="sub" onclick="okSumbit()">完成编辑</button>
 					<button type="button" class="btn btn-lg btn-info btn-block" onclick="goTop()">回到顶部</button>
+					<button type="button" class="btn btn-lg btn-info btn-block" onclick="goPre()">取消编辑</button>
 
 
 
@@ -53,8 +54,23 @@
 			</div>
 		</div>
 
+		<script>
+			$(document).ready(function () {
+				if(sessionStorage.power==null
+						|sessionStorage.type==null
+						|sessionStorage.holdtime==null
+						|sessionStorage.range==null
+						|sessionStorage.id ==null
+						|sessionStorage.sname ==null
+						|sessionStorage.sno == null
+						|sessionStorage.data ==null){
+					alert("非法访问,请重新登录！！！")
+					sessionStorage.clear();
+					location.href = "http://localhost:8080/elvis/vote/login.html"
+				}
 
-
+			});
+		</script>
 
 
 
@@ -67,7 +83,7 @@
 
 		<script>
 			var index = 1;
-			window.sessionStorage.tempid = 1;
+			// window.sessionStorage.tempid = 1;
 			var count = 0;
 			var count1 = 1;
 			var choosecount = 0;
@@ -93,7 +109,6 @@
 				var timuSize = 0;
 				for (const key of father.childNodes) {
 					if (key.className != undefined) {
-						console.log(typeof(key.className))
 						if (key.className.indexOf("timu")) {
 							timuSize++;
 						}
@@ -107,7 +122,7 @@
 					n.className = "form-group jumbotron well timu";
 					n.name = "div_timu";
 					var tt =
-						`<h3 >题目</h3><h4 style="color:#CD4F39;">(题目最多为10个,最少为1个,内容不能为空!)</h4>
+						`<h3>题目</h3><h4 style="color:#CD4F39;">(题目最多为10个,最少为1个,内容不能为空!)</h4>
 						<input type="text" name="smalltitle" class="form-control" maxlength="16">
 						<br>
 						<h5>操作</h5>
@@ -115,11 +130,11 @@
 							&nbsp;<a class=" btn btn-primary" id="addchoosebtn" onclick="addchoose(the${count + 1}choose)">添加选择</a>
 									
 									<div class="radio radio-info radio-inline">
-										<input type="radio" id="inlineRadio${num}" value="option1" name="radioInline${num}" checked="">
+										<input type="radio" id="inlineRadio${num}" value="option1" name="radioInline${num}" checked="checked">
 										<label for="inlineRadio${num}"> 单选 </label>
 									</div>
 									<div class="radio radio-inline">
-										<input type="radio" id="inlineRadio${num + 1}" value="option2" name="radioInline${num}">
+										<input type="radio" id="inlineRadio${num + 1}" value="option2" name="radioInline${num}" >
 										<label for="inlineRadio${num + 1}"> 多选 </label>
 									</div>
 									
@@ -134,7 +149,10 @@
 									
 										<h3>选择</h3><h4 style="color:#CD4F39">(选项最多为10个,最少为2个,内容不能为空!)</h4>
 										<div class="input-group" id="the${count + 1}choose">
-										
+												<div id="the1choose1" class="form-group xunazhe" style="display: block;"><input class="form-control xuanzhe" name="question1">
+												<a class="btn input-group-addon" id="" onclick="deletechoose(the${count + 1}choose,the1choose1)">删除选择</a></div>
+												<div id="the2choose1" class="form-group " style="display: block;"><input class="form-control xunazhe" name="question2 ">
+												<a class="btn input-group-addon" id="" onclick="deletechoose(the${count + 1}choose,the2choose1)">删除选择</a></div>
 										
 										</div>`
 					n.innerHTML = tt;
@@ -185,35 +203,29 @@
 				}
 
 				if (chooseSize < 10) {
-
-
-
-
 					// var realid = `"${id.id}"`;
 					var i = count1++;
 					console.log(id)
+
 					var n = document.createElement("div")
 					var d = id.id;
 					n.style.display = "block";
-					n.id = `the${i}choose1`
-					n.className = "form-group";
+					n.id = `the${i+2}choose1`
+					n.className = "form-group xuanze";
 					n.innerHTML =
-						`<input class="form-control" name="question${choosecount + 1}">
-							<a class="btn input-group-addon" id="" onclick="deletechoose(${d},the${i}choose1)">删除选择</a>`
+						`<input class="form-control xuanzhe" name="question${chooseSize +1	} ">
+							<a class="btn input-group-addon" id="" onclick="deletechoose(${d},the${i+2}choose1)">删除选择</a>`
 
 
 
 					id.appendChild(n);
 					choosecount++;
 
-				} else {
-
 				}
 
 			}
 
 			function deletechoose(k, t) {
-
 				var chooseSize = 0;
 				for (const key of k.childNodes) {
 					if (key.className != undefined) {
@@ -263,17 +275,16 @@
 
 			function okSumbit() {
 
-
+				var voteContent = [];
 				var bigtitle = document.getElementById("bigtitle");
 				var introduction = document.getElementById("introduction");
-				3
+
 
 
 
 				var bigtitleflag = false;
 				var introductionflag = false;
 				var titleflag = false;
-				var titleNum = false;
 				var chooseflag = true;
 
 
@@ -285,46 +296,132 @@
 					introductionflag = true;
 
 				}
+				//取出每道题目是单选还是多选
+				var opttypes = [];
+				var optype =  $("#toupiao>div input[type='radio']");
+				for (var i = 0; i <optype.length  ; i++) {
+					var temp;
+					if(optype[i].checked){
+						temp = 1;
+					}
 
+					i++;
+					if(optype[i].checked){
+						temp = 2;
+					}
+					opttypes.push(temp);
+				}
+
+
+
+
+				//取出所有的题目
+				var question = [];
 				var title = $("#toupiao>div>input[name='smalltitle']");
-
-
-
 				for (var i = 0; i < title.length; i++) {
 					if (title[i].value == "") {
 						titleflag = false;
 					} else {
+						var stitle = title[i].value;
+						stitle=title[i].value+">";
+						question.push(stitle)
 						titleflag = true;
 					}
-
 				}
-
-
-
+				//取出所有的选项
+				var temp = [];
 				var titlediv = $("#toupiao > div");
 				for (var i = 0; i < titlediv.length; i++) {
+					var x="" //存每一个投票的内容
 					var titleitem = $("#toupiao > div:eq(" + i + ") input:gt(2)");
-
 					if (titleitem.length < 2) {
 						chooseflag = false;
-					} else {
-						for (var i = 0; i < titleitem.length; i++) {
-							// console.log(titleitem[i].value);
-							if (titleitem[i].value == "") {
+					} else if(titleitem.length>=2){
+						for (var j = 0; j < titleitem.length; j ++) {
+							if(titleitem[j].value != ""){
+								x = x+titleitem[j].value+">";
+							}
+							if (titleitem[j].value == "") {
 								chooseflag = false;
 							}
-
 						}
+						temp.push(x);
 					}
-
-
-
 				}
+
+				for (var i = 0; i <question.length ; i++) {
+					var sb = question[i]+temp[i]+opttypes[i];
+
+
+
+					voteContent.push(sb)
+				}
+
+
 
 
 				if (bigtitleflag && introductionflag && titleflag && chooseflag) {
-					alert("等待管理员验证,将以邮件形式发送结果");
-					form.submit();
+					var range = window.sessionStorage.range;
+					var holdtime =window.sessionStorage.holdtime;
+					var power = window.sessionStorage.power;
+
+
+					var open_voter_sno = window.sessionStorage.sno;
+					var type = window.sessionStorage.type;
+					var sname = window.sessionStorage.sname;
+					var identify = window.sessionStorage.identify;
+					if(identify == "教师"){
+						identify = 1;
+					}else if(identify == "学生"){
+						identify = 2;
+					}
+					var colleage = window.sessionStorage.colleage; //暂无
+					var mybigtitle = bigtitle.value;
+					var myintro = introduction.value;
+					var all_select_num = $("#toupiao").find(".timu").length;
+					var content = voteContent;
+
+					console.log(content);
+
+					$.ajax({
+						url:"/elvis/openNewVote",
+						data: {
+							'open_voter_sno':open_voter_sno,
+							'type':type,
+							'sname':sname,
+							'identify':identify,
+							'colleage':colleage,
+							'mybigtitle':mybigtitle,
+							'myintro':myintro,
+							'all_select_num':all_select_num,
+							'range':range,
+							'holdtime':holdtime,
+							'power':power,
+							'content':content,
+						},
+						traditional:true,
+						success: function (data) {
+							if(data.message=="成功"){
+								alert("等待管理员验证,将以邮件形式发送结果");
+								sessionStorage.removeItem("power")
+								sessionStorage.removeItem("type")
+								sessionStorage.removeItem("holdtime")
+								sessionStorage.removeItem("range")
+								location.href="http://localhost:8080/elvis/vote/my1.html"
+							}else if(data.message=="失败"){
+								alert("创建失败")
+							}else {
+								alert("服务器错误")
+							}
+						}
+
+					});
+
+
+
+
+
+					// form.submit();
 				} else {
 					alert("投票信息设置存在不合法的地方，请返回修改")
 				}
@@ -339,14 +436,46 @@
 					scrollTop: 0
 				}, 'slow');
 			}
+			function goPre() {
+				window.history.back(-1);
+			}
 
 			function goBottom() {
 				window.scrollTo(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
 				$(document).scrollTop($(document).height());
 			}
+
+			// function checkOption1(op1) {
+			// 	var optype =  $("#toupiao>div input[type='radio']");
+			// 	for (var i = 0; i <optype.length ; i++) {
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		i++;
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		console.log("分界线");
+			// 	}
+			// }
+			//
+			// function checkOption2(op2) {
+			// 	var optype =  $("#toupiao>div input[type='radio']");
+			// 	for (var i = 0; i <optype.length  ; i++) {
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		i++;
+			// 		console.log(i+"--"+optype[i].checked);
+			// 		console.log("分界线");
+			// 	}
+			// }
+
+
+
+
+
+
+
+
+
 		</script>
 
-
+		<script src = "./js/goVote.js"></script>
 
 
 	</body>

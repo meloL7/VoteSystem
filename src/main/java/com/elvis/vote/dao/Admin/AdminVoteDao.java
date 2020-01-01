@@ -8,14 +8,17 @@ import java.util.List;
 
 public interface AdminVoteDao {
     //1pass 2nopass 3wait 4timeout
-    List<Vote> searchInfo(int type,int vote_status);
+    List<Vote> searchInfo(Integer type,Integer vote_status,Integer beginrows,Integer pagesize);
     //查询所有符合条件的数量
-    int searchInfoAllNum(int type,int vote_status);
+    int searchInfoAllNum(Integer type,Integer vote_status);
     //查询
     public List<Vote> SearchBy(String open_voter_name,String open_voter_colleage,
                                Integer open_voter_identify,String title,
                                String nopass_result,  Integer all_select_num,
-                               Integer all_voter_num,Integer type,Integer vote_status);
+                               Integer all_voter_num,Integer type,Integer vote_status,
+                               Integer beginrows,Integer pagesize);
+
+
     public int SearchCount(String open_voter_name,String open_voter_colleage,
                            Integer open_voter_identify,String title,
                            String nopass_result,  Integer all_select_num,
@@ -33,7 +36,7 @@ public interface AdminVoteDao {
 
     List<Vote> selectAllVoteBySex(Integer type,String sex,Integer indexpage,Integer pagesize);
 
-    Integer selectAllVoteBySexNumber(Integer type,String sex,Integer indexpage);
+    Integer selectAllVoteBySexNumber(Integer type,String sex);
 
     //查找用户信息
     User selectUserByid(Integer id);

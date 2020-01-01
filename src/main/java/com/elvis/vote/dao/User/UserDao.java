@@ -1,10 +1,9 @@
 package com.elvis.vote.dao.User;
 
-import com.elvis.vote.pojo.Login;
-import com.elvis.vote.pojo.Student;
-import com.elvis.vote.pojo.Teacher;
-import com.elvis.vote.pojo.User;
+import com.elvis.vote.pojo.*;
+import org.w3c.dom.ranges.Range;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface UserDao {
@@ -50,6 +49,25 @@ public interface UserDao {
      * @return
      */
     int isEmailExist(String email);
+
+
+
+    int addVote(Vote vote);
+
+
+    int addRange1(VoteRange voteRange);
+    int addRange2(VoteRange voteRange);
+
+    int addNewSelect(Select select);
+
+    int addNewOption(Option option);
+
+
+    Integer findColleageId(String colleageName);
+    Integer findMajorId(String majorName);
+    Integer findGradeId(String gradeName);
+    Integer findClassesId(String classesName);
+
 
 
 }

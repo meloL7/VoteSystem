@@ -1,7 +1,6 @@
 package com.elvis.vote.pojo;
 
 public class Select {
-    private int id;
     private int select_id;
     private String select_tiltle;
     private int select_type;  //1为单选 2为多选
@@ -15,13 +14,6 @@ public class Select {
         this.select_tiltle = select_tiltle;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getSelect_id() {
         return select_id;
@@ -52,7 +44,6 @@ public class Select {
     @Override
     public String toString() {
         return "Select{" +
-                "id=" + id +
                 ", select_id=" + select_id +
                 ", select_tiltle='" + select_tiltle + '\'' +
                 ", select_type=" + select_type +

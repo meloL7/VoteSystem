@@ -19,6 +19,9 @@
     <link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
 
 
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+
     <!-- jQuery  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -26,6 +29,93 @@
     <script src="assets/js/waves.js"></script>
     <script src="assets/js/simplebar.min.js"></script>
 
+
+
+    <style type="text/css">
+        .demo{ padding: 2em 0;}
+        .counter{
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        .counter .counter-content{
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #fff;
+            padding: 30px 0;
+            margin: 0 auto 30px;
+            z-index: 1;
+            position: relative;
+            transition: all 0.3s ease 0s;
+        }
+        .counter .counter-content:before{
+            content: "";
+            width: 122%;
+            height: 122%;
+            border-radius: 50%;
+            border: 20px solid #f19f48;
+            border-bottom: 20px solid transparent;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .counter .counter-content:after{
+            content: "";
+            border-top: 16px solid #f19f48;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .counter .counter-icon{
+            display: block;
+            font-size: 50px;
+            color: #f19f48;
+            line-height: 50px;
+        }
+        .counter .counter-value{
+            font-size: 50px;
+            font-weight: 700;
+            color: rgba(0,0,0,0.7);
+            line-height: 70px;
+        }
+        .counter .title{
+            display: inline-block;
+            padding: 5px 25px;
+            background: #f19f48;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            text-transform: capitalize;
+            margin: 0;
+        }
+        .counter.red .counter-content:before{
+            border-color: #ef5f61;
+            border-bottom-color: transparent;
+        }
+        .counter.red .counter-content:after{ border-top-color: #ef5f61; }
+        .counter.red .counter-icon{ color: #ef5f61; }
+        .counter.red .title{ background: #ef5f61; }
+        .counter.blue .counter-content:before{
+            border-color: #4d9fcf;
+            border-bottom-color: transparent;
+        }
+        .counter.blue .counter-content:after{ border-top-color: #4d9fcf; }
+        .counter.blue .counter-icon{ color: #4d9fcf; }
+        .counter.blue .title{ background: #4d9fcf; }
+        .counter.purple .counter-content:before{
+            border-color: #a98ceb;
+            border-bottom-color: transparent;
+        }
+        .counter.purple .counter-content:after{ border-top-color: #a98ceb; }
+        .counter.purple .counter-icon{ color: #a98ceb; }
+        .counter.purple .title{ background: #a98ceb; }
+    </style>
 
 </head>
 
@@ -61,29 +151,7 @@
         </div>
     </header>
 </div>
-<script>
-    $(function () {
-        var name = sessionStorage.getItem('username');
-        console.log("name=" + name);
-        var ii = $("#admin_name").html();
-        // var ii = document.getElementById("adminname");
-        console.log("---" + ii);
 
-        if (name == null) {
-            // $("#admin_name").html('请登录');
-            // $("#adminname").attr("href","pages-login.html");
-            // $("#page-header-user-dropdown").attr("onclick",returnLogin());
-            window.location.href = "/elvis/houtai/admin/pages-login.html";
-        } else {
-            $("#admin_name").html(name);//用户栏
-        }
-
-    });
-
-    function logout() {
-        sessionStorage.clear();
-    }
-</script>
 
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu">
@@ -171,109 +239,52 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="demo">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="counter">
+                                                <div class="counter-content">
+                                                    <div class="counter-icon fa fa-globe"></div>
+                                                    <span class="counter-value">1250</span>
+                                                </div>
+                                                <h3 class="title">待审核问卷个数</h3>
+                                            </div>
+                                        </div>
 
-                            <h4 class="card-title">申请试用</h4>
-                            <p class="card-subtitle mb-4 font-size-13">试用用户列表</p>
-                            <div class="input-group input-daterange">
-                                <input id="begindate" name="pickdate" style="width: 240px" type="text"
-                                       placeholder="申请日期(起)" data-date-format="yyyy-mm-dd"
-                                       class="form-control"/>
-                                <div class="input-group-addon">~</div>
-                                <input id="enddate" name="pickdate" type="text" style="width: 240px"
-                                       placeholder="申请日期(止)" data-date-format="yyyy-mm-dd"
-                                       class="form-control"/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <input id="custname" name="custname" type="text" style="width: 240px" placeholder="客户名"
-                                       class="form-control"/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a style="color: #ffffff;line-height: 25px" class="   btn btn-success btn-sm"><i
-                                        class="feather-search"></i>查询</a>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="counter red">
+                                                <div class="counter-content">
+                                                    <div class="counter-icon fa fa-rocket"></div>
+                                                    <span class="counter-value">952</span>
+                                                </div>
+                                                <h3 class="title">已结束问卷个数</h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="counter blue">
+                                                <div class="counter-content">
+                                                    <div class="counter-icon fa fa-briefcase"></div>
+                                                    <span class="counter-value">578</span>
+                                                </div>
+                                                <h3 class="title">待审核选择个数</h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="counter purple">
+                                                <div class="counter-content">
+                                                    <div class="counter-icon fa fa-mobile"></div>
+                                                    <span class="counter-value">1450</span>
+                                                </div>
+                                                <h3 class="title">已结束选择个数</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-centered table-striped table-nowrap">
-                                    <thead>
-                                    <tr>
-                                        <th>编号</th>
-                                        <th>客户名称</th>
-                                        <th>电话</th>
-                                        <th>邮箱</th>
-                                        <th>地址</th>
-                                        <th>申请日期</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="table-user">
-                                            1
-                                        </td>
-                                        <td class="table-user">
-                                            <img src="assets/images/users/avatar-4.jpg" alt="table-user"
-                                                 class="mr-2 avatar-xs rounded-circle">
-                                            <a href="javascript:void(0);" class="text-body font-weight-semibold">Paul J.
-                                                Friend</a>
-                                        </td>
-                                        <td>
-                                            937-330-1634
-                                        </td>
-                                        <td>
-                                            pauljfrnd@jourrapide.com
-                                        </td>
-                                        <td>
-                                            New York
-                                        </td>
-                                        <td>
-                                            07/07/2018
-                                        </td>
-                                        <td>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6" align="center">
-                                            <ul class="pagination pagination-rounded">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="complex-header-datatable_previous">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="0"
-                                                       tabindex="0" class="page-link">
-                                                        <i class="mdi mdi-chevron-left"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item active">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="1"
-                                                       tabindex="0" class="page-link">1</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="2"
-                                                       tabindex="0" class="page-link">2</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="3"
-                                                       tabindex="0" class="page-link">3</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="4"
-                                                       tabindex="0" class="page-link">4</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="5"
-                                                       tabindex="0" class="page-link">5</a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="6"
-                                                       tabindex="0" class="page-link">6</a>
-                                                </li>
-                                                <li class="paginate_button page-item next"
-                                                    id="complex-header-datatable_next">
-                                                    <a href="#" aria-controls="complex-header-datatable" data-dt-idx="7"
-                                                       tabindex="0" class="page-link"><i
-                                                            class="mdi mdi-chevron-right"></i></a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
                             </div>
 
                         </div> <!-- end card-body-->
@@ -324,24 +335,27 @@
 <!-- Overlay-->
 <div class="menu-overlay"></div>
 
-
 <!-- Morris Js-->
 <script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>
+<!--<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.js"></script>-->
 
 <!-- Morris Custom Js-->
 <script src="assets/pages/dashboard-demo.js"></script>
 
 <!-- App js -->
 <script src="assets/js/theme.js"></script>
-<script>
-    $('.input-group input[name="pickdate"]').each(function () {
-        $(this).datepicker({
-            language: 'zh-CN', //语言
-            autoclose: true, //选择后自动关闭
-            clearBtn: true, //清除按钮
-            format: "yyyy-mm-dd", //日期格式
-            orientation: 'bottom'
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.counter-value').each(function(){
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            },{
+                duration: 3500,
+                easing: 'swing',
+                step: function (now){
+                    $(this).text(Math.ceil(now));
+                }
+            });
         });
     });
 </script>

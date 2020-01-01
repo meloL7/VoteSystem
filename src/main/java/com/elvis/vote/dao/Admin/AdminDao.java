@@ -70,6 +70,7 @@ public interface AdminDao {
     Integer searchClassesId(String colleagename,String majorname,String gradename,String classesname);
 
     Integer addPower(String sno,Integer colleageId,Integer majorId,Integer gradeId,Integer searchClassesId);
+    Integer addTPower(String sno,Integer colleageId,Integer majorId);
 
     List checkPower(String sno);
 

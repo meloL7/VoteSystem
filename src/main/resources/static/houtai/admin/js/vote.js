@@ -1,22 +1,23 @@
 //查询所有代参与的问卷信息
-function wait(t,s) {
+function wait(t,s,indexpage) {
     var condition = $("#condition").val();
     var content = $("#custname").val();
-    var indexpage= 0;
+
     $.post(
         "/elvis/admin/loadVote.do",
         {
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage: indexpage,
         },
-        function (data) {
+        function success(data) {
+            console.log(data);
             if(data.code == 200){
                 if (data != null) {
-                    console.log(data);
                     var vote_list = $("#voteContent");
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    vote_list.empty();
+                    for (var i = 0; i < data.data.data.length; i++) {
+
                         var vote =" <tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -32,6 +33,23 @@ function wait(t,s) {
 
                         vote_list.append(vote);
                     }
+                    console.log("indexpage"+data.data.indexpage);
+                    console.log("countpage"+data.data.countpage);
+
+
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            wait(t,s,e.current);
+                        }
+                    });
 
                 }
             }
@@ -42,16 +60,17 @@ function wait(t,s) {
     );
 }
 
-function asearch(t,s) {
-    var condition = $("#condition").val();
-    var content = $("#custname").val();
-    var indexpage= 0;
+function asearch(t,s,indexpage,condition,content) {
+    if(content == null){
+        content = $("#custname").val();
+    }
+    if(condition == null){
+        condition = $("#condition").val();
+    }
+    console.log(content);
+    console.log(condition);
+
     // 获取href里面的值
-
-
-
-
-
     $.post(
         "/elvis/admin/loadSearch.do",
         {
@@ -59,7 +78,7 @@ function asearch(t,s) {
             content:content,
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage: indexpage,
         },
         function (data) {
             if(data.code == 200){
@@ -67,8 +86,7 @@ function asearch(t,s) {
                     console.log(data);
                     var vote_list = $("#voteContent");
                     vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote =" <tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -83,6 +101,19 @@ function asearch(t,s) {
                             "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
                         vote_list.append(vote);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            asearch(t,s,e.current,condition,content);
+                        }
+                    });
                 }
             }
         }
@@ -94,76 +125,39 @@ function asearch(t,s) {
 }
 
 function aasearch() {
-        var href = window.location.search.substr(1);
-        console.log("进来了");
-        var split = href.split("&");
-        console.log(split);
-        var value = [];
-        for (var i = 0; i < split.length; i++) {
-            var v = split[i].split("=");
-            value.push(v[1]);
-        }
-        // console.log("vote.js value = "+value);
-        condition = decodeURI(value[0]);
-        content = decodeURI(value[1]);
-        t = value[2];
-        s = value[3];
-        indexpage = value[4];
-    $.post(
-        "/elvis/admin/loadSearch.do",
-        {
-            condition:condition,
-            content:content,
-            type: t,
-            vote_status:s,
-            indexPage: 0,
-        },
-        function (data) {
-            if(data.code == 200){
-                if (data != null) {
-                    console.log(data);
-                    var vote_list = $("#voteContent");
-                    vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
-                        var vote =" <tr>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_colleage+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_identify+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_select_num+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看问卷详情</a>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
-                        vote_list.append(vote);
-                    }
-                }
-            }
-        }
-    );
+    var href = window.location.search.substr(1);
+    var split = href.split("&");
+    console.log(split);
+    var value = [];
+    for (var i = 0; i < split.length; i++) {
+        var v = split[i].split("=");
+        value.push(v[1]);
+    }
+    // console.log("vote.js value = "+value);
+    condition = decodeURI(value[0]);
+    content = decodeURI(value[1]);
+    t = value[2];
+    s = value[3];
+    indexpage = value[4];
+    asearch(t, s, indexpage,condition,content);
 }
 
-function timeout(t,s) {
+function timeout(t,s,indexpage) {
     var condition = $("#condition").val();
     var content = $("#custname").val();
-    var indexpage= 0;
     $.post(
         "/elvis/admin/loadVote.do",
         {
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage: indexpage,
         },
         function (data) {
             if(data.code == 200){
                 if (data != null) {
-                    console.log(data);
                     var vote_list = $("#voteContent");
-                    // console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    vote_list.empty();
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -184,7 +178,19 @@ function timeout(t,s) {
 
                         vote_list.append(vote);
                     }
-
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            timeout(t,s,e.current);
+                        }
+                    });
                 }
             }
 
@@ -194,11 +200,13 @@ function timeout(t,s) {
     );
 }
 
-function tsearch(t,s) {
-    var condition = $("#condition").val();
-    var content = $("#custname").val();
-    var indexpage= 0;
-    //获取href里面的值
+function tsearch(t,s,indexpage,condition,content) {
+    if(content == null){
+        content = $("#custname").val();
+    }
+    if(condition == null){
+        condition = $("#condition").val();
+    }
 
 
     $.post(
@@ -208,7 +216,7 @@ function tsearch(t,s) {
             content:content,
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage: indexpage,
         },
         function (data) {
             if(data.code == 200){
@@ -216,8 +224,7 @@ function tsearch(t,s) {
                     console.log(data);
                     var vote_list = $("#voteContent");
                     vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -238,6 +245,19 @@ function tsearch(t,s) {
 
                         vote_list.append(vote);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            tsearch(t,s,e.current,condition,content);
+                        }
+                    });
 
                 }
             }
@@ -265,71 +285,26 @@ function ttsearch() {
     s = value[3];
     indexpage = value[4];
 
-    $.post(
-        "/elvis/admin/loadSearch.do",
-        {
-            condition:condition,
-            content:content,
-            type: t,
-            vote_status:s,
-            indexPage: 0,
-        },
-        function (data) {
-            if(data.code == 200){
-                if (data != null) {
-                    console.log(data);
-                    var vote_list = $("#voteContent");
-                    vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
-                        var vote ="<tr>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_colleage+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_identify+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<th>"+data.data.data[i].all_select_num+"</th>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_voter_num+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].end_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看问卷详情</a>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t&nbsp;|&nbsp;\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../anaysis.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看问卷分析</a>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t</tr>";
+    tsearch(t,s,indexpage,condition,content)
 
-                        vote_list.append(vote);
-                    }
-
-                }
-            }
-
-
-
-        }
-    );
 }
 
-function pass(t,s) {
+function pass(t,s,indexpage) {
     var condition = $("#condition").val();
     var content = $("#custname").val();
-    var indexpage= 0;
     $.post(
         "/elvis/admin/loadVote.do",
         {
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage:indexpage,
         },
         function (data) {
             if(data.code == 200){
                 if (data != null) {
                     console.log(data);
                     var vote_list = $("#voteContent");
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -346,6 +321,19 @@ function pass(t,s) {
 
                         vote_list.append(vote);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            pass(t,s,e.current);
+                        }
+                    });
 
                 }
             }
@@ -356,7 +344,7 @@ function pass(t,s) {
     );
 }
 
-function psearch(t,s) {
+function psearch(t,s,indexpage,condition,content) {
     var condition = $("#condition").val();
     var content = $("#custname").val();
     var indexpage= 0;
@@ -377,8 +365,8 @@ function psearch(t,s) {
                     console.log(data);
                     var vote_list = $("#voteContent");
                     vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    console.log(data.data.data.length);
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -395,6 +383,19 @@ function psearch(t,s) {
 
                         vote_list.append(vote);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            psearch(t,s,e.current,condition,content);
+                        }
+                    });
 
                 }
             }
@@ -421,68 +422,26 @@ function ppsearch() {
     t = value[2];
     s = value[3];
     indexpage = value[4];
-
-    $.post(
-        "/elvis/admin/loadSearch.do",
-        {
-            condition:condition,
-            content:content,
-            type: t,
-            vote_status:s,
-            indexPage: 0,
-        },
-        function (data) {
-            if(data.code == 200){
-                if (data != null) {
-                    console.log(data);
-                    var vote_list = $("#voteContent");
-                    vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
-                        var vote ="<tr>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_colleage+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_identify+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_select_num+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].begin_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看问卷详情</a>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
-
-                        vote_list.append(vote);
-                    }
-
-                }
-            }
-
-
-
-        }
-    );
+    psearch(t,s,indexpage,condition,content);
 }
 
-function nopass(t,s) {
+function nopass(t,s,indexpage) {
     var condition = $("#condition").val();
     var content = $("#custname").val();
-    var indexpage= 0;
     $.post(
         "/elvis/admin/loadVote.do",
         {
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage: indexpage,
         },
         function (data) {
             if(data.code == 200){
                 if (data != null) {
                     console.log(data);
                     var vote_list = $("#voteContent");
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    console.log(data.data.data.length);
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -500,6 +459,19 @@ function nopass(t,s) {
 
                         vote_list.append(vote);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            nopass(t,s,e.current);
+                        }
+                    });
 
                 }
             }
@@ -509,10 +481,9 @@ function nopass(t,s) {
         }
     );
 }
-function npsearch(t,s) {
+function npsearch(t,s,indexpage,condition,content) {
     var condition = $("#condition").val();
     var content = $("#custname").val();
-    var indexpage= 0;
     //获取href里面的值
 
     $.post(
@@ -522,7 +493,7 @@ function npsearch(t,s) {
             content:content,
             type: t,
             vote_status:s,
-            indexPage: 0,
+            indexPage: indexpage,
         },
         function (data) {
             if(data.code == 200){
@@ -530,8 +501,8 @@ function npsearch(t,s) {
                     console.log(data);
                     var vote_list = $("#voteContent");
                     vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    console.log(data.data.data.length);
+                    for (var i = 0; i < data.data.data.length; i++) {
                         var vote ="<tr>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
@@ -549,6 +520,19 @@ function npsearch(t,s) {
 
                         vote_list.append(vote);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: data.data.indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countpage) {
+                                return;
+                            }
+                            if (e.current == 0) {
+                                e.current = 1
+                            }
+                            npsearch(t,s,e.current,condition,content);
+                        }
+                    });
 
                 }
             }
@@ -574,47 +558,5 @@ function nppsearch() {
     t = value[2];
     s = value[3];
     indexpage = value[4];
-
-    $.post(
-        "/elvis/admin/loadSearch.do",
-        {
-            condition:condition,
-            content:content,
-            type: t,
-            vote_status:s,
-            indexPage: 0,
-        },
-        function (data) {
-            if(data.code == 200){
-                if (data != null) {
-                    console.log(data);
-                    var vote_list = $("#voteContent");
-                    vote_list.empty();
-                    console.log(data.data.countrows);
-                    for (var i = 0; i < data.data.countrows; i++) {
-                        var vote ="<tr>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+(i+1)+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_name+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_colleage+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_voter_identify+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].title+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].all_select_num+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].open_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].end_time+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>"+data.data.data[i].nopass_result+"</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"../detail.html?condition="+condition+"&content="+content+"&type="+t+"&vote_status="+s+"&indexpage="+indexpage+"&vote_id="+data.data.data[i].id+"\">查看问卷详情</a>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n" +
-                            "\t\t\t\t\t\t\t\t\t\t\t\t</tr>"
-
-                        vote_list.append(vote);
-                    }
-
-                }
-            }
-
-
-
-        }
-    );
+    npsearch(t,s,indexpage,condition,content);
 }

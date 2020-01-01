@@ -24,12 +24,15 @@ function fmy1(voter_id,type,voter_status,indexpage) {
                 if (data.result) {
                     console.log(data);
                     var list_item = $("#voteList");
+                    list_item.empty();
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
 
-                    for (var i = 0; i < data.data.countrows; i++) {
-
-                        console.log("data.data.data[i].id = " + data.data.data[i].id)
-
-                        console.log(data.data.data[0].open_voter_name);
+                    for (var i = 0; i < k; i++) {
 
                         // <a href='joinVote.html>跳转需要保存参数：用户id:voter_id,类别:type,状态:voter_status,
                         // 当前页:indexpages
@@ -90,6 +93,24 @@ function fmy1(voter_id,type,voter_status,indexpage) {
                         // list_item.innerHTML = vote_list;
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            fmy1(voter_id,type,voter_status,e.current);
+                        }
+                    });
+
+
+
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");
@@ -102,6 +123,7 @@ function fmy1(voter_id,type,voter_status,indexpage) {
         }
     );
 }
+
 
 //根据条件查询,待参与问卷信息(my1)
 function selectByNamemy1(voter_id,type,voter_status,indexpage,title,content) {
@@ -143,7 +165,14 @@ function selectByNamemy1(voter_id,type,voter_status,indexpage,title,content) {
 
                     console.log("voteList = " + listvote[0]);
 
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
+
+                    for (var i = 0; i < k; i++) {
                         var vote_list = "<div id=\"ctl01_ContentPlaceHolder1_qls\" class=\"survey-list\">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<dl class='survey-items' style='z-index:100;position:relative'>\n" +
                             "\t\t\t\t\t\t\t\t\t\t\t<dt class='item-top'>\n" +
@@ -200,6 +229,22 @@ function selectByNamemy1(voter_id,type,voter_status,indexpage,title,content) {
                         // listvote.innerHTML = vote_list;
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            selectByNamemy1(voter_id,type ,voter_status,e.current,title,content);
+                        }
+                    });
+
 
                 }else {
                     var message = "<span>"+data.message+"</span>";
@@ -242,12 +287,13 @@ function fmy2(voter_id,type,voter_status,indexpage) {
                 if (data.result) {
                     console.log(data);
                     var list_item = $("#voteList");
-
-                    for (var i = 0; i < data.data.countrows; i++) {
-
-                        console.log("data.data.data[i].id = " + data.data.data[i].id)
-
-                        console.log(data.data.data[0].open_voter_name)
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
+                    for (var i = 0; i < k; i++) {
 
                         var  vote_list = "<div id=\"ctl01_ContentPlaceHolder1_qls\" class=\"survey-list\">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<dl class='survey-items' style='z-index:100;position:relative'>\n" +
@@ -310,6 +356,22 @@ function fmy2(voter_id,type,voter_status,indexpage) {
                         list_item.append(vote_list);
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            fmy2(voter_id,type,voter_status,e.current);
+                        }
+                    });
+
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");
@@ -359,11 +421,14 @@ function selectByNamemy2(voter_id,type,voter_status,indexpage,title,content) {
                     console.log(data);
                     var list_item = $("#voteList");
                     list_item.empty();
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
+                    for (var i = 0; i < k; i++) {
 
-                        console.log("data.data.data[i].id = " + data.data.data[i].id)
-
-                        console.log(data.data.data[0].open_voter_name)
 
                         var vote_list = "<div id=\"ctl01_ContentPlaceHolder1_qls\" class=\"survey-list\">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<dl class='survey-items' style='z-index:100;position:relative'>\n" +
@@ -426,6 +491,22 @@ function selectByNamemy2(voter_id,type,voter_status,indexpage,title,content) {
                         list_item.append(vote_list);
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            selectByNamemy2(voter_id,type,voter_status,e.current,title,content);
+                        }
+                    });
+
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");
@@ -461,9 +542,14 @@ function fmy3(voter_id,type,voter_status,indexpage) {
                 if (data.result) {
                     console.log(data);
                     var list_item = $("#voteList");
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
 
-
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    for (var i = 0; i < k; i++) {
 
                         console.log("data.data.data[i].id = " + data.data.data[i].id);
 
@@ -526,6 +612,21 @@ function fmy3(voter_id,type,voter_status,indexpage) {
                         list_item.append(vote_list);
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            fmy3(voter_id,type,voter_status,e.current);
+                        }
+                    });
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");
@@ -573,7 +674,13 @@ function selectByNamemy3(voter_id,type,voter_status,indexpage,title,content) {
                     console.log(data);
                     var list_item = $("#voteList");
                     list_item.empty();
-                    for (var i = 0; i < data.data.countrows; i++) {
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
+                    for (var i = 0; i < k; i++) {
 
                         console.log("data.data.data[i].id = " + data.data.data[i].id)
 
@@ -636,6 +743,21 @@ function selectByNamemy3(voter_id,type,voter_status,indexpage,title,content) {
                         list_item.append(vote_list);
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            selectByNamemy3(voter_id,type,voter_status,e.current,title,content);
+                        }
+                    });
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");
@@ -661,6 +783,8 @@ function fmy0(voter_id,type,voter_status,indexpage) {
     console.log(voter_id);
     var vote_status = 2;
 
+    console.log(indexpage);
+
     $.post(
         "/elvis/user/vote.do",
         {
@@ -677,12 +801,13 @@ function fmy0(voter_id,type,voter_status,indexpage) {
                     console.log(data);
                     var list_item = $("#voteList");
                     list_item.empty();
-
-                    for (var i = 0; i < data.data.countrows; i++) {
-
-                        console.log("data.data.data[i].id = " + data.data.data[i].id)
-
-                        console.log(data.data.data[0].open_voter_name);
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
+                    for (var i = 0; i < k; i++) {
 
                         var  vote_list = "<div id=\"ctl01_ContentPlaceHolder1_qls\" class=\"survey-list\">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<dl class='survey-items' style='z-index:100;position:relative'>\n" +
@@ -744,7 +869,21 @@ function fmy0(voter_id,type,voter_status,indexpage) {
 
                         list_item.append(vote_list);
                     }
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if (e.current > data.data.countrows) {
 
+                                return
+                            }
+                            if (e.current == 0) {
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            fmy0(voter_id,type,voter_status,e.current);
+                        }
+                    });
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");
@@ -758,6 +897,8 @@ function fmy0(voter_id,type,voter_status,indexpage) {
     );
 
 }
+
+
 
 //通过查询条件，查询所有未通过问卷
 function selectByNamemy0(voter_id,type,voter_status,indexpage,title,content) {
@@ -794,11 +935,13 @@ function selectByNamemy0(voter_id,type,voter_status,indexpage,title,content) {
                     console.log(data);
                     var list_item = $("#voteList");
                     list_item.empty();
-                    for (var i = 0; i < data.data.countrows; i++) {
-
-                        console.log("data.data.data[i].id = " + data.data.data[i].id)
-
-                        console.log(data.data.data[0].open_voter_name)
+                    var k = 0;
+                    if(data.data.beginrows + data.data.pagesize > data.data.countrows){
+                        k = data.data.countrows - data.data.beginrows;
+                    }else {
+                        k = data.data.pagesize;
+                    }
+                    for (var i = 0; i < k; i++) {
 
                         var vote_list = "<div id=\"ctl01_ContentPlaceHolder1_qls\" class=\"survey-list\">\n" +
                             "\t\t\t\t\t\t\t\t\t\t<dl class='survey-items' style='z-index:100;position:relative'>\n" +
@@ -861,6 +1004,21 @@ function selectByNamemy0(voter_id,type,voter_status,indexpage,title,content) {
                         list_item.append(vote_list);
                     }
 
+                    $(".zxf_pagediv").createPage({
+                        pageNum: data.data.countpage,
+                        current: indexpage,
+                        backfun: function (e) {
+                            if(e.current > data.data.countrows){
+
+                                return
+                            }
+                            if(e.current == 0){
+                                e.current = 1;
+                            }
+                            console.log(e.current);
+                            selectByNamemy0(voter_id,type,voter_status,e.current,title,content);
+                        }
+                    });
                 }else {
                     var message = "<span>"+data.message+"</span>";
                     var message_item = $("#voteList");

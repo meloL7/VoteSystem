@@ -16,7 +16,8 @@
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
-		<link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/zxf_page.css" rel="stylesheet" type="text/css"/>
+        <link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 		<!-- Dropify css -->
 		<link href="../plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
 
@@ -28,9 +29,11 @@
     <script src="assets/js/simplebar.min.js"></script>
 
 
-</head>
 
-<body>
+
+	</head>
+
+	<body>
 
 <!-- Begin page -->
 <div id="layout-wrapper">
@@ -86,103 +89,104 @@
     }
 </script>
 
-<!-- ========== Left Sidebar Start ========== -->
-<div class="vertical-menu">
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="vertical-menu">
 
-    <div data-simplebar class="h-100">
+			<div data-simplebar class="h-100">
 
-        <!--- Sidemenu -->
-        <div id="sidebar-menu">
-            <!-- Left Menu Start -->
-            <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">菜单</li>
-                <li>
-                    <a href="index.html" class="waves-effect">
-                        <i class="mdi mdi-view-dashboard"></i>
-                        <span>首页</span></a>
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class=" mdi mdi-account-multiple-outline"></i>
-                        <span>用户管理</span></a>
+				<!--- Sidemenu -->
+				<div id="sidebar-menu">
+					<!-- Left Menu Start -->
+					<ul class="metismenu list-unstyled" id="side-menu">
+						<li class="menu-title">菜单</li>
+						<li>
+							<a href="index.html" class="waves-effect">
+								<i class="mdi mdi-view-dashboard"></i>
+								<span>首页</span></a>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class=" mdi mdi-account-multiple-outline"></i>
+								<span>用户管理</span></a>
 
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="teacher.html">教师管理</a></li>
-                        <li><a href="student.html">学生管理</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-clipboard-text-play"></i>投票管理</span></a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="naire_manage.html">问卷管理</a></li>
-                        <li><a href="vote_manage.html">选择管理</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-book-open-page-variant"></i>投票详情管理</span></a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="naire_detail.html">问卷详情</a></li>
-                        <li><a href="vote_detail.html">选择详情</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal"
-                       data-target="#exampleModal">
-                        <i class="mdi mdi-equalizer"></i>
-                        <span>分析</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="teacher.html">教师管理</a></li>
+								<li><a href="student.html">学生管理</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class="mdi mdi-clipboard-text-play"></i>投票管理</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="naire_manage.html">问卷管理</a></li>
+								<li><a href="vote_manage.html">选择管理</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class="mdi mdi-book-open-page-variant"></i>投票详情管理</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="naire_detail.html">问卷详情</a></li>
+								<li><a href="vote_detail.html">选择详情</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect waves-light" data-toggle="modal" data-target="#exampleModal">
+								<i class="mdi mdi-equalizer"></i>
+								<span>分析</span></a>
 
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-wrench"></i>系统</span></a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-login.html" onclick="logout()" id="quit">退出</a></li>
+						</li>
+						<li>
+							<a href="javascript: void(0);" class="has-arrow waves-effect">
+								<i class="mdi mdi-wrench"></i>系统</span></a>
+							<ul class="sub-menu" aria-expanded="false">
+								<li><a href="pages-invoice.html">退出</a></li>
 
-                    </ul>
-                </li>
+							</ul>
+						</li>
 
-            </ul>
-        </div>
-        <!-- Sidebar -->
-    </div>
-</div>
-<!-- Left Sidebar End -->
+					</ul>
+				</div>
+				<!-- Sidebar -->
+			</div>
+		</div>
+		<!-- Left Sidebar End -->
 
-<!-- ============================================================== -->
-<!-- Start right Content here -->
-<!-- ============================================================== -->
-<div class="main-content">
+		<!-- ============================================================== -->
+		<!-- Start right Content here -->
+		<!-- ============================================================== -->
+		<div class="main-content">
 
-    <div class="page-content">
-        <div class="container-fluid">
+			<div class="page-content">
+				<div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
 
-                </div>
-            </div>
-            <!-- end page title -->
+						</div>
+					</div>
+					<!-- end page title -->
 
 
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-body">
 
-                            <h4 class="card-title">问卷详情管理</h4>
-                            <p class="card-subtitle mb-4 font-size-13">问卷详情列表</p>
-                            <div class="input-group input-daterange">
-                                <!-- <input id="begindate" name="pickdate" style="width: 240px" type="text"
-                                placeholder="申请日期(起)" data-date-format="yyyy-mm-dd" class="form-control" />
 
-                            <div class="input-group-addon">~</div>
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card">
+								<div class="card-body">
 
-                            <input id="enddate" name="pickdate" type="text" style="width: 240px"
-                                placeholder="申请日期(止)" data-date-format="yyyy-mm-dd" class="form-control" />
-                            &nbsp;&nbsp;&nbsp;&nbsp; -->
+									<h4 class="card-title">问卷详情管理</h4>
+									<p class="card-subtitle mb-4 font-size-13">问卷详情列表</p>
+									<div class="input-group input-daterange">
+										<!-- <input id="begindate" name="pickdate" style="width: 240px" type="text"
+                                        placeholder="申请日期(起)" data-date-format="yyyy-mm-dd" class="form-control" />
+										
+                                    <div class="input-group-addon">~</div>
+									
+                                    <input id="enddate" name="pickdate" type="text" style="width: 240px"
+                                        placeholder="申请日期(止)" data-date-format="yyyy-mm-dd" class="form-control" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp; -->
 
 										<div id="saveMessage">
 
@@ -207,7 +211,7 @@
 										<input id="custname" name="custname" type="text" style="width: 240px" placeholder="..." class="form-control"
 										 maxlength="16" />
 
-										<a style="color: #ffffff;line-height: 25px" onclick="loadVoteList(1,0,null,null)" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
+										<a style="color: #ffffff;line-height: 25px" onclick="loadVoteList(1,1,null,null)" class="btn btn-success btn-sm"><i class="feather-search"></i>查询</a>
 									</div>
 									<br><br>
 									<div class="table-responsive">
@@ -232,6 +236,8 @@
 										</table>
 
 									</div>
+
+									<div class="zxf_pagediv"></div>
 
 								</div> <!-- end card-body-->
 							</div> <!-- end card-->
@@ -280,6 +286,7 @@
 		<script src="assets/js/metismenu.min.js"></script>
 		<script src="assets/js/waves.js"></script>
 		<script src="assets/js/simplebar.min.js"></script>
+		<script src="assets/js/zxf_page.js" type="text/javascript"></script>
 
 		<!-- Morris Js-->
 		<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
@@ -332,7 +339,7 @@
 				if(window.location.search.indexOf("back") > 0){
 					back();
 				}else {
-					loadVoteList(1,0,null,null);
+					loadVoteList(1,1,null,null);
 				}
 
 			})

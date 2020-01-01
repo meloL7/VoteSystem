@@ -1,16 +1,16 @@
 package com.elvis.vote.services.User.impls;
 
 import com.elvis.vote.dao.User.UserDao;
-import com.elvis.vote.pojo.Login;
-import com.elvis.vote.pojo.Student;
-import com.elvis.vote.pojo.Teacher;
-import com.elvis.vote.pojo.User;
+import com.elvis.vote.pojo.*;
 import com.elvis.vote.services.User.UserServices;
 import com.elvis.vote.utils.APIResult;
 import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.ranges.Range;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -181,6 +181,130 @@ public class UserServicesImpl implements UserServices {
 
 
         return result;
+
+    }
+
+
+
+    @Override
+    public APIResult addVote(String open_voter_sno, Integer type, String sname, Integer identify,
+                             String colleage, String mybigtitle, String myintro,
+                             Integer all_select_num, String range, String holdtime,
+                             String power, String[] content) {
+        APIResult result = null;
+        //1.新建投票信息;(投票状态)
+        System.out.println(range);
+        int newRange = 0;
+        if(range.equals("教师")){
+            range = "1";
+            newRange = Integer.parseInt(range);
+        }
+        if(range.equals("学生")){
+            range = "2";
+            newRange = Integer.parseInt(range);
+        }
+        if(range.equals("教师和学生")){
+            range = "3";
+            newRange = Integer.parseInt(range);
+        }
+
+
+        if(identify==1){
+            identify=3;
+        }
+        if(identify==2){
+            identify=4;
+        }
+        Vote vote = new Vote();
+        vote.setTitle(mybigtitle);
+        vote.setIntroduction(myintro);
+        vote.setType(type);
+        vote.setOpen_voter(open_voter_sno);
+        vote.setOpen_voter_name(sname);
+        vote.setOpen_voter_colleage(colleage);
+        vote.setOpen_voter_identify(identify);
+        vote.setAll_select_num(all_select_num);
+        vote.setAll_voter_num(0);
+        vote.setVote_status(3);
+        vote.setHold_time(holdtime);
+        int addVoteflag = userDao.addVote(vote);
+        Boolean flag = true;
+        if(addVoteflag>0){
+            //新增投票成功
+            int voteid  = vote.getId();
+            //插入投票的权限范围
+            String[] powers = power.split(",");
+            for (int i = 0; i <powers.length ; i++) {
+                String[] ct = powers[i].split(">");
+                if(ct.length==3){
+                    Integer colleageId = userDao.findColleageId(ct[1]);
+                    Integer majorId = userDao.findMajorId(ct[2]);
+                    VoteRange voteRange = new VoteRange(voteid,newRange,colleageId,majorId);
+                    int x = userDao.addRange1(voteRange);
+                    if(x<0){
+                        flag = false;
+                    }
+                }
+                if(ct.length==5){
+                    Integer colleageId = userDao.findColleageId(ct[1]);
+                    Integer majorId = userDao.findMajorId(ct[2]);
+                    Integer gradeId = userDao.findGradeId(ct[3]);
+                    Integer classesId = userDao.findClassesId(ct[4]);
+                    VoteRange voteRange = new VoteRange(voteid,newRange,colleageId,majorId,gradeId,classesId);
+                    int x = userDao.addRange2(voteRange);
+                    if(x<0){
+                        flag = false;
+                    }
+                }
+            }
+            //新增加select
+            for (int i = 0; i <content.length ; i++) {
+                String[] ops = content[i].split(">");
+                String title = ops[0];
+                Integer stype = Integer.valueOf(ops[ops.length-1]);
+                Select select = new Select();
+                select.setSelect_tiltle(title);
+                select.setSelect_type(stype);
+                select.setVote_id(voteid);
+                int i1 = userDao.addNewSelect(select);
+                int select_id = select.getSelect_id();
+                if(i1>0) {
+                    //新增加option
+                    for (int j = 1; j <ops.length-1 ; j++) {
+                        String opContent = ops[j];
+                        Option option = new Option();
+                        option.setOption_content(opContent);
+                        option.setSelect_id(select_id);
+                        int i2 = userDao.addNewOption(option);
+                        if(i2<0){
+                            flag = false;
+                        }
+                    }
+
+
+
+
+                }else {
+                    flag = false;
+                }
+            }
+
+
+
+        }else {
+            flag = false;
+        }
+
+        if(flag){
+            result = new APIResult("成功",true,200);
+        }else {
+            result = new APIResult("失败",false,500);
+        }
+
+
+        return result;
+
+
 
     }
 }
