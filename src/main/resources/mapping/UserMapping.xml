@@ -111,6 +111,7 @@
             `type`, `open_voter`,
         `open_voter_name`, `open_voter_colleage`,
         `open_voter_identify`, `open_time`,
+         `begin_time`, `end_time`,
          `all_select_num`, `all_voter_num`,
           `vote_status`,`hold_time`)
         VALUES
@@ -120,7 +121,8 @@
          #{open_voter_name},
            #{open_voter_colleage},
            #{ open_voter_identify},
-          now(), #{all_select_num},
+          now(),now(),now(),
+           #{all_select_num},
            0,3,#{hold_time}
         );
 

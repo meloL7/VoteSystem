@@ -133,7 +133,7 @@ function searchTeacher(indexpage) {
                             return
                         }
                         if (e.current == 0) {
-                            e.current = 1
+                            e.current = 1;
                         }
                         console.log(e.current+"---"+e.pageNum);
                         // pageGet(e.current, pager.pagesize);

@@ -82,7 +82,23 @@
 			</div>
 
 
+			<script>
+				$(document).ready(function () {
+					if(sessionStorage.power==null
+							|sessionStorage.type==null
+							|sessionStorage.holdtime==null
+							|sessionStorage.range==null
+							|sessionStorage.id ==null
+							|sessionStorage.sname ==null
+							|sessionStorage.sno == null
+							|sessionStorage.data ==null){
+						alert("非法访问,请重新登录！！！")
+						sessionStorage.clear();
+						location.href = "http://localhost:8080/elvis/vote/login.html"
+					}
 
+				});
+			</script>
 
 
 
@@ -374,6 +390,11 @@
 							success: function (data) {
 								if(data.message=="成功"){
 									alert("等待管理员验证,将以邮件形式发送结果");
+									sessionStorage.removeItem("power")
+									sessionStorage.removeItem("type")
+									sessionStorage.removeItem("holdtime")
+									sessionStorage.removeItem("range")
+									location.href="http://localhost:8080/elvis/vote/my1.html"
 								}else if(data.message=="失败"){
 									alert("创建失败")
 								}else {

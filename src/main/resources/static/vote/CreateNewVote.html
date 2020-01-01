@@ -104,7 +104,7 @@
 
 				<a href="#" onclick="saveResult(this)" class="btn btn-info col-lg-12 ">创建</a>
 				<br><br><br>
-				<a class="btn btn-info col-lg-12">取消创建</a>
+				<a href="create.html" class="btn btn-info col-lg-12">取消创建</a>
 			</div>
 		</div>
 	</div>
@@ -115,6 +115,19 @@
 </body>
 <script>
 	$(document).ready(function () {
+			if(sessionStorage.id ==null |sessionStorage.sname ==null
+					|sessionStorage.sno == null
+					|sessionStorage.data ==null){
+				alert("非法访问,请重新登录！！！")
+				sessionStorage.clear();
+				location.href = "http://localhost:8080/elvis/vote/login.html"
+			}
+
+
+
+
+
+
 		if(window.sessionStorage.range!=null){
 			window.sessionStorage.removeItem("range");
 		}
@@ -538,7 +551,7 @@
 				window.sessionStorage.holdtime = holdtime;
 				window.sessionStorage.type = 2;
 				window.sessionStorage.power = power;
-				a.href="vote.html";
+				a.href="vote2.html";
 
 
 			}else {
