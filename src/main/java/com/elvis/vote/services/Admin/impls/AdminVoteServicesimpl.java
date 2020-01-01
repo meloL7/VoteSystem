@@ -1,7 +1,9 @@
 package com.elvis.vote.services.Admin.impls;
 
 import com.elvis.vote.dao.Admin.AdminVoteDao;
+import com.elvis.vote.dao.Admin.AdminVoteDetailDao;
 import com.elvis.vote.pojo.*;
+
 import com.elvis.vote.services.Admin.AdminVoteServices;
 import com.elvis.vote.utils.APIResult;
 import com.elvis.vote.utils.Pager;
@@ -18,6 +20,9 @@ import static java.lang.Integer.parseInt;
 public class AdminVoteServicesimpl implements AdminVoteServices {
     @Resource(type = AdminVoteDao.class)
     AdminVoteDao dao;
+
+    @Resource(type = AdminVoteDetailDao.class)
+    AdminVoteDetailDao voteDetailDao;
 
 
 
@@ -306,7 +311,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                 List<Vote> votes = dao.selectAllVote(type, null, null, null, null, pager.getBeginrows(),10);
                 ArrayList users = new ArrayList();
                 for (int i = 0; i < votes.size(); i++) {
-                    User user = dao.selectUserByid(votes.get(i).getId());
+                    User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                     users.add(user);
                 }
                 pager.setData(votes);
@@ -324,7 +329,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                 List<Vote> votes = dao.selectAllVote(type, content, null, null, null, pager.getBeginrows(),10);
                 ArrayList users = new ArrayList();
                 for (int i = 0; i < votes.size(); i++) {
-                    User user = dao.selectUserByid(votes.get(i).getId());
+                    User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                     users.add(user);
                 }
 
@@ -344,7 +349,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                 List<Vote> votes = dao.selectAllVote(type, null, content, null, null, pager.getBeginrows(),10);
                 ArrayList users = new ArrayList();
                 for (int i = 0; i < votes.size(); i++) {
-                    User user = dao.selectUserByid(votes.get(i).getId());
+                    User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                     users.add(user);
                 }
 
@@ -364,7 +369,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                     List<Vote> votes = dao.selectAllVote(type, null, null, 2, null, pager.getBeginrows(),10);
                     ArrayList users = new ArrayList();
                     for (int i = 0; i < votes.size(); i++) {
-                        User user = dao.selectUserByid(votes.get(i).getId());
+                        User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                         users.add(user);
                     }
 
@@ -384,7 +389,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                     List<Vote> votes = dao.selectAllVote(type, null, null, 1, null, pager.getBeginrows(),10);
                     ArrayList users = new ArrayList();
                     for (int i = 0; i < votes.size(); i++) {
-                        User user = dao.selectUserByid(votes.get(i).getId());
+                        User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                         users.add(user);
                     }
 
@@ -407,7 +412,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                 List<Vote> votes = dao.selectAllVoteBySex(type, content, pager.getBeginrows(),10);
                 ArrayList users = new ArrayList();
                 for (int i = 0; i < votes.size(); i++) {
-                    User user = dao.selectUserByid(votes.get(i).getId());
+                    User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                     users.add(user);
                 }
 
@@ -427,7 +432,7 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
                 List<Vote> votes = dao.selectAllVote(type, null, null, null, content, pager.getBeginrows(),10);
                 ArrayList users = new ArrayList();
                 for (int i = 0; i < votes.size(); i++) {
-                    User user = dao.selectUserByid(votes.get(i).getId());
+                    User user = voteDetailDao.selectUserBysno(votes.get(i).getOpen_voter());
                     users.add(user);
                 }
                 pager.setData(votes);
@@ -440,6 +445,9 @@ public class AdminVoteServicesimpl implements AdminVoteServices {
 
         return result;
     }
+
+
+
 
     @Override
     public APIResult querySelectByVoteId(Integer voteID) {
