@@ -1,572 +1,612 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<!-- <link href="https://cdn.bootcss.com/bootstrap-select/2.0.0-beta1/css/bootstrap-select.min.css" rel="stylesheet"> -->
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<!-- <link href="https://cdn.bootcss.com/bootstrap-select/2.0.0-beta1/css/bootstrap-select.min.css" rel="stylesheet"> -->
 
 
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-			  crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+		  crossorigin="anonymous">
 
-		<script src = "./js/jquery-1.9.1.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+	<script src = "./js/jquery-1.9.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
-		<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-		<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script> -->
+	<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script> -->
 
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		 crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-		 crossorigin="anonymous"></script>
-<!--		<script src="js/jquery-1.9.1.min.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+			crossorigin="anonymous"></script>
+	<!--		<script src="js/jquery-1.9.1.min.js"></script>-->
 
-		<style>
-			.bootstrap-select{
-				min-width: 1080px;
+	<style>
+		.bootstrap-select{
+			min-width: 1080px;
 
-			}
-		</style>
+		}
+	</style>
 
-	</head>
-	<body>
-		<div class="container">
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-
-					<div class="row clearfix">
-						<div class="col-md-12 column">
-							<div class="jumbotron" style="background-color: white">
-								<h1 align="center" >
-									创 建 问 卷
-								</h1>
-							</div>
-						</div>
-					</div>
-
-					<div class="container">
-						<div class="row clearfix">
-							<div class="col-md-12 column">
-								<div class="row clearfix">
-									<div class="col-md-12 column" id="t5" style="display: none;">
-										学院 :
-										<select id="col1" class="selectpicker" multiple >
-										</select>
-									</div>
-									<div class="col-md-12 column" id="t6" style="display: none;">
-										专业 :
-										<select id="maj1" class="selectpicker" multiple>
-										</select>
-									</div>
-									<div class="col-md-12 column" id="t7" style="display: none;">
-										年级 :
-										<select id="gra1" class="selectpicker" multiple  >　
-										</select>
-									</div>
-									<br><br><br>
-									<div class="col-md-12 column" id="t8" style="display: none;">
-										班级：
-										<select id="cla1" class="selectpicker" multiple >
-										</select>
-									</div>
-									<div class="col-md-12 column" id="t9">
-										范围：
-										<select id="range" class="selectpicker" >
-											<optgroup class="optgroup-1" label="范围">
-												<option >Nothing Selected</option>
-												<option>教师</option>
-												<option>学生</option>
-												<option>教师和学生</option>
-											</optgroup>
-										</select>
-									</div>
-									<br><br><br>
-									<div class="col-md-12 column" id="t10">
-										投票时长：
-										<select id="holdtime" class="selectpicker" >
-											<optgroup class="optgroup-1" label="持续时间">
-												<option >Nothing Selected</option>
-												<option>3天</option>
-												<option>7天</option>
-											</optgroup>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-
-
-					<br><br>
-
-
-					<div class="content">
-
-						<a href="#" onclick="saveResult(this)" class="btn btn-info col-lg-12 ">创建</a>
-						<br><br><br>
-						<a class="btn btn-info col-lg-12">取消创建</a>
+					<div class="jumbotron" style="background-color: white">
+						<h1 align="center" >
+							创 建 问 卷
+						</h1>
 					</div>
 				</div>
 			</div>
+
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column" id="t5" style="display: none;">
+								学院 :
+								<select id="col1" class="selectpicker" multiple >
+								</select>
+							</div>
+							<div class="col-md-12 column" id="t6" style="display: none;">
+								专业 :
+								<select id="maj1" class="selectpicker" multiple>
+								</select>
+							</div>
+							<div class="col-md-12 column" id="t7" style="display: none;">
+								年级 :
+								<select id="gra1" class="selectpicker" multiple  >　
+								</select>
+							</div>
+							<br><br><br>
+							<div class="col-md-12 column" id="t8" style="display: none;">
+								班级：
+								<select id="cla1" class="selectpicker" multiple >
+								</select>
+							</div>
+							<div class="col-md-12 column" id="t9">
+								范围：
+								<select id="ran1" class="selectpicker" >
+
+								</select>
+							</div>
+							<br><br><br>
+							<div class="col-md-12 column" id="t10">
+								投票时长：
+								<select id="holdtime" class="selectpicker" >
+
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<br><br>
+
+
+			<div class="content">
+
+				<a href="#" onclick="saveResult(this)" class="btn btn-info col-lg-12 ">创建</a>
+				<br><br><br>
+				<a href="create.html" class="btn btn-info col-lg-12">取消创建</a>
+			</div>
 		</div>
+	</div>
+</div>
 
 
 
-	</body>
-	<script>
-		$(document).ready(function () {
+</body>
+<script>
+	$(document).ready(function () {
+		if(window.sessionStorage.range!=null){
+			window.sessionStorage.removeItem("range");
+		}
+		if(window.sessionStorage.holdtime!=null){
+			window.sessionStorage.removeItem("holdtime");
+		}
+		if(window.sessionStorage.type!=null){
+			window.sessionStorage.removeItem("type");
+		}
+		if(window.sessionStorage.power!=null){
+			window.sessionStorage.removeItem("power");
+		}
 
-			if(window.sessionStorage.range!=null){
-				window.sessionStorage.removeItem("range");
+
+
+		var sno = window.sessionStorage.sno;
+		var data = window.sessionStorage.data;
+		var s = JSON.parse(data);
+		var identify = s[0].identify;
+		readPower(sno,identify);
+
+
+	});
+
+</script>
+<script>
+	function myDate(t) {
+		var val = "",
+				staffs = [];
+		// var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
+
+		//循环的取出插件选择的元素(通过是否添加了selected类名判断)
+		for (var i = 0; i < $(t).find("li.selected").length; i++) {
+			// console.log("size"+$("li.selected").length)
+			var kk = $(t).find("li.selected").eq(i)
+			// for(var  j in kk){
+			//     var value = j+"-----"+kk[j]
+			//     console.log(value)
+			// }
+			// console.log("kk"+kk.attr("class"))
+			var g = kk.attr("class")
+			// console.log("test"+g)
+			g = `li.${g.substr(0,g.length-8)}`
+			// // console.log(g)
+			var op = $(t).find(g).eq(0).find(".text").text()
+			val = $(t).find("li.selected").eq(i).find(".text").text();
+			var c = $(t).find("li.selected").eq(i)
+			// console.log("test"+c)
+			if (val != '') {
+				val = op+">"+val
+				staffs.push(val);
 			}
-			if(window.sessionStorage.holdtime!=null){
-				window.sessionStorage.removeItem("holdtime");
-			}
-			if(window.sessionStorage.type!=null){
-				window.sessionStorage.removeItem("type");
-			}
-			if(window.sessionStorage.power!=null){
-				window.sessionStorage.removeItem("power");
-			}
+			// console.log(staffs)
+		}
+
+		return staffs;
+
+	}
+
+	function readPower(sno,identify) {
+		var col = [];
+		var maj = [];
+		var gra = [];
+		var cla = [];
+
+
+		xno = "#"+sno;
+
+		$.ajax({
+			url:"/elvis/admin/readPower",
+			type:"post",
+			data:{
+				sno:sno,
+			},
+			success:function (data) {
+				if(identify =="教师"){
+					for (var i = 0; i <data.data.length ; i++) {
+						var colleageName = data.data[i].colleage_name;
+						var majorName = data.data[i].major_name;
+
+						if(col.indexOf(colleageName)<0){
+							col.push(colleageName)
+						}
+						if(maj.indexOf(majorName)<0){
+							maj.push(majorName)
+						}
+					}
+					loadColleage1(sno,col) //加载初始学校数据
+					loadMajor1(col,maj);
+					$("#t6").css("display","block")
+					loadRange(1)
+					loadHoldTime()
+
+				}
+				if(identify =="学生"){
+					for (var i = 0; i <data.data.length ; i++) {
+						var colleageName = data.data[i].colleage_name;
+						var majorName = data.data[i].major_name;
+						var gradeName = data.data[i].grade_name;
+						var classesName = data.data[i].classes_name;
+
+						if(col.indexOf(colleageName)<0){
+							col.push(colleageName)
+						}
+						if(maj.indexOf(majorName)<0){
+							maj.push(majorName)
+						}
+						if(gra.indexOf(gradeName)<0){
+							gra.push(gradeName)
+						}
+						if(cla.indexOf(classesName)<0){
+							cla.push(classesName)
+						}
+					}
+					loadColleage1(sno,col) //加载初始学校数据
+					var gtitle = loadMajor1(col,maj);
+					var ctitle = loadGrade1(gtitle,gra);
+					loadclasses1(ctitle,cla)
+					$("#t8").css("display","block")
+
+					loadRange(2)
+					loadHoldTime()
+				}
 
 
 
-			var sno = window.sessionStorage.sno;
-			var data = window.sessionStorage.data;
-			var s = JSON.parse(data);
-			var identify = s[0].identify;
-			readPower(sno,identify);
+			}
+
 
 		});
+	}
 
-	</script>
-	<script>
-		function myDate(t) {
-			var val = "",
-					staffs = [];
-			// var group =  $(t).find("li.dropdown-header").eq(0).find(".text").text()
-
-			//循环的取出插件选择的元素(通过是否添加了selected类名判断)
-			for (var i = 0; i < $(t).find("li.selected").length; i++) {
-				// console.log("size"+$("li.selected").length)
-				var kk = $(t).find("li.selected").eq(i)
-				// for(var  j in kk){
-				//     var value = j+"-----"+kk[j]
-				//     console.log(value)
-				// }
-				// console.log("kk"+kk.attr("class"))
-				var g = kk.attr("class")
-				// console.log("test"+g)
-				g = `li.${g.substr(0,g.length-8)}`
-				// // console.log(g)
-				var op = $(t).find(g).eq(0).find(".text").text()
-				val = $(t).find("li.selected").eq(i).find(".text").text();
-				var c = $(t).find("li.selected").eq(i)
-				// console.log("test"+c)
-				if (val != '') {
-					val = op+">"+val
-					staffs.push(val);
-				}
-				// console.log(staffs)
-			}
-
-			return staffs;
-
+	function loadRange(identify) {
+		var range = $("#ran1");
+		range.empty();
+		var cop =  document.createElement("optgroup");
+		cop.className = "optgroup-1";
+		cop.label = "范围"
+		if(identify==1){
+			addNewSelect(range,cop,"学生")
+			addNewSelect(range,cop,"教师")
+			addNewSelect(range,cop,"教师和学生")
 		}
-
-		function readPower(sno,identify) {
-			var col = [];
-			var maj = [];
-			var gra = [];
-			var cla = [];
-
-
-			xno = "#"+sno;
-
-			$.ajax({
-				url:"/elvis/admin/readPower",
-				type:"post",
-				data:{
-					sno:sno,
-				},
-				success:function (data) {
-					if(identify =="教师"){
-						for (var i = 0; i <data.data.length ; i++) {
-							var colleageName = data.data[i].colleage_name;
-							var majorName = data.data[i].major_name;
-
-							if(col.indexOf(colleageName)<0){
-								col.push(colleageName)
-							}
-							if(maj.indexOf(majorName)<0){
-								maj.push(majorName)
-							}
-						}
-						loadColleage1(sno,col) //加载初始学校数据
-						loadMajor1(col,maj);
-						$("#t6").css("display","block")
-
-					}
-					if(identify =="学生"){
-						for (var i = 0; i <data.data.length ; i++) {
-							var colleageName = data.data[i].colleage_name;
-							var majorName = data.data[i].major_name;
-							var gradeName = data.data[i].grade_name;
-							var classesName = data.data[i].classes_name;
-
-							if(col.indexOf(colleageName)<0){
-								col.push(colleageName)
-							}
-							if(maj.indexOf(majorName)<0){
-								maj.push(majorName)
-							}
-							if(gra.indexOf(gradeName)<0){
-								gra.push(gradeName)
-							}
-							if(cla.indexOf(classesName)<0){
-								cla.push(classesName)
-							}
-						}
-						loadColleage1(sno,col) //加载初始学校数据
-						var gtitle = loadMajor1(col,maj);
-						var ctitle = loadGrade1(gtitle,gra);
-						loadclasses1(ctitle,cla)
-						$("#t8").css("display","block")
-					}
-
-
-
-				}
-
-
-			});
+		if(identify==2){
+			addNewSelect(range,cop,"学生")
 		}
 
 
+	}
+	function loadHoldTime() {
+		var holdtime = $("#holdtime");
+		holdtime.empty();
+		var cop =  document.createElement("optgroup");
+		cop.className = "optgroup-1";
+		cop.label = "持续天数"
+		addNewSelect(holdtime,cop,"三天")
+		addNewSelect(holdtime,cop,"七天")
+
+	}
+	function addNewSelect(sele,cop,ct) {
+		var option = document.createElement("option");
+		option.className = "option-1";
+		option.text = ct;
+		cop.append(option);
+		sele.append(cop);
+		sele.selectpicker('refresh');
+	}
 
 
 
 
+	var cols = [];
 
 
+	function loadColleage1(sno,col) {
 
-		var cols = [];
-
-
-		function loadColleage1(sno,col) {
-
-			// console.log(col)
-			sno1 = sno;
-			$.post(
-					"/elvis/admin/loadcolleage",
-					{},
-					function (data) {
-						if(data.code == 200){
-							var colleagess = $("#col1")
-
-							colleagess.empty();
-							var cop =  document.createElement("optgroup");
-							cop.className = "optgroup-1";
-							cop.label = "湖南理工大学"
-							for (var i = 0; i <data.data.length ; i++) {
-								if(col.indexOf(data.data[i].colleage_name)>-1){
-									var option = document.createElement("option");
-									option.className = "option-1";
-									option.text = data.data[i].colleage_name;
-									cop.append(option);
-								}
-
-							}
-							colleagess.append(cop);
-							colleagess.selectpicker('refresh');
-
-						}
-					}
-			);
-
-		}
-		var grades = [];
-		function loadMajor1(col,maj) {
-
-			for (var i = 0; i < col.length ; i++) {
-				var temp = col[i];
-				temp= "湖南理工大学>"+temp;
-				cols.push(temp)
-			}
-			var data = {
-				colleagecontent:cols
-			}
-			var that = this;
-			$.ajax({
-				url:"/elvis/admin/loadmajor",
-				type:"post",
-				data:data,
-				traditional:true,
-				async:false,
-				success:function (data) {
+		// console.log(col)
+		sno1 = sno;
+		$.post(
+				"/elvis/admin/loadcolleage",
+				{},
+				function (data) {
 					if(data.code == 200){
+						var colleagess = $("#col1")
 
-
-						var majorss = $("#maj1");
-						majorss.empty();
-						// data.data == biglist
-						// data.data.data[i] ==第几个小list
+						colleagess.empty();
+						var cop =  document.createElement("optgroup");
+						cop.className = "optgroup-1";
+						cop.label = "湖南理工大学"
 						for (var i = 0; i <data.data.length ; i++) {
-							var cop =  document.createElement("optgroup");
-							cop.className = "optgroup-"+(i+1);
-							// console.log(data.data[i].parentName)
-							cop.label = data.data[i].parentName;
-							// console.log("test"+data.data[0].data.length)
-							for (var j = 0; j <data.data[i].data.length ; j++) {
-
-								if(maj.indexOf(data.data[i].data[j].major_name)>-1){
-									var option = document.createElement("option");
-									option.className = "option-"+(i+1);
-									option.text = data.data[i].data[j].major_name;
-									cop.append(option);
-									grades.push(data.data[i].parentName+">"+data.data[i].data[j].major_name);
-								}
-
-
-
+							if(col.indexOf(data.data[i].colleage_name)>-1){
+								var option = document.createElement("option");
+								option.className = "option-1";
+								option.text = data.data[i].colleage_name;
+								cop.append(option);
 							}
-							majorss.append(cop);
 
 						}
-
-						majorss.selectpicker('refresh');
-
+						colleagess.append(cop);
+						colleagess.selectpicker('refresh');
 
 					}
 				}
-			});
+		);
 
-			return grades;
+	}
+	var grades = [];
+	function loadMajor1(col,maj) {
+
+		for (var i = 0; i < col.length ; i++) {
+			var temp = col[i];
+			temp= "湖南理工大学>"+temp;
+			cols.push(temp)
 		}
-		var classess= [];
-		function loadGrade1(gtitle,gra) {
-			console.log("进入了loadgrade")
-			var data = {
-				majorcontent:gtitle
-			}
+		var data = {
+			colleagecontent:cols
+		}
+		var that = this;
+		$.ajax({
+			url:"/elvis/admin/loadmajor",
+			type:"post",
+			data:data,
+			traditional:true,
+			async:false,
+			success:function (data) {
+				if(data.code == 200){
 
-			$.ajax({
-				url:"/elvis/admin/loadgrade",
-				type:"post",
-				data:data,
-				traditional:true,
-				async:false,
-				success:function (data) {
 
-					if(data.code == 200){
+					var majorss = $("#maj1");
+					majorss.empty();
+					// data.data == biglist
+					// data.data.data[i] ==第几个小list
+					for (var i = 0; i <data.data.length ; i++) {
+						var cop =  document.createElement("optgroup");
+						cop.className = "optgroup-"+(i+1);
+						// console.log(data.data[i].parentName)
+						cop.label = data.data[i].parentName;
+						// console.log("test"+data.data[0].data.length)
+						for (var j = 0; j <data.data[i].data.length ; j++) {
 
-						var gradess = $("#gra1");
-						gradess.empty();
-						// data.data == biglist
-						// data.data.data[i] ==第几个小list
-
-						for (var i = 0; i <data.data.length ; i++) {
-
-							var cop =  document.createElement("optgroup");
-							cop.className = "optgroup-"+(i+1);
-							// console.log(data.data[i].parentName)
-							cop.label = data.data[i].parentName;
-							// console.log("test"+data.data[0].data.length)
-							for (var j = 0; j <data.data[i].data.length ; j++) {
-
-								if(gra.indexOf(data.data[i].data[j].grade_name)>-1){
-									var option = document.createElement("option");
-									option.className = "option-"+(i+1);
-									option.text = data.data[i].data[j].grade_name;
-									cop.append(option);
-									classess.push(data.data[i].parentName+">"+data.data[i].data[j].grade_name);
-								}
-
+							if(maj.indexOf(data.data[i].data[j].major_name)>-1){
+								var option = document.createElement("option");
+								option.className = "option-"+(i+1);
+								option.text = data.data[i].data[j].major_name;
+								cop.append(option);
+								grades.push(data.data[i].parentName+">"+data.data[i].data[j].major_name);
 							}
-							gradess.append(cop);
-							gradess.selectpicker('refresh');
+
 
 
 						}
-
-
-
-
+						majorss.append(cop);
 
 					}
+
+					majorss.selectpicker('refresh');
+
+
 				}
-			});
-			return classess;
+			}
+		});
+
+		return grades;
+	}
+	var classess= [];
+	function loadGrade1(gtitle,gra) {
+		console.log("进入了loadgrade")
+		var data = {
+			majorcontent:gtitle
 		}
 
-		function loadclasses1(ctitle,cla) {
-			console.log("进入loadclasses1")
-			var data = {
-				classescontent:ctitle
-			}
+		$.ajax({
+			url:"/elvis/admin/loadgrade",
+			type:"post",
+			data:data,
+			traditional:true,
+			async:false,
+			success:function (data) {
 
-			$.ajax({
-				url:"/elvis/admin/loadclasses",
-				type:"post",
-				data:data,
-				traditional:true,
-				success:function (data) {
+				if(data.code == 200){
 
-					if(data.code == 200){
+					var gradess = $("#gra1");
+					gradess.empty();
+					// data.data == biglist
+					// data.data.data[i] ==第几个小list
 
-						var classes = $("#cla1");
-						classes.empty();
-						// data.data == biglist
-						// data.data.data[i] ==第几个小list
+					for (var i = 0; i <data.data.length ; i++) {
 
-						for (var i = 0; i <data.data.length ; i++) {
+						var cop =  document.createElement("optgroup");
+						cop.className = "optgroup-"+(i+1);
+						// console.log(data.data[i].parentName)
+						cop.label = data.data[i].parentName;
+						// console.log("test"+data.data[0].data.length)
+						for (var j = 0; j <data.data[i].data.length ; j++) {
 
-							var cop =  document.createElement("optgroup");
-							cop.className = "optgroup-"+(i+1);
-							// console.log(data.data[i].parentName)
-							cop.label = data.data[i].parentName;
-							// console.log("test"+data.data[0].data.length)
-							for (var j = 0; j <data.data[i].data.length ; j++) {
-
-								if(cla.indexOf(data.data[i].data[j].classes_name)>-1){
-									var option = document.createElement("option");
-									option.className = "option-"+(i+1);
-									option.text = data.data[i].data[j].classes_name;
-									cop.append(option);
-								}
-
+							if(gra.indexOf(data.data[i].data[j].grade_name)>-1){
+								var option = document.createElement("option");
+								option.className = "option-"+(i+1);
+								option.text = data.data[i].data[j].grade_name;
+								cop.append(option);
+								classess.push(data.data[i].parentName+">"+data.data[i].data[j].grade_name);
 							}
-							classes.append(cop);
-							classes.selectpicker('refresh');
+
 						}
-					}
-				}
-			});
-
-		}
-
-		function saveResult(a) {
+						gradess.append(cop);
+						gradess.selectpicker('refresh');
 
 
-
-
-			//这里需要改变
-			var sno = window.sessionStorage.sno;
-			var data = window.sessionStorage.data;
-			var s = JSON.parse(data);
-			var identify = s[0].identify;
-
-			window.sessionStorage.colleage = s[0].colleage;
-			window.sessionStorage.identify = identify;
-			var
-			sno ="#"+sno
-			var flag ;
-			if(identify=="教师"){
-				var f5 = checkNull("#t9");
-				var f6 = checkNull("#t10");
-				flag = checkNull("#t6");
-				if(flag&f5&f6){
-					var val = "",
-							staffs = [],staffs1 = [];
-					//循环的取出插件选择的元素(通过是否添加了selected类名判断)
-					for (var i = 0; i < $("#t6").find("li.selected").length; i++) {
-						var kk = $("#t6").find("li.selected").eq(i)
-						var g = kk.attr("class")
-						g = `li.${g.substr(0,g.length-8)}`
-						var op = $("#t6").find(g).eq(0).find(".text").text()
-						val = $("#t6").find("li.selected").eq(i).find(".text").text();
-						var c = $("#t6").find("li.selected").eq(i)
-						if (val != '') {
-
-							val = op + ">" + val
-							staffs.push(val);
-						}
 					}
 
-					var range = $("#t9").find("li.selected").eq(1).find(".text").text();
-					var holdtime = $("#t10").find("li.selected").eq(1).find(".text").text();
-
-					// console.log(range);
-					// console.log(holdtime);
-
-					var type = 1;
-					var power = staffs;
 
 
-					// window.sessionStorage.removeItem("range");
-					// window.sessionStorage.removeItem("holdtime");
-					// window.sessionStorage.removeItem("power");
-
-					window.sessionStorage.range = range;
-					window.sessionStorage.holdtime = holdtime;
-					window.sessionStorage.type = 1;
-					window.sessionStorage.power = power;
-					a.href="vote.html";
 
 
-				}else {
-					alert("您输入的有为空项,请检查后提交")
 				}
 			}
-			if(identify=="学生"){
-				var f5 = checkNull("#t9");
-				var f6 = checkNull("#t10");
-				flag = checkNull("#t8");
-				if(flag&f5&f6){
-					var val = "",
-							staffs = [],staffs1 = [];
-					//循环的取出插件选择的元素(通过是否添加了selected类名判断)
-					for (var i = 0; i < $("#t8").find("li.selected").length; i++) {
-						var kk = $("#t8").find("li.selected").eq(i)
-						var g = kk.attr("class")
-						g = `li.${g.substr(0,g.length-8)}`
-						var op = $("#t8").find(g).eq(0).find(".text").text()
-						val = $("#t8").find("li.selected").eq(i).find(".text").text();
-						var c = $("#t8").find("li.selected").eq(i)
+		});
+		return classess;
+	}
 
-						if (val != '') {
-							// console.log("XX进来了")
-							val = op + ">" + val
-							staffs.push(val);
+	function loadclasses1(ctitle,cla) {
+		console.log("进入loadclasses1")
+		var data = {
+			classescontent:ctitle
+		}
+
+		$.ajax({
+			url:"/elvis/admin/loadclasses",
+			type:"post",
+			data:data,
+			traditional:true,
+			success:function (data) {
+
+				if(data.code == 200){
+
+					var classes = $("#cla1");
+					classes.empty();
+					// data.data == biglist
+					// data.data.data[i] ==第几个小list
+
+					for (var i = 0; i <data.data.length ; i++) {
+
+						var cop =  document.createElement("optgroup");
+						cop.className = "optgroup-"+(i+1);
+						// console.log(data.data[i].parentName)
+						cop.label = data.data[i].parentName;
+						// console.log("test"+data.data[0].data.length)
+						for (var j = 0; j <data.data[i].data.length ; j++) {
+
+							if(cla.indexOf(data.data[i].data[j].classes_name)>-1){
+								var option = document.createElement("option");
+								option.className = "option-"+(i+1);
+								option.text = data.data[i].data[j].classes_name;
+								cop.append(option);
+							}
+
 						}
+						classes.append(cop);
+						classes.selectpicker('refresh');
 					}
-					var range = $("#t9").find("li.selected").eq(1).find(".text").text();
-					var holdtime = $("#t10").find("li.selected").eq(1).find(".text").text();
-					var type = 1;
-					var power = staffs;
-					// window.sessionStorage.removeItem("range");
-					// window.sessionStorage.removeItem("holdtime");
-					// window.sessionStorage.removeItem("power");
-
-					window.sessionStorage.range = range;
-					window.sessionStorage.holdtime = holdtime;
-					window.sessionStorage.type = 1;
-					window.sessionStorage.power = power;
-
-					a.href="vote.html";
-				}else {
-					alert("您输入的有为空项,请检查后提交")
 				}
 			}
-		}
+		});
 
-		function checkNull(t) {
-			var flag =false;
-			console.log($(t).find("li.selected"))
-			if($(t).find("li.selected").length>0){
-				flag = true;
+	}
+
+	function saveResult(a) {
+
+
+
+
+		//这里需要改变
+		var sno = window.sessionStorage.sno;
+		var data = window.sessionStorage.data;
+		var s = JSON.parse(data);
+		var identify = s[0].identify;
+
+		window.sessionStorage.colleage = s[0].colleage;
+		window.sessionStorage.identify = identify;
+		var
+				sno ="#"+sno
+		var flag ;
+		if(identify=="教师"){
+			var f5 = checkNull("#t9");
+			var f6 = checkNull("#t10");
+			flag = checkNull("#t6");
+			if(flag&f5&f6){
+				var val = "",
+						staffs = [],staffs1 = [];
+				//循环的取出插件选择的元素(通过是否添加了selected类名判断)
+				for (var i = 0; i < $("#t6").find("li.selected").length; i++) {
+					var kk = $("#t6").find("li.selected").eq(i)
+					var g = kk.attr("class")
+					g = `li.${g.substr(0,g.length-8)}`
+					var op = $("#t6").find(g).eq(0).find(".text").text()
+					val = $("#t6").find("li.selected").eq(i).find(".text").text();
+					var c = $("#t6").find("li.selected").eq(i)
+					if (val != '') {
+
+						val = op + ">" + val
+						staffs.push(val);
+					}
+				}
+
+				var range = $("#t9").find("div.filter-option-inner-inner").html();
+
+				var holdtime = $("#t10").find("div.filter-option-inner-inner").html();
+
+				// console.log(range);
+				// console.log(holdtime);
+
+				var type = 2;
+				var power = staffs;
+
+
+				// window.sessionStorage.removeItem("range");
+				// window.sessionStorage.removeItem("holdtime");
+				// window.sessionStorage.removeItem("power");
+
+				window.sessionStorage.range = range;
+				window.sessionStorage.holdtime = holdtime;
+				window.sessionStorage.type = 2;
+				window.sessionStorage.power = power;
+				a.href="vote.html";
+
+
+			}else {
+				alert("您输入的有为空项,请检查后提交")
 			}
-			return flag;
 		}
+		if(identify=="学生"){
+			var f5 = checkNull("#t9");
+			var f6 = checkNull("#t10");
+			flag = checkNull("#t8");
+			console.log("f5" + f5);
+			console.log("f6" + f6);
+			console.log("flag" + flag);
+			if(flag&f5&f6){
+				var val = "",
+						staffs = [],staffs1 = [];
+				//循环的取出插件选择的元素(通过是否添加了selected类名判断)
+				for (var i = 0; i < $("#t8").find("li.selected").length; i++) {
+					var kk = $("#t8").find("li.selected").eq(i)
+					var g = kk.attr("class")
+					g = `li.${g.substr(0,g.length-8)}`
+					var op = $("#t8").find(g).eq(0).find(".text").text()
+					val = $("#t8").find("li.selected").eq(i).find(".text").text();
+					var c = $("#t8").find("li.selected").eq(i)
 
-	</script>
+					if (val != '') {
+						// console.log("XX进来了")
+						val = op + ">" + val
+						staffs.push(val);
+					}
+				}
+				var range = $("#t9").find("div.filter-option-inner-inner").html();
+
+				var holdtime = $("#t10").find("div.filter-option-inner-inner").html();
+				var type = 2;
+				var power = staffs;
+				// window.sessionStorage.removeItem("range");
+				// window.sessionStorage.removeItem("holdtime");
+				// window.sessionStorage.removeItem("power");
+
+				window.sessionStorage.range = range;
+				window.sessionStorage.holdtime = holdtime;
+				window.sessionStorage.type = 1;
+				window.sessionStorage.power = power;
+
+				a.href="vote.html";
+			}else {
+				alert("您输入的有为空项,请检查后提交")
+			}
+		}
+	}
+
+	function checkNull(t) {
+		var flag =false;
+		if($(t).find("li.selected").length>0){
+			flag = true;
+		}
+		return flag;
+	}
+	// function checkNull1(t) {
+	// 	var flag =false;
+	// 	console.log($(t).find("li.selected").length)
+	// 	if($(t).find("li.selected").length>1){
+	// 		console.log("进来了")
+	// 		flag = true;
+	// 	}
+	// 	return flag;
+	// }
+
+</script>
 </html>
