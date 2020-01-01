@@ -155,6 +155,8 @@ public class AdminVoterDetailServicesimpl implements AdminVoteDetailServices {
                 return result;
             }
 
+            stringBuilder.setLength(0);
+
             //有问题。。。(应该添加一条联系，status = 1 发布)（再查询该享有权限下的所有用户，建立联系，status = 3 待参与）
             List<VoteRange> voteRanges = advdDao.selectVoteRange(voteid);
             System.out.println("voteRange = "+voteRanges);

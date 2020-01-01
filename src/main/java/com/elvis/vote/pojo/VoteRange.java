@@ -73,5 +73,15 @@ public class VoteRange {
         this.classes_id = classes_id;
     }
 
-
+    @Override
+    public String toString() {
+        return "VoteRange{" +
+                "vote_id=" + vote_id +
+                ", identify=" + identify +
+                ", colleage_id=" + colleage_id +
+                ", major_id=" + major_id +
+                ", grade_id=" + grade_id +
+                ", classes_id=" + classes_id +
+                '}';
+    }
 }

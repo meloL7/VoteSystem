@@ -61,9 +61,7 @@
 
     <select id="selectAllSelect" resultType="com.elvis.vote.pojo.Select">
 
-        select * from `select` where select_id in(
-	        select select_id from user_vote_details where voter_id = #{voter_id} and vote_id = #{vote_id}
-        )
+        select * from `select` where vote_id = #{vote_id}
     </select>
 
     <select id="selectAllOption" resultType="com.elvis.vote.pojo.Option">
