@@ -5,7 +5,7 @@ import java.util.Date;
 public class VoteConnection {
     private int voter_id;
     private int vote_id;
-    private int Status; //1.发布 2.待参与 3.参与
+    private int Status; //1.发布 3.待参与 2.参与
 
 
     public int getVoter_id() {

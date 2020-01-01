@@ -254,7 +254,7 @@ public class VoteServicesImpl implements VoteServices {
             return apiResult;
         }
         Integer integer = voteDao.updateVoteConnection(voter_id, vote_id, 2);
-        Integer integer1 = voteDao.updateVote(vote_id, 2);
+//        Integer integer1 = voteDao.updateVote(vote_id, 2);
         return  apiResult;
     }
 

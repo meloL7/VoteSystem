@@ -21,38 +21,69 @@
 		<!-- Dropify css -->
 		<link href="../plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
 
+		<!-- jQuery  -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/js/metismenu.min.js"></script>
+		<script src="assets/js/waves.js"></script>
+		<script src="assets/js/simplebar.min.js"></script>
 
 	</head>
 
 	<body>
-
-		<!-- Begin page -->
-		<div id="layout-wrapper">
-			<header id="page-topbar">
-				<div class="navbar-header">
-					<!-- LOGO -->
-					<div class="navbar-brand-box d-flex align-items-left">
-						<a href="index.html" class="logo">
+	<!-- Begin page -->
+	<div id="layout-wrapper">
+		<header id="page-topbar">
+			<div class="navbar-header">
+				<!-- LOGO -->
+				<div class="navbar-brand-box d-flex align-items-left">
+					<a href="index.html" class="logo">
 							<span>
 								<img src="assets/images/logo-light.png" alt="" height="18">
 							</span>
-							<i>
-								<img src="assets/images/logo-small.png" alt="" height="24">
-							</i>
-						</a>
-						<button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light" id="vertical-menu-btn">
-							<i class="fa fa-fw fa-bars"></i>
-						</button>
-					</div>
-					<div class="dropdown d-inline-block ml-2">
-						<button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown" data-toggle="dropdown"
-						 aria-haspopup="true" aria-expanded="false">
-							<span class="d-none d-sm-inline-block ml-1">Admin</span>
-						</button>
-					</div>
+						<i>
+							<img src="assets/images/logo-small.png" alt="" height="24">
+						</i>
+					</a>
+					<button type="button"
+							class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect waves-light"
+							id="vertical-menu-btn">
+						<i class="fa fa-fw fa-bars"></i>
+					</button>
 				</div>
-		</div>
+				<div class="dropdown d-inline-block ml-2">
+					<button type="button" class="btn header-item waves-effect waves-light" id="page-header-user-dropdown"
+							data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+						<span class="d-none d-sm-inline-block ml-1" id="admin_name">Admin</span>
+					</button>
+				</div>
+			</div>
 		</header>
+	</div>
+	<script>
+		$(function () {
+			var name = sessionStorage.getItem('username');
+			console.log("name=" + name);
+			var ii = $("#admin_name").html();
+			// var ii = document.getElementById("adminname");
+			console.log("---" + ii);
+
+			if (name == null) {
+				// $("#admin_name").html('请登录');
+				// $("#adminname").attr("href","pages-login.html");
+				// $("#page-header-user-dropdown").attr("onclick",returnLogin());
+				window.location.href = "/elvis/houtai/admin/pages-login.html";
+			} else {
+				$("#admin_name").html(name);//用户栏
+			}
+
+		});
+
+		function logout() {
+			sessionStorage.clear();
+		}
+	</script>
 
 		<!-- ========== Left Sidebar Start ========== -->
 		<div class="vertical-menu">
