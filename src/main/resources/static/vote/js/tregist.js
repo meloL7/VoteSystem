@@ -91,13 +91,13 @@ function registStudent() {
     /**
      * 密码验证
      */
-    $.ajax({
-        url:"/elvis/register.do",
-        type:"post",
-        data:{'sno':sno,'identify':'教师','email':email,'pwd':pwd,'sname':sname,'sex':sex,'age':age,'colleage':colleage,'major':major,'grade':grade,'classes':classes},
-        dataType:"json",
-        success:function (data) {
-            if (reg.exec(pwd)) {
+    if (reg.exec(pwd)) {
+        $.ajax({
+            url:"/elvis/register.do",
+            type:"post",
+            data:{'sno':sno,'identify':'教师','email':email,'pwd':pwd,'sname':sname,'sex':sex,'age':age,'colleage':colleage,'major':major,'grade':grade,'classes':classes},
+            dataType:"json",
+            success:function (data) {
                 if (data.result) {
                     alert(data.message);
                     sessionStorage.clear();
@@ -105,11 +105,12 @@ function registStudent() {
                 }else if(!data.result){
                     alert(data.message);
                 }
-            } else {
-                alert("请输入正确的密码格式！")
             }
-        }
-    });
+        });
+    } else {
+        $("#Password").val("");
+        alert("请输入正确的密码格式！")
+    }
 
 }
 
