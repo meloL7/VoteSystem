@@ -151,6 +151,29 @@
         </div>
     </header>
 </div>
+<script>
+    $(function () {
+        var name = sessionStorage.getItem('username');
+        console.log("name=" + name);
+        var ii = $("#admin_name").html();
+        // var ii = document.getElementById("adminname");
+        console.log("---" + ii);
+
+        if (name == null) {
+            // $("#admin_name").html('请登录');
+            // $("#adminname").attr("href","pages-login.html");
+            // $("#page-header-user-dropdown").attr("onclick",returnLogin());
+            window.location.href = "/elvis/houtai/admin/pages-login.html";
+        } else {
+            $("#admin_name").html(name);//用户栏
+        }
+
+    });
+
+    function logout() {
+        sessionStorage.clear();
+    }
+</script>
 
 
 <!-- ========== Left Sidebar Start ========== -->
