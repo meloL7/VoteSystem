@@ -1157,7 +1157,7 @@ function changePwd() {
                 if (data.result) {
                     alert(data.message);    
                     sessionStorage.clear();
-                    location.href = "http://localhost:8080/elvis/vote/login.html"
+                    location.href = "/elvis/vote/login.html"
 
                 }else if (!data.result){
                     alert(data.message);

@@ -74,7 +74,7 @@
 							<!-- <button type="button" class="btn btn-lg btn-primary btn-block" id="addvote">增加问题(题目总数为0/10)</button> -->
 							<button type="button" class="btn btn-lg btn-primary btn-block" id="sub" onclick="okSumbit()">完成编辑</button>
 							<button type="button" class="btn btn-lg btn-info btn-block" onclick="goTop()">回到顶部</button>
-
+							<button type="button" class="btn btn-lg btn-info btn-block" onclick="goPre()">取消编辑</button>
 						</form>
 
 					</div>
@@ -94,10 +94,13 @@
 							|sessionStorage.data ==null){
 						alert("非法访问,请重新登录！！！")
 						sessionStorage.clear();
-						location.href = "http://localhost:8080/elvis/vote/login.html"
+						location.href = "/elvis/vote/login.html"
 					}
 
 				});
+				function goPre() {
+					window.history.back(-1);
+				}
 			</script>
 
 

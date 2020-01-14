@@ -7,6 +7,7 @@
     <groupId>com.elvis.votesystem</groupId>
     <artifactId>VoteSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -22,7 +23,20 @@
         <druid>1.0.18</druid>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
     <dependencies>
+
+
 
         <!-- 如果是基于web进行的项目，那么开启web依赖 -->
         <dependency>
